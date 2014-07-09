@@ -3,6 +3,16 @@ IShangkeManagementModule
 
 yoke
 
+##Files
+    +app/
+      assert/           --static files just copied to 'public' folder,brunch conventions
+      css/              --styles can split more css files
+      controllers/      --each page has more than one controllers
+      directives/
+      filters/
+      services/         --service like restAPI
+      settings/         --constant options
+    +vendor/
 
 ##brunch and bower
 (brunch and bower should be installed first)
