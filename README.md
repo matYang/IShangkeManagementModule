@@ -21,7 +21,9 @@ yoke
 
 ##brunch
 ([brunch](http://brunch.io/) should be installed first use `npm install -g brunch`,no 'bower' any more for bower.json in some packages has no 'main' property)
+
 `brunch w -s` to watch
+
 `brunch build -P` to build production version with all files compressed and combined,no more map files and all comments cleaned
 
 ##Steps
