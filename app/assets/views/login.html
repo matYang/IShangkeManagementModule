@@ -1,0 +1,21 @@
+<div class="container">
+    <section class="loginBox row">
+        <section class="col-md-7">
+            <h2>登录</h2>
+
+            <p><input type="text" ng-model="user.username" class="form-control" placeholder="账号"></p>
+            <p><input type="password" ng-model="user.password" class="form-control" placeholder="密码"></p>
+            <p class="span8"><label><input type="checkbox" name="rememberme">下次自动登录</label></p>
+            <button class="btn btn-primary btn-block" ng-click="login(user)">登录</button>
+        </section>
+        <section class="col-md-5">
+            <h2>没有帐户？</h2>
+            <section>
+                <p>联系我们以新建账户</p>
+
+                <p>TEL:xxxxxxx</p>
+            </section>
+        </section>
+    </section>
+    <!-- /loginBox -->
+</div>

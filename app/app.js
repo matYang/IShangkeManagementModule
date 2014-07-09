@@ -13,31 +13,36 @@ var app = angular.module('app', [
     'appDirectives',
     'appFilters'
 ]);
-var appServices = angular.module('appServices',[]);
+var appServices = angular.module('appServices', []);
 var appControllers = angular.module('appControllers', []);
 var appDirectives = angular.module('appDirectives', []);
 var appFilters = angular.module('appFilters', []);
 
 app.config(function ($stateProvider, $urlRouterProvider, $httpProvider, $locationProvider) {
-    $urlRouterProvider.otherwise("/");
+    $urlRouterProvider.otherwise("/home");
     $stateProvider
-            .state('home', {
-                url: '/',
-                templateUrl: 'views/home.html',
-                controller: 'homeCtrl'
-            })
-            .state('course-list', {
-                url: '/course',
-                templateUrl: 'views/course-list.html',
-                controller: 'courseListCtrl'
-            })
-            .state('course-detail', {
-                url: '/course/:id',
-                templateUrl: 'views/course-detail.html',
-                controller: 'courseDetailCtrl'
-            });
+        .state('home', {
+            url: '/home',
+            templateUrl: 'views/home.html',
+            controller: 'homeCtrl'
+        })
+        .state('login', {
+            url: '/login',
+            templateUrl: 'views/login.html',
+            controller: 'loginCtrl'
+        })
+        .state('course-list', {
+            url: '/course',
+            templateUrl: 'views/course-list.html',
+            controller: 'courseListCtrl'
+        })
+        .state('course-detail', {
+            url: '/course/:id',
+            templateUrl: 'views/course-detail.html',
+            controller: 'courseDetailCtrl'
+        });
 
-//        $locationProvider.html5Mode(true).hashPrefix('!');//remove '#' but all href should be adjusted
+//        $locationProvider.html5Mode(true).hashPrefix('!');//remove '#' but all href should be adjusted without '#'
 
 //        $httpProvider.interceptors.push(function ($rootScope, $location, $q, $cookieStore) {
 //            return {
@@ -55,16 +60,42 @@ app.config(function ($stateProvider, $urlRouterProvider, $httpProvider, $locatio
 //                }
 //            };
 //        });
-    }).constant('app', { //constant 'app' assemble things like restAPI and configs
+}).constant('app', { //constant 'app' assemble things like restAPI and configs
         version: Date.now()
     }).run(
-        ['app', '$rootScope', function (app, $rootScope) {
-            //global loading
-            $rootScope.loading = {
-                show: false
-            };
-            $rootScope.goBack = function () {
-                $window.history.go(-1);
-            };
-        }]
+        ['app', '$rootScope','$location','$timeout','$state',
+            function (app, $rootScope,$location,$timeout,$state) {
+
+                var global = $rootScope.global = {
+                    isLogin:false,
+                    isAdmin:false,
+                    user:{}
+                }
+                //assemble things to reduce inject times in controllers,just need 'app'
+                //angular will cache all the inject module
+                app.state = $state;
+                app.location = $location;
+                app.timeout = $timeout;
+                app.timeOffset = 0;
+                app.timestamp = Date.now() + 0;
+                app.rootScope = $rootScope;
+                app.checkUser = function () {
+                    global.isLogin = !! global.user;
+                    global.isAdmin = global.user && global.user.role === 7;//admin role
+                };
+                app.clearUser = function () {
+                    global.user = null;
+                    app.checkUser();
+                };
+                //$rootScope has some global functions to be invoked anywhere
+                $rootScope.logout = function () {
+                    restAPI.user.get({
+                        ID: 'logout'
+                    }, function () {
+                        global.user = null;
+                        app.checkUser();
+                        $location.path('/login');
+                    });
+                };
+            }]
     );

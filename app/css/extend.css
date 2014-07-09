@@ -1,0 +1,7 @@
+html,body{
+    font-family: 'Microsoft Yahei';
+}
+.navbar-nav>.group>a{
+    display: inline-block;
+    padding: 15px 8px;
+}

@@ -1,0 +1,16 @@
+.loginBox{
+    margin: 0 auto;
+    margin-top: 40px;
+    width: 520px;
+    padding: 0 20px 10px;
+    border: 1px solid #fff;
+    color: #000;
+    border-radius: 8px;
+    background: white;
+    box-shadow: 0 0 10px #222;
+    background: -moz-linear-gradient(top, #fff, #efefef 8%);
+    background: -webkit-gradient(linear, 0 0, 0 100%, from(#f6f6f6), to(#f4f4f4));}
+    .loginBox h2 {
+        height: 45px;
+        font-size: 20px;
+        font-weight: normal;}
