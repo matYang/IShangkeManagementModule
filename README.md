@@ -5,7 +5,7 @@ yoke
 
 ##Files
     +app/
-      assert/               --files in this folder just will be copied into 'public' folder for *brunch* conventions
+      assert/               --files in this folder just will be copied into 'public' folder
       css/                  --styles can be split into more css files according to page modules
       controllers/          --each page has more than one controllers
       directives/
@@ -16,7 +16,7 @@ yoke
     +vendor/
       css/
       js/
-    brunch-config.coffee    --brunch config file,look for more in [http://brunch.io/](http://brunch.io/)
+    brunch-config.coffee    --brunch config file,look for more in [brunch](http://brunch.io/)
     package.json            --project information and dependencies of the project
 
 ##brunch
