@@ -1,8 +1,8 @@
 {
   "author": "Jet",
-  "name": "ebooking-web",
-  "description": "wechat web",
-  "version": "0.0.1",
+  "name": "iShangkeAdminWeb",
+  "description": "iShangke admin web project",
+  "version": "1.0.0",
   "homepage": "",
   "repository": {
     "type": "git",
