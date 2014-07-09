@@ -5,35 +5,26 @@ yoke
 
 ##Files
     +app/
-      assert/           --static files just copied to 'public' folder,brunch conventions
-      css/              --styles can split more css files
-      controllers/      --each page has more than one controllers
+      assert/               --files in this folder just will be copied into 'public' folder for *brunch* conventions
+      css/                  --styles can be split into more css files according to page modules
+      controllers/          --each page has more than one controllers
       directives/
       filters/
-      services/         --service like restAPI
-      settings/         --constant options
+      services/             --service like restAPI
+      settings/             --constant options
+     app.js                 --config routers and init the application
     +vendor/
+      css/
+      js/
+    brunch-config.coffee    --brunch config file,look for more in [http://brunch.io/](http://brunch.io/)
+    package.json            --project information and dependencies of the project
 
-##brunch and bower
-(brunch and bower should be installed first)
+##brunch
+([brunch](http://brunch.io/) should be installed first use `npm install -g brunch`,no 'bower' any more for bower.json in some packages has no 'main' property)
 `brunch w -s` to watch
-`brunch build -P` to build production version
-
-`bower init` to init bower.json
-`bower install` to install packages from bower.json
-`bower install <packageName@version>` to install a specific package
-`bower uninstall <packageName>` to uninstall a package
-`bower update <packageName>` to update a package
-`bower list` to list all installed packages
-
-`bower cache list` to list all cached packages
-`bower cache clean` to clean all cached packages
+`brunch build -P` to build production version with all files compressed and combined,no more map files and all comments cleaned
 
 ##Steps
-1.***`bower install`***
+1.***`npm install`***
 
-2.***`npm install`***
-
-3.***`brunch w -s`*** or ***`brunch w -sp 1234`*** to use port '1234'
-
-If `bower install` failed,you can use `bower cache clean` to clean cache and retry
+2.***`brunch w -s`*** or ***`brunch w -sp 1234`*** to use port '1234'
