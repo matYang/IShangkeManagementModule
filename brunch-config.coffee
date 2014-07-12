@@ -19,6 +19,11 @@ exports.config =
       joinTo:
         'css/app.css': /^app/
         'css/vendor.css': /^vendor/
+      order:
+        before:[
+          'vendor/css/bootstrap.css'
+          'vendor/css/bootstrap-theme.css'
+        ]
   plugins:
     autoReload:
       enabled:
