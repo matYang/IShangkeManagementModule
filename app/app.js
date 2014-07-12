@@ -81,7 +81,7 @@ app.config(function ($stateProvider, $urlRouterProvider, $httpProvider, $locatio
                 app.rootScope = $rootScope;
                 app.checkUser = function () {
                     global.isLogin = !! global.user;
-                    global.isAdmin = global.user && global.user.role === 7;//admin role
+                    global.isAdmin = global.user && global.user.role === 7;//todo  admin role
                 };
                 app.clearUser = function () {
                     global.user = null;

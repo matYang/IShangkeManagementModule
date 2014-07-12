@@ -7,24 +7,8 @@
     <link rel="stylesheet" href="css/app.css"/>
 </head>
 <body>
-<header class="navbar navbar-static-top" id="top" role="banner">
-    <div class="container">
-        <div class="navbar-header">
-            <a href="#" class="navbar-brand">iShangke Admin</a>
-        </div>
-        <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
-            <ul class="nav navbar-nav navbar-right">
-                <li>
-                    <a href="#/login" >登录</a>
-                </li>
-                <li>
-                    <a ng-if="!global.isLogin" href="">未登录</a>
-                    <a ng-if="global.isLogin" href="">已登录</a>
-                </li>
-            </ul>
-        </nav>
-    </div>
-</header>
+
+<!--todo this page need a large background img-->
 <div ui-view></div>
 
 <script src="js/vendor.js"></script>
