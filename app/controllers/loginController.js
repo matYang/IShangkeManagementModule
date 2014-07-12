@@ -1,6 +1,5 @@
 appControllers.controller('loginCtrl',
-    ['$scope','app','$cookies', function ($scope,app,$cookies) {
-        $scope.title = 'login page';
+    ['$scope','Auth','app', function ($scope,Auth,app) {
         $scope.login = {
             autologin: true,
             username: '',
@@ -11,12 +10,17 @@ appControllers.controller('loginCtrl',
             //todo login validate
             //error to info
             //success to redirect
-            app.rootScope.global.user = data.username;//user is the response data from backend
-            app.checkUser();
-            console.log(app.rootScope.global)
+            //user is the response data from backend
+            Auth.login(data).then(function(){
+                app.rootScope.global.user = data.username;
+                $scope.$destroy();
+                app.state.go('admin.home');
+                console.log('success');
+            },function(){
+                console.log('failed');
+            });
 
-            $scope.$destroy();
-            app.state.go('home');
+
         }
     }]
 );
