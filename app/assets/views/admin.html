@@ -9,9 +9,6 @@
                 <a href="#/account">{{ global.user.username}}</a>
             </li>
             <li>
-                <a href="#/login">登录</a>
-            </li>
-            <li>
                 <a ng-if="!global.isLogin" href="">未登录</a>
                 <a ng-if="global.isLogin" ng-click="logout()">退出</a>
             </li>
@@ -24,8 +21,12 @@
     <nav class="navbar navbar-default">
         <div class="container">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="#">Link</a></li>
-                <li><a href="#">Link</a></li>
+                <li><a></a></li>
+                <li ui-sref-active="active"><a ui-sref="admin.home">首页</a></li>
+                <li ui-sref-active="active"><a ui-sref="admin.new_orders">新单处理</a></li>
+                <li ui-sref-active="active"><a ui-sref="admin.old_orders">旧单审核</a></li>
+                <li ui-sref-active="active"><a ui-sref="admin.courses">课程管理</a></li>
+                <li ui-sref-active="active"><a ui-sref="admin.templates">模板管理</a></li>
             </ul>
         </div>
     </nav>
