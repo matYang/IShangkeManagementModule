@@ -51,11 +51,14 @@ app.config(function ($stateProvider, $urlRouterProvider, $httpProvider, $locatio
                 $rootScope.global= {
                     user:undefined,
                     isLogin: false,
-                    isAdmin: false
+                    isAdmin: true
                 };
                 //check user login status to init $rootScope.global
                 Auth.checkUser();
-                $rootScope.logout = Auth.logout;
+                $rootScope.logout = function(){
+                    Auth.logout();
+                    Auth.checkUser();
+                };
 
 
                 //assemble things to reduce inject times in controllers,just need 'app'
@@ -72,8 +75,30 @@ app.config(function ($stateProvider, $urlRouterProvider, $httpProvider, $locatio
 //                        event.preventDefault();
                         // transitionTo() promise will be rejected with
                         // a 'transition prevented' error
-
-                        console.log('route change start');
+                        var isLoginAsAdmin = $rootScope.global.isLogin&& $rootScope.global.isAdmin;
+                        var isToLoginPage = $state.get('login') == toState;
+                        var isFromLoginPage = $state.get('login') == fromState;
+                        if(isToLoginPage&&isLoginAsAdmin){
+                            //just as the same as the issue below
+                            if(!isFromLoginPage){
+                                event.preventDefault();
+                                return;
+                            }
+                            //admin already login don't need to go to login page
+                            console.log('already login as admin:TO admin.home');
+                            $state.go('admin.home');
+                        }
+                        if(!isToLoginPage&&!isLoginAsAdmin){
+                            //for a bug when user change the route in the address input frame
+                            // the view will not render correctly, you need to prevent from changing router when in login page
+                            if(isFromLoginPage){
+                                event.preventDefault();
+                                return;
+                            }
+                            //admin not login can not go anywhere except login page
+                            console.log('not login as admin:TO login');
+                            $location.path('/login');
+                        }
                     });
             }]
     );

@@ -7,17 +7,13 @@ appControllers.controller('loginCtrl',
         };
         $scope.submit = function(){
             var data = angular.copy($scope.login);
-            //todo login validate
-            //error to info
-            //success to redirect
-            //user is the response data from backend
+            //todo form validate and result to info
             Auth.login(data).then(function(){
-                app.rootScope.global.user = data.username;
                 $scope.$destroy();
+                console.log('login success');
                 app.state.go('admin.home');
-                console.log('success');
             },function(){
-                console.log('failed');
+                console.log('login failed');
             });
 
 
