@@ -259,8 +259,9 @@ angular.module("w5c.validator")
         return{
             link: function (scope, element, attr) {
                 var validSuccessFn = $parse(attr.w5cFormSubmit);
-                var formName = element.parents("form").attr("name");
+                var formName = element.attr("name")||element.parent().parent().parent().attr("name");
                 var form = scope.$eval(formName);
+                console.log(validSuccessFn);
                 if (!form) {
                     throw new Error("w5cFormSubmit form is empty.");
                     return;
@@ -272,12 +273,13 @@ angular.module("w5c.validator")
                     }
                     if (form.$valid && angular.isFunction(validSuccessFn)) {
                         scope.$apply(function () {
+
                             validSuccessFn(scope);
                         });
                     }
                 });
-
-                element.parents("form").bind("keydown keypress", function (event) {
+                var form_dom = element.attr("name")? element:element.parent().parent().parent();
+                form_dom.bind("keydown keypress", function (event) {
                     if (event.which === 13) {
                         var currentInput = document.activeElement;
                         if (currentInput.type !== "textarea") {

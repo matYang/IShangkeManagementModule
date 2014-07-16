@@ -26,3 +26,10 @@ table th:first-child{
 table td:last-child{
     text-align: center;
 }
+
+/*form styles*/
+form .w5c-error {
+    color: #b94a48;
+    display: block;
+    margin-top: 5px;
+}
