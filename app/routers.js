@@ -56,7 +56,7 @@ appRoutes.config(function ($stateProvider, $urlRouterProvider, $httpProvider, $l
         })
         //@查看模板
         .state('admin.templates.detail', {
-            url: '/{id}',
+            url: '/{id:[0-9]}',
             templateUrl: 'views/admin/templates.detail.html',
             controller: 'templatesDetailCtrl'
         })
