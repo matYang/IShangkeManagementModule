@@ -1,7 +1,7 @@
 'use strict';
 appControllers.controller('templatesCtrl',
     ['$scope', function ($scope) {
-        $scope.title = 'templates page';
+        $scope.title = '模板管理';
         $scope.th = [
             {n:'模板号',w:'20'},
             {n:'模板名',w:'20'},
@@ -13,10 +13,10 @@ appControllers.controller('templatesCtrl',
         $scope.page = {
             index:1,
             size:10,
-            total:123
+            total:22
         }; //分页信息
-
         $scope.choosed = {}; //filter选择的值
+
         //刷新列表
         $scope.doRefresh = function(){
             // todo ajax to get data user $scope.choosed and $scope.page

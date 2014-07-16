@@ -36,7 +36,7 @@ app.constant('app', { //constant 'app' assemble things like restAPI and configs
                     isAdmin: true
                 };
                 if (app.test_mode) {
-                    $rootScope.global.user = {username: 'zhouwenjie'};
+                    $rootScope.global.user = {username: 'ishangke'};
                 }
                 //check user login status to init $rootScope.global
                 Auth.checkUser();

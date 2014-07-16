@@ -1,6 +1,7 @@
 <!--order_new content start-->
 <!--pay attention to ui-view for this is default view in state 'admin.templates'-->
 <div ui-view>
+    <!--title-->
     <div class="row">
         <div class="col-md-12">
             <div>{{ title }}
@@ -8,6 +9,7 @@
             </div>
         </div>
     </div>
+    <!--filter-->
     <div class="row">
         <div class="col-md-12">
             <div class="btn-group btn-group-sm">
@@ -16,12 +18,13 @@
             </div>
         </div>
     </div>
+    <!--table-->
     <div class="row">
         <div class="col-md-12">
             <table class="table table-bordered table-condensed table-hover">
                 <thead>
                 <tr>
-                    <th ng-repeat="t in th" width="{{ t.w}}%">
+                    <th ng-repeat="t in th" width="{{t.w}}%">
                         {{ t.n }}
                     </th>
                 </tr>
@@ -32,7 +35,13 @@
                     <td>Mark</td>
                     <td>Otto</td>
                     <td>@mdo</td>
-                    <td>@mdo</td>
+                    <td>
+                        <a>查看</a>
+                        <a>修改</a>
+                        <a>删除</a>
+                        <!--如果处于下线状 态-->
+                        <a>上线</a>
+                    </td>
                 </tr>
                 </tbody>
             </table>

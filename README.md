@@ -12,7 +12,8 @@ yoke
       filters/
       services/             --service like restAPI
       settings/             --constant options
-     app.js                 --config routers and init the application
+     app.js                 --init the application
+     routers.js             --config routers
     +vendor/
       css/
       js/
