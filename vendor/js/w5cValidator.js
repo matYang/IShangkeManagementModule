@@ -257,6 +257,7 @@ angular.module("w5c.validator")
     }])
     .directive("w5cFormSubmit", ['$parse', function ($parse) {
         return{
+            //fixme there leaves a bug that 'w5cFormSubmit' function does not work without jquery
             link: function (scope, element, attr) {
                 var validSuccessFn = $parse(attr.w5cFormSubmit);
                 var formName = element.attr("name")||element.parent().parent().parent().attr("name");
