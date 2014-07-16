@@ -8,61 +8,19 @@ var app = angular.module('app', [
     'ngSanitize',
     'ui.router',
 
+    'appRoutes',
     'appServices',
     'appControllers',
     'appDirectives',
     'appFilters'
 ]);
+
 var appServices = angular.module('appServices', []);
 var appControllers = angular.module('appControllers', []);
 var appDirectives = angular.module('appDirectives', []);
 var appFilters = angular.module('appFilters', []);
 
-app.config(function ($stateProvider, $urlRouterProvider, $httpProvider, $locationProvider) {
-    $urlRouterProvider.otherwise("/admin");
-    $stateProvider
-        //登录
-        .state('login', {
-            url: '/login',
-            templateUrl: 'views/login.html',
-            controller: 'loginCtrl'
-        })
-        //已登录
-        .state('admin', {
-            abstract: true,
-            url: '/admin',
-            templateUrl: 'views/admin.html',
-            controller: 'homeCtrl'
-        })
-        .state('admin.home', {
-            url: '',
-            templateUrl: 'views/admin/home.html',
-            controller: 'homeCtrl'
-        })
-        .state('admin.new_orders', {
-            url: '/new_orders',
-            templateUrl: 'views/admin/new_orders.html',
-            controller: 'newOrdersCtrl'
-        })
-        .state('admin.old_orders', {
-            url: '/old_orders',
-            templateUrl: 'views/admin/old_orders.html',
-            controller: 'oldOrdersCtrl'
-        })
-        .state('admin.courses', {
-            url: '/courses',
-            templateUrl: 'views/admin/courses.html',
-            controller: 'coursesCtrl'
-        })
-        .state('admin.templates', {
-            url: '/templates',
-            templateUrl: 'views/admin/templates.html',
-            controller: 'templatesCtrl'
-        });
-
-//        $locationProvider.html5Mode(true).hashPrefix('!');//remove '#' but all href should be adjusted without '#'
-
-}).constant('app', { //constant 'app' assemble things like restAPI and configs
+app.constant('app', { //constant 'app' assemble things like restAPI and configs
         version: Date.now()
     }).run(
         ['app', '$rootScope', '$location', '$timeout', '$state', 'Auth',
