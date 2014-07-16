@@ -22,12 +22,9 @@ var appControllers = angular.module('appControllers', []);
 var appDirectives = angular.module('appDirectives', []);
 var appFilters = angular.module('appFilters', []);
 
-app.constant('app', { //constant 'app' assemble things like restAPI and configs
-        version: Date.now()
-    }).run(
+app.run(
         ['app', '$rootScope', '$location', '$timeout', '$state', 'Auth',
             function (app, $rootScope, $location, $timeout, $state, Auth) {
-                app.test_mode = true;
                 //$rootScope has some global functions and params
                 $rootScope.$state = $state;
                 $rootScope.global = {
