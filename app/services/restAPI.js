@@ -11,7 +11,7 @@ appServices.factory('restAPI', ['$resource', 'app',
                 }
             };
             var resource_maker = function (recourseName) {
-                var prefix = '/api' + app.version;
+                var prefix = '/api/' + app.version;
                 var url = app.test_mode ? api_config.resources[recourseName][0] : prefix + api_config.resources[recourseName][1];
                 return $resource(url)
             };
