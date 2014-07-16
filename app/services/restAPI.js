@@ -19,7 +19,7 @@ appServices.factory('restAPI', ['$resource', 'app',
             return {
                 'user': resource_maker('user'),
                 'templates': resource_maker('templates'),
-                'courses': resource_maker('templates')
+                'courses': resource_maker('courses')
             };
         }
     ]);
