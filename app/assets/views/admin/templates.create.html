@@ -1,0 +1,20 @@
+<!--order_new content start-->
+<div class="row">
+    <a ui-sref="admin.templates" class="btn fa fa-arrow-left pull-left">Back</a>
+
+    <div class="pull-right">{{ title }}</div>
+</div>
+<div class="row">
+    <form class="col-md-12 form-horizontal" role="form" name="newForm">
+
+        <div class="form-group">
+            <label class="col-sm-3 control-label">模板名(*)</label>
+
+            <div class="col-sm-5">
+                <input type="text" class="form-control" ng-model="site.name" maxlength="10" required="">
+            </div>
+        </div>
+
+    </form>
+</div>
+<!--order_new content end-->

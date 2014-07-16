@@ -3,10 +3,12 @@
 /* App Module */
 
 var app = angular.module('app', [
+//    'ngAnimate',//is not needed so far
     'ngCookies',
     'ngResource',
     'ngSanitize',
     'ui.router',
+    'ui.bootstrap',
 
     'appRoutes',
     'appServices',
@@ -27,6 +29,7 @@ app.constant('app', { //constant 'app' assemble things like restAPI and configs
             function (app, $rootScope, $location, $timeout, $state, Auth) {
                 app.test_mode = true;
                 //$rootScope has some global functions and params
+                $rootScope.$state = $state;
                 $rootScope.global = {
                     user: undefined,
                     isLogin: false,
