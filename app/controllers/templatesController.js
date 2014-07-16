@@ -33,7 +33,7 @@ appControllers.controller('templatesCtrl',
             },function(){
                 //error
             });
-            // todo ajax to get data user $scope.choosed and $scope.page
+            // todo ajax to get data use $scope.choosed and $scope.page
         };
         $scope.doRefresh();
     }]

@@ -9,7 +9,7 @@ appRoutes.config(function ($stateProvider, $urlRouterProvider, $httpProvider, $l
             templateUrl: 'views/login.html',
             controller: 'loginCtrl'
         })
-        //已登录
+        //abstract state
         .state('admin', {
             abstract: true,
             url: '/admin',
@@ -53,5 +53,11 @@ appRoutes.config(function ($stateProvider, $urlRouterProvider, $httpProvider, $l
             url: '/create',
             templateUrl: 'views/admin/templates.create.html',
             controller: 'templatesCreateCtrl'
+        })
+        //@查看模板
+        .state('admin.templates.detail', {
+            url: '/{id}',
+            templateUrl: 'views/admin/templates.detail.html',
+            controller: 'templatesDetailCtrl'
         })
 });

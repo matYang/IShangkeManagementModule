@@ -55,7 +55,7 @@
                     <td>{{item.price|| '无'}}</td>
                     <td>{{item.status|| '无'}}</td>
                     <td>
-                        <a>查看</a>
+                        <a ui-sref="admin.templates.detail({id:item.id})">查看</a>
                         <a>修改</a>
                         <a>删除</a>
                         <!--如果处于下线状 态-->

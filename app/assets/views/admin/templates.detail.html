@@ -1,0 +1,40 @@
+<!--order_new content start-->
+<div class="row">
+    <a ui-sref="admin.templates" class="btn fa fa-arrow-left pull-left"> Back</a>
+
+    <div class="pull-right">{{ title }}</div>
+</div>
+<div class="row">
+    <form class="col-md-12 form-horizontal" role="form" name="newForm">
+
+        <div class="form-group">
+            <label class="col-sm-3 control-label">模板名(*)</label>
+
+            <div class="col-sm-4">
+                <input type="text" class="form-control" ng-model="template.name" required="">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">前台执行价格(*)</label>
+
+            <div class="col-sm-4">
+                <input type="text" class="form-control" required="">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">爱上课价格(*)</label>
+
+            <div class="col-sm-4">
+                <input type="text" class="form-control" required="">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">确认码(*)</label>
+            <div class="col-sm-4">
+                <input type="text" class="form-control" required="">
+            </div>
+        </div>
+
+    </form>
+</div>
+<!--order_new content end-->
