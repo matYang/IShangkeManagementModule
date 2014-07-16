@@ -1,0 +1,17 @@
+{
+    "data": [
+        {
+            "id":1,
+            "name":"aaa"
+        },
+        {
+            "id":2,
+            "name":"bbb"
+        }
+    ],
+    "page": {
+        "index": 1,
+        "total": 2,
+        "size": 10
+    }
+}

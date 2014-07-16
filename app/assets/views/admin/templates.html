@@ -2,23 +2,42 @@
 <!--pay attention to ui-view for this is default view in state 'admin.templates'-->
 <div ui-view>
     <!--title-->
-    <div class="row">
+    <div class="row has-margin">
         <div class="col-md-12">
             <div>{{ title }}
-                <a ui-sref="admin.templates.create" class="btn btn-primary pull-right">新建模板</a>
+                <a ui-sref="admin.templates.create" class="btn btn-primary pull-right">新 建 模 板</a>
             </div>
+
         </div>
     </div>
     <!--filter-->
-    <div class="row">
+    <div class="row has-margin">
         <div class="col-md-12">
-            <div class="btn-group btn-group-sm">
-                <button class="btn btn-default">action 1</button>
-                <button class="btn btn-default">action 2</button>
-            </div>
+            <form class="form-inline">
+                <div class="form-group">
+                    <label for="">合作机构名</label>
+                    <input type="text" class="form-control input-sm"/>
+                </div>
+                &nbsp;&nbsp;
+                <div class="form-group">
+                    <label for="">模板号</label>
+                    <input type="text" class="form-control input-sm"/>
+                </div>
+                &nbsp;&nbsp;
+                <div class="form-group">
+                    <label for="">模板名</label>
+                    <input type="text" class="form-control input-sm"/>
+                </div>
+            </form>
+            <form class="form-inline">
+                <label> 审核状态</label>
+                <div></div>
+            </form>
+            <pre>{{filter|json}}</pre>
         </div>
     </div>
     <!--table-->
+
     <div class="row">
         <div class="col-md-12">
             <table class="table table-bordered table-condensed table-hover">
@@ -30,11 +49,11 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
+                <tr ng-repeat="item in items">
+                    <td>{{item.id || '无'}}</td>
+                    <td>{{item.name|| '无'}}</td>
+                    <td>{{item.price|| '无'}}</td>
+                    <td>{{item.status|| '无'}}</td>
                     <td>
                         <a>查看</a>
                         <a>修改</a>

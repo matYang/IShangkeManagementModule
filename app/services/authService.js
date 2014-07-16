@@ -24,8 +24,6 @@ appServices.factory('Auth',
                         defer.resolve('login success');
                     }).error(function () {
                             defer.reject('login failed');
-                        }).finally(function () {
-
                         });
 
                     return defer.promise;
