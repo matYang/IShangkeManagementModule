@@ -1,9 +1,11 @@
 'use strict';
 appControllers.controller('templatesCtrl',
     ['$scope','app', function ($scope,app) {
+        $scope.title = '模板管理';
         //获取课程模板资源
         var Templates = app.restAPI.templates;
-        $scope.title = '模板管理';
+        //分页信息
+        $scope.page = angular.copy(app.default_page);
 
         $scope.th = [
             {n:'模板号',w:'20'},
@@ -13,12 +15,6 @@ appControllers.controller('templatesCtrl',
             {n:'操作',w:'30'}
         ];
         $scope.items = []; //列表内容
-        //分页信息
-        $scope.page = {
-            index:1,    // 起始页
-            count:10,   //每页记录数
-            total:22    //记录总数
-        };
         //filter选择的值
         $scope.filter = {
             t_id:'',     //模板号

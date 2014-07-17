@@ -10,7 +10,10 @@ html,body{
     background: -moz-linear-gradient(top, #128d56, #0f7648 8%);
     background: -webkit-gradient(linear, 0 0, 0 100%, from(#128d56), to(#0f7648))
 }
-.has-margin{
+.margin-top {
+    margin-top: 10px;
+}
+.margin-bottom {
     margin-bottom: 10px;
 }
 /*table style*/

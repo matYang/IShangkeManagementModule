@@ -35,26 +35,40 @@ appRoutes.config(function ($stateProvider, $urlRouterProvider, $httpProvider, $l
             controller: 'oldOrdersCtrl'
         })
 
-        //!课程管理页面
+        /* 课程信息管理 */
+        //课程管理页面
         .state('admin.courses', {
             url: '/courses',
             templateUrl: 'views/admin/courses.html',
             controller: 'coursesCtrl'
         })
-        //!模板管理页面
+        //新建课程
+        .state('admin.courses.create', {
+            url: '/create',
+            templateUrl: 'views/admin/courses.create.html',
+            controller: 'templatesCreateCtrl'
+        })
+        //查看课程
+        .state('admin.courses.detail', {
+            url: '/{id:[0-9]}',
+            templateUrl: 'views/admin/courses.detail.html',
+            controller: 'coursesDetailCtrl'
+        })
+
+        /* 课程模板管理 */
+        //课程模板列表
         .state('admin.templates', {
             url: '/templates',
             templateUrl: 'views/admin/templates.html',
             controller: 'templatesCtrl'
         })
-
-        //@新建模板
+        //新建课程模板
         .state('admin.templates.create', {
             url: '/create',
             templateUrl: 'views/admin/templates.create.html',
             controller: 'templatesCreateCtrl'
         })
-        //@查看模板
+        //查看课程模板
         .state('admin.templates.detail', {
             url: '/{id:[0-9]}',
             templateUrl: 'views/admin/templates.detail.html',
