@@ -31,3 +31,26 @@ yoke
 1.***`npm install`***
 
 2.***`brunch w -s`*** or ***`brunch w -sp 1234`*** to use port '1234'
+
+##response format
+对于操作的返回
+    with http status
+    {
+        errorCode: xxxx //如果成功就是0
+        msg: xxxx  //如果成功就是"success"
+        data: xxxx  //如果失败就是""
+    }
+
+对于数据的返回
+    with http status
+    对条数据的返回:
+        {
+            "start" = 0,
+            "count" = 10,
+            "total" = 34,
+            "data" = [数组]
+        }
+    单条数据的返回:
+        {
+            //单条数据详情json
+        }
