@@ -3,7 +3,7 @@
 /* App Module */
 
 var app = angular.module('app', [
-//    'ngAnimate',//is not needed so far
+    'ngAnimate',
     'ngCookies',
     'ngResource',
 //    'ngSanitize',
