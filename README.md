@@ -20,6 +20,8 @@ yoke
     +vendor/
       css/
       js/
+    +doc                        --docs used for the project
+        lib/                    --docs of libs used in the project(angular libs mainly)
     brunch-config.coffee        --brunch config file,look for more in [brunch](http://brunch.io/)
     package.json                --project information and dependencies of the project
 
