@@ -24,8 +24,8 @@ var appDirectives = angular.module('appDirectives', []);
 var appFilters = angular.module('appFilters', []);
 
 app.run(
-        ['app', '$rootScope', '$location', '$timeout', '$state', 'Auth',
-            function (app, $rootScope, $location, $timeout, $state, Auth) {
+        ['app', '$rootScope', '$location', '$timeout', '$state', 'Auth','restAPI','$log',
+            function (app, $rootScope, $location, $timeout, $state, Auth,restAPI,$log) {
                 //$rootScope has some global functions and params
                 $rootScope.$state = $state;
                 $rootScope.global = {
@@ -46,6 +46,8 @@ app.run(
                 //assemble things to reduce inject times in controllers,just need 'app'
                 //for angular will cache all the inject module
                 app.state = $state;
+                app.log = $log; //$log can log/info/warn/error
+                app.restAPI = restAPI;
                 app.rootScope = $rootScope;
                 app.timeout = $timeout;
                 app.timeOffset = 0;

@@ -1,5 +1,12 @@
 'use strict';
-//todo change all below when know the all APIs
+//$resource() has methods below
+/*
+  'get':    {method:'GET'}
+ 'save':   {method:'POST'}
+ 'query':  {method:'GET', isArray:true}
+ 'remove': {method:'DELETE'}
+ 'delete': {method:'DELETE'}
+* */
 appServices.factory('restAPI', ['$resource', 'app',
         function ($resource, app) {
             var api_config = {

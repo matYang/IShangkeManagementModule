@@ -1,7 +1,7 @@
 //////////////////////////////////
 //config form validator messages//
 //////////////////////////////////
-/*
+/*  Rules:
     [input name]:{
         required:"",
         email:"",

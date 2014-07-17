@@ -1,7 +1,8 @@
 'use strict';
 appControllers.controller('templatesCtrl',
-    ['$scope','restAPI', function ($scope,restAPI) {
-        var Templates = restAPI.templates;
+    ['$scope','app', function ($scope,app) {
+        //获取课程模板资源
+        var Templates = app.restAPI.templates;
         $scope.title = '模板管理';
 
         $scope.th = [
@@ -14,26 +15,28 @@ appControllers.controller('templatesCtrl',
         $scope.items = []; //列表内容
         //分页信息
         $scope.page = {
-            index:1,
-            size:10,
-            total:22
+            index:1,    // 起始页
+            count:10,   //每页记录数
+            total:22    //记录总数
         };
         //filter选择的值
         $scope.filter = {
-
-            status:''//审核
+            t_id:'',     //模板号
+            t_name:'',   //模板名
+            t_status:'' //审核状态
         };
 
-        //刷新列表
+        //根据 过滤信息和分页信息 刷新课程模板列表
         $scope.doRefresh = function(){
-
-            Templates.get({},function(data){
+            //使用课程模板资源请求数据
+            Templates.get(angular.extend({},$scope.filter,$scope.page),function(data){
                 $scope.items = data.data;
-                $scope.page = data.page;
+                $scope.page.index = data.page;
+                $scope.page.count = data.count;
+                $scope.page.total = data.total;
             },function(){
                 //error
             });
-            // todo ajax to get data use $scope.choosed and $scope.page
         };
         $scope.doRefresh();
     }]
