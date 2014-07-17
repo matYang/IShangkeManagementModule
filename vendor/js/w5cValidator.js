@@ -262,12 +262,10 @@ angular.module("w5c.validator")
                 var validSuccessFn = $parse(attr.w5cFormSubmit);
                 var formName = element.attr("name")||element.parent().parent().parent().attr("name");
                 var form = scope.$eval(formName);
-                console.log(validSuccessFn);
                 if (!form) {
                     throw new Error("w5cFormSubmit form is empty.");
                     return;
                 }
-
                 element.bind("click", function () {
                     if (angular.isFunction(form.doValidate)) {
                         form.doValidate();
