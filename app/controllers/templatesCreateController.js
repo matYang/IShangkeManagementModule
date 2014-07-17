@@ -6,10 +6,12 @@ appControllers.controller('templatesCreateCtrl',
 
         //提交新建的模板
         $scope.submit_template = function(template){
-            console.log(template);
             Templates.save(template,function(){
                 //todo create success to do something
+                app.toaster.pop('success', "创建成功", "");
                 app.log.info('create template success');
+                app.state.go('admin.templates');
+
             },function(){
                 app.log.error('create error');
             })
