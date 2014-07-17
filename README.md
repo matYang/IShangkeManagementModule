@@ -5,25 +5,26 @@ yoke
 
 ##Files
     +app/
-      assert/               --files in this folder just will be copied into 'public' folder
-      css/                  --styles can be split into more css files according to page modules
-      controllers/          --each page has more than one controllers
+      assert/                   --files in this folder just will be copied into 'public' folder
+        data/                   --json files used for test mode
+      css/                      --styles for each page or common styles
+      controllers/              --each page has more than one controllers
       directives/
       filters/
-      services/             --service like restAPI
-      settings/             --constant options
-     app.js                 --init the application
-     routers.js             --config routers
-     config.js              --config app version(for api) and test mode
-     config-validator.js    --config form validator messages
+      services/                 --service like restAPI
+      settings/                 --constant options
+     app.js                     --init the application
+     routers.js                 --config routers
+     config.js                  --config app version(for api) and test mode
+     config-validator.js        --config form validator messages
     +vendor/
       css/
       js/
-    brunch-config.coffee    --brunch config file,look for more in [brunch](http://brunch.io/)
-    package.json            --project information and dependencies of the project
+    brunch-config.coffee        --brunch config file,look for more in [brunch](http://brunch.io/)
+    package.json                --project information and dependencies of the project
 
 ##brunch
-([brunch](http://brunch.io/) should be installed first use `npm install -g brunch`,no 'bower' any more for bower.json in some packages has no 'main' property)
+([brunch](http://brunch.io/) should be installed first using `npm install -g brunch`,no 'bower' any more for bower.json in some packages has no 'main' property)
 
 `brunch w -s` to watch
 
