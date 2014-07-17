@@ -14,6 +14,8 @@ yoke
       settings/             --constant options
      app.js                 --init the application
      routers.js             --config routers
+     config.js              --config app version(for api) and test mode
+     config-validator.js    --config form validator messages
     +vendor/
       css/
       js/
