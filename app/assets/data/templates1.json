@@ -1,4 +1,7 @@
 {
     "id": 1,
-    "name": "bbb"
+    "name": "bbb",
+    "price": 2000,
+    "iprice": 1800,
+    "confirm_code": "FDKA80DA34"
 }

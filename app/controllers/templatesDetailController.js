@@ -9,7 +9,7 @@ appControllers.controller('templatesDetailCtrl',
         $scope.doRefresh = function(){
 
             Templates.get({ID:id},function(data){
-                $scope.item = data.data;
+                $scope.item = data;
             },function(){
                 //error
             });
