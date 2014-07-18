@@ -13,19 +13,21 @@
             <div class="form-group">
                 <label for="">模板号</label>
                 <input type="text" class="form-control input-sm"
-                       ng-model="filter.t_id"/>
+                       ng-model="filter.id"/>
             </div>
             &nbsp;&nbsp;
             <div class="form-group">
                 <label for="">模板名</label>
                 <input type="text" class="form-control input-sm"
-                       ng-model="filter.t_name"/>
+                       ng-model="filter.name"/>
             </div>
+            <button class="btn btn-default pull-right" ng-click="doRefresh()">查 询</button>
         </form>
         <form class="form-inline">
             <label> 审核状态</label>
-
-            <button class="btn btn-default pull-right" ng-click="doRefresh()">查 询</button>
+            <label ng-repeat="a in options.check_status">
+                <input type="radio" ng-model="filter.status" ng-value="a.value"/>{{a.label}}
+            </label>
         </form>
         <pre>{{filter|json}}</pre>
     </div>
@@ -47,13 +49,13 @@
                 <td>{{item.id || '无'}}</td>
                 <td>{{item.name|| '无'}}</td>
                 <td>{{item.price|| '无'}}</td>
-                <td>{{item.status|| '无'}}</td>
+                <td>{{item.status| checkStatus}}</td>
                 <td>
                     <a ui-sref="admin.templates.detail({id:item.id})">查看</a>
                     <a>修改</a>
-                    <a>删除</a>
+                    <a ng-click="delete(item.id)">删除</a>
                     <!--如果处于下线状态-->
-                    <a>上线</a>
+                    <a ng-click="update_status(item.id,item.status,2)">上线</a>
                 </td>
             </tr>
             </tbody>

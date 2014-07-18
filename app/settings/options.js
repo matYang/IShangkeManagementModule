@@ -1,30 +1,10 @@
 'use strict';
 //time filter modal options
 app.value('OPTIONS', {
-        item: [//培训类目
-            {label: '', value: undefined},
-            {label: '', value: '5'}
-        ],
-        address: [//上课地点
-            {
-                label: '南京市',
-                value: 'nanjing',
-                district: [
-                    {label: '玄武区', value: '11'},
-                    {label: '雨花区', value: '12'},
-                    {label: '秦淮区', value: '13'}
-                ]
-            },
-            {
-                label: '苏州',
-                value: 'suzhou',
-                district: [
-                    {label: '1区', value: '21'},
-                    {label: '2区', value: '22'},
-                    {label: '3区', value: '23'}
-                ]
-            }
-
+        check_status: [//审核状态
+            {label: '有效', value: 1},
+            {label: '待审核', value: 2},
+            {label: '审核失败', value: 3 },
         ],
         start_time: [//开课时间
             {label: '不限', value: undefined},

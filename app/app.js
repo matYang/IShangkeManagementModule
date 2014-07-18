@@ -25,8 +25,8 @@ var appDirectives = angular.module('appDirectives', []);
 var appFilters = angular.module('appFilters', []);
 
 app.run(
-        ['app', '$rootScope', '$location', '$timeout', '$state', 'Auth','restAPI','$log','toaster',
-            function (app, $rootScope, $location, $timeout, $state, Auth,restAPI,$log,toaster) {
+        ['app', '$rootScope', '$location', '$timeout', '$state', 'Auth','restAPI','$log','toaster','OPTIONS',
+            function (app, $rootScope, $location, $timeout, $state, Auth,restAPI,$log,toaster,OPTIONS) {
                 //$rootScope has some global functions and params
                 $rootScope.$state = $state;
                 $rootScope.global = {
@@ -49,6 +49,7 @@ app.run(
                 app.state = $state;
                 app.toaster = toaster;
                 app.log = $log; //$log can log/info/warn/error
+                app.options = OPTIONS;
                 app.restAPI = restAPI;
                 app.rootScope = $rootScope;
                 app.timeout = $timeout;

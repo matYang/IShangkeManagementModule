@@ -4,9 +4,11 @@ appControllers.controller('templatesCtrl',
         $scope.title = '模板管理';
         //获取课程模板资源
         var Templates = app.restAPI.templates;
-        //分页信息
-        $scope.page = angular.copy(app.default_page);
 
+        //初始化审核状态选项
+        $scope.options= {
+            check_status:app.options.check_status
+        };
         $scope.th = [
             {n:'模板号',w:'20'},
             {n:'模板名',w:'20'},
@@ -14,16 +16,17 @@ appControllers.controller('templatesCtrl',
             {n:'状态',w:'15'},
             {n:'操作',w:'30'}
         ];
-        $scope.items = []; //列表内容
+        //分页信息
+        $scope.page = angular.copy(app.default_page);
         //filter选择的值
         $scope.filter = {
-            t_id:'',     //模板号
-            t_name:'',   //模板名
-            t_status:'' //审核状态
+            id:'',     //模板号
+            name:'',   //模板名
+            status:'' //审核状态
         };
 
         //根据 过滤信息和分页信息 刷新课程模板列表
-        $scope.doRefresh = function(){
+        var doRefresh = $scope.doRefresh = function(){
             //使用课程模板资源请求数据
             Templates.get(angular.extend({},$scope.filter,$scope.page),function(data){
                 $scope.items = data.data;
@@ -34,6 +37,37 @@ appControllers.controller('templatesCtrl',
                 //error
             });
         };
-        $scope.doRefresh();
+        doRefresh();
+
+        //监听审核状态的改变 刷新数据
+        $scope.$watch(function(){
+            return $scope.filter.status;
+        },function(){
+            var s = $scope.filter.status;
+            s!=''&&doRefresh();
+        });
+
+        /*************用户操作事件***********/
+        //删除课程模板
+        $scope.delete = function(id){
+            Templates.delete({ID:id},function(data){
+                app.toaster.pop('success', "课程模板"+id+"删除成功", "");
+                doRefresh();
+            },function(data){
+              //todo error
+            })
+        };
+        //更新课程模板
+        $scope.update_status = function(id,fromStatus,toStatus){
+            Templates.delete({ID:id,status:toStatus},function(data){
+                fromStatus =_.findWhere(app.options.check_status,{value:fromStatus})['label'];
+                toStatus =_.findWhere(app.options.check_status,{value:toStatus})['label'];
+                app.toaster.pop('success', "课程模板"+id+"状态更新成功", "由 "+fromStatus+" 变更为 "+toStatus);
+                doRefresh();
+            },function(data){
+                //todo error
+            })
+        }
+
     }]
 );
