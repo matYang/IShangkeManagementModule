@@ -13,8 +13,8 @@ appServices.factory('restAPI', ['$resource', 'app',
                 resources: {
                     //[0] is the fake api,[1] is the real api
                     'user': ['/data/user.json', '/user/:ID/:OP'],
-                    'templates': ['/data/templates.json', '/templates/:ID'],
-                    'courses': ['/data/courses.json', '/courses/:ID']
+                    'templates': ['/data/templates:ID.json', '/templates/:ID'],
+                    'courses': ['/data/courses:ID.json', '/courses/:ID']
                 }
             };
             var resource_maker = function (recourseName) {
