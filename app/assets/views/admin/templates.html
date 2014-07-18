@@ -25,7 +25,7 @@
         </form>
         <form class="form-inline">
             <label> 审核状态</label>
-            <label ng-repeat="a in options.check_status">
+            <label ng-repeat="a in options.status">
                 <input type="radio" ng-model="filter.status" ng-value="a.value"/>{{a.label}}
             </label>
         </form>
@@ -55,7 +55,7 @@
                     <a>修改</a>
                     <a ng-click="delete(item.id)">删除</a>
                     <!--如果处于下线状态-->
-                    <a ng-click="update_status(item.id,item.status,2)">上线</a>
+                    <a ng-click="update_status(item.id,item.status,'ON')">上线</a>
                 </td>
             </tr>
             </tbody>

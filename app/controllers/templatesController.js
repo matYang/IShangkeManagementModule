@@ -7,7 +7,7 @@ appControllers.controller('templatesCtrl',
 
         //初始化审核状态选项
         $scope.options= {
-            check_status:app.options.check_status
+            status:app.options.status
         };
         $scope.th = [
             {n:'模板号',w:'20'},
@@ -59,10 +59,11 @@ appControllers.controller('templatesCtrl',
         };
         //更新课程模板
         $scope.update_status = function(id,fromStatus,toStatus){
-            Templates.delete({ID:id,status:toStatus},function(data){
-                fromStatus =_.findWhere(app.options.check_status,{value:fromStatus})['label'];
-                toStatus =_.findWhere(app.options.check_status,{value:toStatus})['label'];
-                app.toaster.pop('success', "课程模板"+id+"状态更新成功", "由 "+fromStatus+" 变更为 "+toStatus);
+            var toStatusValue = app.options.status[toStatus]['value'];
+            var toStatusLabel = app.options.status[toStatus]['label'];
+            Templates.update({ID:id,status:toStatusValue},function(data){
+                fromStatus =_.findWhere(app.options.status,{value:fromStatus})['label'];
+                app.toaster.pop('success', "课程模板"+id+"状态更新成功", "由 "+fromStatus+" 变更为 "+toStatusLabel);
                 doRefresh();
             },function(data){
                 //todo error
