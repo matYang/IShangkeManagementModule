@@ -39,7 +39,7 @@ appControllers.controller('templatesCtrl',
         };
         doRefresh();
 
-        //监听审核状态的改变 刷新数据
+        /***********监听审核状态的改变 刷新数据************/
         $scope.$watch(function(){
             return $scope.filter.status;
         },function(){
@@ -47,7 +47,7 @@ appControllers.controller('templatesCtrl',
             s!=''&&doRefresh();
         });
 
-        /*************用户操作事件***********/
+        /******************用户操作事件*****************/
         //删除课程模板
         $scope.delete = function(id){
             Templates.delete({ID:id},function(data){
@@ -58,9 +58,14 @@ appControllers.controller('templatesCtrl',
             })
         };
         //更新课程模板
-        $scope.update_status = function(id,fromStatus,toStatus){
-            var toStatusValue = app.options.status[toStatus]['value'];
-            var toStatusLabel = app.options.status[toStatus]['label'];
+        /*  status按照以下格式保存
+            status:{
+                <key>:{ label:'',value:''},...
+            }
+        * */
+        $scope.update_status = function(id,fromStatus,toStatusKey){
+            var toStatusValue = getStatusValue(toStatusKey);
+            var toStatusLabel = app.options.status[toStatusKey]['label'];
             Templates.update({ID:id,status:toStatusValue},function(data){
                 fromStatus =_.findWhere(app.options.status,{value:fromStatus})['label'];
                 app.toaster.pop('success', "课程模板"+id+"状态更新成功", "由 "+fromStatus+" 变更为 "+toStatusLabel);
@@ -68,7 +73,10 @@ appControllers.controller('templatesCtrl',
             },function(data){
                 //todo error
             })
-        }
-
+        };
+        //根据KEY获取状态的value
+        var getStatusValue =  $scope.getStatusValue = function(KEY){
+            return app.options.status[KEY]['value'];
+        };
     }]
 );

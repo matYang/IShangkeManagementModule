@@ -52,10 +52,16 @@
                 <td>{{item.status| checkStatus}}</td>
                 <td>
                     <a ui-sref="admin.templates.detail({id:item.id})">查看</a>
-                    <a>修改</a>
-                    <a ng-click="delete(item.id)">删除</a>
-                    <!--如果处于下线状态-->
-                    <a ng-click="update_status(item.id,item.status,'ON')">上线</a>
+                    <!--已上线或者审核失败的可进行修改-->
+                    <a ng-show="item.status==getStatusValue('ON')||item.status==getStatusValue('FAILED')">修改</a>
+                    <!--下线后才可删除-->
+                    <a ng-click="delete(item.id)" ng-show="item.status==getStatusValue('OFF')">删除</a>
+                    <!--<a ng-click="update_status(item.id,item.status,'ON')">上线</a>-->
+                    <!---->
+                    <a ng-click="update_status(item.id,item.status,'OFF')" ng-show="item.status==getStatusValue('ON')">下线</a>
+                    <!--审核中或者审核失败可取消-->
+                    <a ng-click="update_status(item.id,item.status,'OFF')"
+                       ng-show="item.status==getStatusValue('CHECKING')||item.status==getStatusValue('FAILED')">取消审核</a>
                 </td>
             </tr>
             </tbody>
