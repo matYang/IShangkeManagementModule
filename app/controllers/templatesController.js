@@ -66,6 +66,7 @@ appControllers.controller('templatesCtrl',
         $scope.update_status = function(id,fromStatus,toStatusKey){
             var toStatusValue = getStatusValue(toStatusKey);
             var toStatusLabel = app.options.status[toStatusKey]['label'];
+            //fixme when updating a template, param 'id' doesn't replace the placeholder in api url
             Templates.update({ID:id,status:toStatusValue},function(data){
                 fromStatus =_.findWhere(app.options.status,{value:fromStatus})['label'];
                 app.toaster.pop('success', "课程模板"+id+"状态更新成功", "由 "+fromStatus+" 变更为 "+toStatusLabel);
