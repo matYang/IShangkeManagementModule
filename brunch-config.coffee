@@ -23,6 +23,7 @@ exports.config =
         before:[
           'vendor/css/bootstrap.css'
           'vendor/css/bootstrap-theme.css'
+          'app/css/override.css'
           'app/css/base.css'
         ]
   plugins:

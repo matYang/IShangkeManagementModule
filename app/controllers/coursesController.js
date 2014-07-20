@@ -19,7 +19,7 @@ appControllers.controller('coursesCtrl',
             //使用课程模板资源请求数据
             Courses.get(angular.extend({},$scope.filter,$scope.page),function(data){
                 $scope.items = data.data;
-                $scope.page.index = data.page;
+                $scope.page.index = data.index;
                 $scope.page.count = data.count;
                 $scope.page.total = data.total;
             },function(){

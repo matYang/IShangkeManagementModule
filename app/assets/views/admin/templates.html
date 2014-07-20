@@ -2,13 +2,21 @@
 <!--title-->
 <div class="row margin-bottom">
     <div class="col-md-12">
-        <a ui-sref="admin.templates.create" class="btn btn-primary pull-right">新 建 模 板</a>
-
+        <span class="lead">{{title}}</span>
     </div>
 </div>
 <!--filter-->
 <div class="row margin-bottom">
-    <div class="col-md-12">
+    <div class="col-md-2">
+        <ul class="nav nav-pills nav-stacked" role="tablist">
+            <li role="presentation" class="disabled"><a href="">审核状态</a></li>
+            <li role="presentation" class="active"><a href="#">待审核</a></li>
+            <li role="presentation"><a href="#">审核失败</a></li>
+            <li role="presentation"><a href="#">已上线</a></li>
+            <li role="presentation"><a href="#">已下线</a></li>
+        </ul>
+    </div>
+    <div class="col-md-10">
         <form class="form-inline">
             <div class="form-group">
                 <label for="">模板号</label>
@@ -32,13 +40,19 @@
         <pre>{{filter|json}}</pre>
     </div>
 </div>
-<!--table-->
 
+<!--table-->
 <div class="row">
     <div class="col-md-12">
-        <table class="table table-bordered table-condensed table-hover">
+        <div class="btn-toolbar">
+            <a class="btn btn-primary" ui-sref="admin.templates.create"><i class="fa fa-plus"></i> 新建模板 </a>
+            <a class="btn btn-default text-danger" href="#"><i class="fa fa-trash-o"></i> 删除</a>
+            <a class="btn btn-default" href="#"><i class="fa fa-edit"></i> 修改</a>
+        </div>
+        <table class="table table-condensed table-hover">
             <thead>
             <tr>
+                <th><input type="checkbox"/></th>
                 <th ng-repeat="t in th" width="{{t.w}}%">
                     {{ t.n }}
                 </th>
@@ -46,6 +60,7 @@
             </thead>
             <tbody>
             <tr ng-repeat="item in items">
+                <td><input type="checkbox"/></td>
                 <td>{{item.id || '无'}}</td>
                 <td>{{item.name|| '无'}}</td>
                 <td>{{item.price|| '无'}}</td>
@@ -66,12 +81,16 @@
             </tr>
             </tbody>
         </table>
-        <pagination ng-model="page.index" total-items="page.total" items-per-page="page.count"
-                    ng-change="doRefresh()"
-                    max-size="9"
-                    class="pagination-sm"
-                    boundary-links="true" rotate="false" num-pages="total_pages"
-                    previous-text="上一页" next-text="下一页"></pagination>
+        <div class="page clearfix">
+            <p class="pull-left">共{{page.total}}条记录，每页显示{{page.count}}条记录</p>
+            <pagination class="pull-right" ng-model="page.index" total-items="page.total" items-per-page="page.count"
+                        ng-change="doRefresh()"
+                        max-size="9"
+                        class="pagination-sm"
+                        boundary-links="true" rotate="false" num-pages="total_pages"
+                        previous-text="上一页" next-text="下一页"></pagination>
+        </div>
+
     </div>
 </div>
 <!--order_new content end-->

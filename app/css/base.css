@@ -17,18 +17,15 @@ html,body{
     margin-bottom: 10px;
 }
 /*table style*/
-table a{
+.table a{
     cursor: pointer;
 }
-table th{
+.table th,table td{
     text-align: center;
 }
-table th:first-child{
-    text-align: left;
-}
-table td:last-child{
-    text-align: center;
-}
+/*.table th:first-child,.table td:first-child{*/
+    /*text-align: left;*/
+/*}*/
 
 /*form styles*/
 form .w5c-error {
