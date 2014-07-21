@@ -13,16 +13,19 @@ appServices.factory('restAPI', ['$resource', 'app',
             resources: {
                 //[0] is the fake api,[1] is the real api
                 'user': ['/data/user.json', '/user/:ID/:OP'],
-                'templates': ['/data/templates:ID.json', '/templates/:ID'],
-                'courses': ['/data/courses:ID.json', '/courses/:ID']
+                'templates': ['/data/templates:ID.json/:OP', '/template/:ID/:OP'],
+                'courses': ['/data/courses:ID.json', '/course/:ID/:OP'],
+                'bookings': ['/data/bookings:ID.json', '/booking/:ID/:OP']
             }
         };
         var resource_maker = function (recourseName) {
             var prefix = '/api/' + app.version;
             var url = app.test_mode ? api_config.resources[recourseName][0] : prefix + api_config.resources[recourseName][1];
-            return $resource(url, null,
+            //ID is the resource id and OP is operation name like 'submit' 'cancel'
+            return $resource(url, {ID:'@ID',OP:'@OP'},
                 {
-                    'update': { method: 'PUT' }
+                    'update': { method: 'PUT' },
+                    'operate': { method: 'POST' }
                 })
         };
 

@@ -1,0 +1,18 @@
+/*今日数据*/
+.nums{
+    }
+    .nums .num{
+        float: left;
+        text-align: center;
+        display: block;
+        width: 120px;
+        cursor: pointer;
+        text-decoration: none;}
+        .nums .num i{
+            display: block;
+            line-height: 30px;
+            height: 32px;
+            font-size: 32px;
+            font-family: 'Microsoft Yahei', 'SimHei', 'SimSun';
+            font-style: normal;
+        }
