@@ -1,62 +1,91 @@
-<!--order_new content start-->
-<div ui-view>
-    <div class="row">
-        <!--title-->
-        <div class="row margin-bottom">
-            <div class="col-md-12">
-                <a ui-sref="admin.courses.create" class="btn btn-primary pull-right">新建课程</a>
+<!--filter-->
+<div class="row margin-bottom">
+    <div class="col-md-2">
+        <ul class="nav nav-pills nav-stacked" role="tablist">
+            <label for="">审核状态</label>
+            <li class="nav-divider"></li>
+            <li role="presentation" class="active"><a href="#">待审核</a></li>
+            <li role="presentation"><a href="#">审核失败</a></li>
+            <li role="presentation"><a href="#">已上线</a></li>
+            <li role="presentation"><a href="#">已下线</a></li>
+            <li class="nav-divider"></li>
+        </ul>
+        <label ng-hide="filter.id==''&&filter.name==''">当前筛选</label>
+        <p ng-hide="filter.id==''">课程号:{{filter.id}}</p>
+        <p ng-hide="filter.name==''">课程名:{{filter.name}}</p>
+    </div>
+    <div class="col-md-10">
+        <form class="form-horizontal filter-form">
+            <div class="form-group">
+                <label class="control-label" for="">课程号</label>
+                <div><input type="text" class="form-control input-sm"
+                            ng-model="filter_tmp.id"/></div>
+                <label class="control-label" for="">课程名</label>
+                <div><input type="text" class="form-control input-sm"
+                            ng-model="filter_tmp.name"/></div>
             </div>
-        </div>
-        <!--filter-->
-        <div class="row margin-bottom">
-            <div class="col-md-12">
-                <form class="form-inline">
-                    <div class="form-group">
-                        <label for="">课程号</label>
-                        <input type="text" class="form-control input-sm"
-                               ng-model="filter.c_id"/>
-                    </div>
-                </form>
+            <div class="form-group">
+                <label></label>
                 <div>
-                    <button class="btn btn-default" ng-click="doRefresh()">查 询</button>
+                    <button class="btn btn-primary btn-sm" ng-click="doRefresh()"><i class="fa fa-search"></i> 查 询</button>
+                    <button class="btn btn-default btn-sm" ng-click="clearFilter()">清空输入</button>
                 </div>
-                <pre class="margin-top">{{filter|json}}</pre>
             </div>
-        </div>
-        <!--table-->
-
+        </form>
+        <form class="form-inline">
+            <label> 审核状态</label>
+            <label ng-repeat="a in options.status">
+                <input type="radio" ng-model="filter.status" ng-value="a.value"/>{{a.label}}
+            </label>
+        </form>
         <div class="row">
-            <div class="col-md-12">
-                <table class="table table-condensed table-hover">
-                    <thead>
-                    <tr>
-                        <th ng-repeat="t in th" width="{{t.w}}%">
-                            {{ t.n }}
-                        </th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr ng-repeat="item in items">
-                        <td>{{item.id || '无'}}</td>
-                        <td>{{item.name|| '无'}}</td>
-                        <td>
-                            <a ui-sref="admin.courses.detail({id:item.id})">查看</a>
-                            <a>修改</a>
-                            <a>删除</a>
-                            <!--如果处于下线状 态-->
-                            <a>上线</a>
-                        </td>
-                    </tr>
-                    </tbody>
-                </table>
-                <pagination ng-model="page.index" total-items="page.total" items-per-page="page.count"
-                            ng-change="doRefresh()"
-                            max-size="9"
-                            class="pagination-sm"
-                            boundary-links="true" rotate="false" num-pages="total_pages"
-                            previous-text="上一页" next-text="下一页"></pagination>
-            </div>
+            <pre class="col-md-6">filter{{filter|json}}</pre>
+            <pre class="col-md-6">filter_tmp{{filter_tmp|json}}</pre>
         </div>
+
+
+        <div class="btn-toolbar">
+            <a class="btn btn-primary" ui-sref="admin.courses.create"><i class="fa fa-plus"></i> 新建课程 </a>
+            <a class="btn btn-default btn-sm text-danger" href="#"><i class="fa fa-trash-o"></i> 删除</a>
+        </div>
+        <table class="table table-condensed table-hover">
+            <thead>
+            <tr>
+                <th><input type="checkbox"/></th>
+                <th ng-repeat="t in th" width="{{t.w}}%">
+                    {{ t.n }}
+                </th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="item in items">
+                <td><input type="checkbox"/></td>
+                <td>{{item.id || '无'}}</td>
+                <td>{{item.name|| '无'}}</td>
+                <td>{{item.status| checkStatus}}</td>
+                <td>
+                    <a ui-sref="admin.templates.detail({id:item.id})">查看</a>
+                    <!--已上线或者审核失败的可进行修改-->
+                    <a ng-show="item.status==getStatusValue('ON')||item.status==getStatusValue('FAILED')">修改</a>
+                    <!--下线后才可删除-->
+                    <a ng-click="delete(item.id)" ng-show="item.status==getStatusValue('OFF')">删除</a>
+                    <a ng-click="updateStatus(item.id,item.status,'OFF')" ng-show="item.status==getStatusValue('ON')">下线</a>
+                    <!--审核中或者审核失败可取消-->
+                    <a ng-click="updateStatus(item.id,item.status,'OFF')"
+                       ng-show="item.status==getStatusValue('CHECKING')||item.status==getStatusValue('FAILED')">取消审核</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <div class="page clearfix">
+            <p class="pull-left">共{{page.total}}条记录，每页显示{{page.count}}条记录</p>
+            <pagination class="pull-right" ng-model="page.index" total-items="page.total" items-per-page="page.count"
+                        ng-change="doRefresh()"
+                        max-size="9"
+                        class="pagination-sm"
+                        boundary-links="true" rotate="false" num-pages="total_pages"
+                        previous-text="上一页" next-text="下一页"></pagination>
+        </div>
+
     </div>
 </div>
-<!--order_new content end-->

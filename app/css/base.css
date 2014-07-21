@@ -16,7 +16,15 @@ html,body{
 .margin-bottom {
     margin-bottom: 10px;
 }
-
+/*测试代码专用*/
+pre:before{
+    position: absolute;
+    top:2px;right: 5px;
+    content:'FOR TEST';
+    font-weight: bold;
+    color: #b94a48;
+    text-shadow: 0 0 0.8px #ce8483;
+}
 /*表单验证*/
 form .w5c-error {
     color: #b94a48;

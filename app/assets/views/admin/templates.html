@@ -1,36 +1,34 @@
-<!--order_new content start-->
-<!--title-->
-<div class="row margin-bottom">
-    <div class="col-md-12">
-        <span class="lead">{{title}}</span>
-    </div>
-</div>
 <!--filter-->
 <div class="row margin-bottom">
     <div class="col-md-2">
         <ul class="nav nav-pills nav-stacked" role="tablist">
             <label for="">审核状态</label>
+            <li class="nav-divider"></li>
             <li role="presentation" class="active"><a href="#">待审核</a></li>
             <li role="presentation"><a href="#">审核失败</a></li>
             <li role="presentation"><a href="#">已上线</a></li>
             <li role="presentation"><a href="#">已下线</a></li>
+            <li class="nav-divider"></li>
         </ul>
+        <label ng-hide="filter.id==''&&filter.name==''">当前筛选</label>
+        <p ng-hide="filter.id==''">模板号:{{filter.id}}</p>
+        <p ng-hide="filter.name==''">模板名:{{filter.name}}</p>
     </div>
     <div class="col-md-10">
         <form class="form-horizontal filter-form">
             <div class="form-group">
                 <label class="control-label" for="">模板号</label>
                 <div><input type="text" class="form-control input-sm"
-                       ng-model="filter.id"/></div>
+                       ng-model="filter_tmp.id"/></div>
                 <label class="control-label" for="">模板名</label>
                 <div><input type="text" class="form-control input-sm"
-                       ng-model="filter.name"/></div>
+                       ng-model="filter_tmp.name"/></div>
             </div>
             <div class="form-group">
                 <label></label>
                 <div>
-                    <button class="btn btn-default" ng-click="doRefresh()">查 询</button>
-                    <button class="btn btn-default" ng-click="clearFilter()">查 询</button>
+                    <button class="btn btn-primary btn-sm" ng-click="doRefresh()"><i class="fa fa-search"></i> 查 询</button>
+                    <button class="btn btn-default btn-sm" ng-click="clearFilter()">清空输入</button>
                 </div>
             </div>
         </form>
@@ -41,19 +39,14 @@
             </label>
         </form>
         <div class="row">
-            <pre class="col-md-6">{{filter|json}}</pre>
-            <pre class="col-md-6">{{page|json}}</pre>
+            <pre class="col-md-6">filter{{filter|json}}</pre>
+            <pre class="col-md-6">filter_tmp{{filter_tmp|json}}</pre>
         </div>
 
-    </div>
-</div>
 
-<!--table-->
-<div class="row">
-    <div class="col-md-12">
         <div class="btn-toolbar">
             <a class="btn btn-primary" ui-sref="admin.templates.create"><i class="fa fa-plus"></i> 新建模板 </a>
-            <a class="btn btn-default text-danger" href="#"><i class="fa fa-trash-o"></i> 删除</a>
+            <a class="btn btn-default btn-sm text-danger" href="#"><i class="fa fa-trash-o"></i> 删除</a>
         </div>
         <table class="table table-condensed table-hover">
             <thead>
@@ -97,4 +90,3 @@
 
     </div>
 </div>
-<!--order_new content end-->
