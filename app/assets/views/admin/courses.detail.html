@@ -1,6 +1,5 @@
-<!--order_new content start-->
 <div class="row">
-    <a ui-sref="admin.courses.list" class="btn fa fa-arrow-left pull-left"> Back</a>
+    <a ui-sref="admin.templates.list" class="btn fa fa-arrow-left pull-left"> Back</a>
 
     <div class="pull-right">{{ title }}</div>
 </div>
@@ -11,30 +10,29 @@
             <label class="col-md-3 control-label">模板名(*)</label>
 
             <div class="col-md-4">
-                <input type="text" class="form-control" ng-model="template.name" required="">
+                <p class="form-control-static">{{ item.name }}</p>
             </div>
         </div>
         <div class="form-group">
             <label class="col-md-3 control-label">前台执行价格(*)</label>
 
             <div class="col-md-4">
-                <input type="text" class="form-control" required="">
+                <p class="form-control-static">{{ item.price }}</p>
             </div>
         </div>
         <div class="form-group">
             <label class="col-md-3 control-label">爱上课价格(*)</label>
 
             <div class="col-md-4">
-                <input type="text" class="form-control" required="">
+                <p class="form-control-static">{{ item.iprice }}</p>
             </div>
         </div>
         <div class="form-group">
             <label class="col-md-3 control-label">确认码(*)</label>
             <div class="col-md-4">
-                <input type="text" class="form-control" required="">
+                <p class="form-control-static">{{ item.confirm_code }}</p>
             </div>
         </div>
 
     </form>
 </div>
-<!--order_new content end-->

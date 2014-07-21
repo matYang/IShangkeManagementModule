@@ -64,7 +64,7 @@
                 <td>{{item.name|| '无'}}</td>
                 <td>{{item.status| checkStatus}}</td>
                 <td>
-                    <a ui-sref="admin.templates.detail({id:item.id})">查看</a>
+                    <a ui-sref="admin.courses.detail({id:item.id})">查看</a>
                     <!--已上线或者审核失败的可进行修改-->
                     <a ng-show="item.status==getStatusValue('ON')||item.status==getStatusValue('FAILED')">修改</a>
                     <!--下线后才可删除-->
