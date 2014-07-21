@@ -63,7 +63,7 @@ appControllers.controller('templatesCtrl',
                 <key>:{ label:'',value:''},...
             }
         * */
-        $scope.update_status = function(id,fromStatus,toStatusKey){
+        $scope.updateStatus = function(id,fromStatus,toStatusKey){
             var toStatusValue = getStatusValue(toStatusKey);
             var toStatusLabel = app.options.status[toStatusKey]['label'];
             //使用post请求来进行状态操作

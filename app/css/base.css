@@ -16,20 +16,35 @@ html,body{
 .margin-bottom {
     margin-bottom: 10px;
 }
-/*table style*/
+
+/*表单验证*/
+form .w5c-error {
+    color: #b94a48;
+    display: block;
+    margin-top: 5px;
+}
+
+/*
+ * 数据列表和filter表单 的通用样式 及筛选组件样式
+**/
+
+/*filter部分的表单央视*/
+.filter-form .form-group label,.filter-form .form-group div{
+    float: left;
+}
+.filter-form .form-group label{
+    width: 80px;
+    padding-right: 15px;
+}
+.filter-form .form-group div{
+    width: 200px;
+}
+
+/*数据列表的通用样式*/
 .table a{
     cursor: pointer;
 }
 .table th,table td{
     text-align: center;
 }
-/*.table th:first-child,.table td:first-child{*/
-    /*text-align: left;*/
-/*}*/
 
-/*form styles*/
-form .w5c-error {
-    color: #b94a48;
-    display: block;
-    margin-top: 5px;
-}
