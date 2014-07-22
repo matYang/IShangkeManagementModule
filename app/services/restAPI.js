@@ -26,8 +26,10 @@ appServices.factory('restAPI', ['$resource', 'app',
             //ID is the resource id and OP is operation name like 'submit' 'cancel'
             return $resource(url, {ID:'@ID',OP:'@OP',RO:'@RO'},//api中前缀为:对应的变量会从数据中的ID/OP/RO中匹配
                 {
+                    'post': { method: 'POST' },
                     'update': { method: 'PUT' },
                     'operate': { method: 'POST' }
+
                 })
         };
 

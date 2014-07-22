@@ -2,7 +2,10 @@
 <header class="navbar navbar-static-top navbar-inverse" id="top" role="banner">
     <div class="container">
         <div class="navbar-header">
-            <a href="#" class="navbar-brand">爱上课后台管理</a>
+            <a href="#" class="navbar-brand">爱上课后台管理
+                <small ng-if="port=='partner'">--机构专用</small>
+                <small ng-if="port=='admin'">--管理员专用</small>
+            </a>
         </div>
         <ul class="nav navbar-nav navbar-right">
             <li>

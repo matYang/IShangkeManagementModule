@@ -14,15 +14,14 @@ appServices.factory('Auth',
                     //内存中的用户登录状态 这里根据基于上一步的用户信息是否存在判断是否登录
                     $rootScope.global.isLogin = !!$rootScope.global.user;
                     //这里根据用户的role重新设置登录者的身份 暂时只做admin
-                    $rootScope.global.isAdmin = !!($rootScope.user && $rootScope.global.user.group.indexOf('admin') == 0);
+                    $rootScope.global.isAdmin = $rootScope.global.isLogin && $rootScope.global.user.group.indexOf('admin') == 0;
                     console.log('check user:' + JSON.stringify($rootScope.global));
                 },
                 login: function (data) {//date为登录信息对象 包含username和password
                     //这里使用promise模式 在controller中调用login先进行以下处理流程
                     var defer = $q.defer();
                     var self = this;
-                    var role = $rootScope.global.isAdmin ? 'admin' : 'partner';
-                    auth.post(angular.extend(data, {RO: role}), function (result) {
+                    auth.post(angular.extend(data, {RO: $rootScope.global.port}), function (result) {
                         //根据返回的用户信息设置内存中保存的用户信息 以及cookie
                         $rootScope.global.user = result.user;//for test 这里应使用result中返回的用户信息
                         //todo 由于cookie是在后台写入 这里后面确定了key name后再进行修改
@@ -37,9 +36,8 @@ appServices.factory('Auth',
                 },
                 logout: function () {
                     var self = this;
-                    var role = $rootScope.global.isAdmin ? 'admin' : 'partner';
                     //发送用户注销请求
-                    auth.delete({RO: role}, function () {
+                    auth.delete({RO: $rootScope.global.port}, function () {
                         //success
                     }, function () {
                         //error

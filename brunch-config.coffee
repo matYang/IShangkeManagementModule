@@ -7,7 +7,10 @@ exports.config =
   files:
     javascripts:
       joinTo:
-        'js/app.js': /^app/
+        'js/app.js': /app[\\/]app.js$/
+        'js/port_admin.js': /^app[\\/]port_admin.js$/
+        'js/port_partner.js': /^app[\\/]port_partner.js$/
+        'js/other.js': /^app[\\/](?!(app.js|port_admin.js|port_partner.js))/
         'js/vendor.js': /^vendor/
       order:
         before:[
