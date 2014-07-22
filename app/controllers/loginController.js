@@ -1,4 +1,5 @@
 appControllers.controller('loginCtrl',
+    //注入了authService.js中的Auth服务
     ['$scope','Auth','app', function ($scope,Auth,app) {
         $scope.login = {
             autologin: true,
@@ -7,7 +8,7 @@ appControllers.controller('loginCtrl',
         };
         $scope.submit = function(){
             var data = angular.copy($scope.login);
-            //todo form validate and result to info
+            //todo 需要验证输入的信息 使用w5c-validate 参考课程模板的创建
             Auth.login(data).then(function(){
                 $scope.$destroy();
                 console.log('login success');
