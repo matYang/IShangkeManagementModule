@@ -4,8 +4,8 @@
         <tabset vertical="true" type="pills">
             <label>审核状态</label>
             <li class="nav-divider"></li>
-            <tab ng-repeat="a in options.status" heading="{{a.label}}" active="a.active"
-                 ng-click="filter.status=a.value">
+            <tab ng-repeat="a in tabs" heading="{{a.label}}" active="a.active"
+                 select="chooseTab(a)">
             </tab>
             <li class="nav-divider"></li>
         </tabset>
@@ -31,15 +31,10 @@
                 </div>
             </div>
         </form>
-        <form class="form-inline">
-            <label> 审核状态</label>
-            <label ng-repeat="a in options.status">
-                <input type="radio" ng-model="filter.status" ng-value="a.value"/>{{a.label}}
-            </label>
-        </form>
         <div class="row">
-            <pre class="col-md-6">filter{{filter|json}}</pre>
-            <pre class="col-md-6">filter_tmp{{filter_tmp|json}}</pre>
+            <pre class="col-md-4">filter_tab{{filter_tab|json}}</pre>
+            <pre class="col-md-4">filter{{filter|json}}</pre>
+            <pre class="col-md-4">filter_tmp{{filter_tmp|json}}</pre>
         </div>
 
 

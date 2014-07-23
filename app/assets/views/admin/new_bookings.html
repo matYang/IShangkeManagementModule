@@ -2,12 +2,14 @@
 <div class="row margin-bottom">
     <!--左侧状态栏-->
     <div class="col-md-2" scroll-fix>
-        <ul class="nav nav-pills nav-stacked" role="tablist">
+        <tabset vertical="true" type="pills">
             <li class="nav-divider"></li>
-            <li class="active"><a href="#">今日待处理</a></li>
-            <li><a href="#">往日待处理</a></li>
+            <tab ng-repeat="a in tabs" heading="{{a.label}}" active="a.active"
+                 select="chooseTab(a)">
+            </tab>
             <li class="nav-divider"></li>
-        </ul>
+        </tabset>
+
         <label ng-hide="1">当前筛选</label>
     </div>
     <!--右侧内容面板-->
