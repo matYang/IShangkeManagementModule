@@ -18,7 +18,7 @@ appServices.factory('restAPI', ['$resource', 'app','$rootScope',
                 'templates': ['/data/templates:ID.json/:OP', '/template/:ID/:OP'],
                 'courses': ['/data/courses:ID.json', '/course/:ID/:OP'],
                 // /api/v2/booking/1/
-                'bookings': ['/data/bookings:ID.json', '/booking/:ID/:OP']
+                'bookings': ['/data/bookings:ID.json/:OP', '/booking/:ID/:OP']
             }
         };
         var resource_maker = function (recourseName) {

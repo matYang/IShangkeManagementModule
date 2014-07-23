@@ -4,7 +4,6 @@ appControllers.controller('bookingsDetailCtrl',
         var Bookings = restAPI.booking;
         var id = $state.params.id;
 
-        //刷新列表
         $scope.doRefresh = function(){
 
             Bookings.get({ID:id},function(data){
