@@ -47,7 +47,6 @@
         <table class="table table-condensed table-hover">
             <thead>
             <tr>
-                <th><input type="checkbox"/></th>
                 <th ng-repeat="t in th" width="{{t.w}}%">
                     {{ t.n }}
                 </th>
@@ -55,7 +54,6 @@
             </thead>
             <tbody>
             <tr ng-repeat="item in items">
-                <td><input type="checkbox"/></td>
                 <td>{{item.id || '无'}}</td>
                 <td>{{item.name|| '无'}}</td>
                 <td>

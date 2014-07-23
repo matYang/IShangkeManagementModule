@@ -4,7 +4,7 @@
         <tabset vertical="true" type="pills">
             <label>审核状态</label>
             <li class="nav-divider"></li>
-            <tab ng-repeat="a in options.status" heading="{{a.label}}" active="a.value==filter.status"
+            <tab ng-repeat="a in options.status" heading="{{a.label}}" active="a.active"
                  ng-click="filter.status=a.value">
             </tab>
             <li class="nav-divider"></li>
@@ -50,7 +50,6 @@
         <table class="table table-condensed table-hover">
             <thead>
             <tr>
-                <th><input type="checkbox"/></th>
                 <th ng-repeat="t in th" width="{{t.w}}%">
                     {{ t.n }}
                 </th>
@@ -58,13 +57,13 @@
             </thead>
             <tbody>
             <tr ng-repeat="item in items">
-                <td><input type="checkbox"/></td>
                 <td>{{item.id || '无'}}</td>
                 <td>{{item.name|| '无'}}</td>
                 <td>{{item.price|| '无'}}</td>
                 <td>{{item.status| checkStatus}}</td>
                 <td>
                     <a ui-sref="admin.templates.detail({id:item.id})">查看</a>
+                    <!--todo 以下按钮为后台返回数据动态生成-->
                     <!--已上线或者审核失败的可进行修改-->
                     <a ng-show="item.status==getStatusValue('ON')||item.status==getStatusValue('FAILED')">修改</a>
                     <!--下线后才可删除-->
