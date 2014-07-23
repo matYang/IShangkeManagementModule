@@ -21,12 +21,13 @@ appServices.factory('Auth',
                     //这里使用promise模式 在controller中调用login先进行以下处理流程
                     var defer = $q.defer();
                     var self = this;
-                    auth.post(angular.extend(data, {RO: $rootScope.global.port}), function (result) {
+                    auth.post(angular.extend(data, {RO: $rootScope.port}), function (user) {
                         //根据返回的用户信息设置内存中保存的用户信息 以及cookie
-                        $rootScope.global.user = result.user;//for test 这里应使用result中返回的用户信息
+                        console.log(user);
+                        $rootScope.global.user = user;//for test 这里应使用result中返回的用户信息
                         //todo 由于cookie是在后台写入 这里后面确定了key name后再进行修改
-                        $cookieStore.put('access_token', result.access_token);
-                        $cookieStore.put('user', result.user);
+//                        $cookieStore.put('access_token','todo');
+                        $cookieStore.put('user', user);
                         self.checkUser();
                         defer.resolve('login success');
                     }, function () {
@@ -37,7 +38,7 @@ appServices.factory('Auth',
                 logout: function () {
                     var self = this;
                     //发送用户注销请求
-                    auth.delete({RO: $rootScope.global.port}, function () {
+                    auth.delete({RO: $rootScope.port}, function () {
                         //success
                     }, function () {
                         //error

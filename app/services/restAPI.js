@@ -23,14 +23,24 @@ appServices.factory('restAPI', ['$resource', 'app',
         var resource_maker = function (recourseName) {
             var prefix = '/api/' + app.version;
             var url = app.test_mode ? api_config.resources[recourseName][0] : prefix + api_config.resources[recourseName][1];
-            //ID is the resource id and OP is operation name like 'submit' 'cancel'
-            return $resource(url, {ID:'@ID',OP:'@OP',RO:'@RO'},//api中前缀为:对应的变量会从数据中的ID/OP/RO中匹配
-                {
+            var methods = {};
+            if(app.test_mode){
+                methods = {
+                    'post': { method: 'GET' },
+                    'update': { method: 'GET' },
+                    'operate': { method: 'GET' }
+                };
+            }else{
+                methods = {
                     'post': { method: 'POST' },
                     'update': { method: 'PUT' },
                     'operate': { method: 'POST' }
 
-                })
+                };
+            }
+            //ID is the resource id and OP is operation name like 'submit' 'cancel'
+            return $resource(url, {ID:'@ID',OP:'@OP',RO:'@RO'},//api中前缀为:对应的变量会从数据中的ID/OP/RO中匹配
+                methods)
         };
 
         return {

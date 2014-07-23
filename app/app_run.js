@@ -44,10 +44,10 @@ app.run(
 //                        event.preventDefault();
                 // transitionTo() promise will be rejected with
                 // a 'transition prevented' error
-                var isLoginAsAdmin = $rootScope.global.isLogin && $rootScope.global.isAdmin;
+                var isLogin = $rootScope.global.isLogin;
                 var isToLoginPage = $state.get('login') == toState;
                 var isFromLoginPage = $state.get('login') == fromState;
-                if (isToLoginPage && isLoginAsAdmin) {
+                if (isToLoginPage && isLogin) {
                     //just as the same as the issue below
                     //neither from the login page nor just into the site
                     console.log(12)
@@ -59,7 +59,7 @@ app.run(
                     console.log('already login as admin:TO admin.home');
                     $location.path('/admin');
                 }
-                if (!isToLoginPage && !isLoginAsAdmin) {
+                if (!isToLoginPage && !isLogin) {
                     console.log(122)
                     //for a bug when user change the route in the address input frame
                     // the view will not render correctly, you need to prevent from changing router when in login page
