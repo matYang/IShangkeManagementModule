@@ -7,7 +7,7 @@ appControllers.controller('templatesCtrl',
 
         //初始化审核状态选项
         $scope.options= {
-            status:app.options.status
+            status:app.enum.StatusTab
         };
         $scope.th = [
             {n:'模板号',w:'20'},
@@ -67,27 +67,14 @@ appControllers.controller('templatesCtrl',
               //todo error
             })
         };
-        //更新课程模板
-        /*  status按照以下格式保存
-            status:{
-                <key>:{ label:'',value:''},...
-            }
-        * */
-        $scope.updateStatus = function(id,fromStatus,toStatusKey){
-            var toStatusValue = getStatusValue(toStatusKey);
-            var toStatusLabel = app.options.status[toStatusKey]['label'];
-            //使用post请求来进行状态操作
-            Templates.operate({ID:id,OP:'cancel'},function(data){
-                fromStatus =_.findWhere(app.options.status,{value:fromStatus})['label'];
-                app.toaster.pop('success', "课程模板"+id+"状态更新成功", "由 "+fromStatus+" 变更为 "+toStatusLabel);
-                doRefresh();
-            },function(data){
-                //todo error
-            })
-        };
-        //根据KEY获取状态的value
-        var getStatusValue =  $scope.getStatusValue = function(KEY){
-            return app.options.status[KEY]['value'];
+
+        //课程模板操作
+        $scope.operate = function(id,op){
+            Templates.operate({ID:id,OP:op},function(){
+                //success
+            },function(){
+                //error
+            });
         };
     }]
 );

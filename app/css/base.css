@@ -56,4 +56,7 @@ form .w5c-error {
     padding-left: 10px;
     text-align: left;
 }
+.table .operations a{
+    margin: 0 2px;
+}
 

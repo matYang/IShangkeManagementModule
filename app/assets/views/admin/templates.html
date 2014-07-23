@@ -60,7 +60,7 @@
                 <td>{{item.id || '无'}}</td>
                 <td>{{item.name|| '无'}}</td>
                 <td>{{item.price|| '无'}}</td>
-                <td>{{item.status| checkStatus}}</td>
+                <td>{{item.status| statusText}}</td>
                 <td>
                     <a ui-sref="admin.templates.detail({id:item.id})">查看</a>
                     <!--todo 以下按钮为后台返回数据动态生成-->

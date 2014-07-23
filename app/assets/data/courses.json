@@ -3,22 +3,31 @@
         {
             "id": 1,
             "name": "aaa",
-            "status": 1
+            "status": 1,
+            "operations":[
+                {
+                    "name":"approve"
+                },
+                {
+                    "name":"submitUpdated"
+                },
+                {
+                    "name":"dfff"
+                }
+            ]
         },
         {
             "id": 1,
             "name": "bfdgbbqqq",
-            "status": 2
-        },
-        {
-            "id": 1,
-            "name": "b111bb",
-            "status": 3
-        },
-        {
-            "id": 1,
-            "name": "bbsdfb",
-            "status": 0
+            "status": 2,
+            "operations":[
+                {
+                    "name":"submitNew"
+                },
+                {
+                    "name":"delete"
+                }
+            ]
         }
     ],
     "index": 1,

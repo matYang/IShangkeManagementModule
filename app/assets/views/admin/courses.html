@@ -12,7 +12,9 @@
         </tabset>
 
         <label ng-hide="filter.id==''&&filter.name==''">当前筛选</label>
+
         <p ng-hide="filter.id==''">课程号:{{filter.id}}</p>
+
         <p ng-hide="filter.name==''">课程名:{{filter.name}}</p>
     </div>
     <!--右侧内容面板-->
@@ -21,16 +23,20 @@
         <form class="form-horizontal filter-form">
             <div class="form-group">
                 <label class="control-label" for="">课程号</label>
+
                 <div><input type="text" class="form-control input-sm"
                             ng-model="filter_tmp.id"/></div>
                 <label class="control-label" for="">课程名</label>
+
                 <div><input type="text" class="form-control input-sm"
                             ng-model="filter_tmp.name"/></div>
             </div>
             <div class="form-group">
                 <label></label>
+
                 <div>
-                    <button class="btn btn-primary btn-sm" ng-click="doRefresh()"><i class="fa fa-search"></i> 查 询</button>
+                    <button class="btn btn-primary btn-sm" ng-click="doRefresh()"><i class="fa fa-search"></i> 查 询
+                    </button>
                     <button class="btn btn-default btn-sm" ng-click="clearFilter()">清空输入</button>
                 </div>
             </div>
@@ -60,20 +66,15 @@
                 </th>
             </tr>
             </thead>
-            <tbody>            <tr ng-repeat="item in items">
+            <tbody>
+            <tr ng-repeat="item in items">
                 <td>{{item.id || '无'}}</td>
                 <td>{{item.name|| '无'}}</td>
-                <td>{{item.status| checkStatus}}</td>
-                <td>
+                <td>{{item.status | statusText}}</td>
+                <td class="operations">
                     <a ui-sref="admin.courses.detail({id:item.id})">查看</a>
                     <!--已上线或者审核失败的可进行修改-->
-                    <a ng-show="item.status==getStatusValue('ON')||item.status==getStatusValue('FAILED')">修改</a>
-                    <!--下线后才可删除-->
-                    <a ng-click="delete(item.id)" ng-show="item.status==getStatusValue('OFF')">删除</a>
-                    <a ng-click="updateStatus(item.id,item.status,'OFF')" ng-show="item.status==getStatusValue('ON')">下线</a>
-                    <!--审核中或者审核失败可取消-->
-                    <a ng-click="updateStatus(item.id,item.status,'OFF')"
-                       ng-show="item.status==getStatusValue('CHECKING')||item.status==getStatusValue('FAILED')">取消审核</a>
+                    <a ng-repeat="op in item.operations" ng-click="operate(item.id,op.name)">{{op.name | operationText}}</a>
                 </td>
             </tr>
             </tbody>

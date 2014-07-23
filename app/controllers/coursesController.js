@@ -7,7 +7,7 @@ appControllers.controller('coursesCtrl',
 
         //初始化审核状态选项
         $scope.options= {
-            status:app.options.status
+            status:app.enum.status
         };
         $scope.th = [
             {n:'课程号',w:'20'},
@@ -57,36 +57,20 @@ appControllers.controller('coursesCtrl',
         });
 
         /******************用户操作事件*****************/
-            //删除课程模板
-        $scope.delete = function(id){
-            Courses.delete({ID:id},function(data){
-                app.toaster.pop('success', "课程"+id+"删除成功", "");
+        //课程操作
+        $scope.operate = function(id,op){
+            var promise = {};
+            if(op==='delete'){
+                promise = Courses.delete({ID:id});
+            }else{
+                promise = Courses.operate({ID:id,OP:op});
+            }
+            promise.$promise.then(function(data){
+                app.toaster.pop('success', "课程"+id+"操作成功", "");
                 doRefresh();
             },function(data){
-                //todo error
+                app.toaster.pop('success', "课程"+id+"操作失败", "");
             })
-        };
-        //更新课程模板
-        /*  status按照以下格式保存
-         status:{
-         <key>:{ label:'',value:''},...
-         }
-         * */
-        $scope.updateStatus = function(id,fromStatus,toStatusKey){
-            var toStatusValue = getStatusValue(toStatusKey);
-            var toStatusLabel = app.options.status[toStatusKey]['label'];
-            //使用post请求来进行状态操作 todo OP的值为后台返回的值
-            Courses.operate({ID:id,OP:'cancel'},function(data){
-                fromStatus =_.findWhere(app.options.status,{value:fromStatus})['label'];
-                app.toaster.pop('success', "课程"+id+"状态更新成功");
-                doRefresh();
-            },function(data){
-                //todo error
-            })
-        };
-        //根据KEY获取状态的value
-        var getStatusValue =  $scope.getStatusValue = function(KEY){
-            return app.options.status[KEY]['value'];
         };
     }]
 );
