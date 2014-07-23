@@ -8,7 +8,7 @@ appServices.factory('Auth',
                 checkUser: function () {
                     //检测用户的状态（从内存中的用户信息以及cookie中的信息） user的初始值为null
                     if (!$rootScope.global.user) {
-                        //todo 这里的cookie的key name也需要后续进行修改
+                        //todo 这里的cookie的key name需要确认
                         $rootScope.global.user = $cookieStore.get('user');
                     }
                     //内存中的用户登录状态 这里根据基于上一步的用户信息是否存在判断是否登录
@@ -21,13 +21,10 @@ appServices.factory('Auth',
                     //这里使用promise模式 在controller中调用login先进行以下处理流程
                     var defer = $q.defer();
                     var self = this;
-                    auth.post(angular.extend(data, {RO: $rootScope.port}), function (user) {
+                    auth.post(data, function (user) {
                         //根据返回的用户信息设置内存中保存的用户信息 以及cookie
                         console.log(user);
                         $rootScope.global.user = user;//for test 这里应使用result中返回的用户信息
-                        //todo 由于cookie是在后台写入 这里后面确定了key name后再进行修改
-//                        $cookieStore.put('access_token','todo');
-                        $cookieStore.put('user', user);
                         self.checkUser();
                         defer.resolve('login success');
                     }, function () {
@@ -38,7 +35,7 @@ appServices.factory('Auth',
                 logout: function () {
                     var self = this;
                     //发送用户注销请求
-                    auth.delete({RO: $rootScope.port}, function () {
+                    auth.delete({}, function () {
                         //success
                     }, function () {
                         //error

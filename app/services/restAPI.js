@@ -7,14 +7,14 @@
  'remove': {method:'DELETE'}
  'delete': {method:'DELETE'}
  * */
-appServices.factory('restAPI', ['$resource', 'app',
-    function ($resource, app) {
+appServices.factory('restAPI', ['$resource', 'app','$rootScope',
+    function ($resource, app,$rootScope) {
         var api_config = {
             resources: {
                 //[0] is the fake api,[1] is the real api
                 //RO--role ID--id OP--operate
-                // Example request api: /api/v2/user/login /api/v2/admin/login
-                'auth': ['/data/:RO.json/:OP', '/:RO/:OP'],
+                // Example request api: /api/v2/login /api/v2/login
+                'auth': ['/data/:RO.json/:OP', '/:OP'],
                 'templates': ['/data/templates:ID.json/:OP', '/template/:ID/:OP'],
                 'courses': ['/data/courses:ID.json', '/course/:ID/:OP'],
                 // /api/v2/booking/1/
@@ -22,26 +22,31 @@ appServices.factory('restAPI', ['$resource', 'app',
             }
         };
         var resource_maker = function (recourseName) {
-            var prefix = '/api/' + app.version;
+            var port = $rootScope.port;
+            var api ='';
+            if(port == 'partner') api = '/p-api/';
+            else if(port == 'admin') api = '/a-api/';
+            var prefix = api + app.version;
             var url = app.test_mode ? api_config.resources[recourseName][0] : prefix + api_config.resources[recourseName][1];
+            var params = {};
             var methods = {};
             if(app.test_mode){
+                params = {};
+                //测试模式使用GET
                 methods = {
                     'post': { method: 'GET' },
                     'update': { method: 'GET' },
                     'operate': { method: 'GET' }
                 };
             }else{
+                params = {ID:'@ID',OP:'@OP',RO:'@RO'};
                 methods = {
                     'post': { method: 'POST' },
                     'update': { method: 'PUT' },
                     'operate': { method: 'POST' }
-
                 };
             }
-            //ID is the resource id and OP is operation name like 'submit' 'cancel'
-            return $resource(url, {ID:'@ID',OP:'@OP',RO:'@RO'},//api中前缀为:对应的变量会从数据中的ID/OP/RO中匹配
-                methods)
+            return $resource(url, params,methods)
         };
 
         return {
