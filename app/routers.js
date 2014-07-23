@@ -89,4 +89,15 @@ appRoutes.config(function ($stateProvider, $urlRouterProvider, $httpProvider, $l
             templateUrl: 'views/admin/templates.detail.html',
             controller: 'templatesDetailCtrl'
         })
+
+
+        /****************机构信息管理***************/
+        //查看机构信息
+        .state('admin.institutions', {
+            url: '/institutions',
+//            templateUrl: 'views/admin/institutions.html',
+            template:'<h1>HAHA</h1>',
+//            controller: 'institutionsCtrl'
+            access:'admin'
+        })
 });
