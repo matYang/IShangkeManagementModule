@@ -3,29 +3,21 @@
     <!--左侧状态栏-->
     <div class="col-md-2" scroll-fix>
         <ul class="nav nav-pills nav-stacked" role="tablist">
-            <label>审核状态</label>
             <li class="nav-divider"></li>
-            <li class="active"><a href="#">待审核</a></li>
-            <li><a href="#">审核失败</a></li>
-            <li><a href="#">已上线</a></li>
-            <li><a href="#">已下线</a></li>
+            <li class="active"><a href="#">今日待处理</a></li>
+            <li><a href="#">往日待处理</a></li>
             <li class="nav-divider"></li>
         </ul>
-        <label ng-hide="filter.id==''&&filter.name==''">当前筛选</label>
-        <p ng-hide="filter.id==''">课程号:{{filter.id}}</p>
-        <p ng-hide="filter.name==''">课程名:{{filter.name}}</p>
+        <label ng-hide="1">当前筛选</label>
     </div>
     <!--右侧内容面板-->
     <div class="col-md-10">
         <!--筛选表单-->
         <form class="form-horizontal filter-form">
             <div class="form-group">
-                <label class="control-label" for="">课程号</label>
+                <label class="control-label" for="">订单号</label>
                 <div><input type="text" class="form-control input-sm"
                             ng-model="filter_tmp.id"/></div>
-                <label class="control-label" for="">课程名</label>
-                <div><input type="text" class="form-control input-sm"
-                            ng-model="filter_tmp.name"/></div>
             </div>
             <div class="form-group">
                 <label></label>
@@ -48,8 +40,8 @@
 
         <!--操作栏-->
         <div class="btn-toolbar">
-            <a class="btn btn-primary" ui-sref="admin.courses.create"><i class="fa fa-plus"></i> 新建课程 </a>
-            <a class="btn btn-default btn-sm text-danger" href="#"><i class="fa fa-trash-o"></i> 删除</a>
+            <a class="btn btn-primary btn-sm" ng-click=""><i class="fa fa-check"></i> 批量确认</a>
+            <a class="btn btn-default btn-sm text-danger" ng-click=""><i class="fa fa-times text-danger"></i> 批量拒绝</a>
         </div>
         <!--表格列表-->
         <table class="table table-condensed table-hover">
@@ -66,7 +58,6 @@
                 <td><input type="checkbox"/></td>
                 <td>{{item.id || '无'}}</td>
                 <td>{{item.name|| '无'}}</td>
-                <td>{{item.status| checkStatus}}</td>
                 <td>
                     <a ui-sref="admin.bookings.detail({id:item.id})">查看</a>
                     <!--todo 这里需要动态生成可操作的按钮-->

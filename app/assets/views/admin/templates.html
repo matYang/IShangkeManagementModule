@@ -1,15 +1,14 @@
 <!--filter-->
 <div class="row margin-bottom">
     <div class="col-md-2" scroll-fix>
-        <ul class="nav nav-pills nav-stacked" role="tablist">
-            <label for="">审核状态</label>
+        <tabset vertical="true" type="pills">
+            <label>审核状态</label>
             <li class="nav-divider"></li>
-            <li role="presentation" class="active"><a href="#">待审核</a></li>
-            <li role="presentation"><a href="#">审核失败</a></li>
-            <li role="presentation"><a href="#">已上线</a></li>
-            <li role="presentation"><a href="#">已下线</a></li>
+            <tab ng-repeat="a in options.status" heading="{{a.label}}" active="a.value==filter.status"
+                 ng-click="filter.status=a.value">
+            </tab>
             <li class="nav-divider"></li>
-        </ul>
+        </tabset>
         <label ng-hide="filter.id==''&&filter.name==''">当前筛选</label>
         <p ng-hide="filter.id==''">模板号:{{filter.id}}</p>
         <p ng-hide="filter.name==''">模板名:{{filter.name}}</p>
