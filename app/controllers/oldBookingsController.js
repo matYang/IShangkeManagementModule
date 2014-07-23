@@ -1,5 +1,5 @@
 'use strict';
-appControllers.controller('oldOrdersCtrl',
+appControllers.controller('oldBookingsCtrl',
     ['$scope', function ($scope) {
         $scope.title = 'old orders page';
 

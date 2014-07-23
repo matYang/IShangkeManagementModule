@@ -52,7 +52,8 @@ form .w5c-error {
 .table a{
     cursor: pointer;
 }
-.table th,table td{
-    text-align: center;
+.table thead tr th,.table tbody tr td{
+    padding-left: 10px;
+    text-align: left;
 }
 

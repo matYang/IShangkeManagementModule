@@ -1,15 +1,15 @@
 'use strict';
-
-appDirectives.directive('tabs', function() {
+/*
+ * todo 用于左侧面板在滚动时切换为固定状态
+ * */
+appDirectives.directive('scrollFix', function() {
     return {
         restrict: 'EA',
-        transclude: true,
-        replace: true,
         scope: {},
 //        controller: 'TabsetController',
 //        templateUrl: 'template/tabs/tabset.html',
         link: function(scope, element, attrs) {
-            scope.type = angular.isDefined(attrs.type) ? scope.$parent.$eval(attrs.type) : 'tabs';
+
         }
     };
 });

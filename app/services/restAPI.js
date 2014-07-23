@@ -17,6 +17,7 @@ appServices.factory('restAPI', ['$resource', 'app',
                 'auth': ['/data/:RO.json/:OP', '/:RO/:OP'],
                 'templates': ['/data/templates:ID.json/:OP', '/template/:ID/:OP'],
                 'courses': ['/data/courses:ID.json', '/course/:ID/:OP'],
+                // /api/v2/booking/1/
                 'bookings': ['/data/bookings:ID.json', '/booking/:ID/:OP']
             }
         };
@@ -58,10 +59,10 @@ appServices.factory('restAPI', ['$resource', 'app',
 //    .factory('cache', ['$cacheFactory',
 //        function ($cacheFactory) {
 //            return {
-//                order: $cacheFactory('order', {
+//                booking: $cacheFactory('booking', {
 //                    capacity: 100
 //                }),
-//                orders: $cacheFactory('orders', {
+//                bookings: $cacheFactory('bookings', {
 //                    capacity: 100
 //                })
 //            };
