@@ -1,22 +1,14 @@
 'use strict';
 appControllers.controller('templatesCtrl',
     ['$scope','app', function ($scope,app) {
-        $scope.title = '模板管理';
         //获取课程模板资源
-        var Templates = app.restAPI.templates;
+        var restAPI = app.restAPI.templates;
 
         //初始化审核状态选项
         $scope.options= {
             status:app.enum.StatusTab
         };
-        $scope.th = [
-            {n:'模板号',w:'20'},
-            {n:'模板名',w:'20'},
-            {n:'爱价格',w:'15'},
-            {n:'状态',w:'15'},
-            {n:'操作',w:'30'}
-        ];
-        //分页信息
+        $scope.th = app.th.TemplatesTh;
         $scope.page = angular.copy(app.default_page);
         //filter选择的值 用户展现当前数据的筛选条件
         $scope.filter = {
@@ -36,7 +28,7 @@ appControllers.controller('templatesCtrl',
         //根据 过滤信息和分页信息 刷新课程模板列表
         var doRefresh = $scope.doRefresh = function(){
             //使用课程模板资源请求数据 筛选条件为当前选择的值
-            Templates.get(angular.extend({},$scope.filter_tmp,$scope.page),function(data){
+            restAPI.get(angular.extend({},$scope.filter_tmp,$scope.page),function(data){
                 //更新当前数据的筛选条件
                 $scope.filter = angular.copy($scope.filter_tmp);
                 $scope.items = data.data;
@@ -58,23 +50,20 @@ appControllers.controller('templatesCtrl',
         });
 
         /******************用户操作事件*****************/
-        //删除课程模板
-        $scope.delete = function(id){
-            Templates.delete({ID:id},function(data){
-                app.toaster.pop('success', "课程模板"+id+"删除成功", "");
-                doRefresh();
-            },function(data){
-              //todo error
-            })
-        };
-
         //课程模板操作
         $scope.operate = function(id,op){
-            Templates.operate({ID:id,OP:op},function(){
-                //success
-            },function(){
-                //error
-            });
+            var promise = {};
+            if(op==='delete'){
+                promise = restAPI.delete({ID:id});
+            }else{
+                promise = restAPI.operate({ID:id,OP:op});
+            }
+            promise.$promise.then(function(data){
+                app.toaster.pop('success', "课程"+id+"操作成功", "");
+                doRefresh();
+            },function(data){
+                app.toaster.pop('success', "课程"+id+"操作失败", "");
+            })
         };
     }]
 );

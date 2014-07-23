@@ -3,19 +3,12 @@ appControllers.controller('coursesCtrl',
     ['$scope','app', function ($scope,app) {
         $scope.title = '课程管理';
         //获取课程模板资源
-        var Courses = app.restAPI.courses;
-
+        var restAPI = app.restAPI.courses;
         //初始化审核状态选项
         $scope.options= {
             status:app.enum.status
         };
-        $scope.th = [
-            {n:'课程号',w:'20'},
-            {n:'课程名',w:'30'},
-            {n:'状态',w:'20'},
-            {n:'操作',w:'30'}
-        ];
-        //分页信息
+        $scope.th = app.th.CoursesTh;
         $scope.page = angular.copy(app.default_page);
         //filter选择的值 用户展现当前数据的筛选条件
         $scope.filter = {
@@ -35,7 +28,7 @@ appControllers.controller('coursesCtrl',
         //根据 过滤信息和分页信息 刷新课程模板列表
         var doRefresh = $scope.doRefresh = function(){
             //使用课程模板资源请求数据 筛选条件为当前选择的值
-            Courses.get(angular.extend({},$scope.filter_tmp,$scope.page),function(data){
+            restAPI.get(angular.extend({},$scope.filter_tmp,$scope.page),function(data){
                 //更新当前数据的筛选条件
                 $scope.filter = angular.copy($scope.filter_tmp);
                 $scope.items = data.data;
@@ -61,9 +54,9 @@ appControllers.controller('coursesCtrl',
         $scope.operate = function(id,op){
             var promise = {};
             if(op==='delete'){
-                promise = Courses.delete({ID:id});
+                promise = restAPI.delete({ID:id});
             }else{
-                promise = Courses.operate({ID:id,OP:op});
+                promise = restAPI.operate({ID:id,OP:op});
             }
             promise.$promise.then(function(data){
                 app.toaster.pop('success', "课程"+id+"操作成功", "");

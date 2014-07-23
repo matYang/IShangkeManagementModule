@@ -1,8 +1,9 @@
 'use strict';
 /* App Runtime */
 app.run(
-    ['app', '$rootScope', '$cookieStore', '$location', '$timeout', '$state', 'Auth', 'restAPI', '$log', 'toaster', 'ENUM',
-        function (app, $rootScope, $cookieStore, $location, $timeout, $state, Auth, restAPI, $log, toaster, ENUM) {
+    ['app', '$rootScope', '$cookieStore', '$location', '$timeout', '$state', 'Auth', 'restAPI',
+        '$log', 'toaster', 'ENUM','TH',
+        function (app, $rootScope, $cookieStore, $location, $timeout, $state, Auth, restAPI, $log, toaster, ENUM,TH) {
             //$rootScope has some global functions and params
             $rootScope.$state = $state;
             $rootScope.global = {
@@ -31,6 +32,7 @@ app.run(
             app.toaster = toaster;
             app.log = $log; //$log can log/info/warn/error
             app.enum = ENUM;
+            app.th = TH;
             app.restAPI = restAPI;
             app.rootScope = $rootScope;
             app.timeout = $timeout;
