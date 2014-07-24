@@ -3105,7 +3105,7 @@ angular.module('ui.bootstrap.tabs', [])
 
         tabsetCtrl.addTab(scope);
         scope.$on('$destroy', function() {
-          tabsetCtrl.removeTab(scope);
+//          tabsetCtrl.removeTab(scope);//fixme comment by Jet it will trigger select fn many times
         });
 
         //We need to transclude later, once the content container is ready.
