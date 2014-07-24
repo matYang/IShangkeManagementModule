@@ -66,5 +66,6 @@ appControllers.controller('templatesCtrl',
                 app.toaster.pop('success', "课程" + id + "操作失败", "");
             })
         };
+
     }]
 );
