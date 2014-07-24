@@ -22,7 +22,7 @@ app.factory('PageView', function(){
             ]
         },
         'templates': {
-            tabs: angular.copy(common.tabs),
+            tabs: common.tabs,
             th: [
                 {n: '模板号', w: '20'},
                 {n: '模板名', w: '20'},
@@ -32,7 +32,7 @@ app.factory('PageView', function(){
             ]
         },
         'courses': {
-            tabs: angular.copy(common.tabs),
+            tabs: common.tabs,
             th: [
                 {n: '课程号', w: '20'},
                 {n: '课程名', w: '30'},
