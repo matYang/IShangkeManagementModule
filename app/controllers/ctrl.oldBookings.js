@@ -17,6 +17,7 @@ appControllers.controller('oldBookingsCtrl',
         //tab选择事件
         $scope.chooseTab = function (tab) {
             filter_tab = {};
+            $scope.clearFilter();
             angular.forEach(tab.value, function (v, k) {
                 filter_tab[k] = v;
             });
