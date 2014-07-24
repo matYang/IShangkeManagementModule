@@ -41,12 +41,6 @@
                 </div>
             </div>
         </form>
-        <form class="form-inline">
-            <label> 审核状态</label>
-            <label ng-repeat="a in options.status">
-                <input type="radio" ng-model="filter.status" ng-value="a.value"/>{{a.label}}
-            </label>
-        </form>
         <div class="row">
             <pre class="col-md-6">filter{{filter|json}}</pre>
             <pre class="col-md-6">filter_tmp{{filter_tmp|json}}</pre>
