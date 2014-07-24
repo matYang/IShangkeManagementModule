@@ -27,14 +27,14 @@ appRoutes.config(function ($stateProvider, $urlRouterProvider, $httpProvider, $l
         /**************** 新单处理页面 ****************/
         .state('admin.new_bookings', {
             url: '/new_bookings',
-            templateUrl: 'views/admin/new_bookings.html',
+            templateUrl: 'views/admin/bookings.html',
             controller: 'newBookingsCtrl'
         })
 
         /**************** 旧单审核页面 ****************/
         .state('admin.old_bookings', {
             url: '/old_bookings',
-            templateUrl: 'views/admin/old_bookings.html',
+            templateUrl: 'views/admin/bookings.html',
             controller: 'oldBookingsCtrl'
         })
 
