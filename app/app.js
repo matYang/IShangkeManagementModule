@@ -10,6 +10,7 @@ var app = angular.module('app', [
     'ui.router',
     'ui.bootstrap',
     'w5c.validator',
+    'ngStorage',
     'toaster',
     'angular-loading-bar',
 
