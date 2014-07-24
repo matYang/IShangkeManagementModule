@@ -32,6 +32,10 @@ form .w5c-error {
     margin-top: 5px;
 }
 
+
+.nav li a{
+    cursor: pointer;
+}
 /*
  * 数据列表和filter表单 的通用样式 及筛选组件样式
 **/

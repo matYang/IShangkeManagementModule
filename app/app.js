@@ -11,6 +11,7 @@ var app = angular.module('app', [
     'ui.bootstrap',
     'w5c.validator',
     'toaster',
+    'angular-loading-bar',
 
     'appRoutes',
     'appServices',

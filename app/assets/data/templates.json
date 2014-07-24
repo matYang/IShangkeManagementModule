@@ -2,19 +2,6 @@
     "data": [
         {
             "id": 1,
-            "name": "aaa",
-            "status": 1,
-            "actionList":[
-                {
-                    "name":"approve"
-                },
-                {
-                    "name":"reject"
-                }
-            ]
-        },
-        {
-            "id": 1,
             "name": "bfdgbbqqq",
             "status": 2,
             "actionList":[
@@ -28,6 +15,6 @@
         }
     ],
     "index": 1,
-    "total": 2,
+    "total": 1,
     "count": 20
 }
