@@ -67,23 +67,5 @@ appControllers.controller('coursesCtrl',
             })
         };
 
-
-        //创建课程
-        $scope.createCourse = function(){
-            var useTemplate = app.storage.useTemplate;
-            app.log.log('本地已选模板:'+angular.toJson(useTemplate));
-            //如果本地中已有选择的课程模板 则直接进入创建课程页面
-            if(useTemplate){
-                app.state.go('admin.courses.create');
-            }else{
-                //打开选择对话框
-                var chooseTemplateModal = app.modal.open({
-                    template:'选择课程模板',
-                    size:'sm',
-                    controller:'chooseTemplateCtrl'
-                });
-            }
-
-        };
     }]
 );
