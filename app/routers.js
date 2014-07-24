@@ -107,9 +107,9 @@ appRoutes.config(function ($stateProvider, $urlRouterProvider, $httpProvider, $l
         //查看机构信息
         .state('admin.institutions', {
             url: '/institutions',
-//            templateUrl: 'views/admin/institutions.html',
+            templateUrl: 'views/admin/institutions.html',
             template:'<h1>HAHA</h1>',
-//            controller: 'institutionsCtrl'
+            controller: 'institutionsCtrl'
             access:'admin'
         })
 });

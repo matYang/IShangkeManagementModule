@@ -50,7 +50,16 @@ app.factory('PageView', function(){
                 {n: '状态', w: '20'},
                 {n: '操作', w: '30'}
             ]
-        }
+        },
+        'institutions': {
+            tabs: common.statusTabs,
+            th: [
+                {n: '机构号', w: '20'},
+                {n: '机构名', w: '30'},
+                {n: '状态', w: '20'},
+                {n: '操作', w: '30'}
+            ]
+        },
 
     }
 });
