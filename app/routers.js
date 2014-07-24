@@ -54,7 +54,7 @@ appRoutes.config(function ($stateProvider, $urlRouterProvider, $httpProvider, $l
         .state('admin.courses.create', {
             url: '/create',
             templateUrl: 'views/admin/courses.create.html',
-            controller: 'templatesCreateCtrl'
+            controller: 'coursesCreateCtrl'
         })
         //查看课程
         .state('admin.courses.detail', {
