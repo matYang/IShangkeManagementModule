@@ -74,7 +74,10 @@
                 <td class="operations">
                     <a ui-sref="admin.courses.detail({id:item.id})">查看</a>
                     <!--已上线或者审核失败的可进行修改-->
-                    <a ng-repeat="op in item.actionList" ng-click="operate(item.id,op.name)">{{op.name | operationText}}</a>
+                    <a ng-repeat="op in item.actionList" ng-click="operate(item.id,op.name)">
+                        <span ng-if="op.name=='submitUpdated'">修改</span>
+                        <span ng-if="op.name!='submitUpdated'">{{op.name | operationText}}</span>
+                    </a>
                 </td>
             </tr>
             </tbody>
