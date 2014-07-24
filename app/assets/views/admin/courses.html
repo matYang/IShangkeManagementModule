@@ -74,7 +74,7 @@
                 <td class="operations">
                     <a ui-sref="admin.courses.detail({id:item.id})">查看</a>
                     <!--已上线或者审核失败的可进行修改-->
-                    <a ng-repeat="op in item.operations" ng-click="operate(item.id,op.name)">{{op.name | operationText}}</a>
+                    <a ng-repeat="op in item.actionList" ng-click="operate(item.id,op.name)">{{op.name | operationText}}</a>
                 </td>
             </tr>
             </tbody>

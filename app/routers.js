@@ -62,6 +62,12 @@ appRoutes.config(function ($stateProvider, $urlRouterProvider, $httpProvider, $l
             templateUrl: 'views/admin/courses.detail.html',
             controller: 'coursesDetailCtrl'
         })
+        //编辑课程
+        .state('admin.courses.edit', {
+            url: '/{id:[0-9]}/edit',
+            templateUrl: 'views/admin/courses.edit.html',
+            controller: 'coursesEditCtrl'
+        })
 
 
 
@@ -88,6 +94,12 @@ appRoutes.config(function ($stateProvider, $urlRouterProvider, $httpProvider, $l
             url: '/{id:[0-9]}',
             templateUrl: 'views/admin/templates.detail.html',
             controller: 'templatesDetailCtrl'
+        })
+        //编辑课程模板
+        .state('admin.templates.edit', {
+            url: '/{id:[0-9]}/edit',
+            templateUrl: 'views/admin/templates.edit.html',
+            controller: 'templatesEditCtrl'
         })
 
 

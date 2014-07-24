@@ -3,22 +3,28 @@
         {
             "id": 1,
             "name": "aaa",
-            "status": 1
+            "status": 1,
+            "actionList":[
+                {
+                    "name":"approve"
+                },
+                {
+                    "name":"reject"
+                }
+            ]
         },
         {
             "id": 1,
             "name": "bfdgbbqqq",
-            "status": 2
-        },
-        {
-            "id": 1,
-            "name": "b111bb",
-            "status": 3
-        },
-        {
-            "id": 1,
-            "name": "bbsdfb",
-            "status": 0
+            "status": 2,
+            "actionList":[
+                {
+                    "name":"approve"
+                },
+                {
+                    "name":"submitUpdated"
+                }
+            ]
         }
     ],
     "index": 1,

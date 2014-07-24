@@ -53,10 +53,10 @@
             <tr ng-repeat="item in items">
                 <td>{{item.id || '无'}}</td>
                 <td>{{item.name|| '无'}}</td>
-                <td>
+                <td class="operations">
                     <a ui-sref="admin.bookings.detail({id:item.id})">查看</a>
                     <!--todo 这里需要动态生成可操作的按钮-->
-
+                    <a ng-repeat="op in item.actionList" ng-click="operate(item.id,op.name)">{{op.name | operationText}}</a>
                 </td>
             </tr>
             </tbody>

@@ -1,17 +1,16 @@
 'use strict';
-appControllers.controller('coursesCtrl',
+appControllers.controller('templatesCtrl',
     ['$scope', 'app', function ($scope, app) {
         //获取课程模板资源
-        var restAPI = app.restAPI.courses;
-        var pageView = app.PageView['courses'];
+        var restAPI = app.restAPI.templates;
+        var pageView = app.PageView['templates'];
         $scope.tabs = pageView.tabs;
         $scope.th = pageView.th;
         $scope.page = angular.copy(app.default_page);
         //filter选择的值 用户展现当前数据的筛选条件
         $scope.filter = {
             id: '',     //模板号
-            name: '',   //模板名
-            status: '' //审核状态
+            name: ''   //模板名
         };
         //filter临时存储 用于用户输入
         $scope.filter_tmp = angular.copy($scope.filter);
@@ -23,7 +22,7 @@ appControllers.controller('coursesCtrl',
             angular.forEach(tab.value, function (v, k) {
                 filter_tab[k] = v;
             });
-            app.log.log('filter_tab:'+angular.toJson(filter_tab));
+            app.log.log('filter_tab:' + angular.toJson(filter_tab));
             doRefresh();
         };
         $scope.clearFilter = function () {
@@ -46,12 +45,17 @@ appControllers.controller('coursesCtrl',
             });
         };
         /******************用户操作事件*****************/
-            //课程操作
+            //课程模板操作
         $scope.operate = function (id, op) {
             var promise = {};
             if (op === 'delete') {
                 promise = restAPI.delete({ID: id});
-            } else {
+            }
+            else if (op == 'submitUpdated') {
+                app.state.go('admin.templates.edit',{id:id});
+                return;
+            }
+            else {
                 promise = restAPI.operate({ID: id, OP: op});
             }
             promise.$promise.then(function (data) {

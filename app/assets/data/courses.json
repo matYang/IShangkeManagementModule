@@ -4,15 +4,12 @@
             "id": 1,
             "name": "aaa",
             "status": 1,
-            "operations":[
+            "actionList":[
                 {
                     "name":"approve"
                 },
                 {
                     "name":"submitUpdated"
-                },
-                {
-                    "name":"dfff"
                 }
             ]
         },
@@ -20,7 +17,7 @@
             "id": 1,
             "name": "bfdgbbqqq",
             "status": 2,
-            "operations":[
+            "actionList":[
                 {
                     "name":"submitNew"
                 },
