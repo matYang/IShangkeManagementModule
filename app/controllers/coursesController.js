@@ -3,8 +3,9 @@ appControllers.controller('coursesCtrl',
     ['$scope', 'app', function ($scope, app) {
         //获取课程模板资源
         var restAPI = app.restAPI.courses;
-        $scope.tabs = app.enum.StatusTabs;
-        $scope.th = app.th.CoursesTh;
+        var pageView = app.PageView['courses'];
+        $scope.tabs = angular.copy(pageView.tabs);
+        $scope.th = pageView.th;
         $scope.page = angular.copy(app.default_page);
         //filter选择的值 用户展现当前数据的筛选条件
         $scope.filter = {
@@ -22,13 +23,12 @@ appControllers.controller('coursesCtrl',
             angular.forEach(tab.value, function (v, k) {
                 filter_tab[k] = v;
             });
-            app.log.log(filter_tab);
+            console.log('coursse filter_tab:'+angular.toJson(filter_tab));
             doRefresh();
         };
         $scope.clearFilter = function () {
             angular.forEach($scope.filter_tmp, function (v, k) {
                 $scope.filter_tmp[k] = '';
-                app.log.log('filter_tab:'+angular.toJson(filter_tab));
             });
         };
         //根据 过滤信息和分页信息 刷新课程模板列表

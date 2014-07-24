@@ -2,8 +2,8 @@
 /* App Runtime */
 app.run(
     ['app', '$rootScope', '$cookieStore', '$location', '$timeout', '$state', 'Auth', 'restAPI',
-        '$log', 'toaster', 'ENUM','TH',
-        function (app, $rootScope, $cookieStore, $location, $timeout, $state, Auth, restAPI, $log, toaster, ENUM,TH) {
+        '$log', 'toaster', 'Enum','PageView',
+        function (app, $rootScope, $cookieStore, $location, $timeout, $state, Auth, restAPI, $log, toaster, Enum,PageView) {
             //$rootScope has some global functions and params
             $rootScope.$state = $state;
             $rootScope.global = {
@@ -31,8 +31,8 @@ app.run(
             app.state = $state;
             app.toaster = toaster;
             app.log = $log; //$log can log/info/warn/error
-            app.enum = ENUM;
-            app.th = TH;
+            app.Enum = Enum;
+            app.PageView = PageView;
             app.restAPI = restAPI;
             app.rootScope = $rootScope;
             app.timeout = $timeout;

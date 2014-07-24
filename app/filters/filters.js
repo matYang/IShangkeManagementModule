@@ -7,7 +7,7 @@ appFilters
             return function (op_name) {
 //        var status = _.findWhere(app.options.status, {value: input});
 //        return status?status['label']:'未知';
-                return app.enum.OperationsText[op_name] || app.enum.OperationsText[-1];
+                return app.Enum.OperationsText[op_name] || app.Enum.OperationsText[-1];
             };
         }
     ])
@@ -16,7 +16,7 @@ appFilters
             return function (value) {
 //        var status = _.findWhere(app.options.status, {value: input});
 //        return status?status['label']:'未知';
-                return app.enum.StatusText[value] || app.enum.StatusText[-1];
+                return app.Enum.StatusText[value] || app.Enum.StatusText[-1];
             };
         }
     ])

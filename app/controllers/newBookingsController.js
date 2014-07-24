@@ -2,8 +2,9 @@
 appControllers.controller('newBookingsCtrl',
     ['$scope', 'restAPI', 'app', function ($scope, restAPI, app) {
         var restAPI = restAPI.bookings;
-        $scope.tabs = app.enum.NewBookingsTabs;
-        $scope.th = app.th.BookingsTh;
+        var pageView = app.PageView['newBookings'];
+        $scope.tabs = pageView.tabs;
+        $scope.th = pageView.th;
         $scope.page = angular.copy(app.default_page);
         //filter选择的值 用户展现当前数据的筛选条件
         $scope.filter = {
@@ -19,13 +20,12 @@ appControllers.controller('newBookingsCtrl',
             angular.forEach(tab.value, function (v, k) {
                 filter_tab[k] = v;
             });
-            app.log.log(filter_tab);
+            app.log.log('filter_tab:'+angular.toJson(filter_tab));
             doRefresh();
         };
         $scope.clearFilter = function () {
             angular.forEach($scope.filter_tmp, function (v, k) {
                 $scope.filter_tmp[k] = '';
-                app.log.log('filter_tab:'+angular.toJson(filter_tab));
             });
         };
 

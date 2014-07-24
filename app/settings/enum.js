@@ -1,18 +1,5 @@
 'use strict';
-app.value('ENUM', {
-        //todo just need to config 'value'
-        NewBookingsTabs: [
-            {label: '今日待处理', active: true, value: {status: 0,createTimeStart:new Date()}},
-            {label: '往日待处理', active: false, value: {status: 0,createTimeEnd:new Date()}}
-        ],
-        //课程和课程模板的审核状态tab标签
-        StatusTabs: [
-            {label: '已上线', active: true, value: {status: 0}},
-            {label: '已下线', active: false, value: {status: 1}},
-            {label: '待审核', active: false, value: {status: 2}},
-            {label: '审核失败', active: false, value: {status: 3} },
-            {label: '已删除', active: false, value: {status: 4} }
-        ],
+app.value('Enum', {
 
         //状态的text
         StatusText: {
