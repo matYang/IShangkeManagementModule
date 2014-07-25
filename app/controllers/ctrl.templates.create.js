@@ -2,7 +2,7 @@
 appControllers.controller('templatesCreateCtrl',
     ['$scope','app', function ($scope,app) {
         var Templates = app.restAPI.templates;
-        $scope.title = '这里是新建课程模板页面';
+        $scope.title = '新建课程模板';
 
         //提交新建的模板
         $scope.submit_template = function(template){
