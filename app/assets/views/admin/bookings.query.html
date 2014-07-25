@@ -1,0 +1,75 @@
+<!--filter-->
+<div class="row margin-bottom">
+    <div class="col-md-12">
+        <!--筛选表单-->
+        <form class="form-horizontal filter-form">
+            <div class="form-group">
+                <label class="control-label" for="">订单号</label>
+
+                <div><input type="text" class="form-control input-sm"
+                            ng-model="filter_tmp.id"/></div>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="">下单日期</label>
+
+                <div class="input-group">
+                    <input type="text" class="form-control" ng-model="aa" datepicker-popup="yyyy/MM/dd" is-open="opened" ng-init="opened=false"
+                           min-date="minDate" max-date="'2015-06-22'" datepicker-options="dateOptions" close-text="Close"/>
+                    <span class="input-group-btn">
+                        <button class="btn btn-default" ng-click="open($event)"><i class="fa fa-calendar"></i>&nbsp;</button>
+                    </span>
+                </div>
+                <label class="control-label">到</label>
+
+                <div><input type="text" class="form-control input-sm"
+                        /></div>
+            </div>
+            <div class="form-group">
+                <label></label>
+
+                <div>
+                    <button class="btn btn-primary btn-sm" ng-click="doRefresh()"><i class="fa fa-search"></i> 查 询
+                    </button>
+                    <button class="btn btn-default btn-sm" ng-click="clearFilter()">清空输入</button>
+                </div>
+            </div>
+        </form>
+        <div class="row">
+            <pre class="col-md-6">filter{{filter|json}}</pre>
+            <pre class="col-md-6">filter_tmp{{filter_tmp|json}}</pre>
+        </div>
+
+        <!--表格列表-->
+        <table class="table table-condensed table-hover">
+            <thead>
+            <tr>
+                <th ng-repeat="t in th" width="{{t.w}}%">
+                    {{ t.n }}
+                </th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="item in items">
+                <td>{{item.id || '无'}}</td>
+                <td>{{item.name|| '无'}}</td>
+                <td class="operations">
+                    <a ui-sref="admin.bookings.detail({id:item.id})">查看</a>
+                    <!--todo 这里需要动态生成可操作的按钮-->
+                    <a ng-repeat="op in item.actionList" ng-click="operate(item.id,op.name)">{{op.name |
+                        operationText}}</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <div class="page clearfix">
+            <p class="pull-left">共{{page.total}}条记录，每页显示{{page.count}}条记录</p>
+            <pagination class="pull-right" ng-model="page.index" total-items="page.total" items-per-page="page.count"
+                        ng-change="doRefresh()"
+                        max-size="9"
+                        class="pagination-sm"
+                        boundary-links="true" rotate="false" num-pages="total_pages"
+                        previous-text="上一页" next-text="下一页"></pagination>
+        </div>
+
+    </div>
+</div>
