@@ -14,7 +14,9 @@ angular.module("w5c.validator", ["ng"])
                 repeat: "两次输入不一致",
                 pattern: "该选项输入格式不正确",
                 number: "必须输入数字",
-                w5cuniquecheck: "该输入值已经存在，请重新输入"
+                w5cuniquecheck: "该输入值已经存在，请重新输入",
+                max:'不能大于{max}',
+                min:'不能小于{min}'
             },
             elemTypes = ['text', 'password', 'email', 'number', ['textarea'], ['select'], ['select-one']];
 
@@ -75,6 +77,16 @@ angular.module("w5c.validator", ["ng"])
                             return msgTpl.replace("{minlength}", elem.getAttribute("ng-minlength"));
                         }
                         return defaultRules.minlength.replace("{minlength}", elem.getAttribute("ng-minlength"));
+                    case "max":
+                        if (msgTpl !== null) {
+                            return msgTpl.replace("{max}", elem.getAttribute("max"));
+                        }
+                        return defaultRules.max.replace("{max}", elem.getAttribute("max"));
+                    case "min":
+                        if (msgTpl !== null) {
+                            return msgTpl.replace("{min}", elem.getAttribute("min"));
+                        }
+                        return defaultRules.min.replace("{min}", elem.getAttribute("min"));
                     default :
                     {
                         if (msgTpl !== null) {

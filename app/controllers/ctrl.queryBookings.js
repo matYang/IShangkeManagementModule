@@ -49,7 +49,6 @@ appControllers.controller('queryBookingsCtrl',
         $scope.open = function ($event, id) {
             $event.preventDefault();
             $event.stopPropagation();
-
             $scope['opened' + id] = true;
         };
 

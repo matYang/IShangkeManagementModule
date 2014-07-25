@@ -15,6 +15,13 @@ appControllers.controller('templatesCreateCtrl',
             },function(){
                 app.log.error('create error');
             })
-        }
+        };
+
+        //打开日期
+        $scope.open = function ($event, id) {
+            $event.preventDefault();
+            $event.stopPropagation();
+            $scope['opened_' + id] = true;
+        };
     }]
 );

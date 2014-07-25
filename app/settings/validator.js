@@ -32,9 +32,6 @@ angular.module('app').config(["w5cValidatorProvider", function (w5cValidatorProv
             required : "密码不能为空",
             minlength: "密码长度不能小于{minlength}",
             maxlength: "密码长度不能大于{maxlength}"
-        },
-        number  : {
-            required: "数字不能为空"
         }
     });
 }]);
