@@ -105,46 +105,64 @@ appRoutes.config(function ($stateProvider, $urlRouterProvider, $httpProvider, $l
 
         /****************机构信息管理***************/
         //查看机构信息
-        .state('admin.institutions', {
-            url: '/institutions',
+        .state('admin.partners', {
+            url: '/partners',
             template: '<div ui-view></div>',
             abstract: true,
             access:'admin'
         })
-        .state('admin.institutions.list', {
+        .state('admin.partners.list', {
             url: '',
-            templateUrl: 'views/admin/institutions.html',
-            controller: 'institutionsCtrl',
+            templateUrl: 'views/admin/partners.html',
+            controller: 'partnersCtrl',
             access:'admin'
         })
-        .state('admin.institutions.create', {
+        .state('admin.partners.create', {
             url: '/create',
-            templateUrl: 'views/admin/institutions.create.html',
-            controller: 'institutionsCreateCtrl',
+            templateUrl: 'views/admin/partners.create.html',
+            controller: 'partnersCreateCtrl',
             access:'admin'
         })
-        .state('admin.institutions.detail', {
+        .state('admin.partners.detail', {
             url: '/{id:[0-9]}/',
-            templateUrl: 'views/admin/institutions.detail.html',
-            controller: 'institutionsDetailCtrl',
+            templateUrl: 'views/admin/partners.detail.html',
+            controller: 'partnersDetailCtrl',
             access:'admin'
         })
-        .state('admin.institutions.edit', {
+        .state('admin.partners.edit', {
             url: '/{id:[0-9]}/edit',
-            templateUrl: 'views/admin/institutions.edit.html',
-            controller: 'institutionsEditCtrl',
+            templateUrl: 'views/admin/partners.edit.html',
+            controller: 'partnersEditCtrl',
             access:'admin'
         })
-        .state('admin.institutions.edit.photo', {
+        .state('admin.partners.edit.logo', {
+            url: '/{id:[0-9]}/edit/logo',
+            templateUrl: 'views/admin/partners.edit.logo.html',
+            controller: 'partnersEditLogoCtrl',
+            access:'admin'
+        })
+        .state('admin.partners.edit.photo', {
             url: '/{id:[0-9]}/edit/photo',
-            templateUrl: 'views/admin/institutions.edit.photo.html',
-            controller: 'institutionsEditPhotoCtrl',
+            templateUrl: 'views/admin/partners.edit.photo.html',
+            controller: 'partnersEditPhotoCtrl',
             access:'admin'
         })
-        .state('admin.institutions.edit.teacher', {
+        .state('admin.partners.edit.teacher', {
             url: '/{id:[0-9]}/edit/teacher',
-            templateUrl: 'views/admin/institutions.edit.teacher.html',
-            controller: 'institutionsEditPhotoCtrl',
+            templateUrl: 'views/admin/partners.edit.teacher.html',
+            controller: 'partnersEditPhotoCtrl',
+            access:'admin'
+        })
+        .state('admin.partners.edit.photo.manage', {
+            url: '/{id:[0-9]}/edit/photo/manage',
+            templateUrl: 'views/admin/partners.edit.photo.html',
+            controller: 'partnersEditPhotoManageCtrl',
+            access:'admin'
+        })
+        .state('admin.partners.edit.teacher.manage', {
+            url: '/{id:[0-9]}/edit/teacher/manage',
+            templateUrl: 'views/admin/partners.edit.teacher.html',
+            controller: 'partnersEditPhotoManageCtrl',
             access:'admin'
         })
 });

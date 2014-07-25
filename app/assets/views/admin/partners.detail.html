@@ -1,0 +1,99 @@
+<div ng-controller="partnersDetailCtrl">
+    <form class="col-md-12 form-horizontal" role="form" name="validateForm" w5c-form-validate novalidate>
+        <div>
+            <label class="col-sm-3 control-label">合作机构ID</label>
+            <span>{{partner.partnerId}}</span>
+        </div>
+        <div class="form-group form-group-sm">
+            <label class="col-sm-3 control-label">学校名:</label>
+            <span>{{partner.instName}}</span>
+        </div>
+        <div class="form-group form-group-sm">
+            <label class="col-sm-3 control-label">机构全称:</label>
+            <span>{{partner.wholeName}}</span>
+        </div>
+        <div class="form-group form-group-sm">
+            <label class="col-sm-3 control-label">机构简介:</label>
+            <span>{{ partner.partnerIntro }}</span>
+        </div>
+        <div class="form-group form-group-sm">
+            <label class="col-sm-3 control-label">机构荣誉:</label>
+            <span>{{ partner.partnerDistinction }}</span>
+        </div>
+        <div class="form-group form-group-sm">
+            <label class="col-sm-3 control-label">合作伙伴资格:</label>
+            <span>{{partner.partnerQualification}}</span>
+        </div>
+        <div class="form-group form-group-sm">
+            <label class="col-sm-3 control-label">公司总部地址:</label>
+            <span>{{partner.hqLocation}}</span>
+        </div>
+        <div class="form-group form-group-sm">
+            <label class="col-sm-3 control-label">校区地址:</label>
+            <span>{{partner.subLocation}}</span>
+        </div>
+        <div class="form-group form-group-sm">
+            <label class="col-sm-3 control-label">报名地址一致:</label>
+            <span>{{partner.uniformRegistraLocation}}</span>
+        </div>
+        <div class="form-group form-group-sm">
+            <label class="col-sm-3 control-label">总部合作关系对接人:</label>
+            <span>{{partner.hqContact}}</span>
+        </div>
+        <div class="form-group form-group-sm">
+            <label class="col-sm-3 control-label">总部对接人联系电话:</label>
+            <span>{{partner.hqContactPhone}}</span>
+        </div>
+        <div class="form-group form-group-sm">
+            <label class="col-sm-3 control-label">课程详情联联络人:</label>
+            <span>{{partner.courseContact}}</span>
+        </div>
+        <div class="form-group form-group-sm">
+            <label class="col-sm-3 control-label">课程联络人联系电话:</label>
+            <span>{{partner.courseContactPhone}}</span>
+        </div>
+        <div class="form-group form-group-sm">
+            <label class="col-sm-3 control-label">学员咨询联系电话:</label>
+            <span>{{partner.studentInqueryPhone}}</span>
+        </div>
+        <div class="form-group form-group-sm">
+            <label class="col-sm-3 control-label">报名学员入学状态对接人:</label>
+            <span>{{partner.registraContact}}</span>
+        </div>
+        <div class="form-group form-group-sm">
+            <label class="col-sm-3 control-label">报名学员入学状态联系电话:</label>
+            <span>{{partner.registraContactPhone}}</span>
+        </div>
+        <div class="form-group form-group-sm">
+            <label class="col-sm-3 control-label">报名学员入学状态传真号码:</label>
+            <span>{{partner.registraContactFax}}</span>
+        </div>
+        <div class="form-group form-group-sm">
+            <label class="col-sm-3 control-label">默认课程截止日:</label>
+            <span>{{partner.defaultCutoffDay}}</span>
+        </div>
+        <div class="form-group form-group-sm">
+            <label class="col-sm-3 control-label">默认截止日几点截止:</label>
+            <span>{{partner.defaultCutoffTime}}</span>
+        </div>
+        <div class="form-group form-group-sm">
+            <label class="col-sm-3 control-label">执照:</label>
+            <span>{{partner.licence}}</span>
+        </div>
+        <div class="form-group form-group-sm">
+            <label class="col-sm-3 control-label">机构号:</label>
+            <span>{{partner.organizationNum}}</span>
+        </div>
+        <div class="form-group form-group-sm">
+            <label class="col-sm-3 control-label">查询号:</label>
+            <span>{{partner.reference}}</span>
+        </div>
+
+        <input type="button" value="添加教师" ng-click="addTeacher()" />
+        <input type="button" value="添加照片" ng-click="addPhoto()" />
+        <input type="button" value="管理教师" ng-click="manageTeacher()" />
+        <input type="button" value="管理照片" ng-click="managePhoto()" />
+        <input type="button" value="编辑资料" ng-click="edit()" />
+        <input type="button" value="上传商标" ng-click="uploadUrl()" />
+    </form>
+</div>
