@@ -4,9 +4,9 @@ app.constant('app', { //constant 'app' assemble things like restAPI and configs
     test_mode: true, //测试模式
 
     //默认的分页
-    default_page:{
-        index:1,    // 起始页
-        count:20,   //每页记录数
-        total:0    //记录总数
+    default_page: {
+        index: 1,    // 起始页
+        count: 20,   //每页记录数
+        total: 0    //记录总数
     }
 });

@@ -15,6 +15,8 @@ exports.config =
       order:
         before:[
           'app/app.js'
+          'app/app_config.js'
+          'app/app_run.js'
           'vendor/js/angular.js'
         ]
 

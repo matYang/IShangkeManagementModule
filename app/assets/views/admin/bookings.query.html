@@ -9,11 +9,11 @@
                 <div><input type="text" class="form-control input-sm"
                             ng-model="filter_tmp.id"/></div>
             </div>
-            <div class="form-group">
+            <div class="form-group from-group-sm">
                 <label class="control-label" for="">下单日期</label>
 
-                <div class="input-group">
-                    <input type="text" class="form-control" ng-model="aa" datepicker-popup="yyyy/MM/dd" is-open="opened" ng-init="opened=false"
+                <div class="input-group input-group-sm">
+                    <input type="text" class="form-control" ng-model="filter_tmp.createTimeStart" datepicker-popup="yyyy/MM/dd" is-open="opened" ng-init="opened=false"
                            min-date="minDate" max-date="'2015-06-22'" datepicker-options="dateOptions" close-text="Close"/>
                     <span class="input-group-btn">
                         <button class="btn btn-default" ng-click="open($event)"><i class="fa fa-calendar"></i>&nbsp;</button>
@@ -21,7 +21,7 @@
                 </div>
                 <label class="control-label">到</label>
 
-                <div><input type="text" class="form-control input-sm"
+                <div><input type="text" class="form-control"
                         /></div>
             </div>
             <div class="form-group">
