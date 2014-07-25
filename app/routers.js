@@ -138,7 +138,7 @@ appRoutes.config(function ($stateProvider, $urlRouterProvider, $httpProvider, $l
         .state('admin.partners.logo', {
             url: '/{id:[0-9]}/logo',
             templateUrl: 'views/admin/partners.logo.html',
-            controller: 'partnersEditLogoCtrl',
+            controller: 'partnersLogoCtrl',
             access:'admin'
         })
         .state('admin.partners.photo', {
