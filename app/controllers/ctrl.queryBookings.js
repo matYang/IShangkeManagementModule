@@ -2,7 +2,7 @@
 appControllers.controller('queryBookingsCtrl',
     ['$scope', 'restAPI', 'app', function ($scope, restAPI, app) {
         var restAPI = restAPI.bookings;
-        $scope.th =  app.PageView['common'].bookingTh;
+        $scope.th = app.PageView['common'].bookingTh;
         $scope.page = angular.copy(app.default_page);
         //filter选择的值 用户展现当前数据的筛选条件
         $scope.filter = {
@@ -46,17 +46,11 @@ appControllers.controller('queryBookingsCtrl',
             })
         };
 
-
-        // Disable weekend selection
-        $scope.disabled = function(date, mode) {
-            return ( mode === 'day' && ( date.getDay() === 0 || date.getDay() === 6 ) );
-        };
-
-        $scope.open = function($event) {
+        $scope.open = function ($event, id) {
             $event.preventDefault();
             $event.stopPropagation();
 
-            $scope.opened = true;
+            $scope['opened' + id] = true;
         };
 
     }]

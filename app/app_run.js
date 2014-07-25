@@ -2,8 +2,8 @@
 /* App Runtime */
 app.run(
     ['app', '$rootScope', '$cookieStore', '$localStorage', '$location', '$timeout', '$state', 'Auth', 'restAPI',
-        '$log', '$modal', 'toaster', 'Enum', 'PageView',
-        function (app, $rootScope, $cookieStore, $localStorage, $location, $timeout, $state, Auth, restAPI, $log, $modal, toaster, Enum, PageView) {
+        '$log', '$modal', '$parse', 'toaster', 'Enum', 'PageView',
+        function (app, $rootScope, $cookieStore, $localStorage, $location, $timeout, $state, Auth, restAPI, $log, $modal, $parse, toaster, Enum, PageView) {
             //$rootScope has some global functions and params
             $rootScope.$state = $state;
             $rootScope.global = {
@@ -12,7 +12,7 @@ app.run(
                 isAdmin: true
             };
             if (app.test_mode) {
-                var user = {}
+                var user = {};
                 if ($rootScope.port == 'admin')user = {username: 'admin', group: 'admin_group'};
                 else if ($rootScope.port == 'partner')user = {username: 'partner', group: 'partner_group'};
 
@@ -33,6 +33,7 @@ app.run(
             app.toaster = toaster;
             app.log = $log; //$log can log/info/warn/error
             app.modal = $modal;
+            app.parse = $parse;
             app.Enum = Enum;
             app.PageView = PageView;
             app.restAPI = restAPI;

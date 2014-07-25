@@ -9,26 +9,30 @@
                 <div><input type="text" class="form-control input-sm"
                             ng-model="filter_tmp.id"/></div>
             </div>
-            <div class="form-group from-group-sm">
+            <div class="form-group from-group-sm" ng>
                 <label class="control-label" for="">下单日期</label>
 
                 <div class="input-group input-group-sm">
-                    <input type="text" class="form-control" ng-model="filter_tmp.createTimeStart" datepicker-popup="yyyy/MM/dd" is-open="opened" ng-init="opened=false"
-                           min-date="minDate" max-date="'2015-06-22'" datepicker-options="dateOptions" close-text="Close"/>
+                    <input type="text" class="form-control" ng-model="filter_tmp.createTimeStart" datepicker-popup="yyyy/MM/dd" is-open="opened1" ng-init="opened1=false"
+                          />
                     <span class="input-group-btn">
-                        <button class="btn btn-default" ng-click="open($event)"><i class="fa fa-calendar"></i>&nbsp;</button>
+                        <button class="btn btn-default" ng-click="open($event,1)"><i class="fa fa-calendar"></i>&nbsp;</button>
                     </span>
                 </div>
-                <label class="control-label">到</label>
 
-                <div><input type="text" class="form-control"
-                        /></div>
+                <div class="input-group input-group-sm">
+                    <input type="text" class="form-control" ng-model="filter_tmp.createTimeStart" datepicker-popup="yyyy/MM/dd" is-open="opened2" ng-init="opened2=false"
+                          />
+                    <span class="input-group-btn">
+                        <button class="btn btn-default" ng-click="open($event,2)"><i class="fa fa-calendar"></i>&nbsp;</button>
+                    </span>
+                </div>
             </div>
             <div class="form-group">
                 <label></label>
 
                 <div>
-                    <button class="btn btn-primary btn-sm" ng-click="doRefresh()"><i class="fa fa-search"></i> 查 询
+                    <button class="btn btn-primary btn-sm" ng-click="doRefresh()"><i class="fa fa-"></i> 查 询
                     </button>
                     <button class="btn btn-default btn-sm" ng-click="clearFilter()">清空输入</button>
                 </div>
