@@ -1,9 +1,9 @@
 'use strict';
-appControllers.controller('institutionsCtrl',
+appControllers.controller('partnersCtrl',
     ['$scope', 'app', function ($scope, app) {
         //获取课程模板资源
-        var restAPI = app.restAPI.institutions;
-        var pageView = app.PageView['institutions'];
+        var restAPI = app.restAPI.partners;
+        var pageView = app.PageView['partners'];
         $scope.tabs = pageView.tabs;
         $scope.th = pageView.th;
         $scope.page = angular.copy(app.default_page);
@@ -52,17 +52,17 @@ appControllers.controller('institutionsCtrl',
                 promise = restAPI.delete({ID: id});
             }
             else if(op=='submitUpdated'){
-                app.state.go('admin.courses.edit',{id:id});
+                app.state.go('admin.partners.edit', {id:id});
                 return;
             }
             else {
                 promise = restAPI.operate({ID: id, OP: op});
             }
             promise.$promise.then(function (data) {
-                app.toaster.pop('success', "课程" + id + "操作成功", "");
+                app.toaster.pop('success', "机构" + id + "操作成功", "");
                 doRefresh();
             }, function (data) {
-                app.toaster.pop('success', "课程" + id + "操作失败", "");
+                app.toaster.pop('success', "机构" + id + "操作失败", "");
             })
         };
     }]

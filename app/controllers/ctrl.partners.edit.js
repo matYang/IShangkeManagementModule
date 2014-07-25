@@ -12,7 +12,7 @@ appControllers.controller('partnersEditCtrl',
             });
         };
         $scope.submit = function () {
-            Partners.put($scope.institution, function(data){
+            Partners.put($scope.partner, function(data){
                 app.toaster.pop('success', "机构创建成功", "");
                 app.log.info('create partner success');
                 app.state.go('admin.partners.detail', {data: id});

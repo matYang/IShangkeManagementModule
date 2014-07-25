@@ -13,16 +13,16 @@ appControllers.controller('partnersDetailCtrl',
             });
         };
         $scope.addTeacher = function () {
-            app.state.go('admin.partners.edit.teacher', {data: id});
+            app.state.go('admin.partners.teacher', {data: id});
         };
         $scope.addPhoto = function () {
-            app.state.go('admin.partners.edit.photo', {data: id});
+            app.state.go('admin.partners.photo', {data: id});
         };
         $scope.manageTeacher = function () {
-            app.state.go('admin.partners.edit.teacher.manage', {data: id});
+            app.state.go('admin.partners.teachermanage', {data: id});
         };
         $scope.managePhoto = function () {
-            app.state.go('admin.partners.edit.photo.manage', {data: id});
+            app.state.go('admin.partners.photomanage', {data: id});
         };
         $scope.edit = function () {
             app.state.go('admin.partners.edit', {data: id});

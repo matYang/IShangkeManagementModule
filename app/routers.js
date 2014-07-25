@@ -135,34 +135,34 @@ appRoutes.config(function ($stateProvider, $urlRouterProvider, $httpProvider, $l
             controller: 'partnersEditCtrl',
             access:'admin'
         })
-        .state('admin.partners.edit.logo', {
-            url: '/{id:[0-9]}/edit/logo',
-            templateUrl: 'views/admin/partners.edit.logo.html',
+        .state('admin.partners.logo', {
+            url: '/{id:[0-9]}/logo',
+            templateUrl: 'views/admin/partners.logo.html',
             controller: 'partnersEditLogoCtrl',
             access:'admin'
         })
-        .state('admin.partners.edit.photo', {
-            url: '/{id:[0-9]}/edit/photo',
-            templateUrl: 'views/admin/partners.edit.photo.html',
-            controller: 'partnersEditPhotoCtrl',
+        .state('admin.partners.photo', {
+            url: '/{id:[0-9]}/photo',
+            templateUrl: 'views/admin/partners.photo.html',
+            controller: 'partnersPhotoCtrl',
             access:'admin'
         })
-        .state('admin.partners.edit.teacher', {
-            url: '/{id:[0-9]}/edit/teacher',
-            templateUrl: 'views/admin/partners.edit.teacher.html',
-            controller: 'partnersEditPhotoCtrl',
+        .state('admin.partners.teacher', {
+            url: '/{id:[0-9]}/teacher',
+            templateUrl: 'views/admin/partners.teacher.html',
+            controller: 'partnersTeacherCtrl',
             access:'admin'
         })
-        .state('admin.partners.edit.photo.manage', {
-            url: '/{id:[0-9]}/edit/photo/manage',
-            templateUrl: 'views/admin/partners.edit.photo.html',
-            controller: 'partnersEditPhotoManageCtrl',
+        .state('admin.partners.photomanage', {
+            url: '/{id:[0-9]}/photomanage',
+            templateUrl: 'views/admin/partners.photomanage.html',
+            controller: 'partnersPhotomanageCtrl',
             access:'admin'
         })
-        .state('admin.partners.edit.teacher.manage', {
-            url: '/{id:[0-9]}/edit/teacher/manage',
-            templateUrl: 'views/admin/partners.edit.teacher.html',
-            controller: 'partnersEditPhotoManageCtrl',
+        .state('admin.partners.teachermanage', {
+            url: '/{id:[0-9]}/teacherManage',
+            templateUrl: 'views/admin/partners.teachermanage.html',
+            controller: 'partnersThotomanageCtrl',
             access:'admin'
         })
 });

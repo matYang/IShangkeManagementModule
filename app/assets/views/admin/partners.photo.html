@@ -1,0 +1,11 @@
+<div ng-controller="partnersPhotoCtrl">
+    <form class="col-md-12 form-horizontal" role="form" name="validateForm" w5c-form-validate novalidate>
+    	<div ng-repeat="img in imgs">
+    		<label>图片{{index}}</label>
+        	<input type="file" name="classImg{{index}}" ng-file-select="onFileSelect($files)">
+        </div>
+        <input type="button" value="增 加" ng-click="addPhoto()" />
+        <input type="submit" value="上 传" />
+        <input type="button" value="取 消" ng-click="cancel()" />
+    </form>
+</div>

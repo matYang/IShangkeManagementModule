@@ -51,7 +51,7 @@ app.factory('PageView', function(){
                 {n: '操作', w: '30'}
             ]
         },
-        'institutions': {
+        'partners': {
             tabs: common.statusTabs,
             th: [
                 {n: '机构号', w: '20'},
