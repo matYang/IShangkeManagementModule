@@ -1,0 +1,110 @@
+<div ng-controller="institutionsCreateCtrl">
+    <div>
+        <label class="col-sm-3 control-label">合作机构ID</label>
+        <input type="hidden" class="form-control" id="partnerId" name="partnerId" value="{{institute.partnerId}}"/>
+    </div>
+    <div class="form-group form-group-sm">
+        <label class="col-sm-3 control-label">机构全称:</label>
+        <input type="text" class="form-control" id="wholeName" name="wholeName" value="{{institute.wholeName}}"/
+    </div>
+    <div class="form-group form-group-sm">
+        <label class="col-sm-3 control-label">机构简介:</label>
+        <input type="text" class="form-control" id="partnerIntro" name="partnerIntro" value="{{ institute.partnerIntro }}"/>
+    </div>
+    <div class="form-group form-group-sm">
+        <label class="col-sm-3 control-label">机构荣誉:</label>
+        <input type="text" class="form-control" id="partnerDistinction" name="partnerDistinction" value="{{ institute.partnerDistinction }}"/>
+    </div>
+    <div class="form-group form-group-sm">
+        <label class="col-sm-3 control-label">合作伙伴资格:</label>
+        
+            <select class="form-control" id="partnerQualification" name="partnerQualification" value="{{institute.partnerQualification}}">
+                <option value="0">已认证</option>
+                <option value="1">未认证</option>
+            </select>   
+        </div>
+    </div>
+    <div class="form-group form-group-sm">
+        <label class="col-sm-3 control-label">公司总部地址:</label>
+        <input type="text" class="form-control" id="hqLocation" name="hqLocation" value="{{institute.hqLocation}}"/>
+    </div>
+    <div class="form-group form-group-sm">
+        <label class="col-sm-3 control-label">校区地址:</label>
+        <input type="text" class="form-control subLocations" id="subLocations1" name="subLocations1" value=""/>
+        
+        <a id="addLocation">增加更多地址</a>
+    </div>
+    <div class="form-group form-group-sm">
+        <label class="col-sm-3 control-label">报名地址一致:</label>
+        <input type="checkbox" class="form-control" id="uniformRegistraLocation" name="uniformRegistraLocation" value="{{uniformRegistraLocation}}"/>
+    </div>
+    <div class="form-group form-group-sm">
+        <label class="col-sm-3 control-label">总部合作关系对接人:</label>
+        <input type="text" class="form-control" id="hqContact" name="hqContact" value="{{hqContact}}"/>
+    </div>
+    <div class="form-group form-group-sm">
+        <label class="col-sm-3 control-label">总部对接人联系电话:</label>
+        <input type="text" class="form-control" id="hqContactPhone" name="hqContactPhone" value="{{hqContactPhone}}"/>
+    </div>
+    <div class="form-group form-group-sm">
+        <label class="col-sm-3 control-label">课程详情联联络人:</label>
+        <input type="text" class="form-control" id="courseContact" name="courseContact" value="{{courseContact}}"/>
+    </div>
+    <div class="form-group form-group-sm">
+        <label class="col-sm-3 control-label">课程联络人联系电话:</label>
+        <input type="text" class="form-control" id="courseContactPhone" name="courseContactPhone" value="{{courseContactPhone}}"/>
+    </div>
+    <div class="form-group form-group-sm">
+        <label class="col-sm-3 control-label">学员咨询联系电话:</label>
+        <input type="text" class="form-control" id="studentInqueryPhone" name="studentInqueryPhone" value="{{studentInqueryPhone}}"/>
+    </div>
+    <div class="form-group form-group-sm">
+        <label class="col-sm-3 control-label">报名学员入学状态对接人:</label>
+        <input type="text" class="form-control" id="registraContact" name="registraContact" value="{{registraContact}}"/>
+    </div>
+    <div class="form-group form-group-sm">
+        <label class="col-sm-3 control-label">报名学员入学状态联系电话:</label>
+        <input type="text" class="form-control" id="registraContactPhone" name="registraContactPhone" value="{{registraContactPhone}}"/>
+    </div>
+    <div class="form-group form-group-sm">
+        <label class="col-sm-3 control-label">报名学员入学状态传真号码:</label>
+        <input type="text" class="form-control" id="registraContactFax" name="registraContactFax" value="{{registraContactFax}}"/>
+        </div>
+    </div>
+    <div class="form-group form-group-sm">
+        <label class="col-sm-3 control-label">默认课程截止日:</label>
+        <input type="text" class="form-control" id="defaultCutoffDay" name="defaultCutoffDay" value="{{defaultCutoffDay}}"/>
+    </div>
+    <div class="form-group form-group-sm">
+        <label class="col-sm-3 control-label">默认截止日几点截止:</label>
+        <input type="text" class="form-control" id="defaultCutoffTime" name="defaultCutoffTime" value="{{defaultCutoffTime}}"/>
+    </div>
+    <div class="form-group form-group-sm">
+        <label class="col-sm-3 control-label">执照:</label>
+    <input type="text" class="form-control" id="licence" name="licence" value="{{licence}}"/>
+    </div>
+    <div class="form-group form-group-sm">
+        <label class="col-sm-3 control-label">机构号:</label>
+        <input type="text" class="form-control" id="organizationNum" name="organizationNum" value="{{organizationNum}}"/>
+    </div>
+    <div class="form-group form-group-sm">
+        <label class="col-sm-3 control-label">查询号:</label>
+        <input type="text" class="form-control" id="reference" name="reference" value="{{reference}}"/>
+    </div>
+    <div class="form-group form-group-sm">
+        <label class="col-sm-3 control-label">学校名:</label>
+        <input type="text" class="form-control" id="instName" name="instName" value="{{instName}}"/>
+    </div>
+    <div class="form-group form-group-sm">
+        <label class="col-sm-3 control-label">logo:</label>
+        <div class="col-sm-3 form-control-static">
+            <span class="detail"><img class="preview" src="{{logoUrl}}"/>
+        
+            <input type="file" id="logoUrl" name="logoUrl" value="{{logoUrl}}"/>
+            <img class="preview" id="logoPreview" src="{{logoUrl}}"/>
+            </span>
+        </div>
+    </div>
+    <input type="button" value="提 交" ng-click="submit_change" />
+    <input type="button" value="取 消" ng-click="cancel" />
+</div>

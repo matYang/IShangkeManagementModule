@@ -107,9 +107,44 @@ appRoutes.config(function ($stateProvider, $urlRouterProvider, $httpProvider, $l
         //查看机构信息
         .state('admin.institutions', {
             url: '/institutions',
+            template: '<div ui-view></div>',
+            abstract: true,
+            access:'admin'
+        })
+        .state('admin.institutions.list', {
+            url: '',
             templateUrl: 'views/admin/institutions.html',
-            template:'<h1>HAHA</h1>',
-            controller: 'institutionsCtrl'
+            controller: 'institutionsCtrl',
+            access:'admin'
+        })
+        .state('admin.institutions.create', {
+            url: '/create',
+            templateUrl: 'views/admin/institutions.create.html',
+            controller: 'institutionsCreateCtrl',
+            access:'admin'
+        })
+        .state('admin.institutions.detail', {
+            url: '/{id:[0-9]}/',
+            templateUrl: 'views/admin/institutions.detail.html',
+            controller: 'institutionsDetailCtrl',
+            access:'admin'
+        })
+        .state('admin.institutions.edit', {
+            url: '/{id:[0-9]}/edit',
+            templateUrl: 'views/admin/institutions.edit.html',
+            controller: 'institutionsEditCtrl',
+            access:'admin'
+        })
+        .state('admin.institutions.edit.photo', {
+            url: '/{id:[0-9]}/edit/photo',
+            templateUrl: 'views/admin/institutions.edit.photo.html',
+            controller: 'institutionsEditPhotoCtrl',
+            access:'admin'
+        })
+        .state('admin.institutions.edit.teacher', {
+            url: '/{id:[0-9]}/edit/teacher',
+            templateUrl: 'views/admin/institutions.edit.teacher.html',
+            controller: 'institutionsEditPhotoCtrl',
             access:'admin'
         })
 });

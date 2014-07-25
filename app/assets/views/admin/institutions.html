@@ -1,0 +1,90 @@
+<!--filter-->
+<div class="row margin-bottom">
+    <!--左侧状态栏-->
+    <div class="col-md-2" scroll-fix>
+        <tabset vertical="true" type="pills">
+            <label>审核状态</label>
+            <li class="nav-divider"></li>
+            <tab ng-repeat="a in tabs" heading="{{a.label}}" active="a.active"
+                 select="chooseTab(a)">
+            </tab>
+            <li class="nav-divider"></li>
+        </tabset>
+
+        <label ng-hide="filter.id==''&&filter.name==''">当前筛选</label>
+
+        <p ng-hide="filter.id==''">机构号:{{filter.id}}</p>
+
+        <p ng-hide="filter.name==''">机构名:{{filter.name}}</p>
+    </div>
+    <!--右侧内容面板-->
+    <div class="col-md-10">
+        <!--筛选表单-->
+        <form class="form-horizontal filter-form">
+            <div class="form-group">
+                <label class="control-label" for="">机构号</label>
+
+                <div><input type="text" class="form-control input-sm"   
+                            ng-model="filter_tmp.id"/></div>
+                <label class="control-label" for="">机构名</label>
+
+                <div><input type="text" class="form-control input-sm"
+                            ng-model="filter_tmp.name"/></div>
+            </div>
+            <div class="form-group">
+                <label></label>
+
+                <div>
+                    <button class="btn btn-primary btn-sm" ng-click="doRefresh()"><i class="fa fa-search"></i> 查 询
+                    </button>
+                    <button class="btn btn-default btn-sm" ng-click="clearFilter()">清空输入</button>
+                </div>
+            </div>
+        </form>
+        <div class="row">
+            <pre class="col-md-6">filter{{filter|json}}</pre>
+            <pre class="col-md-6">filter_tmp{{filter_tmp|json}}</pre>
+        </div>
+
+        <!--操作栏-->
+        <div class="btn-toolbar">
+            <a class="btn btn-primary" ui-sref="admin.courses.create"><i class="fa fa-plus"></i> 新建机构 </a>
+            <a class="btn btn-default btn-sm text-danger" href="#"><i class="fa fa-trash-o"></i> 删除</a>
+        </div>
+        <!--表格列表-->
+        <table class="table table-condensed table-hover">
+            <thead>
+            <tr>
+                <th ng-repeat="t in th" width="{{t.w}}%">
+                    {{ t.n }}
+                </th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="item in items">
+                <td>{{item.id || '无'}}</td>
+                <td>{{item.name|| '无'}}</td>
+                <td>{{item.status | statusText}}</td>
+                <td class="operations">
+                    <a ui-sref="admin.courses.detail({id:item.id})">查看</a>
+                    <!--已上线或者审核失败的可进行修改-->
+                    <a ng-repeat="op in item.actionList" ng-click="operate(item.id,op.name)">
+                        <span ng-if="op.name=='submitUpdated'">修改</span>
+                        <span ng-if="op.name!='submitUpdated'">{{op.name | operationText}}</span>
+                    </a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <div class="page clearfix">
+            <p class="pull-left">共{{page.total}}条记录，每页显示{{page.count}}条记录</p>
+            <pagination class="pull-right" ng-model="page.index" total-items="page.total" items-per-page="page.count"
+                        ng-change="doRefresh()"
+                        max-size="9"
+                        class="pagination-sm"
+                        boundary-links="true" rotate="false" num-pages="total_pages"
+                        previous-text="上一页" next-text="下一页"></pagination>
+        </div>
+
+    </div>
+</div>
