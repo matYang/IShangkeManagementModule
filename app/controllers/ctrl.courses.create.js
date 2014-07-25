@@ -27,7 +27,7 @@ appControllers.controller('coursesCreateCtrl',
             });
         };
         $scope.chooseInstitution = function () {
-            if (app.rootScope.global.isAdmin){
+            if (app.rootScope.global.isAdmin&&app.rootScope.port=='admin'){
                 modalAction('institution');
             }
         };

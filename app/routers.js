@@ -26,16 +26,23 @@ appRoutes.config(function ($stateProvider, $urlRouterProvider, $httpProvider, $l
 
         /**************** 新单处理页面 ****************/
         .state('admin.new_bookings', {
-            url: '/new_bookings',
+            url: '/bookings/old',
             templateUrl: 'views/admin/bookings.html',
             controller: 'newBookingsCtrl'
         })
 
         /**************** 旧单审核页面 ****************/
         .state('admin.old_bookings', {
-            url: '/old_bookings',
+            url: '/bookings/old',
             templateUrl: 'views/admin/bookings.html',
             controller: 'oldBookingsCtrl'
+        })
+
+        /**************** 订单查询页面 ****************/
+        .state('admin.query_bookings', {
+            url: '/bookings/query',
+            templateUrl: 'views/admin/bookings.query.html',
+            controller: 'queryBookingsCtrl'
         })
 
         /*************** 课程信息管理 ***************/

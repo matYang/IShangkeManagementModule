@@ -18,6 +18,7 @@ app.factory('PageView', function(){
         ]
     };
     return {
+        'common':common,
         'newBookings': {
             tabs: [
                 {label: '今日待处理', active: true, value: {status: 0, createTimeStart: new Date()}},
