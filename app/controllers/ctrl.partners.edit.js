@@ -11,6 +11,17 @@ appControllers.controller('partnersEditCtrl',
                 //error
             });
         };
+        $scope.addLocation = function () {
+            var len = $scope.partner.addressList.length;
+            $scope.partner.addressList[len] = "";
+        }
+        $scope.removeLocation = function (index) {
+            while (index < $scope.partner.addressList.length - 1) {
+                if ($scope.partner.addressList[index] = $scope.partner.addressList[index + 1]);
+                index++;
+            }
+            $scope.partner.addressList.pop();
+        }
         $scope.submit = function () {
             Partners.put($scope.partner, function(data){
                 app.toaster.pop('success', "机构创建成功", "");

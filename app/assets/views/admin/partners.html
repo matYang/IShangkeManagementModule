@@ -48,7 +48,7 @@
 
         <!--操作栏-->
         <div class="btn-toolbar">
-            <a class="btn btn-primary" ui-sref="admin.courses.create"><i class="fa fa-plus"></i> 新建机构 </a>
+            <a class="btn btn-primary" ui-sref="admin.partners.create"><i class="fa fa-plus"></i> 新建机构 </a>
             <a class="btn btn-default btn-sm text-danger" href="#"><i class="fa fa-trash-o"></i> 删除</a>
         </div>
         <!--表格列表-->
@@ -62,16 +62,12 @@
             </thead>
             <tbody>
             <tr ng-repeat="item in items">
-                <td>{{item.id || '无'}}</td>
-                <td>{{item.name|| '无'}}</td>
+                <td>{{item.partnerId || '无'}}</td>
+                <td>{{item.wholeName|| '无'}}</td>
                 <td>{{item.status | statusText}}</td>
                 <td class="operations">
-                    <a ui-sref="admin.courses.detail({id:item.id})">查看</a>
-                    <!--已上线或者审核失败的可进行修改-->
-                    <a ng-repeat="op in item.actionList" ng-click="operate(item.id,op.name)">
-                        <span ng-if="op.name=='submitUpdated'">修改</span>
-                        <span ng-if="op.name!='submitUpdated'">{{op.name | operationText}}</span>
-                    </a>
+                    <a ui-sref="admin.partners.detail({id:item.partnerId})">查看</a>
+                    <a ui-sref="admin.partners.edit({id:item.partnerId})">修改</a>
                 </td>
             </tr>
             </tbody>

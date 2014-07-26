@@ -1,0 +1,12 @@
+{
+    "partnerId": 1,
+    "wholeName": "whole name 1",
+    "instName": "inst name 1",
+    "instDistinction": "",
+    "partnerQualification": "",
+    "addressList": [
+        "address 1",
+        "address 2",
+        "address 3"
+    ]
+}

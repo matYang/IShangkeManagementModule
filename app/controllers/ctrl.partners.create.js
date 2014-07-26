@@ -4,17 +4,21 @@ appControllers.controller('partnersCreateCtrl',
         var Partners = app.restAPI.partners;
         $scope.title = '这里是新建机构页面';
         $scope.partner = {};
-        $scope.partner.subLocations = [];
+        $scope.partner.addressList = [""];
         $scope.addLocation = function () {
-            $scope.partner.subLocations.push("");
+            var len = $scope.partner.addressList.length;
+            $scope.partner.addressList[len] = "";
         }
         $scope.removeLocation = function (index) {
-            while (index < $scope.partner.subLocations.length - 1) {
-                if ($scope.partner.subLocations[index] = $scope.partner.subLocations[index + 1]);
+            while (index < $scope.partner.addressList.length - 1) {
+                if ($scope.partner.addressList[index] = $scope.partner.addressList[index + 1]);
                 index++;
             }
-            $scope.partner.subLocations.pop();
+            $scope.partner.addressList.pop();
         }
+        $scope.onFileSelect = function ($files) {
+
+        };
         $scope.submit = function(partner){
             Partners.save(partner, function(data){
                 //todo create success to do something
@@ -25,9 +29,6 @@ appControllers.controller('partnersCreateCtrl',
             },function(){
                 app.log.error('create error');
             })
-        }
-        $scope.cancel = function () {   
-            app.state.go('admin.partners');
         }
     }]
 );

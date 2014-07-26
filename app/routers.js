@@ -124,7 +124,7 @@ appRoutes.config(function ($stateProvider, $urlRouterProvider, $httpProvider, $l
             access:'admin'
         })
         .state('admin.partners.detail', {
-            url: '/{id:[0-9]}/',
+            url: '/{id:[0-9]}',
             templateUrl: 'views/admin/partners.detail.html',
             controller: 'partnersDetailCtrl',
             access:'admin'

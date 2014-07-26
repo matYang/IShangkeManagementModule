@@ -17,7 +17,7 @@ appServices.factory('restAPI', ['$resource', 'app','$rootScope',
                 'auth': ['/data/:RO.json/:OP', '/:OP'],
                 'templates': ['/data/templates:ID.json/:OP', '/template/:ID/:OP'],
                 'courses': ['/data/courses:ID.json', '/course/:ID/:OP'],
-                'partner': ['/data/courses:ID.json', '/partner/:ID/:OP'],
+                'partners': ['/data/partners:ID.json', '/partner/:ID/:OP'],
                 // /api/v2/booking/1/
                 'bookings': ['/data/bookings:ID.json/:OP', '/booking/:ID/:OP']
             }
@@ -55,7 +55,7 @@ appServices.factory('restAPI', ['$resource', 'app','$rootScope',
             'templates': resource_maker('templates'),
             'courses': resource_maker('courses'),
             'bookings': resource_maker('bookings'),
-            'partner': resource_maker('partner')
+            'partners': resource_maker('partners')
 
         };
     }
