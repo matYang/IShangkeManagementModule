@@ -1,38 +1,249 @@
 <div class="row">
-    <a ui-sref="admin.templates.list" class="btn fa fa-arrow-left pull-left"> Back</a>
-
-    <div class="pull-right">{{ title }}</div>
+    <div class="col-md-12">
+        <h3>
+            <small><a ui-sref="admin.courses.list" class="btn fa fa-chevron-left pull-left"> 返回 </a></small>
+            课程详情--{{course.courseName}}
+        </h3>
+    </div>
 </div>
 <div class="row">
-    <form class="col-md-12 form-horizontal" role="form" name="newForm">
+<form class="col-md-9 form-horizontal form-detail" role="form" name="validateForm" w5c-form-validate novalidate>
+<legend>重要信息（不可更改）</legend>
+<div class="form-group form-group-sm">
+    <label class="col-md-3 control-label">课程名(*)</label>
 
-        <div class="form-group">
-            <label class="col-md-3 control-label">模板名(*)</label>
+    <div class="col-md-5">
+        <p class="form-control-static">{{course.courseName}}</p>
+    </div>
+</div>
+<div class="form-group form-group-sm">
+    <label class="col-md-3 control-label">原价格(*)</label>
 
-            <div class="col-md-4">
-                <p class="form-control-static">{{ item.name }}</p>
-            </div>
+    <div class="col-md-3">
+        <p class="form-control-static">{{course.originalPrice|currency}}</p>
+    </div>
+</div>
+<div class="form-group form-group-sm">
+    <label class="col-md-3 control-label">爱上课价格(*)</label>
+
+    <div class="col-md-3">
+        <p class="form-control-static">{{course.price|currency}}</p>
+    </div>
+</div>
+
+<legend>基本信息</legend>
+<div class="form-group form-group-sm">
+    <label class="col-md-3 control-label">开课日期</label>
+
+    <div class="col-md-3">
+        <p class="form-control-static">{{course.startDate|date}} 至 {{course.finishDate|date}}</p>
+    </div>
+</div>
+<div class="form-group form-group-sm">
+    <label class="col-md-3 control-label">上课时间</label>
+    <div class="col-md-5">
+        <p class="form-control-static">
+            {{course.startTime1}}-{{course.finishTime1}}
+            <span ng-show="course.startTime2!=null">
+                {{course.startTime2}}-{{course.finishTime2}}
+            </span>
+        </p>
+    </div>
+</div>
+<div class="form-group form-group-sm">
+    <label class="col-md-3 control-label">课时数量</label>
+    <div class="col-md-3">
+        <p class="form-control-static">{{course.courseHourNum}}</p>
+    </div>
+</div>
+<div class="form-group form-group-sm">
+    <label class="col-md-3 control-label">课时长度</label>
+    <div class="col-md-3">
+        <p class="form-control-static">{{course.courseHourLength}}(分钟)</p>
+    </div>
+</div>
+<div class="form-group form-group-sm">
+    <label class="col-md-3 control-label">班级类型</label>
+    <div class="col-md-3">
+        <p class="form-control-static">{{course.classSize}}</p>
+    </div>
+</div>
+<div class="form-group form-group-sm">
+    <label class="col-md-3 control-label">班级分类</label>
+    <div class="col-md-3">
+        <p class="form-control-static">{{course.classType}}</p>
+    </div>
+</div>
+<div class="form-group form-group-sm">
+    <label class="col-md-3 control-label">开班要求</label>
+    <div class="col-md-5">
+        <p class="form-control-static">{{course.openCourseRequirement}}</p>
+    </div>
+</div>
+<div class="form-group form-group-sm">
+    <label class="col-md-3 control-label">报名截止日期</label>
+
+    <div class="col-md-3">
+        <div class="input-group input-group-sm pull-left">
+            <input name="cutoffDate" type="text" class="form-control" ng-model="course.cutoffDate" datepicker-popup="yyyy/MM/dd" is-open="opened_cutoffDate"
+                   disabled/>
+                    <span class="input-group-btn">
+                        <button class="btn btn-default" ng-click="open($event,'cutoffDate')"><i class="fa fa-calendar"></i>&nbsp;</button>
+                    </span>
         </div>
-        <div class="form-group">
-            <label class="col-md-3 control-label">前台执行价格(*)</label>
+    </div>
+</div>
+<div class="form-group form-group-sm">
+    <label class="col-md-3 control-label">适合学员</label>
+    <div class="col-md-5">
+        <p class="form-control-static">{{course.suitableStudent}}</p>
+    </div>
+</div>
+<div class="form-group form-group-sm">
+    <label class="col-md-3 control-label">选择教师(根据机构返回的教师列表选择)</label>
 
-            <div class="col-md-4">
-                <p class="form-control-static">{{ item.price }}</p>
-            </div>
-        </div>
-        <div class="form-group">
-            <label class="col-md-3 control-label">爱上课价格(*)</label>
+    <div class="col-md-5">
+        <input type="text" class="form-control"
+               name="teacherList" ng-model="course.teacherList">
+    </div>
+</div>
 
-            <div class="col-md-4">
-                <p class="form-control-static">{{ item.iprice }}</p>
-            </div>
-        </div>
-        <div class="form-group">
-            <label class="col-md-3 control-label">确认码(*)</label>
-            <div class="col-md-4">
-                <p class="form-control-static">{{ item.confirm_code }}</p>
-            </div>
-        </div>
 
-    </form>
+<legend>教学信息</legend>
+<div class="form-group form-group-sm">
+    <label class="col-md-3 control-label">课程介绍</label>
+    <div class="col-md-5">
+        <p class="form-control-static">{{course.courseIntro}}</p>
+    </div>
+</div>
+<div class="form-group form-group-sm">
+    <label class="col-md-3 control-label">教学目标</label>
+    <div class="col-md-5">
+        <p class="form-control-static">{{course.goal}}</p>
+    </div>
+</div>
+<div class="form-group form-group-sm">
+    <label class="col-md-3 control-label">先修知识</label>
+    <div class="col-md-5">
+        <p class="form-control-static">{{course.prerequest}}</p>
+    </div>
+</div>
+<div class="form-group form-group-sm">
+    <label class="col-md-3 control-label">上课形式</label>
+    <div class="col-md-5">
+        <p class="form-control-static">{{course.teachingMethod}}</p>
+    </div>
+</div>
+<div class="form-group form-group-sm">
+    <label class="col-md-3 control-label">教材介绍</label>
+    <div class="col-md-5">
+        <p class="form-control-static">{{course.teachingMaterialIntro}}</p>
+    </div>
+</div>
+<div class="form-group form-group-sm">
+    <label class="col-md-3 control-label">教材费用</label>
+    <div class="col-md-5">
+        <p class="form-control-static">{{course.teachingMaterialFee}}</p>
+    </div>
+</div>
+<div class="form-group form-group-sm">
+    <label class="col-md-3 control-label">课程提纲</label>
+    <div class="col-md-5">
+        <p class="form-control-static">{{course.outline}}</p>
+    </div>
+</div>
+<legend>教学补充</legend>
+<div class="form-group form-group-sm">
+    <label class="col-md-3 control-label">课件下载</label>
+    <div class="col-md-5">
+        <p class="form-control-static">{{course.downloadMaterials}}</p>
+    </div>
+</div>
+<div class="form-group form-group-sm">
+    <label class="col-md-3 control-label">题库支持</label>
+    <div class="col-md-5">
+        <p class="form-control-static">{{course.questionBank}}</p>
+    </div>
+</div>
+<div class="form-group form-group-sm">
+    <label class="col-md-3 control-label">班主任导学</label>
+    <div class="col-md-5">
+        <p class="form-control-static">{{course.classTeacher}}</p>
+    </div>
+</div>
+<div class="form-group form-group-sm">
+    <label class="col-md-3 control-label">讲练结合</label>
+    <div class="col-md-5">
+        <p class="form-control-static">{{course.teachingAndExercise}}</p>
+    </div>
+</div>
+<div class="form-group form-group-sm">
+    <label class="col-md-3 control-label">阶段测评</label>
+    <div class="col-md-5">
+        <p class="form-control-static">{{course.quiz}}</p>
+    </div>
+</div>
+<div class="form-group form-group-sm">
+    <label class="col-md-3 control-label">课后答疑</label>
+    <div class="col-md-5">
+        <p class="form-control-static">{{course.questionSession}}</p>
+    </div>
+</div>
+<div class="form-group form-group-sm">
+    <label class="col-md-3 control-label">课后作业</label>
+    <div class="col-md-5">
+        <p class="form-control-static">{{course.assignments}}</p>
+    </div>
+</div>
+<div class="form-group form-group-sm">
+    <label class="col-md-3 control-label">作业批改</label>
+    <div class="col-md-5">
+        <p class="form-control-static">{{course.marking}}</p>
+    </div>
+</div>
+<legend>教学保障</legend>
+<div class="form-group form-group-sm">
+    <label class="col-md-3 control-label">签约保过</label>
+    <div class="col-md-5">
+        <p class="form-control-static">{{course.passAgreement}}</p>
+    </div>
+</div>
+<div class="form-group form-group-sm">
+    <label class="col-md-3 control-label">高分奖励</label>
+    <div class="col-md-5">
+        <p class="form-control-static">{{course.highScoreReward}}</p>
+    </div>
+</div>
+<legend>特色服务</legend>
+<div class="form-group form-group-sm">
+    <label class="col-md-3 control-label">结业证书</label>
+    <div class="col-md-5">
+        <p class="form-control-static">{{course.certification}}</p>
+    </div>
+</div>
+<div class="form-group form-group-sm">
+    <label class="col-md-3 control-label">课后互动</label>
+    <div class="col-md-5">
+        <p class="form-control-static">{{course.extracurricular}}</p>
+    </div>
+</div>
+<div class="form-group form-group-sm">
+    <label class="col-md-3 control-label">赠送服务</label>
+    <div class="col-md-5">
+        <p class="form-control-static">{{course.bonusService}}</p>
+    </div>
+</div>
+
+</form>
+<div class="col-md-3">
+    <label>可执行的操作</label>
+    <ul>
+        <li ng-click="doRefresh()"><i class="fa fa-refresh"></i> 刷新</li>
+        <li ng-repeat="op in course.actionList" ng-click="operate(course.id,op.name)">
+            <span ng-if="op.name=='submitUpdated'">修改</span>
+            <span ng-if="op.name!='submitUpdated'">{{op.name | operationText}}</span>
+        </li>
+    </ul>
+</div>
+
 </div>

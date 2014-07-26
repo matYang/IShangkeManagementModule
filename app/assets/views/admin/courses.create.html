@@ -23,7 +23,6 @@
         <div class="col-md-5">
             <p class="form-control-static">{{course.courseName}}</p>
         </div>
-        <span class="help-block">与模板名相同</span>
     </div>
     <div class="form-group form-group-sm">
         <label class="col-md-3 control-label">原价格(*)</label>
@@ -144,7 +143,7 @@
     <div class="form-group form-group-sm">
         <label class="col-md-3 control-label">报名截止日期</label>
 
-        <div class="col-md-5">
+        <div class="col-md-3">
             <div class="input-group input-group-sm pull-left">
                 <input name="cutoffDate" type="text" class="form-control" ng-model="course.cutoffDate" datepicker-popup="yyyy/MM/dd" is-open="opened_cutoffDate"
                         />
@@ -164,7 +163,7 @@
     </div>
 
 <div>
-    <a ng-click="hideMore=!hideMore" ng-init="hideMore=true">
+    <a class="center-block" style="width: 30%" ng-click="hideMore=!hideMore" ng-init="hideMore=true">
         <span ng-show="hideMore">展开</span><span ng-show="!hideMore">隐藏</span>更多信息 <i class="fa" ng-class="{true:'fa-chevron-right',false:'fa-chevron-down'}[hideMore]"></i>
     </a>
 </div>

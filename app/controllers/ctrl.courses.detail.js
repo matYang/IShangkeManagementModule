@@ -1,14 +1,14 @@
 'use strict';
 appControllers.controller('coursesDetailCtrl',
     ['$scope','restAPI','$state', function ($scope,restAPI,$state) {
-        var restAPI = restAPI.templates;
+        var restAPI = restAPI.courses;
         var id = $state.params.id;
 
         //刷新列表
         var doRefresh = $scope.doRefresh = function(){
 
             restAPI.get({ID:id},function(data){
-                $scope.item = data;
+                $scope.course = data;
             },function(){
                 //error
             });
