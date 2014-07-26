@@ -1,6 +1,11 @@
 <!--order_new content start-->
 <div class="row">
-    <a ui-sref="admin.templates.list" class="btn fa fa-chevron-left pull-left"> 返回</a>
+    <div class="col-md-12">
+        <h3>
+            <small><a ui-sref="admin.templates.list" class="btn fa fa-chevron-left pull-left"> 返回列表</a></small>
+            课程模板详情--{{template.courseName}}
+        </h3>
+    </div>
 
 </div>
 <div class="row">
@@ -337,6 +342,7 @@
     <div class="col-md-3">
         <label>【机构信息】</label>
         <button class="btn btn-default" ng-click="choosePartner()">{{choosed.partner ||  '--请选择-- '}}</button>
+        <hr/>
         <pre>{{template|json}}</pre>
     </div>
 </div>
