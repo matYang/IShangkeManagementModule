@@ -19,6 +19,11 @@ a{
 .margin-bottom {
     margin-bottom: 10px;
 }
+.center-inline-block{
+    display: inline-block;
+    margin-right: auto;
+    margin-left: auto;
+}
 /*测试代码专用*/
 pre:before{
     position: absolute;

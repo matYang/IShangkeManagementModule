@@ -1,9 +1,15 @@
 {
     "id": 1,
-    "name": "bbb",
-    "price": 2000,
-    "iprice": 1800,
-    "confirm_code": "FDKA80DA34",
+    "courseName": "bfdgbbqqq",
+    "status": 2,
+    "price": 1800,
+    "originalPrice": 2000,
+    "startDate": 1441111111111,
+    "finishDate": 1442222222222,
+    "startTime1":900,
+    "finishTime1":1100,
+    "startTime2":1500,
+    "finishTime2":1700,
     "actionList":[
         {
             "name":"approve"

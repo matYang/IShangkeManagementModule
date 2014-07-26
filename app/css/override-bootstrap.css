@@ -4,3 +4,13 @@
 .pagination {
     margin: 10px 0;
 }
+
+h1,
+.h1,
+h2,
+.h2,
+h3,
+.h3 {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
