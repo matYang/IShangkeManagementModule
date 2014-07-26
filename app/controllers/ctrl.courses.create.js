@@ -24,7 +24,7 @@ appControllers.controller('coursesCreateCtrl',
             });
             //selectedItem is passed from modal controller
             modal.result.then(function (selectedItem) {
-                $scope.choosed[name] = selectedItem;
+                $scope.choosed[optionName] = selectedItem;
             });
         };
         $scope.choosePartner = function () {
