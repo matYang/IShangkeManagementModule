@@ -162,9 +162,13 @@
         </div>
     </div>
 
-<div><button>修改更多信息</button></div>
-<div class="more">
-    <legend>教学信息</legend>
+<div>
+    <a ng-click="hideMore=!hideMore" ng-init="hideMore=true">
+        <span ng-show="hideMore">展开</span><span ng-show="!hideMore">隐藏</span>更多信息 <i class="fa" ng-class="{true:'fa-chevron-right',false:'fa-chevron-down'}[hideMore]"></i>
+    </a>
+</div>
+<div collapse="hideMore">
+    <legend ng-click="">教学信息</legend>
     <div class="form-group form-group-sm">
         <label class="col-md-3 control-label">课程介绍</label>
 

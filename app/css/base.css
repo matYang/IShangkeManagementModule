@@ -1,6 +1,9 @@
 html,body{
     font-family: 'Microsoft Yahei';
 }
+a{
+    cursor: pointer;
+}
 /*base styles*/
 .ft-c{
     color:#128d56;
@@ -32,10 +35,6 @@ form .w5c-error {
     margin-top: 5px;
 }
 
-
-.nav li a{
-    cursor: pointer;
-}
 /*
  * 数据列表和filter表单 的通用样式 及筛选组件样式
 **/
@@ -53,9 +52,6 @@ form .w5c-error {
 }
 
 /*数据列表的通用样式*/
-.table a{
-    cursor: pointer;
-}
 .table thead tr th,.table tbody tr td{
     padding-left: 10px;
     text-align: left;
