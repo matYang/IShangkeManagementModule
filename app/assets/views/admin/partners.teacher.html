@@ -1,7 +1,15 @@
-<div ng-controller="partnersTeacherCtrl">
+<div>
     <form class="col-md-12 form-horizontal" role="form" name="validateForm" w5c-form-validate novalidate>
-        <input type="file" ng-file-select="onFileSelect($files)">
-        <input type="text">
-        <input type="button" value="取 消" ng-click="cancel()" />
+    	<div ng-repeat="teacher in teachers">
+    		<label>照片</label>
+	        <input type="file" name="teacherImg{{$index}}" ng-file-select="onFileSelect($files)">
+
+    		<label>姓名</label>
+	        <input type="text" name="teacherName{{$index}}" ng-model="teacher.teacherIntro">
+    		<label>简介</label>
+	        <input type="text" name="teacherIntro{{$index}}" ng-model="teacher.teacherIntro">
+        	<input type="button" value="删除" ng-click="removeTeacher($index)" />
+        </div>
+        <input type="button" ng-click="addTeacher()" value="增加" />
     </form>
 </div>

@@ -24,7 +24,7 @@ appControllers.controller('partnersCreateCtrl',
                 //todo create success to do something
                 app.toaster.pop('success', "新建机构成功", "");
                 app.log.info('create partner success');
-                app.state.go('admin.partners.detail', {id: data.partnerId});
+                app.state.go('admin.partners.detail', {id: data.id});
 
             },function(){
                 app.log.error('create error');

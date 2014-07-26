@@ -16,7 +16,8 @@ var app = angular.module('app', [
     'appServices',
     'appControllers',
     'appDirectives',
-    'appFilters'
+    'appFilters',
+    'angularFileUpload'
 ]);
 
 var appServices = angular.module('appServices', []);

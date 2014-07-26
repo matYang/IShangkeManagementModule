@@ -1,7 +1,7 @@
 {
     "data": [
         {
-            "partnerId": 1,
+            "id": 1,
             "wholeName": "whole name 1",
             "instName": "inst name 1",
             "instDistinction": "",
@@ -13,7 +13,7 @@
             ]
         },
         {
-            "partnerId": 2,
+            "id": 2,
             "wholeName": "whole name 2",
             "instName": "inst name 2",
             "instDistinction": "",
@@ -25,7 +25,7 @@
             ]
         },
         {
-            "partnerId": 3,
+            "id": 3,
             "wholeName": "whole name 3",
             "instName": "inst name 3",
             "instDistinction": "",
@@ -37,7 +37,7 @@
             ]
         },
         {
-            "partnerId": 4,
+            "id": 4,
             "wholeName": "whole name 4",
             "instName": "inst name 4",
             "instDistinction": "",

@@ -62,12 +62,12 @@
             </thead>
             <tbody>
             <tr ng-repeat="item in items">
-                <td>{{item.partnerId || '无'}}</td>
+                <td>{{item.id || '无'}}</td>
                 <td>{{item.wholeName|| '无'}}</td>
                 <td>{{item.status | statusText}}</td>
                 <td class="operations">
-                    <a ui-sref="admin.partners.detail({id:item.partnerId})">查看</a>
-                    <a ui-sref="admin.partners.edit({id:item.partnerId})">修改</a>
+                    <a ui-sref="admin.partners.detail({id:item.id})">查看</a>
+                    <a ui-sref="admin.partners.edit({id:item.id})">修改</a>
                 </td>
             </tr>
             </tbody>

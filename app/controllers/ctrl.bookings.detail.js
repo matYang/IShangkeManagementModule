@@ -3,7 +3,7 @@ appControllers.controller('bookingsDetailCtrl',
     ['$scope','restAPI','$state', function ($scope,restAPI,$state) {
         var Bookings = restAPI.booking;
         var id = $state.params.id;
-
+        $scope.id = id;
         $scope.doRefresh = function(){
 
             Bookings.get({ID:id},function(data){

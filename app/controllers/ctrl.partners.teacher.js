@@ -1,11 +1,10 @@
 'use strict';
-appControllers.controller('partnersEditPhotoCtrl',
-    ['$scope','restAPI','$state', '$upload', function ($scope,restAPI,$state) {
+appControllers.controller('partnersTeacherCtrl',
+    ['$scope','restAPI','$state', '$upload', function ($scope, restAPI, $state, $upload) {
         var Partners = restAPI.partners;
         var id = $state.params.id;
         var uploadUrl = "/tempurl"
-        $scope.imgs = [{}];
-          $scope.usingFlash = FileAPI && FileAPI.upload != null;
+        $scope.teachers = [{}];
         $scope.fileReaderSupported = window.FileReader != null && (window.FileAPI == null || FileAPI.html5 != false);
         $scope.uploadRightAway = false;
         $scope.hasUploader = function(index) {
@@ -56,16 +55,15 @@ appControllers.controller('partnersEditPhotoCtrl',
             $scope.upload[index] = $upload.upload({
                 url: uploadUrl,
                 method: "POST",
-                headers: {'my-header': 'my-header-value'},
                 data : {
-                    myModel : $scope.myModel
+                    teacherList : $scope.teachers
                 },
                 file: $scope.selectedFiles[index],
                 fileFormDataName: 'classImg' + (index + 1)
             });
             $scope.upload[index].then(function(response) {
-                app.toaster.pop("success", "照片上传成功", "");
                 $timeout(function() {
+
                     $scope.uploadResult.push(response.data);
                 });
             }, function(response) {
@@ -75,13 +73,21 @@ appControllers.controller('partnersEditPhotoCtrl',
                 $scope.progress[index] = Math.min(100, parseInt(100.0 * evt.loaded / evt.total));
             });
             $scope.upload[index].xhr(function(xhr){
+//              xhr.upload.addEventListener('abort', function() {console.log('abort complete')}, false);
             });
         };
-        $scope.addPhoto = function () {
-          $scope.imgs[$scope.imgs.length] = {};
+        $scope.addTeacher = function () {
+          $scope.teachers[$scope.teachers.length] = {};
+        }
+        $scope.removeTeacher = function (index) {
+            while (index < $scope.teachers.length - 1) {
+                if ($scope.teachers[index] = $scope.teachers[index + 1]);
+                index++;
+            }
+            $scope.teachers.pop();
         }
         $scope.cancel = function () {
-            app.state.go('admin.pasrtners.detail', {id: id});
+            app.state.go('admin.partners.detail', {data: id});
         };
     }]
 );
