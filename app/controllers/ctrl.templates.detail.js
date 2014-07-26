@@ -9,7 +9,7 @@ appControllers.controller('templatesDetailCtrl',
             restAPI.get({ID:id},function(data){
                 $scope.template = data;
             },function(){
-                //error
+                //todo error
             });
         };
         $scope.doRefresh();

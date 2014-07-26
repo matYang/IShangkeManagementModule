@@ -2,8 +2,12 @@
     "data": [
         {
             "id": 1,
-            "name": "aaa",
-            "status": 1,
+            "courseName": "bfdgbbqqq",
+            "status": 2,
+            "price": 1800,
+            "originalPrice": 2000,
+            "startDate": 1441111111111,
+            "finishDate": 1442222222222,
             "actionList":[
                 {
                     "name":"approve"
@@ -12,22 +16,9 @@
                     "name":"submitUpdated"
                 }
             ]
-        },
-        {
-            "id": 1,
-            "name": "bfdgbbqqq",
-            "status": 2,
-            "actionList":[
-                {
-                    "name":"submitNew"
-                },
-                {
-                    "name":"delete"
-                }
-            ]
         }
     ],
     "index": 1,
-    "total": 2,
+    "total": 1,
     "count": 20
 }
