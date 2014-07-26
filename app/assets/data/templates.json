@@ -4,6 +4,8 @@
             "id": 1,
             "name": "bfdgbbqqq",
             "status": 2,
+            "price": 1800,
+            "originalPrice": 2000,
             "actionList":[
                 {
                     "name":"approve"

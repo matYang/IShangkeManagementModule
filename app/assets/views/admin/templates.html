@@ -53,7 +53,8 @@
             <tr ng-repeat="item in items">
                 <td>{{item.id || '无'}}</td>
                 <td>{{item.name|| '无'}}</td>
-                <td>{{item.price|| '无'}}</td>
+                <td>{{item.price| currency}}</td>
+                <td>{{item.originalPrice| currency}}</td>
                 <td>{{item.status| statusText}}</td>
                 <td class="operations">
                     <a ui-sref="admin.templates.detail({id:item.id})">查看</a>
