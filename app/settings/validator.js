@@ -33,5 +33,10 @@ angular.module('app').config(["w5cValidatorProvider", function (w5cValidatorProv
             minlength: "密码长度不能小于{minlength}",
             maxlength: "密码长度不能大于{maxlength}"
         }
+//        price:{
+//            required:"价格不能为空",
+//            min:"价格不能小于{min}",
+//            max:"价格不能大于{max}"
+//        }
     });
 }]);

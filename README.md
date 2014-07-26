@@ -13,10 +13,11 @@ yoke
       filters/
       services/                 --service like restAPI
       settings/                 --constant options
-     app.js                     --init the application
+        config-validator.js     --config form validator messages
+     app.js                     --init the application modules
+     app_config.js              --config app version(for api) and test mode
+     app_run.js                 --init the application runtime config
      routers.js                 --config routers
-     config.js                  --config app version(for api) and test mode
-     config-validator.js        --config form validator messages
     +vendor/
       css/
       js/

@@ -51,7 +51,7 @@
             <div class="col-md-7">
                 <div class="input-group input-group-sm col-md-5 pull-left">
                     <input name="startDate" type="text" class="form-control" ng-model="template.startDate" datepicker-popup="yyyy/MM/dd" is-open="opened_startDate"
-                           max-date="template.finishDate"/>
+                           max-date="template.finishDate" disabled/>
                     <span class="input-group-btn">
                         <button class="btn btn-default" ng-click="open($event,'startDate')"><i class="fa fa-calendar"></i>&nbsp;</button>
                     </span>
@@ -59,7 +59,7 @@
                 <span class="pull-left" style="padding: 5px 2px 0">到</span>
                 <div class="input-group input-group-sm col-md-5 pull-left">
                     <input name="finishDate" type="text" class="form-control" ng-model="template.finishDate" datepicker-popup="yyyy/MM/dd" is-open="opened_finishDate"
-                            min-date="template.startDate"/>
+                            min-date="template.startDate" disabled/>
                     <span class="input-group-btn">
                         <button class="btn btn-default" ng-click="open($event,'finishDate')"><i class="fa fa-calendar"></i>&nbsp;</button>
                     </span>
@@ -135,10 +135,10 @@
         <div class="form-group form-group-sm">
             <label class="col-md-3 control-label">报名截止日期</label>
 
-            <div class="col-md-5">
+            <div class="col-md-3">
                 <div class="input-group input-group-sm pull-left">
                     <input name="cutoffDate" type="text" class="form-control" ng-model="template.cutoffDate" datepicker-popup="yyyy/MM/dd" is-open="opened_cutoffDate"
-                           />
+                           disabled/>
                     <span class="input-group-btn">
                         <button class="btn btn-default" ng-click="open($event,'cutoffDate')"><i class="fa fa-calendar"></i>&nbsp;</button>
                     </span>
@@ -158,7 +158,7 @@
 
             <div class="col-md-5">
                 <input type="text" class="form-control"
-                       name="price" ng-model="template.price">
+                       name="teacherList" ng-model="template.teacherList">
             </div>
         </div>
 
