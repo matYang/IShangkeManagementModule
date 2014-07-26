@@ -335,7 +335,8 @@
         </div>
     </form>
     <div class="col-md-3">
-        <button class="btn btn-default">--选择机构--</button>
+        <label>【机构信息】</label>
+        <button class="btn btn-default" ng-click="choosePartner()">{{choosed.partner ||  '--请选择-- '}}</button>
         <pre>{{template|json}}</pre>
     </div>
 </div>

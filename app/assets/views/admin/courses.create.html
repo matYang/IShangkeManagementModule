@@ -4,9 +4,9 @@
     <div class="col-md-2"><a ui-sref="admin.courses.list" class="btn fa fa-arrow-left pull-left"> Back</a></div>
     <div class="col-md-4 text-center">
         <label>【机构信息】</label>
-        <button class="btn btn-default btn-sm" ng-click="chooseInstitution()">{{choosed.institution ||  '--请选择-- '}}</button>
+        <button class="btn btn-default btn-sm" ng-click="choosePartner()">{{choosed.partner ||  '--请选择-- '}}</button>
     </div>
-    <div ng-if="choosed.institution" class="col-md-4 text-center">
+    <div ng-if="choosed.partner" class="col-md-4 text-center">
         <label>【选用课程模板】</label>
         <button class="btn btn-default btn-sm" ng-click="chooseTemplate()">{{choosed.template || ' --请选择-- '}}</button>
     </div>

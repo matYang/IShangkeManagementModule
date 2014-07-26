@@ -1,11 +1,13 @@
 appControllers.controller('chooseCtrl',
-    ['$scope', 'app', '$modalInstance', 'name','institution', function ($scope, app, $modalInstance, name,institution) {
-        //name can be 'institution' and 'template'
-        //can get institution id from institution
+    ['$scope', 'app', '$modalInstance', 'optionName','partner', function ($scope, app, $modalInstance, optionName,partner) {
+        //name can be 'partner' and 'template'
         //todo then you can has the right api to get the options
         $scope.items = [];
         var getItems = $scope.getItems = function () {
             //todo use restAPI to get options
+//            var resource = app.restAPI.option['optionName'].get({option_name:'',parter_id:'');
+//            resource.$promise.then(function(data){$scope.items = data;},function(){});
+
             $scope.items = [
                 {label: '方法', value: 12},
                 {label: '订单', value: 54}
