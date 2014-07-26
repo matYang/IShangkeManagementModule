@@ -4,7 +4,17 @@ appControllers.controller('partnersCreateCtrl',
         var Partners = app.restAPI.partners;
         $scope.title = '这里是新建机构页面';
         $scope.partner = {};
-        //提交新建的模板
+        $scope.partner.subLocations = [];
+        $scope.addLocation = function () {
+            $scope.partner.subLocations.push("");
+        }
+        $scope.removeLocation = function (index) {
+            while (index < $scope.partner.subLocations.length - 1) {
+                if ($scope.partner.subLocations[index] = $scope.partner.subLocations[index + 1]);
+                index++;
+            }
+            $scope.partner.subLocations.pop();
+        }
         $scope.submit = function(partner){
             Partners.save(partner, function(data){
                 //todo create success to do something
