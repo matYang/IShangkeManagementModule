@@ -1,7 +1,10 @@
 appControllers.controller('chooseCtrl',
     ['$scope', 'app', '$modalInstance', 'optionName','partner', function ($scope, app, $modalInstance, optionName,partner) {
         //name can be 'partner' and 'template'
-        //todo then you can has the right api to get the options
+        //todo then you can has the right api to get the options\
+        console.log(optionName);
+        console.log(partner);
+        $scope.title = app.Enum.PageText[optionName];
         $scope.items = [];
         var getItems = $scope.getItems = function () {
             //todo use restAPI to get options

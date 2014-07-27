@@ -1,12 +1,13 @@
+<div class="modal-header"><h4>选择{{title}}<small>--双击可进行快速选择</small></h4></div>
 <div class="modal-body">
     <ul>
         <li ng-repeat="item in items">
-            <a ng-click="selected.item = item">{{ item.label }}</a>
+            <a ng-click="selected.item = item" ng-dblclick="selected.item = item;ok()">{{ item.label }}</a>
         </li>
     </ul>
     Selected: <b>{{ selected.item }}</b>
 </div>
 <div class="modal-footer">
-    <button class="btn btn-primary" ng-click="ok()">OK</button>
-    <button class="btn btn-default" ng-click="cancel()">Cancel</button>
+    <button class="btn btn-primary" ng-click="ok()">确定</button>
+    <button class="btn btn-default" ng-click="cancel()">取消</button>
 </div>
