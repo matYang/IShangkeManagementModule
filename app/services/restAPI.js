@@ -94,16 +94,11 @@ appServices
             };
         }
     ])
-    //返回课程目录数据 使用promiseGet对数据进行内存缓存
+    //返回课程目录数据 使用promiseGet对数据使用内存缓存
     .factory('getCategory', ['restAPI', 'cache', 'promiseGet','toaster',
         function (restAPI, cache, promiseGet,toaster) {
             return function(){
-                promiseGet({}, restAPI.category, 'category', cache.category).then(function (data) {
-                    return data.data;
-                }, function () {
-                    toaster.pop('error', "课程目录获取失败，请稍后再试", "");
-                    return null;
-                });
+                return promiseGet({}, restAPI.category, 'category', cache.category);
             };
         }
     ])

@@ -40,7 +40,7 @@ app.run(
             app.cache = cache;
             app.restAPI = restAPI;
             app.promiseGet = promiseGet;
-            app.getCategory = getCategory; //获取目录数据 使用了内存缓存
+            app.getCategory = getCategory; //获取目录数据的promise 使用了内存缓存
             app.exec_operate = operateService.exec_operate;//todo 订单 模板 课程等的操作 待完成
             app.rootScope = $rootScope;
             app.timeout = $timeout;

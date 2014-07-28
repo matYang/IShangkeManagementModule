@@ -49,7 +49,7 @@ appFilters
         function (app) {
             return function (array) {
                 var days = [];
-                for(k in array){
+                for (k in array) {
                     days.push(app.Enum.studyDays[array[k]]);
                 }
                 return days.join() || '无';
@@ -77,8 +77,36 @@ appFilters
     .filter('categoryText', ['app',
         function (app) {
             return function (value) {
-                //todo filter course category
-                return value;
+                if (typeof value === 'string') {
+                    var result = [];
+                    var category = app.cache.category.get('category').data;
+                    //todo filter course category
+                    var level_1 = value.substr(0, 2);
+                    var level_2 = value.substr(0, 4);
+                    var level_3 = value.substr(0, 6);
+                    for(a in category){
+                        if(category[a].value ==level_1){
+                            var cat2 = category[a];
+                            result.push(cat2.name);
+                            for(b in cat2.children){
+                                if(cat2.children[b].value ==level_2){
+                                    var cat3 = cat2.children[b];
+                                    result.push(cat2.children[b].name);
+                                    for(c in cat3.children){
+                                        if(cat3.children[c].value ==level_3) {
+                                            result.push(cat3.children[c].name);
+                                            return result.join('--');
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                } else {
+                    return value;
+                }
+
+
             };
         }
     ])
