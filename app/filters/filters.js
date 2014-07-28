@@ -80,28 +80,18 @@ appFilters
                 if (typeof value === 'string') {
                     var result = [];
                     var category = app.cache.category.get('category').data;
-                    //todo filter course category
-                    var level_1 = value.substr(0, 2);
-                    var level_2 = value.substr(0, 4);
-                    var level_3 = value.substr(0, 6);
-                    for(a in category){
-                        if(category[a].value ==level_1){
-                            var cat2 = category[a];
-                            result.push(cat2.name);
-                            for(b in cat2.children){
-                                if(cat2.children[b].value ==level_2){
-                                    var cat3 = cat2.children[b];
-                                    result.push(cat2.children[b].name);
-                                    for(c in cat3.children){
-                                        if(cat3.children[c].value ==level_3) {
-                                            result.push(cat3.children[c].name);
-                                            return result.join('--');
-                                        }
-                                    }
-                                }
-                            }
+                    //filter course category
+                    //value is fixed | start is from 0 to value.length |cat is from top level to bottom level
+                    var getCat = function (value, start, cat) {
+                        if (start >= value.length)return '';
+                        for (a in cat.children) {
+                            if (cat.children[a].value == value.substr(0, start + 2))
+                                return cat.children[a].name + '--' + getCat(value, start + 2, cat.children[a]);
                         }
-                    }
+                        return '未知--'
+                    };
+                    var result = getCat(value, 0, {children: category});
+                    return result.substr(0, result.length - 2);
                 } else {
                     return value;
                 }
