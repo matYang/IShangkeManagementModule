@@ -26,7 +26,7 @@ appRoutes.config(function ($stateProvider, $urlRouterProvider, $httpProvider, $l
 
         /**************** 新单处理页面 ****************/
         .state('admin.new_bookings', {
-            url: '/bookings/old',
+            url: '/bookings/new',
             templateUrl: 'views/admin/bookings.html',
             controller: 'newBookingsCtrl'
         })
