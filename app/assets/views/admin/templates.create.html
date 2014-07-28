@@ -1,9 +1,8 @@
-<!--order_new content start-->
 <div class="row">
     <div class="col-md-12">
         <h3>
             <small><a ui-sref="admin.templates.list" class="btn fa fa-chevron-left pull-left"> 返回列表</a></small>
-            课程模板详情--{{template.courseName}}
+            创建课程模板
         </h3>
     </div>
 
@@ -46,6 +45,30 @@
                 <input type="number" class="form-control" min="0"
                        name="price" ng-model="template.price"
                        required="">
+            </div>
+        </div>
+        <div class="form-group form-group-sm">
+            <label class="col-md-3 control-label">课程所属类别(*)</label>
+            <div class="col-md-2">
+                <select name="level_1" class="form-control" ng-model="level_1">
+                    <option value="">-- --</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                </select>
+            </div>
+            <div class="col-md-2">
+                <select name="level_2" class="form-control" ng-model="level_2">
+                    <option ng-show="!level_1" value="" onselect="">-- --</option>
+                    <option ng-show="level_1" value="11">11</option>
+                    <option ng-show="level_1" value="12">12</option>
+                </select>
+            </div>
+            <div class="col-md-2">
+                <select class="form-control" name="categoryId" ng-model="template.categoryId">
+                    <option ng-show="!level_2" value="" onselect="">-- --</option>
+                    <option ng-show="level_2" value="1112">1112</option>
+                    <option ng-show="level_2" value="1212">1212</option>
+                </select>
             </div>
         </div>
 
@@ -362,4 +385,3 @@
         <pre>{{template|json}}</pre>
     </div>
 </div>
-<!--order_new content end-->

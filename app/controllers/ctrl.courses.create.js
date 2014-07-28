@@ -2,7 +2,6 @@
 appControllers.controller('coursesCreateCtrl',
     ['$scope', 'app', function ($scope, app) {
         var restAPI = app.restAPI.courses;
-        $scope.title = '新建课程';
         //新建课程需要选择机构（admin需要）
         $scope.choosed = {
             //todo 字段未确定

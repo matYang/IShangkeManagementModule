@@ -3,7 +3,8 @@ app.value('Enum', {
         //关于页面的text
         PageText:{
           'partner':'合作机构',
-          'template':'课程模板'
+          'template':'课程模板',
+          'course':'课程'
         },
         //状态的text
         StatusText: {
