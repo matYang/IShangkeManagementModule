@@ -2,26 +2,6 @@
 
 /* Filters */
 appFilters
-/**
- * 图片地址的filter
- * @input array [imageName,partner_id]
- * @return string <absolute image url>
- */
-    .filter('smallImg', ['app',
-        function (app) {
-            return function (value) {
-                return app.small_img + value[1] + '/' + value[0];
-            };
-        }
-    ])
-    .filter('largeImg', ['app',
-        function (app) {
-            return function (value) {
-                return app.large_img + value[1] + '/' + value[0];
-            };
-        }
-    ])
-
     //以下为需要作为option并且value to text
     /*班级类型*/
     .filter('classType', ['app',
