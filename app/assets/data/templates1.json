@@ -2,16 +2,51 @@
     "id": 1,
     "courseName": "bfdgbbqqq",
     "status": 2,
+
     "price": 1800,
     "originalPrice": 2000,
+    "categoryId":"0012",
+
     "startDate": 1441111111111,
     "finishDate": 1442222222222,
     "startTime1":900,
     "finishTime1":1100,
     "startTime2":1500,
     "finishTime2":1700,
+    "schooltimeDay":1,
+    "schooltimeWeek":1,
+    "courseHourNum":20,
+    "courseHourLength":60,
+    "classSize":"20人班",
+    "classType":1,
+    "openCourseRequirement":"至少十人",
+    "cutoffDate":1700,
+    "suitableStudent":"希望提高公务员考试成绩且有一定基础的学生",
+    "teacherList":[],
 
-    "classType":2,
+    "courseIntro":"快速提供学员英语六级考试成绩",
+    "goal":"1.对初一英语知识点达到灵活运用层次，夯实初一知识 2.对初二秋季知识点达到识记和理解层次，在新学期中占得先机",
+    "prerequest":"基础英语语法",
+    "teachingMethod":"分组学习；分组讨论",
+    "teachingMaterialIntro":"自编教材；新东方内训特编",
+    "teachingMaterialFee":"免费",
+    "outline":"第一讲 1、口语Transport 2、听力专项与训练 3、精读文章 4、课后美文欣赏 第二讲 1、口语Different shop",
+
+    "downloadMaterials":"提供上课课件下载机拷贝，便于课后学习",
+    "questionBank":"历年真题+模拟题+预测题+全真机考",
+    "classTeacher":"班主任为学生制定学习计划，每周与家长沟通",
+    "teachingAndExercise":"寄语特定教学目标，进行有针对的训练及讲解",
+    "quiz":"通过阶段性测试，便于学员清楚了解自我学习状态",
+    "questionSession":"支持课后多途径教学相关任何疑问解答",
+    "assignments":"老师布置课后习题，巩固教学内容",
+    "marking":"专业老师批改作业，纠正错误理解，快速提升教学成效",
+
+    "passAgreement":"入学签约，不过免费重修",
+    "highScoreReward":"报考档期雅思考试且高于8分的学员，快速提升教学成效",
+
+    "certification":"结业后，可获得技能证书",
+    "extracurricular":"支持QQ学习群，支持每周英语角",
+    "bonusService":"免费获得教材一份，单次速记手册",
     "actionList":[
         {
             "name":"approve"

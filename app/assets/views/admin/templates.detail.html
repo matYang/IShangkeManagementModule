@@ -91,13 +91,7 @@
     <label class="col-md-3 control-label">报名截止日期</label>
 
     <div class="col-md-3">
-        <div class="input-group input-group-sm pull-left">
-            <input name="cutoffDate" type="text" class="form-control" ng-model="template.cutoffDate" datepicker-popup="yyyy/MM/dd" is-open="opened_cutoffDate"
-                   disabled/>
-                    <span class="input-group-btn">
-                        <button class="btn btn-default" ng-click="open($event,'cutoffDate')"><i class="fa fa-calendar"></i>&nbsp;</button>
-                    </span>
-        </div>
+        <p class="form-control-static">{{template.cutoffDate|date}}</p>
     </div>
 </div>
 <div class="form-group form-group-sm">
