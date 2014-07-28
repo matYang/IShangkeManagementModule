@@ -142,7 +142,7 @@
 
         <div class="col-md-5">
             <select name="classType" ng-model="course.classType" class="form-control">
-                <option ng-value="value" ng-repeat="(value,name) in options.classType">{{name}}</option>
+                <option ng-value="value" ng-repeat="(value,name) in Enum.classType">{{name}}</option>
             </select>
         </div>
         <span class="help-block">用于搜索</span>
@@ -161,7 +161,7 @@
         <div class="col-md-3">
             <div class="input-group input-group-sm pull-left">
                 <input name="cutoffDate" type="text" class="form-control" ng-model="course.cutoffDate" datepicker-popup="yyyy/MM/dd" is-open="opened_cutoffDate"
-                        />
+                        disabled/>
                     <span class="input-group-btn">
                         <button class="btn btn-default" ng-click="open($event,'cutoffDate')"><i class="fa fa-calendar"></i>&nbsp;</button>
                     </span>
