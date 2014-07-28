@@ -112,11 +112,64 @@ appRoutes.config(function ($stateProvider, $urlRouterProvider, $httpProvider, $l
 
         /****************机构信息管理***************/
         //查看机构信息
-        .state('admin.institutions', {
-            url: '/institutions',
-//            templateUrl: 'views/admin/institutions.html',
-            template:'<h1>HAHA</h1>',
-//            controller: 'institutionsCtrl'
+        .state('admin.partners', {
+            url: '/partners',
+            template: '<div ui-view></div>',
+            abstract: true,
+            access:'admin'
+        })
+        .state('admin.partners.list', {
+            url: '',
+            templateUrl: 'views/admin/partners.html',
+            controller: 'partnersCtrl',
+            access:'admin'
+        })
+        .state('admin.partners.create', {
+            url: '/create',
+            templateUrl: 'views/admin/partners.create.html',
+            controller: 'partnersCreateCtrl',
+            access:'admin'
+        })
+        .state('admin.partners.detail', {
+            url: '/{id:[0-9]}',
+            templateUrl: 'views/admin/partners.detail.html',
+            controller: 'partnersDetailCtrl',
+            access:'admin'
+        })
+        .state('admin.partners.edit', {
+            url: '/{id:[0-9]}/edit',
+            templateUrl: 'views/admin/partners.edit.html',
+            controller: 'partnersEditCtrl',
+            access:'admin'
+        })
+        .state('admin.partners.logo', {
+            url: '/{id:[0-9]}/logo',
+            templateUrl: 'views/admin/partners.logo.html',
+            controller: 'partnersLogoCtrl',
+            access:'admin'
+        })
+        .state('admin.partners.photo', {
+            url: '/{id:[0-9]}/photo',
+            templateUrl: 'views/admin/partners.photo.html',
+            controller: 'partnersPhotoCtrl',
+            access:'admin'
+        })
+        .state('admin.partners.teacher', {
+            url: '/{id:[0-9]}/teacher',
+            templateUrl: 'views/admin/partners.teacher.html',
+            controller: 'partnersTeacherCtrl',
+            access:'admin'
+        })
+        .state('admin.partners.photomanage', {
+            url: '/{id:[0-9]}/photomanage',
+            templateUrl: 'views/admin/partners.photomanage.html',
+            controller: 'partnersPhotomanageCtrl',
+            access:'admin'
+        })
+        .state('admin.partners.teachermanage', {
+            url: '/{id:[0-9]}/teacherManage',
+            templateUrl: 'views/admin/partners.teachermanage.html',
+            controller: 'partnersThotomanageCtrl',
             access:'admin'
         })
 });

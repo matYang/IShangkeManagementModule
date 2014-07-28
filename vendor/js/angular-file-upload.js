@@ -1,706 +1,311 @@
-/*
- angular-file-upload v0.5.7
- https://github.com/nervgh/angular-file-upload
-*/
-(function(angular, factory) {
-    if (typeof define === 'function' && define.amd) {
-        define('angular-file-upload', ['angular'], function(angular) {
-            return factory(angular);
-        });
-    } else {
-        return factory(angular);
-    }
-}(angular || null, function(angular) {
-var app = angular.module('angularFileUpload', []);
+/**!
+ * AngularJS file upload/drop directive with http post and progress
+ * @author  Danial  <danial.farid@gmail.com>
+ * @version 1.6.1
+ */
+(function() {
 
-// It is attached to an element that catches the event drop file
-app.directive('ngFileDrop', ['$fileUploader', function ($fileUploader) {
-    'use strict';
+var angularFileUpload = angular.module('angularFileUpload', []);
 
-    return {
-        // don't use drag-n-drop files in IE9, because not File API support
-        link: !$fileUploader.isHTML5 ? angular.noop : function (scope, element, attributes) {
-            element
-                .bind('drop', function (event) {
-                    var dataTransfer = event.dataTransfer ?
-                        event.dataTransfer :
-                        event.originalEvent.dataTransfer; // jQuery fix;
-                    if (!dataTransfer) return;
-                    event.preventDefault();
-                    event.stopPropagation();
-                    scope.$broadcast('file:removeoverclass');
-                    scope.$emit('file:add', dataTransfer.files, scope.$eval(attributes.ngFileDrop));
-                })
-                .bind('dragover', function (event) {
-                    var dataTransfer = event.dataTransfer ?
-                        event.dataTransfer :
-                        event.originalEvent.dataTransfer; // jQuery fix;
+angularFileUpload.service('$upload', ['$http', '$q', '$timeout', function($http, $q, $timeout) {
+	function sendHttp(config) {
+		config.method = config.method || 'POST';
+		config.headers = config.headers || {};
+		config.transformRequest = config.transformRequest || function(data, headersGetter) {
+			if (window.ArrayBuffer && data instanceof window.ArrayBuffer) {
+				return data;
+			}
+			return $http.defaults.transformRequest[0](data, headersGetter);
+		};
+		var deferred = $q.defer();
 
-                    event.preventDefault();
-                    event.stopPropagation();
-                    dataTransfer.dropEffect = 'copy';
-                    scope.$broadcast('file:addoverclass');
-                })
-                .bind('dragleave', function (event) {
-                    if (event.target === element[0]) {
-                        scope.$broadcast('file:removeoverclass');
-                    }
-                });
-        }
-    };
-}])
+		if (window.XMLHttpRequest.__isShim) {
+			config.headers['__setXHR_'] = function() {
+				return function(xhr) {
+					if (!xhr) return;
+					config.__XHR = xhr;
+					config.xhrFn && config.xhrFn(xhr);
+					xhr.upload.addEventListener('progress', function(e) {
+						deferred.notify(e);
+					}, false);
+					//fix for firefox not firing upload progress end, also IE8-9
+					xhr.upload.addEventListener('load', function(e) {
+						if (e.lengthComputable) {
+							deferred.notify(e);
+						}
+					}, false);
+				};
+			};
+		}
 
-// It is attached to an element which will be assigned to a class "ng-file-over" or ng-file-over="className"
-app.directive('ngFileOver', function () {
-    'use strict';
+		$http(config).then(function(r){deferred.resolve(r)}, function(e){deferred.reject(e)}, function(n){deferred.notify(n)});
+		
+		var promise = deferred.promise;
+		promise.success = function(fn) {
+			promise.then(function(response) {
+				fn(response.data, response.status, response.headers, config);
+			});
+			return promise;
+		};
 
-    return {
-        link: function (scope, element, attributes) {
-            scope.$on('file:addoverclass', function () {
-                element.addClass(attributes.ngFileOver || 'ng-file-over');
-            });
-            scope.$on('file:removeoverclass', function () {
-                element.removeClass(attributes.ngFileOver || 'ng-file-over');
-            });
-        }
-    };
-});
-// It is attached to <input type="file"> element like <ng-file-select="options">
-app.directive('ngFileSelect', ['$fileUploader', function($fileUploader) {
-    'use strict';
+		promise.error = function(fn) {
+			promise.then(null, function(response) {
+				fn(response.data, response.status, response.headers, config);
+			});
+			return promise;
+		};
 
-    return {
-        link: function(scope, element, attributes) {
-            if(!$fileUploader.isHTML5) {
-                element.removeAttr('multiple');
-            }
+		promise.progress = function(fn) {
+			promise.then(null, null, function(update) {
+				fn(update);
+			});
+			return promise;
+		};
+		promise.abort = function() {
+			if (config.__XHR) {
+				$timeout(function() {
+					config.__XHR.abort();
+				});
+			}
+			return promise;
+		};
+		promise.xhr = function(fn) {
+			config.xhrFn = (function(origXhrFn) {
+				return function() {
+					origXhrFn && origXhrFn.apply(promise, arguments);
+					fn.apply(promise, arguments);
+				}
+			})(config.xhrFn);
+			return promise;
+		};
+		
+		return promise;
+	}
 
-            element.bind('change', function() {
-                var data = $fileUploader.isHTML5 ? this.files : this;
-                var options = scope.$eval(attributes.ngFileSelect);
+	this.upload = function(config) {
+		config.headers = config.headers || {};
+		config.headers['Content-Type'] = undefined;
+		config.transformRequest = config.transformRequest || $http.defaults.transformRequest;
+		var formData = new FormData();
+		var origTransformRequest = config.transformRequest;
+		var origData = config.data;
+		config.transformRequest = function(formData, headerGetter) {
+			if (origData) {
+				if (config.formDataAppender) {
+					for (var key in origData) {
+						var val = origData[key];
+						config.formDataAppender(formData, key, val);
+					}
+				} else {
+					for (var key in origData) {
+						var val = origData[key];
+						if (typeof origTransformRequest == 'function') {
+							val = origTransformRequest(val, headerGetter);
+						} else {
+							for (var i = 0; i < origTransformRequest.length; i++) {
+								var transformFn = origTransformRequest[i];
+								if (typeof transformFn == 'function') {
+									val = transformFn(val, headerGetter);
+								}
+							}
+						}
+						formData.append(key, val);
+					}
+				}
+			}
 
-                scope.$emit('file:add', data, options);
+			if (config.file != null) {
+				var fileFormName = config.fileFormDataName || 'file';
 
-                if($fileUploader.isHTML5 && element.attr('multiple')) {
-                    element.prop('value', null);
-                }
-            });
+				if (Object.prototype.toString.call(config.file) === '[object Array]') {
+					var isFileFormNameString = Object.prototype.toString.call(fileFormName) === '[object String]';
+					for (var i = 0; i < config.file.length; i++) {
+						formData.append(isFileFormNameString ? fileFormName : fileFormName[i], config.file[i], 
+								(config.fileName && config.fileName[i]) || config.file[i].name);
+					}
+				} else {
+					formData.append(fileFormName, config.file, config.fileName || config.file.name);
+				}
+			}
+			return formData;
+		};
 
-            element.prop('value', null); // FF fix
-        }
-    };
+		config.data = formData;
+
+		return sendHttp(config);
+	};
+
+	this.http = function(config) {
+		return sendHttp(config);
+	}
 }]);
-app.factory('$fileUploader', ['$compile', '$rootScope', '$http', '$window', function($compile, $rootScope, $http, $window) {
-    'use strict';
 
-    /**
-     * Creates a uploader
-     * @param {Object} params
-     * @constructor
-     */
-    function Uploader(params) {
-        angular.extend(this, {
-            scope: $rootScope,
-            url: '/',
-            alias: 'file',
-            queue: [],
-            headers: {},
-            progress: null,
-            autoUpload: false,
-            removeAfterUpload: false,
-            method: 'POST',
-            filters: [],
-            formData: [],
-            isUploading: false,
-            queueLimit: Number.MAX_VALUE,
-            withCredentials: false,
-            _nextIndex: 0,
-            _timestamp: Date.now()
-        }, params);
-
-        // add default filters
-        this.filters.unshift(this._queueLimitFilter);
-        this.filters.unshift(this._emptyFileFilter);
-
-        this.scope.$on('file:add', function(event, items, options) {
-            event.stopPropagation();
-            this.addToQueue(items, options);
-        }.bind(this));
-
-        this.bind('beforeupload', Item.prototype._beforeupload);
-        this.bind('in:progress', Item.prototype._progress);
-        this.bind('in:success', Item.prototype._success);
-        this.bind('in:cancel', Item.prototype._cancel);
-        this.bind('in:error', Item.prototype._error);
-        this.bind('in:complete', Item.prototype._complete);
-        this.bind('in:progress', this._progress);
-        this.bind('in:complete', this._complete);
-    }
-
-    Uploader.prototype = {
-        /**
-         * Link to the constructor
-         */
-        constructor: Uploader,
-
-        /**
-         * Returns "true" if item is DOMElement or a file with size > 0
-         * @param {File|Input} item
-         * @returns {Boolean}
-         * @private
-         */
-        _emptyFileFilter: function(item) {
-            return angular.isElement(item) ? true : !!item.size;
-        },
-
-        /**
-         * Returns "true" if the limit has not been reached
-         * @returns {Boolean}
-         * @private
-         */
-        _queueLimitFilter: function() {
-            return this.queue.length < this.queueLimit;
-        },
-
-        /**
-         * Registers a event handler
-         * @param {String} event
-         * @param {Function} handler
-         * @return {Function} unsubscribe function
-         */
-        bind: function(event, handler) {
-            return this.scope.$on(this._timestamp + ':' + event, handler.bind(this));
-        },
-
-        /**
-         * Triggers events
-         * @param {String} event
-         * @param {...*} [some]
-         */
-        trigger: function(event, some) {
-            arguments[0] = this._timestamp + ':' + event;
-            this.scope.$broadcast.apply(this.scope, arguments);
-        },
-
-        /**
-         * Checks a support the html5 uploader
-         * @returns {Boolean}
-         * @readonly
-         */
-        isHTML5: !!($window.File && $window.FormData),
-
-        /**
-         * Adds items to the queue
-         * @param {FileList|File|HTMLInputElement} items
-         * @param {Object} [options]
-         */
-        addToQueue: function(items, options) {
-            var length = this.queue.length;
-            var list = 'length' in items ? items : [items];
-
-            angular.forEach(list, function(file) {
-                // check a [File|HTMLInputElement]
-                var isValid = !this.filters.length ? true : this.filters.every(function(filter) {
-                    return filter.call(this, file);
-                }, this);
-
-                // create new item
-                var item = new Item(angular.extend({
-                    url: this.url,
-                    alias: this.alias,
-                    headers: angular.copy(this.headers),
-                    formData: angular.copy(this.formData),
-                    removeAfterUpload: this.removeAfterUpload,
-                    withCredentials: this.withCredentials,
-                    method: this.method,
-                    uploader: this,
-                    file: file
-                }, options));
-
-                if(isValid) {
-                    this.queue.push(item);
-                    this.trigger('afteraddingfile', item);
-                } else {
-                    this.trigger('whenaddingfilefailed', item);
-                }
-            }, this);
-
-            if(this.queue.length !== length) {
-                this.trigger('afteraddingall', this.queue);
-                this.progress = this._getTotalProgress();
-            }
-
-            this._render();
-            this.autoUpload && this.uploadAll();
-        },
-
-        /**
-         * Remove items from the queue. Remove last: index = -1
-         * @param {Item|Number} value
-         */
-        removeFromQueue: function(value) {
-            var index = this.getIndexOfItem(value);
-            var item = this.queue[index];
-            if (item.cancel) item.cancel();
-            if (item._destroy) item._destroy();
-            this.queue.splice(index, 1);
-            this.progress = this._getTotalProgress();
-        },
-
-        /**
-         * Clears the queue
-         */
-        clearQueue: function() {
-            while(this.queue.length) {
-                this.queue[this.queue.length - 1].remove();
-            }
-        },
-
-        /**
-         * Uploads a item from the queue
-         * @param {Item|Number} value
-         */
-        uploadItem: function(value) {
-            var index = this.getIndexOfItem(value);
-            var item = this.queue[index];
-            var transport = this.isHTML5 ? '_xhrTransport' : '_iframeTransport';
-
-            item.index = item.index || this._nextIndex++;
-            item.isReady = true;
-
-            if(this.isUploading) return;
-
-            this.isUploading = true;
-            this[transport](item);
-        },
-
-        /**
-         * Cancels uploading of item from the queue
-         * @param {Item|Number} value
-         */
-        cancelItem: function(value) {
-            var index = this.getIndexOfItem(value);
-            var item = this.queue[index];
-            var prop = this.isHTML5 ? '_xhr' : '_form';
-            if (item[prop]) item[prop].abort();
-        },
-
-        /**
-         * Uploads all not uploaded items of queue
-         */
-        uploadAll: function() {
-            var items = this.getNotUploadedItems().filter(function(item) {
-                return !item.isUploading;
-            });
-            items.forEach(function(item) {
-                item.index = item.index || this._nextIndex++;
-                item.isReady = true;
-            }, this);
-            items.length && this.uploadItem(items[0]);
-        },
-
-        /**
-         * Cancels all uploads
-         */
-        cancelAll: function() {
-            this.getNotUploadedItems().forEach(function(item) {
-                this.cancelItem(item);
-            }, this);
-        },
-
-        /**
-         * Returns a index of item from the queue
-         * @param {Item|Number} value
-         * @returns {Number}
-         */
-        getIndexOfItem: function(value) {
-            return angular.isNumber(value) ? value : this.queue.indexOf(value);
-        },
-
-        /**
-         * Returns not uploaded items
-         * @returns {Array}
-         */
-        getNotUploadedItems: function() {
-            return this.queue.filter(function(item) {
-                return !item.isUploaded;
-            });
-        },
-
-        /**
-         * Returns items ready for upload
-         * @returns {Array}
-         */
-        getReadyItems: function() {
-            return this.queue
-                .filter(function(item) {
-                    return item.isReady && !item.isUploading;
-                })
-                .sort(function(item1, item2) {
-                    return item1.index - item2.index;
-                });
-        },
-
-        /**
-         * Updates angular scope
-         * @private
-         */
-        _render: function() {
-            if (!this.scope.$$phase) this.scope.$digest();
-        },
-
-        /**
-         * Returns the total progress
-         * @param {Number} [value]
-         * @returns {Number}
-         * @private
-         */
-        _getTotalProgress: function(value) {
-            if(this.removeAfterUpload) {
-                return value || 0;
-            }
-
-            var notUploaded = this.getNotUploadedItems().length;
-            var uploaded = notUploaded ? this.queue.length - notUploaded : this.queue.length;
-            var ratio = 100 / this.queue.length;
-            var current = (value || 0) * ratio / 100;
-
-            return Math.round(uploaded * ratio + current);
-        },
-
-        /**
-         * The 'in:progress' handler
-         * @private
-         */
-        _progress: function(event, item, progress) {
-            var result = this._getTotalProgress(progress);
-            this.trigger('progressall', result);
-            this.progress = result;
-            this._render();
-        },
-
-        /**
-         * The 'in:complete' handler
-         * @private
-         */
-        _complete: function() {
-            var item = this.getReadyItems()[0];
-            this.isUploading = false;
-
-            if(angular.isDefined(item)) {
-                this.uploadItem(item);
-                return;
-            }
-
-            this.trigger('completeall', this.queue);
-            this.progress = this._getTotalProgress();
-            this._render();
-        },
-
-        /**
-         * The XMLHttpRequest transport
-         * @private
-         */
-        _xhrTransport: function(item) {
-            var xhr = item._xhr = new XMLHttpRequest();
-            var form = new FormData();
-            var that = this;
-
-            this.trigger('beforeupload', item);
-
-            item.formData.forEach(function(obj) {
-                angular.forEach(obj, function(value, key) {
-                    form.append(key, value);
-                });
-            });
-
-            form.append(item.alias, item.file);
-
-            xhr.upload.onprogress = function(event) {
-                var progress = event.lengthComputable ? event.loaded * 100 / event.total : 0;
-                that.trigger('in:progress', item, Math.round(progress));
-            };
-
-            xhr.onload = function() {
-                var response = that._transformResponse(xhr.response);
-                var event = that._isSuccessCode(xhr.status) ? 'success' : 'error';
-                that.trigger('in:' + event, xhr, item, response);
-                that.trigger('in:complete', xhr, item, response);
-            };
-
-            xhr.onerror = function() {
-                that.trigger('in:error', xhr, item);
-                that.trigger('in:complete', xhr, item);
-            };
-
-            xhr.onabort = function() {
-                that.trigger('in:cancel', xhr, item);
-                that.trigger('in:complete', xhr, item);
-            };
-
-            xhr.open(item.method, item.url, true);
-
-            xhr.withCredentials = item.withCredentials;
-
-            angular.forEach(item.headers, function(value, name) {
-                xhr.setRequestHeader(name, value);
-            });
-
-            xhr.send(form);
-        },
-
-        /**
-         * The IFrame transport
-         * @private
-         */
-        _iframeTransport: function(item) {
-            var form = angular.element('<form style="display: none;" />');
-            var iframe = angular.element('<iframe name="iframeTransport' + Date.now() + '">');
-            var input = item._input;
-            var that = this;
-
-            if (item._form) item._form.replaceWith(input); // remove old form
-            item._form = form; // save link to new form
-
-            this.trigger('beforeupload', item);
-
-            input.prop('name', item.alias);
-
-            item.formData.forEach(function(obj) {
-                angular.forEach(obj, function(value, key) {
-                    form.append(angular.element('<input type="hidden" name="' + key + '" value="' + value + '" />'));
-                });
-            });
-
-            form.prop({
-                action: item.url,
-                method: 'POST',
-                target: iframe.prop('name'),
-                enctype: 'multipart/form-data',
-                encoding: 'multipart/form-data' // old IE
-            });
-
-            iframe.bind('load', function() {
-                // fixed angular.contents() for iframes
-                var html = iframe[0].contentDocument.body.innerHTML;
-                var xhr = {response: html, status: 200, dummy: true};
-                var response = that._transformResponse(xhr.response);
-                that.trigger('in:success', xhr, item, response);
-                that.trigger('in:complete', xhr, item, response);
-            });
-
-            form.abort = function() {
-                var xhr = {status: 0, dummy: true};
-                iframe.unbind('load').prop('src', 'javascript:false;');
-                form.replaceWith(input);
-                that.trigger('in:cancel', xhr, item);
-                that.trigger('in:complete', xhr, item);
-            };
-
-            input.after(form);
-            form.append(input).append(iframe);
-
-            form[0].submit();
-        },
-
-        /**
-         * Checks whether upload successful
-         * @param {Number} status
-         * @returns {Boolean}
-         * @private
-         */
-        _isSuccessCode: function(status) {
-            return (status >= 200 && status < 300) || status === 304;
-        },
-
-        /**
-         * Transforms the server response
-         * @param {*} response
-         * @returns {*}
-         * @private
-         */
-        _transformResponse: function(response) {
-            $http.defaults.transformResponse.forEach(function(transformFn) {
-                response = transformFn(response);
-            });
-            return response;
-        }
-    };
-
-
-    /**
-     * Create a item
-     * @param {Object} [params]
-     * @constructor
-     */
-    function Item(params) {
-        // fix for old browsers
-        if(!Uploader.prototype.isHTML5) {
-            var input = angular.element(params.file);
-            var clone = $compile(input.clone())(params.uploader.scope);
-            var value = input.val();
-
-            params.file = {
-                lastModifiedDate: null,
-                size: null,
-                type: 'like/' + value.slice(value.lastIndexOf('.') + 1).toLowerCase(),
-                name: value.slice(value.lastIndexOf('/') + value.lastIndexOf('\\') + 2)
-            };
-
-            params._input = input;
-            clone.prop('value', null); // FF fix
-            input.css('display', 'none').after(clone); // remove jquery dependency
-        }
-
-        angular.extend(this, {
-            isReady: false,
-            isUploading: false,
-            isUploaded: false,
-            isSuccess: false,
-            isCancel: false,
-            isError: false,
-            progress: null,
-            index: null
-        }, params);
-    }
-
-
-    Item.prototype = {
-        /**
-         * Link to the constructor
-         */
-        constructor: Item,
-        /**
-         * Removes a item
-         */
-        remove: function() {
-            this.uploader.removeFromQueue(this);
-        },
-        /**
-         * Uploads a item
-         */
-        upload: function() {
-            this.uploader.uploadItem(this);
-        },
-        /**
-         * Cancels uploading
-         */
-        cancel: function() {
-            this.uploader.cancelItem(this);
-        },
-        /**
-         * Destroys form and input
-         * @private
-         */
-        _destroy: function() {
-            if (this._form) this._form.remove();
-            if (this._input) this._input.remove();
-            delete this._form;
-            delete this._input;
-        },
-        /**
-         * The 'beforeupload' handler
-         * @param {Object} event
-         * @param {Item} item
-         * @private
-         */
-        _beforeupload: function(event, item) {
-            item.isReady = true;
-            item.isUploading = true;
-            item.isUploaded = false;
-            item.isSuccess = false;
-            item.isCancel = false;
-            item.isError = false;
-            item.progress = 0;
-        },
-        /**
-         * The 'in:progress' handler
-         * @param {Object} event
-         * @param {Item} item
-         * @param {Number} progress
-         * @private
-         */
-        _progress: function(event, item, progress) {
-            item.progress = progress;
-            item.uploader.trigger('progress', item, progress);
-        },
-        /**
-         * The 'in:success' handler
-         * @param {Object} event
-         * @param {XMLHttpRequest} xhr
-         * @param {Item} item
-         * @param {*} response
-         * @private
-         */
-        _success: function(event, xhr, item, response) {
-            item.isReady = false;
-            item.isUploading = false;
-            item.isUploaded = true;
-            item.isSuccess = true;
-            item.isCancel = false;
-            item.isError = false;
-            item.progress = 100;
-            item.index = null;
-            item.uploader.trigger('success', xhr, item, response);
-        },
-        /**
-         * The 'in:cancel' handler
-         * @param {Object} event
-         * @param {XMLHttpRequest} xhr
-         * @param {Item} item
-         * @private
-         */
-        _cancel: function(event, xhr, item) {
-            item.isReady = false;
-            item.isUploading = false;
-            item.isUploaded = false;
-            item.isSuccess = false;
-            item.isCancel = true;
-            item.isError = false;
-            item.progress = 0;
-            item.index = null;
-            item.uploader.trigger('cancel', xhr, item);
-        },
-        /**
-         * The 'in:error' handler
-         * @param {Object} event
-         * @param {XMLHttpRequest} xhr
-         * @param {Item} item
-         * @param {*} response
-         * @private
-         */
-        _error: function(event, xhr, item, response) {
-            item.isReady = false;
-            item.isUploading = false;
-            item.isUploaded = true;
-            item.isSuccess = false;
-            item.isCancel = false;
-            item.isError = true;
-            item.progress = 100;
-            item.index = null;
-            item.uploader.trigger('error', xhr, item, response);
-        },
-        /**
-         * The 'in:complete' handler
-         * @param {Object} event
-         * @param {XMLHttpRequest} xhr
-         * @param {Item} item
-         * @param {*} response
-         * @private
-         */
-        _complete: function(event, xhr, item, response) {
-            item.uploader.trigger('complete', xhr, item, response);
-            item.removeAfterUpload && item.remove();
-        }
-    };
-
-    return {
-        create: function(params) {
-            return new Uploader(params);
-        },
-        isHTML5: Uploader.prototype.isHTML5
-    };
-}])
-
-    return app;
-}));
+angularFileUpload.directive('ngFileSelect', [ '$parse', '$timeout', function($parse, $timeout) {
+	return function(scope, elem, attr) {
+		var fn = $parse(attr['ngFileSelect']);
+		if (elem[0].tagName.toLowerCase() !== 'input' || (elem.attr('type') && elem.attr('type').toLowerCase()) !== 'file') {
+			var fileElem = angular.element('<input type="file">')
+			for (var i = 0; i < elem[0].attributes.length; i++) {
+				fileElem.attr(elem[0].attributes[i].name, elem[0].attributes[i].value);
+			}
+			if (elem.attr("data-multiple")) fileElem.attr("multiple", "true");
+			fileElem.css("top", 0).css("bottom", 0).css("left", 0).css("right", 0).css("width", "100%").
+					css("opacity", 0).css("position", "absolute").css('filter', 'alpha(opacity=0)');
+			elem.append(fileElem);
+			if (elem.css("position") === '' || elem.css("position") === 'static') {
+				elem.css("position", "relative");
+			}
+			elem = fileElem;
+		}
+		elem.bind('change', function(evt) {
+			var files = [], fileList, i;
+			fileList = evt.__files_ || evt.target.files;
+			if (fileList != null) {
+				for (i = 0; i < fileList.length; i++) {
+					files.push(fileList.item(i));
+				}
+			}
+			$timeout(function() {
+				fn(scope, {
+					$files : files,
+					$event : evt
+				});
+			});
+		});
+		// removed this since it was confusing if the user click on browse and then cancel #181
+//		elem.bind('click', function(){
+//			this.value = null;
+//		});
+
+		// removed because of #253 bug
+		// touch screens
+//		if (('ontouchstart' in window) ||
+//				(navigator.maxTouchPoints > 0) || (navigator.msMaxTouchPoints > 0)) {
+//			elem.bind('touchend', function(e) {
+//				e.preventDefault();
+//				e.target.click();
+//			});
+//		}
+	};
+} ]);
+
+angularFileUpload.directive('ngFileDropAvailable', [ '$parse', '$timeout', function($parse, $timeout) {
+	return function(scope, elem, attr) {
+		if ('draggable' in document.createElement('span')) {
+			var fn = $parse(attr['ngFileDropAvailable']);
+			$timeout(function() {
+				fn(scope);
+			});
+		}
+	};
+} ]);
+
+angularFileUpload.directive('ngFileDrop', [ '$parse', '$timeout', '$location', function($parse, $timeout, $location) {
+	return function(scope, elem, attr) {
+		if ('draggable' in document.createElement('span')) {
+			var leaveTimeout = null;
+			elem[0].addEventListener("dragover", function(evt) {
+				evt.stopPropagation();
+				evt.preventDefault();
+				$timeout.cancel(leaveTimeout);
+				if (!elem[0].__drag_over_class_) {
+					var dragOverClassFn = $parse(attr['ngFileDragOverClass']);
+					if (dragOverClassFn instanceof Function) {
+						var dragOverClass = dragOverClassFn(scope, {
+							$event : evt
+						});					
+						elem[0].__drag_over_class_ = dragOverClass; 
+					} else {
+						elem[0].__drag_over_class_ = attr['ngFileDragOverClass'] || "dragover";
+					}
+				}
+				elem.addClass(elem[0].__drag_over_class_);
+			}, false);
+			elem[0].addEventListener("dragenter", function(evt) {
+				evt.stopPropagation();
+				evt.preventDefault();
+			}, false);
+			elem[0].addEventListener("dragleave", function(evt) {
+				leaveTimeout = $timeout(function() {
+					elem.removeClass(elem[0].__drag_over_class_);
+					elem[0].__drag_over_class_ = null;
+				});
+			}, false);
+			var fn = $parse(attr['ngFileDrop']);
+			elem[0].addEventListener("drop", function(evt) {
+				evt.stopPropagation();
+				evt.preventDefault();
+				elem.removeClass(elem[0].__drag_over_class_);
+				elem[0].__drag_over_class_ = null;
+				extractFiles(evt, function(files) {
+					fn(scope, {
+						$files : files,
+						$event : evt
+					});					
+				});
+			}, false);
+						
+			function isASCII(str) {
+				return /^[\000-\177]*$/.test(str);
+			}
+
+			function extractFiles(evt, callback) {
+				var files = [], items = evt.dataTransfer.items;
+				if (items && items.length > 0 && items[0].webkitGetAsEntry && $location.protocol() != 'file' && 
+						items[0].webkitGetAsEntry().isDirectory) {
+					for (var i = 0; i < items.length; i++) {
+						var entry = items[i].webkitGetAsEntry();
+						if (entry != null) {
+							//fix for chrome bug https://code.google.com/p/chromium/issues/detail?id=149735
+							if (isASCII(entry.name)) {
+								traverseFileTree(files, entry);
+							} else {
+								files.push(items[i].getAsFile());
+							}
+						}
+					}
+				} else {
+					var fileList = evt.dataTransfer.files;
+					if (fileList != null) {
+						for (var i = 0; i < fileList.length; i++) {
+							files.push(fileList.item(i));
+						}
+					}
+				}
+				(function waitForProcess(delay) {
+					$timeout(function() {
+						if (!processing) {
+							callback(files);
+						} else {
+							waitForProcess(10);
+						}
+					}, delay || 0)
+				})();
+			}
+			
+			var processing = 0;
+			function traverseFileTree(files, entry) {
+				if (entry != null) {
+					if (entry.isDirectory) {
+						var dirReader = entry.createReader();
+						processing++;
+						dirReader.readEntries(function(entries) {
+							for (var i = 0; i < entries.length; i++) {
+								traverseFileTree(files, entries[i]);
+							}
+							processing--;
+						});
+					} else {
+						processing++;
+						entry.file(function(file) {
+							processing--;
+							files.push(file);
+						});
+					}
+				}
+			}
+		}
+	};
+} ]);
+
+})();

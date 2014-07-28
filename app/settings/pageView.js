@@ -9,6 +9,11 @@ app.factory('PageView', function(){
             {label: '审核失败', active: false, value: {status: 3} },
             {label: '已删除', active: false, value: {status: 4} }
         ],
+        partnerTabs: [
+            {label: '已上线', active: true, value: {status: 0}},
+            {label: '已下线', active: false, value: {status: 1}},
+            {label: '已删除', active: false, value: {status: 2} }
+        ],
         bookingTh:[
             //n--name w-width percent
             {n: '订单号', w: '10'},
@@ -52,7 +57,16 @@ app.factory('PageView', function(){
                 {n: '状态', w: '20'},
                 {n: '操作', w: '30'}
             ]
-        }
+        },
+        'partners': {
+            tabs: common.partnerTabs,
+            th: [
+                {n: '机构号', w: '20'},
+                {n: '机构名', w: '30'},
+                {n: '状态', w: '20'},
+                {n: '操作', w: '30'}
+            ]
+        },
 
     }
 });
