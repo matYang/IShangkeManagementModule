@@ -2,14 +2,6 @@
 <div class="row margin-bottom">
     <!--左侧状态栏-->
     <div class="col-md-2" scroll-fix>
-        <tabset vertical="true" type="pills">
-            <label>审核状态</label>
-            <li class="nav-divider"></li>
-            <tab ng-repeat="a in tabs" heading="{{a.label}}" active="a.active"
-                 select="chooseTab(a)">
-            </tab>
-            <li class="nav-divider"></li>
-        </tabset>
 
         <label ng-hide="filter.id==''&&filter.name==''">当前筛选</label>
 

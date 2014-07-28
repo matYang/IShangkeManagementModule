@@ -59,14 +59,13 @@ app.factory('PageView', function(){
             ]
         },
         'partners': {
-            tabs: common.partnerTabs,
             th: [
                 {n: '机构号', w: '20'},
                 {n: '机构名', w: '30'},
                 {n: '状态', w: '20'},
                 {n: '操作', w: '30'}
             ]
-        },
+        }
 
     }
 });

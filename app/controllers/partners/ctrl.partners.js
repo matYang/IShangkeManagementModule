@@ -4,7 +4,6 @@ appControllers.controller('partnersCtrl',
         //获取课程模板资源
         var restAPI = app.restAPI.partners;
         var pageView = app.PageView['partners'];
-        $scope.tabs = pageView.tabs;
         $scope.th = pageView.th;
         $scope.page = angular.copy(app.default_page);
         //filter选择的值 用户展现当前数据的筛选条件
