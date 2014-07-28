@@ -20,4 +20,12 @@ appFilters
             };
         }
     ])
+    .filter('categoryText', ['app',
+        function (app) {
+            return function (value) {
+                //todo filter course category
+                return value;
+            };
+        }
+    ])
 ;
