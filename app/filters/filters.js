@@ -52,7 +52,6 @@ appFilters
                 for(k in array){
                     days.push(app.Enum.studyDays[array[k]]);
                 }
-                console.log( array);
                 return days.join() || '无';
             };
         }

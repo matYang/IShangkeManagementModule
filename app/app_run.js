@@ -2,8 +2,9 @@
 /* App Runtime */
 app.run(
     ['app', '$rootScope', '$cookieStore', '$localStorage', '$location', '$timeout', '$state', 'Auth', 'restAPI',
-        '$log', '$modal', '$parse', 'toaster', 'Enum', 'PageView','operateService',
-        function (app, $rootScope, $cookieStore, $localStorage, $location, $timeout, $state, Auth, restAPI, $log, $modal, $parse, toaster, Enum, PageView,operateService) {
+        '$log', '$modal', '$parse', 'toaster', 'Enum', 'PageView', 'operateService', 'promiseGet', 'cache','getCategory',
+        function (app, $rootScope, $cookieStore, $localStorage, $location, $timeout, $state, Auth, restAPI,
+                  $log, $modal, $parse, toaster, Enum, PageView, operateService, promiseGet, cache,getCategory) {
             //$rootScope has some global functions and params
             $rootScope.$state = $state;
             $rootScope.global = {
@@ -36,13 +37,19 @@ app.run(
             app.parse = $parse;
             app.Enum = Enum;
             app.PageView = PageView;
+            app.cache = cache;
             app.restAPI = restAPI;
+            app.promiseGet = promiseGet;
+            app.getCategory = getCategory; //获取目录数据 使用了内存缓存
             app.exec_operate = operateService.exec_operate;//todo 订单 模板 课程等的操作 待完成
             app.rootScope = $rootScope;
             app.timeout = $timeout;
             app.timeOffset = 0;
             app.timestamp = Date.now() + 0;
 
+
+            //初始化应用时的请求(使用promiseGet方法会是使用内存进行缓存) 请求category目录
+            getCategory();
             //router的权限控制
             $rootScope.$on('$stateChangeStart', function (event, toState, toParams, fromState, fromParams) {
                 console.log('route change');

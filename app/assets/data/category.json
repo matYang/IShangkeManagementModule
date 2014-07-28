@@ -1,0 +1,125 @@
+{
+    "data": [
+
+        {
+            "id": 0,
+            "value": "00",
+            "name": "语言培训",
+            "children": [
+                {
+                    "id": 1,
+                    "value": "0001",
+                    "name": "小语种",
+                    "children": [
+                        {
+                            "id": 2,
+                            "value": "000101",
+                            "name": "语言培训",
+                            "children": []
+                        },
+                        {
+                            "id": 3,
+                            "value": "000101",
+                            "name": "语言培训",
+                            "children": []
+                        }
+                    ]
+                },
+                {
+                    "id": 4,
+                    "value": "0002",
+                    "name": "英语",
+                    "children": [
+                        {
+                            "id": 5,
+                            "value": "000201",
+                            "name": "GMAT",
+                            "children": []
+                        },
+                        {
+                            "id": 6,
+                            "value": "000202",
+                            "name": "GRE",
+                            "children": []
+                        }
+                    ]
+                }
+
+            ]
+        },
+        {
+            "id": 16,
+            "value": "01",
+            "name": "学历文凭",
+            "children": [
+                {
+                    "id": 17,
+                    "value": "0101",
+                    "name": "考研",
+                    "children": [
+                        {
+                            "id": 7,
+                            "value": "010101",
+                            "name": "数学",
+                            "children": []
+                        },
+                        {
+                            "id": 8,
+                            "value": "010102",
+                            "name": "政治",
+                            "children": []
+                        }
+                    ]
+                }
+
+            ]
+
+        },
+        {
+            "id": 9,
+            "value": "02",
+            "name": "资格认证",
+            "children": [
+                {
+                    "id": 10,
+                    "value": "0201",
+                    "name": "国家公职",
+                    "children": [
+                        {
+                            "id": 11,
+                            "value": "020101",
+                            "name": "企业法律顾问",
+                            "children": []
+                        },
+                        {
+                            "id": 12,
+                            "value": "020102",
+                            "name": "公务员",
+                            "children": []
+                        }
+                    ]
+                },
+                {
+                    "id": 13,
+                    "value": "0202",
+                    "name": "外贸",
+                    "children": [
+                        {
+                            "id": 14,
+                            "value": "020201",
+                            "name": "单证员",
+                            "children": []
+                        },
+                        {
+                            "id": 15,
+                            "value": "020202",
+                            "name": "报关员",
+                            "children": []
+                        }
+                    ]
+                }
+
+            ]
+        }
+    ]
+}
