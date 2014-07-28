@@ -1,15 +1,16 @@
 'use strict';
-appControllers.controller('templatesDetailCtrl',
-    ['$scope','restAPI','app', function ($scope,restAPI,app) {
-        var restAPI = restAPI.templates;
+appControllers.controller('coursesDetailCtrl',
+    ['$scope', 'restAPI', 'app', function ($scope, restAPI, app) {
+        var restAPI = restAPI.courses;
         var id = app.state.params.id;
 
-        var doRefresh = $scope.doRefresh = function(){
+        //刷新列表
+        var doRefresh = $scope.doRefresh = function () {
 
-            restAPI.get({ID:id},function(data){
-                $scope.template = data;
-            },function(){
-                //todo error
+            restAPI.get({ID: id}, function (data) {
+                $scope.course = data;
+            }, function () {
+                //error
             });
         };
         $scope.doRefresh();
@@ -20,23 +21,23 @@ appControllers.controller('templatesDetailCtrl',
                 promise = restAPI.delete({ID: id});
             }
             else if (op == 'submitUpdated') {
-                app.state.go('admin.templates.edit',{id:id});
+                app.state.go('admin.courses.edit', {id: id});
                 return;
             }
             else {
                 promise = restAPI.operate({ID: id, OP: op});
             }
             promise.$promise.then(function (data) {
-                app.toaster.pop('success', "课程模板" + id + "操作成功", "");
+                app.toaster.pop('success', "课程" + id + "操作成功", "");
                 //如果是删除操作 那么应该返回列表页面
-                if(op === 'delete'){
-                    app.state.go('admin.templates.list');
+                if (op === 'delete') {
+                    app.state.go('admin.courses.list');
                     return;
-                }else{
+                } else {
                     doRefresh();
                 }
             }, function (data) {
-                app.toaster.pop('success', "课程模板" + id + "操作失败", "");
+                app.toaster.pop('success', "课程" + id + "操作失败", "");
             })
         };
     }]

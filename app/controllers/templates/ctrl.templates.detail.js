@@ -1,16 +1,15 @@
 'use strict';
-appControllers.controller('coursesDetailCtrl',
-    ['$scope','restAPI','$state', function ($scope,restAPI,$state) {
-        var restAPI = restAPI.courses;
-        var id = $state.params.id;
+appControllers.controller('templatesDetailCtrl',
+    ['$scope', 'app', function ($scope, app) {
+        var restAPI = app.restAPI.templates;
+        var id = app.state.params.id;
 
-        //刷新列表
-        var doRefresh = $scope.doRefresh = function(){
+        var doRefresh = $scope.doRefresh = function () {
 
-            restAPI.get({ID:id},function(data){
-                $scope.course = data;
-            },function(){
-                //error
+            restAPI.get({ID: id}, function (data) {
+                $scope.template = data;
+            }, function () {
+                //todo error
             });
         };
         $scope.doRefresh();
@@ -21,23 +20,23 @@ appControllers.controller('coursesDetailCtrl',
                 promise = restAPI.delete({ID: id});
             }
             else if (op == 'submitUpdated') {
-                app.state.go('admin.courses.edit',{id:id});
+                app.state.go('admin.templates.edit', {id: id});
                 return;
             }
             else {
                 promise = restAPI.operate({ID: id, OP: op});
             }
             promise.$promise.then(function (data) {
-                app.toaster.pop('success', "课程" + id + "操作成功", "");
+                app.toaster.pop('success', "课程模板" + id + "操作成功", "");
                 //如果是删除操作 那么应该返回列表页面
-                if(op === 'delete'){
-                    app.state.go('admin.courses.list');
+                if (op === 'delete') {
+                    app.state.go('admin.templates.list');
                     return;
-                }else{
+                } else {
                     doRefresh();
                 }
             }, function (data) {
-                app.toaster.pop('success', "课程" + id + "操作失败", "");
+                app.toaster.pop('success', "课程模板" + id + "操作失败", "");
             })
         };
     }]

@@ -27,7 +27,7 @@ appFilters
     .filter('classType', ['app',
         function (app) {
             return function (value) {
-                return app.Enum.ClassType[value] || app.Enum.ClassType[value];
+                return app.Enum.classType[value];
             };
         }
     ])
