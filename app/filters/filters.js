@@ -2,6 +2,15 @@
 
 /* Filters */
 appFilters
+    //以下为需要作为option并且value to text
+    .filter('classType', ['app',
+        function (app) {
+            return function (value) {
+                return app.Enum.ClassType[value] || app.Enum.ClassType[value];
+            };
+        }
+    ])
+    //以下为仅需要value to text
     .filter('operationText', ['app',
         function (app) {
             return function (op_name) {

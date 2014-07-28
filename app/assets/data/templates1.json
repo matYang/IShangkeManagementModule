@@ -10,6 +10,8 @@
     "finishTime1":1100,
     "startTime2":1500,
     "finishTime2":1700,
+
+    "classType":2,
     "actionList":[
         {
             "name":"approve"
