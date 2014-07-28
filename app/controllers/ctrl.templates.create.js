@@ -4,6 +4,7 @@ appControllers.controller('templatesCreateCtrl',
         var Templates = app.restAPI.templates;
         $scope.title = '新建课程模板';
 
+        $scope.options = app.Enum;
         $scope.choosed = {
             //todo 字段未确定
             partner: app.rootScope.global.user.partner || null

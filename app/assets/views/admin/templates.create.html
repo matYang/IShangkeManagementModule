@@ -147,8 +147,9 @@
             <label class="col-md-3 control-label">班级分类</label>
 
             <div class="col-md-5">
-                <input type="text" class="form-control"
-                       name="classType" ng-model="template.classType">
+                <select name="classType" ng-model="template.classType" class="form-control">
+                    <option ng-value="value" ng-repeat="(value,name) in options.classType">{{name}}</option>
+                </select>
             </div>
             <span class="help-block">用于搜索</span>
         </div>

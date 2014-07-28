@@ -1,5 +1,12 @@
 'use strict';
 app.value('Enum', {
+        //todo 课程分类的options
+        classType: {
+            '1': 'VIP 1对1',
+            '2': '小班授课（小于6人）',
+            '3': '中班授课（6-30人）',
+            '4': '大班授课（30人+）'
+        },
         //关于页面的text
         PageText:{
           'partner':'合作机构',

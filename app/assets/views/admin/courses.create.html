@@ -1,7 +1,7 @@
 <div class="row">
     <div class="col-md-12">
         <h3>
-            <small><a ui-sref="admin.templates.list" class="btn fa fa-chevron-left pull-left"> 返回列表</a></small>
+            <small><a ui-sref="admin.courses.list" class="btn fa fa-chevron-left pull-left"> 返回列表</a></small>
             创建课程
         </h3>
     </div>
@@ -9,7 +9,6 @@
 </div>
 <!--选择机构以及模板-->
 <div class="row">
-    <div class="col-md-2"><a ui-sref="admin.courses.list" class="btn fa fa-chevron-left pull-left"> 返回</a> <label>课程创建</label></div>
     <div class="col-md-4 text-center">
         <label>【机构信息】</label>
         <button class="btn btn-default btn-sm" ng-click="choosePartner()">{{choosed.partner ||  '--请选择-- '}}</button>
@@ -19,7 +18,7 @@
         <button class="btn btn-default btn-sm" ng-click="chooseTemplate()">{{choosed.template || ' --请选择-- '}}</button>
     </div>
 </div>
-<hr/>
+<br/>
         <!--测试模式下加入！-->
 <div class="row" ng-show="!choosed.template">
     <form class="col-md-12 form-horizontal form-create" role="form" name="validateForm" w5c-form-validate novalidate>
