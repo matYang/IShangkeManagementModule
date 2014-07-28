@@ -3,6 +3,7 @@ appControllers.controller('partnersTeacherCtrl',
     ['$scope','restAPI','$state', '$upload', 'app', function ($scope, restAPI, $state, $upload, app) {
         var Partners = restAPI.partners;
         var id = $state.params.id;
+        //TODO: replace with real url
         var uploadUrl = "/tempurl"
         $scope.teachers = [{}];
         $scope.fileReaderSupported = window.FileReader != null && (window.FileAPI == null || FileAPI.html5 != false);

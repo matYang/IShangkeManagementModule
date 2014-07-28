@@ -5,6 +5,7 @@ appControllers.controller('partnersCreateCtrl',
         $scope.title = '这里是新建机构页面';
         $scope.partner = {};
         $scope.partner.addressList = [""];
+        $scope.logo = {};
         $scope.addLocation = function () {
             var len = $scope.partner.addressList.length;
             $scope.partner.addressList[len] = "";
@@ -16,11 +17,8 @@ appControllers.controller('partnersCreateCtrl',
             }
             $scope.partner.addressList.pop();
         }
-        $scope.onFileSelect = function ($files) {
-
-        };
-        $scope.submit = function(partner){
-            Partners.save(partner, function(data){
+        $scope.create = function(){
+            Partners.save($scope.partner, function(data){
                 //todo create success to do something
                 app.toaster.pop('success', "新建机构成功", "");
                 app.log.info('create partner success');

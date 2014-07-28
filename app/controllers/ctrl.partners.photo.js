@@ -3,6 +3,7 @@ appControllers.controller('partnersPhotoCtrl',
     ['$scope','restAPI','$state', '$upload', 'app', function ($scope, restAPI, $state, $upload, app) {
         var Partners = restAPI.partners;
         var id = $state.params.id;
+        //TODO: replace with real url
         var uploadUrl = "/tempurl"
         $scope.imgs = [{}];
         $scope.onFileSelect = function($files, $index) {
