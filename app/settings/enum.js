@@ -32,9 +32,8 @@ app.value('Enum', {
           'course':'课程'
         },
         //状态的text
-        StatusText: {
+        statusText: {
             //课程和课程模板的状态
-            '-1': '未知状态',
             2: '待审核',
             3: '已上线',
             4: '已下线',
@@ -49,9 +48,7 @@ app.value('Enum', {
 
         },
         //记录操作的按钮text
-        OperationsText: {
-            '-1': '未知操作',
-
+        operationsText: {
             //课程和课程模板的操作
             'submitNew': '提交审核',
             'reject': '拒绝审核',

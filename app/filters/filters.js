@@ -2,22 +2,22 @@
 
 /* Filters */
 appFilters
-    /**
-     * 图片地址的filter
-     * @input array [imageName,partner_id]
-     * @return string <absolute image url>
-     */
+/**
+ * 图片地址的filter
+ * @input array [imageName,partner_id]
+ * @return string <absolute image url>
+ */
     .filter('smallImg', ['app',
         function (app) {
             return function (value) {
-                return app.small_img + value[1]+'/'+value[0];
+                return app.small_img + value[1] + '/' + value[0];
             };
         }
     ])
     .filter('largeImg', ['app',
         function (app) {
             return function (value) {
-                return app.large_img + value[1]+'/'+value[0];
+                return app.large_img + value[1] + '/' + value[0];
             };
         }
     ])
@@ -27,7 +27,33 @@ appFilters
     .filter('classType', ['app',
         function (app) {
             return function (value) {
-                return app.Enum.classType[value];
+                return app.Enum.classType[value] || '未知类型';
+            };
+        }
+    ])
+    .filter('schooltimeDay', ['app',
+        function (app) {
+            return function (value) {
+                return app.Enum.schooltimeDay[value] || '未知';
+            };
+        }
+    ])
+    .filter('schooltimeWeek', ['app',
+        function (app) {
+            return function (value) {
+                return app.Enum.schooltimeWeek[value] || '未知';
+            };
+        }
+    ])
+    .filter('studyDays', ['app',
+        function (app) {
+            return function (array) {
+                var days = [];
+                for(k in array){
+                    days.push(app.Enum.studyDays[array[k]]);
+                }
+                console.log( array);
+                return days.join() || '无';
             };
         }
     ])
@@ -36,7 +62,7 @@ appFilters
     .filter('operationText', ['app',
         function (app) {
             return function (op_name) {
-                return app.Enum.OperationsText[op_name] || app.Enum.OperationsText[-1];
+                return app.Enum.operationsText[op_name] || '未知操作';
             };
         }
     ])
@@ -44,9 +70,7 @@ appFilters
     .filter('statusText', ['app',
         function (app) {
             return function (value) {
-//        var status = _.findWhere(app.options.status, {value: input});
-//        return status?status['label']:'未知';
-                return app.Enum.StatusText[value] || app.Enum.StatusText[-1];
+                return app.Enum.statusText[value] || '未知状态';
             };
         }
     ])

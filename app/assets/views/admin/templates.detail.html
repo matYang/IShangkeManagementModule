@@ -58,9 +58,21 @@
     </div>
 </div>
 <div class="form-group form-group-sm">
+    <label class="col-md-3 control-label">上课区间</label>
+    <div class="col-md-3">
+        <p class="form-control-static">{{course.schooltimeWeek |schooltimeWeek}}-{{course.schooltimeDay | schooltimeDay}}</p>
+    </div>
+</div>
+<div class="form-group form-group-sm">
+    <label class="col-md-3 control-label">上课日子</label>
+    <div class="col-md-3">
+        <p class="form-control-static">{{course.studyDays | studyDays}}</p>
+    </div>
+</div>
+<div class="form-group form-group-sm">
     <label class="col-md-3 control-label">课时数量</label>
     <div class="col-md-3">
-        <p class="form-control-static">{{template.courseHourNum}}</p>
+        <p class="form-control-static">{{template.courseHourNum}}课时</p>
     </div>
 </div>
 <div class="form-group form-group-sm">
