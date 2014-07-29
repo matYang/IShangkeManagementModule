@@ -19,6 +19,8 @@ appServices
                     'templates': ['/data/templates:ID.json/:OP', '/template/:ID/:OP'],
                     'courses': ['/data/courses:ID.json', '/course/:ID/:OP'],
                     'partners': ['/data/partners:ID.json', '/partner/:ID/:OP'],
+                    'teachers': ['/data/partners:ID.json', '/teacher/:ID/:OP'],
+                    'photos': ['/data/partners:ID.json', '/photo/:ID/:OP'],
                     // /api/v2/booking/1/
                     'bookings': ['/data/bookings:ID.json/:OP', '/booking/:ID/:OP'],
                     'category': ['/data/category.json', '/category']
@@ -58,6 +60,8 @@ appServices
                 'courses': resource_maker('courses'),
                 'bookings': resource_maker('bookings'),
                 'partners': resource_maker('partners'),
+                'teachers': resource_maker('teachers'),
+                'photos': resource_maker('photos'),
                 'category': resource_maker('category')
 
             };

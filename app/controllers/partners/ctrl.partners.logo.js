@@ -4,7 +4,7 @@ appControllers.controller('partnersLogoCtrl',
         var Partners = restAPI.partners;
         var id = $state.params.id;
         //TODO: replace with real url
-        var uploadUrl = "/tempurl"
+        var uploadUrl = "../a-api/v2/" + "partner/" + id + "/logo";
         $scope.onFileSelect = function($files) {
             for ( var i = 0; i < $files.length; i++) {
                 var $file = $files[i];
@@ -31,10 +31,10 @@ appControllers.controller('partnersLogoCtrl',
                 fileFormDataName: "logo"
             }).success(function(response) {
                 if (response.status > 0) {
-                    app.toaster.pop("error", "机构创建失败", "");
+                    app.toaster.pop("error", "logo上传失败", "");
                     $scope.errorMsg = response.status + ': ' + response.data;
                 } else {
-                    app.toaster.pop("success", "机构创建失败", "");
+                    app.toaster.pop("success", "logo上传成功", "");
                     app.state.go("admin.partners.detail", {id: id});
                 }
             }).progress(function(evt) {

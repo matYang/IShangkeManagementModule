@@ -1,7 +1,7 @@
 'use strict';
 appControllers.controller('partnersTeachermanageCtrl',
     ['$scope','restAPI','$state', 'app', function ($scope, restAPI, $state, app) {
-        var Partners = restAPI.partners;
+        var Teachers = restAPI.teachers, Partners = restAPI.partners;
         $scope.doRefresh = function() {
             Partners.get({ID:id},function(data){
                 $scope.item = data;
@@ -21,7 +21,13 @@ appControllers.controller('partnersTeachermanageCtrl',
             app.state.go('admin.pasrtners.detail', {id: id});
         };
         $scope.update = function () {
-            // app.state.go('admin.pasrtners.detail', {id: id});
+            Teachers.save($scope.item, function(response){
+                app.toaster.pop('success', "教师更新成功", "");
+                app.log.info('teacher update success');
+                app.state.go('admin.partners.detail', {id: id});
+            }, function () {
+                app.log.error('update error');
+            });
         };
     }]
 );
