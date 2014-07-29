@@ -2418,7 +2418,7 @@ angular.module('mgcrea.ngStrap.select', [
       placeholder: '-请选择-',
       maxLength: 3,
       maxLengthHtml: 'selected',
-      iconCheckmark: 'glyphicon glyphicon-ok'
+      iconCheckmark: 'fa fa-check'
     };
   this.$get = [
     '$window',
