@@ -23,7 +23,27 @@
     "openCourseRequirement":"至少十人",
     "cutoffDate":1442222222222,
     "suitableStudent":"希望提高公务员考试成绩且有一定基础的学生",
-    "teacherList":[],
+
+    "regAddressId": 11,
+    "regAddress": "机构报名地址1",
+    "addressId": 12,
+    "address": "机构上课地址",
+    "teacherList":[
+        {
+            "id":1,
+            "partnerId":1,
+            "imgUrl":"http://hdn.xnimg.cn/photos/hdn521/20140713/2310/h_main_HM6z_279f00037fae1986.jpg",
+            "name":"小夏",
+            "intro":"负责任的美女老师"
+        },
+        {
+            "id":2,
+            "partnerId":1,
+            "imgUrl":"http://hdn.xnimg.cn/photos/hdn321/20120117/1430/h_main_uMg0_7a8f000389e52f75.jpg",
+            "name":"小雨",
+            "intro":"负责任的帅哥老师"
+        }
+    ],
 
     "courseIntro":"快速提供学员英语六级考试成绩",
     "goal":"1.对初一英语知识点达到灵活运用层次，夯实初一知识 2.对初二秋季知识点达到识记和理解层次，在新学期中占得先机",
