@@ -53,10 +53,10 @@
             </tr>
             </thead>
             <tbody>
-            <tr ng-repeat="item in items">
+            <tr ng-repeat="item in items | filter:filter.id">
                 <td>{{item.id || '无'}}</td>
                 <td>{{item.wholeName|| '无'}}</td>
-                <td>{{item.status | statusText}}</td>
+                <td>{{item.reference || '无'}}</td>
                 <td class="operations">
                     <a ui-sref="admin.partners.detail({id:item.id})">查看</a>
                     <a ui-sref="admin.partners.edit({id:item.id})">修改</a>
