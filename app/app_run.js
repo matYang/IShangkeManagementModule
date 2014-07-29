@@ -47,6 +47,12 @@ app.run(
             app.timeout = $timeout;
             app.timeOffset = 0;
             app.timestamp = Date.now() + 0;
+            app.options = {
+                studyDays:tools.toOptions(app.Enum.studyDays),
+                schooltimeDay:tools.toOptions(app.Enum.schooltimeDay),
+                schooltimeWeek:tools.toOptions(app.Enum.schooltimeWeek),
+                classType:tools.toOptions(app.Enum.classType)
+            };
 
 
             //初始化应用时的请求(使用promiseGet方法会是使用内存进行缓存) 请求category目录

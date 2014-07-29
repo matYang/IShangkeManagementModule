@@ -2,9 +2,10 @@
 appControllers.controller('coursesCreateCtrl',
     ['$scope', 'app', function ($scope, app) {
         var restAPI = app.restAPI.courses;
-        $scope.options = {
-            studyDays:app.tools.toOptions(app.Enum.studyDays)
-        };
+        app.getCategory().then(function(data){
+            $scope.category  = data.data;
+        });
+        $scope.options = app.options;
         $scope.Enum = app.Enum;
         app.getCategory().then(function(data){
             $scope.category  = data.data;

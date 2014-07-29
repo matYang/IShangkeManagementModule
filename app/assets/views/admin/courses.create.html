@@ -116,25 +116,25 @@
         <label class="col-md-3 control-label">一天中的上课区间</label>
 
         <div class="col-md-3">
-            <select name="schooltimeDay" ng-model="course.schooltimeDay" class="form-control">
-                <option ng-value="value" ng-repeat="(value,name) in Enum.schooltimeDay">{{name}}</option>
-            </select>
+            <button name="schooltimeDay" ng-model="course.schooltimeDay" class="btn btn-default btn-sm"
+                    bs-select  ng-options="item.value as item.label for item in options.schooltimeDay">
+            </button>
         </div>
     </div>
     <div class="form-group form-group-sm">
         <label class="col-md-3 control-label">一周中的上课区间</label>
 
         <div class="col-md-3">
-            <select name="schooltimeWeek" ng-model="course.schooltimeWeek" class="form-control">
-                <option ng-value="value" ng-repeat="(value,name) in Enum.schooltimeWeek">{{name}}</option>
-            </select>
+            <button name="schooltimeWeek" ng-model="course.schooltimeWeek" class="btn btn-default btn-sm"
+                    bs-select ng-options="item.value as item.label for item in options.schooltimeWeek">
+            </button>
         </div>
     </div>
     <div class="form-group form-group-sm">
         <label class="col-md-3 control-label">上课日子</label>
 
         <div class="col-md-3">
-            <button type="button" class="btn btn-default" ng-model="course.studyDays"
+            <button class="btn btn-default btn-sm" ng-model="course.studyDays" max-length="4"
                     data-html="1" data-multiple="1" ng-options="item.value as item.label for item in options.studyDays" bs-select>
                 选择 <span class="caret"></span>
             </button>
@@ -169,9 +169,9 @@
         <label class="col-md-3 control-label">班级分类</label>
 
         <div class="col-md-5">
-            <select name="classType" ng-model="course.classType" class="form-control">
-                <option ng-value="value" ng-repeat="(value,name) in Enum.classType">{{name}}</option>
-            </select>
+            <button name="schooltimeWeek" ng-model="course.classType" class="btn btn-default btn-sm"
+                    bs-select ng-options="item.value as item.label for item in options.classType">
+            </button>
         </div>
         <span class="help-block">用于搜索</span>
     </div>

@@ -49,26 +49,16 @@
         </div>
         <div class="form-group form-group-sm">
             <label class="col-md-3 control-label">课程所属类别(*)</label>
-            <div class="col-md-2">
-                <select name="level_1" class="form-control" ng-model="level_1">
-                    <option value="">-- --</option>
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                </select>
-            </div>
-            <div class="col-md-2">
-                <select name="level_2" class="form-control" ng-model="level_2">
-                    <option ng-show="!level_1" value="" onselect="">-- --</option>
-                    <option ng-show="level_1" value="11">11</option>
-                    <option ng-show="level_1" value="12">12</option>
-                </select>
-            </div>
-            <div class="col-md-2">
-                <select class="form-control" name="categoryId" ng-model="template.categoryId">
-                    <option ng-show="!level_2" value="" onselect="">-- --</option>
-                    <option ng-show="level_2" value="1112">1112</option>
-                    <option ng-show="level_2" value="1212">1212</option>
-                </select>
+            <div class="col-md-7">
+                <button name="level_1" class="btn btn-default btn-sm" ng-model="cat_1" ng-options="item as item.name for item in category"
+                        ng-change="cat_2=null;template.categoryId=undefined" placeholder="选择一级目录" bs-select>
+                </button>
+                <button name="level_2" class="btn btn-default btn-sm" ng-model="cat_2" ng-options="item as item.name for item in cat_1.children"
+                        ng-change="template.categoryId=undefined" placeholder="选择二级目录" bs-select>
+                </button>
+                <button class="btn btn-default btn-sm" name="categoryId" ng-model="template.categoryId" ng-options="item.value as item.name for item in cat_2.children"
+                        placeholder="选择三级目录" bs-select>
+                </button>
             </div>
         </div>
 
@@ -122,25 +112,25 @@
             <label class="col-md-3 control-label">一天中的上课区间</label>
 
             <div class="col-md-3">
-                <select name="schooltimeDay" ng-model="template.schooltimeDay" class="form-control">
-                    <option ng-value="value" ng-repeat="(value,name) in Enum.schooltimeDay">{{name}}</option>
-                </select>
+                <button name="schooltimeDay" ng-model="template.schooltimeDay" class="btn btn-default btn-sm"
+                        bs-select  ng-options="item.value as item.label for item in options.schooltimeDay">
+                </button>
             </div>
         </div>
         <div class="form-group form-group-sm">
             <label class="col-md-3 control-label">一周中的上课区间</label>
 
             <div class="col-md-3">
-                <select name="schooltimeWeek" ng-model="template.schooltimeWeek" class="form-control">
-                    <option ng-value="value" ng-repeat="(value,name) in Enum.schooltimeWeek">{{name}}</option>
-                </select>
+                <button name="schooltimeWeek" ng-model="template.schooltimeWeek" class="btn btn-default btn-sm"
+                        bs-select ng-options="item.value as item.label for item in options.schooltimeWeek">
+                </button>
             </div>
         </div>
         <div class="form-group form-group-sm">
             <label class="col-md-3 control-label">上课日子</label>
 
             <div class="col-md-3">
-                <button type="button" class="btn btn-default" ng-model="template.studyDays"
+                <button class="btn btn-default btn-sm" ng-model="template.studyDays" max-length="4"
                         data-html="1" data-multiple="1" ng-options="item.value as item.label for item in options.studyDays" bs-select>
                     选择 <span class="caret"></span>
                 </button>
@@ -176,10 +166,9 @@
             <label class="col-md-3 control-label">班级分类</label>
 
             <div class="col-md-4">
-                <select class="form-control" name="classType" ng-model="template.classType"
-                        ng-options="value as name for (value,name) in Enum.classType">
-                    <option value="">-- 请选择分类 --</option>
-                </select>
+                <button name="schooltimeWeek" ng-model="template.classType" class="btn btn-default btn-sm"
+                        bs-select ng-options="item.value as item.label for item in options.classType">
+                </button>
             </div>
             <span class="help-block">用于搜索</span>
         </div>
