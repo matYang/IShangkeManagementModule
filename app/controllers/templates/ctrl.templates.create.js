@@ -18,8 +18,12 @@ appControllers.controller('templatesCreateCtrl',
                     templateUrl: '/views/admin/modals/choose.html',
                     controller: 'chooseCtrl',
                     resolve: {
-                        optionName: 'partner',
-                        partner:$scope.choosed.partner
+                        optionName: function(){
+                            return 'partners';
+                        },
+                        partner:function(){
+                            $scope.choosed.partner
+                        }
                     }
                 });
                 //selectedItem is passed from modal controller

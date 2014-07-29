@@ -78,7 +78,7 @@
         </table>
         <div class="page clearfix">
             <p class="pull-left">共{{page.total}}条记录，每页显示{{page.count}}条记录</p>
-            <pagination class="pull-right" ng-model="page.index" total-items="page.total" items-per-page="page.count"
+            <pagination class="pull-right" ng-model="page.start" total-items="page.total" items-per-page="page.count"
                         ng-change="doRefresh()"
                         max-size="9"
                         class="pagination-sm"

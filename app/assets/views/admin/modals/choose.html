@@ -2,12 +2,21 @@
 <div class="modal-body">
     <ul>
         <li ng-repeat="item in items">
-            <a ng-click="selected.item = item" ng-dblclick="selected.item = item;ok()">{{ item.label }}</a>
+            <a ng-click="selected.item = item" ng-dblclick="selected.item = item;ok()">{{ item.instName || item.courseName}}</a>
         </li>
     </ul>
     Selected: <b>{{ selected.item }}</b>
 </div>
 <div class="modal-footer">
+    {{page}}
+    <div ng-if="items!=''">
+        <div ng-click="prePage()" ng-if="page.start >= page.count"
+             class="ion-ios7-arrow-left icon-left button button-clear button-dark">上一页
+        </div>
+        <div ng-click="nexPage()" ng-if="page.start + page.count < page.total"
+             class="ion-ios7-arrow-right icon-right button button-clear button-dark">下一页
+        </div>
+    </div>
     <button class="btn btn-primary" ng-click="ok()">确定</button>
     <button class="btn btn-default" ng-click="cancel()">取消</button>
 </div>

@@ -40,11 +40,11 @@ appControllers.controller('coursesCreateCtrl',
         };
         $scope.choosePartner = function () {
             if (app.rootScope.global.isAdmin&&app.rootScope.port=='admin'){
-                modalAction('partner');
+                modalAction('partners');
             }
         };
         $scope.chooseTemplate = function () {
-            modalAction('template');
+            modalAction('templates');
         };
 
         $scope.submitCourse = function(course){

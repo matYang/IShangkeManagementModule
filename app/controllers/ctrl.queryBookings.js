@@ -22,7 +22,7 @@ appControllers.controller('queryBookingsCtrl',
                 //更新当前数据的筛选条件
                 $scope.filter = angular.copy($scope.filter_tmp);
                 $scope.items = data.data;
-                $scope.page.index = data.index;
+                $scope.page.start = data.start;
                 $scope.page.count = data.count;
                 $scope.page.total = data.total;
             }, function () {

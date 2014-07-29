@@ -2,21 +2,21 @@
     "data": [
         {
             "id": 1,
-            "wholeName": "whole name 1",
-            "instName": "inst name 1",
+            "wholeName": "机构全称1",
+            "instName": "机构1",
             "instDistinction": "",
             "partnerQualification": ""
 
         },
         {
             "id": 1,
-            "wholeName": "whole name 2",
-            "instName": "inst name 2",
+            "wholeName": "机构全称2",
+            "instName": "机构2",
             "instDistinction": "",
             "partnerQualification": ""
         }
     ],
-    "index": 1,
+    "start": 0,
     "total": 2,
-    "count": 20
+    "count": 1
 }
