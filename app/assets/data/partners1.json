@@ -23,6 +23,13 @@
             "intro":"负责任的美女老师"
         },
         {
+            "id":3,
+            "partnerId":1,
+            "imgUrl":"http://testimgsbucket.oss-cn-hangzhou.aliyuncs.com/t2.png",
+            "name":"小y",
+            "intro":"负责任的美女老师"
+        },
+        {
             "id":2,
             "partnerId":1,
             "imgUrl":"http://hdn.xnimg.cn/photos/hdn321/20120117/1430/h_main_uMg0_7a8f000389e52f75.jpg",

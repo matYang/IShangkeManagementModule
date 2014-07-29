@@ -11,17 +11,22 @@
 <div class="row">
     <div class="col-md-4 text-center">
         <label>【机构信息】</label>
-        <button class="btn btn-default btn-sm" ng-click="choosePartner()">{{choosed.partner ||  '--请选择-- '}}</button>
+        <button class="btn btn-default btn-sm" ng-click="choosePartner()">{{choosed.partner.instName ||  '--请选择-- '}}</button>
     </div>
     <div ng-if="choosed.partner" class="col-md-4 text-center">
         <label>【选用课程模板】</label>
-        <button class="btn btn-default btn-sm" ng-click="chooseTemplate()">{{choosed.template || ' --请选择-- '}}</button>
+        <button class="btn btn-default btn-sm" ng-click="chooseTemplate()">{{choosed.template.courseName || ' --请选择-- '}}</button>
     </div>
 </div>
 <br/>
         <!--测试模式下加入！-->
-<div class="row" ng-show="!choosed.template">
-    <form class="col-md-12 form-horizontal form-create" role="form" name="validateForm" w5c-form-validate novalidate>
+<div class="row" ng-show="choosed.template">
+    <div class="col-md-4">
+        <pre>
+            course:{{course|json}}
+        </pre>
+    </div>
+    <form class="col-md-8 form-horizontal form-create" role="form" name="validateForm" w5c-form-validate novalidate>
 
     <legend>根据模板生成的不可更改信息</legend>
     <div class="form-group form-group-sm">
@@ -55,11 +60,11 @@
     <div class="form-group form-group-sm">
         <label class="col-md-3 control-label">教师列表</label>
         <div class="col-md-5">
-            <ul>
-                <li ng-repeat="teacher in teacherList">
-                    <img ng-src="teacher.imgUrl" alt="教师照片"/>
+            <ul class="list-unstyled">
+                <li ng-repeat="teacher in course.teacherList">
+                    <img ng-src="{{teacher.imgUrl}}" alt="教师照片" class="pic-micro"/>
                     <label>{{teacher.name}}</label>
-                    <p>{{teacher.info}}</p>
+                    <span>--{{teacher.intro}}</span>
                 </li>
             </ul>
         </div>

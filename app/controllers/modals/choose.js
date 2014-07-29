@@ -2,9 +2,6 @@ appControllers.controller('chooseCtrl',
     ['$scope', 'app', '$modalInstance', 'optionName', 'partner', function ($scope, app, $modalInstance, optionName, partner) {
         /**
          * @optionName can be 'partners' and 'templates'*/
-            //todo then you can has the right api to get the options
-        console.log(optionName);
-        console.log(partner);
         $scope.title = app.Enum.PageText[optionName];
         $scope.page = angular.copy(app.default_page);
         $scope.items = [];

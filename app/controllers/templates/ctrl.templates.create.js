@@ -29,15 +29,17 @@ appControllers.controller('templatesCreateCtrl',
                 modal.result.then(function (selectedItem) {
                     $scope.choosed['partner'] = selectedItem;
                     $scope.template.partnerId = selectedItem.id;
-                    //获取机构的详情用来填充options （教师列表和地址）
-                    app.getPartnerById(selectedItem.id).then(function (data) {
-                        $scope.options.addressList = data.addressList;
+                    //获取机构的详情用来填充options （教师列表和地址，机构图片）
+                    app.getPartnerById(selectedItem.id).then(function (partner) {
+                        $scope.options.addressList = partner.addressList;
                         var teacherList = [];
-                        angular.forEach(data.teacherList, function (teacher) {
+                        angular.forEach(partner.teacherList, function (teacher) {
                             teacher.label = '<img src="' + teacher.imgUrl + '" alt="'+teacher.name+'" class="pic-micro"/>'+teacher.name;
                             teacherList.push(teacher);
                         });
                         $scope.options.teacherList = teacherList;
+                        //todo 默认选择机构的所有图片作为模板的图片
+                        $scope.template.classPhotoList = partner.classPhotoList;
                     }, function () {
                         app.toaster.pop('error', '获取机构-' + selectedItem.instName + '的信息失败', '请重新选择机构或刷新重试');
                     })

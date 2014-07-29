@@ -224,11 +224,12 @@
 
             <div class="col-md-5">
                 <button class="btn btn-default btn-sm" ng-model="template.teacherList" max-length="10"
-                        data-html="1" data-multiple="1" ng-options="item.id as item.label for item in options.teacherList" bs-select>
+                        data-html="1" data-multiple="1" ng-options="item as item.label for item in options.teacherList" bs-select>
                     选择教师 <span class="caret"></span>
                 </button>
             </div>
         </div>
+        {{classPhotoList}}
 
 
         <legend>教学信息</legend>
