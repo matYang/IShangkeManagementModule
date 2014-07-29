@@ -44,7 +44,7 @@
             <label class="col-sm-3 control-label">校区地址:</label>
             <div class="col-md-4">
             <div ng-repeat="location in partner.addressList track by $index">
-                <input type="text" class="form-control subLocations" id="addressList{{$index}}" name="addressList{{$index}}" ng-model="location" required=""/>
+                <input type="text" class="form-control subLocations" id="addressList{{$index}}" name="addressList{{$index}}" ng-model="partner.addressList[$index]" required=""/>
                 <a ng-click="removeLocation($index)" class="glyphicon-remove">删除</a>
             </div>
             <a id="addLocation" ng-click="addLocation()">增加更多地址</a>
