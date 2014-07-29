@@ -1679,7 +1679,6 @@ angular.module('mgcrea.ngStrap.helpers.parseOptions', []).provider('$parseOption
         };
         // Private functions
         function parseValues(values, scope) {
-            console.log(values);
           return values.map(function (match, index) {
             var locals = {}, label, value;
             locals[valueName] = match;
