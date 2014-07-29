@@ -68,18 +68,18 @@
 
             <div class="col-md-7">
                 <div class="input-group input-group-sm col-md-5 pull-left">
-                    <input name="startDate" type="text" class="form-control" ng-model="template.startDate" datepicker-popup="yyyy/MM/dd" is-open="opened_startDate"
-                           max-date="template.finishDate" disabled/>
+                    <input name="startDate" type="text" class="form-control input-sm" placeholder="开始"
+                           ng-model="template.startDate" data-max-date="{{template.finishDate}}" bs-datepicker>
                     <span class="input-group-btn">
-                        <button class="btn btn-default" ng-click="open($event,'startDate')"><i class="fa fa-calendar"></i>&nbsp;</button>
+                        <button class="btn btn-default"><i class="fa fa-calendar"></i>&nbsp;</button>
                     </span>
                 </div>
                 <span class="pull-left" style="padding: 5px 2px 0">到</span>
                 <div class="input-group input-group-sm col-md-5 pull-left">
-                    <input name="finishDate" type="text" class="form-control" ng-model="template.finishDate" datepicker-popup="yyyy/MM/dd" is-open="opened_finishDate"
-                            min-date="template.startDate" disabled/>
+                    <input name="startDate" type="text" class="form-control input-sm" placeholder="结束"
+                           ng-model="template.finishDate" data-max-date="{{template.startDate}}" bs-datepicker>
                     <span class="input-group-btn">
-                        <button class="btn btn-default" ng-click="open($event,'finishDate')"><i class="fa fa-calendar"></i>&nbsp;</button>
+                        <button class="btn btn-default"><i class="fa fa-calendar"></i>&nbsp;</button>
                     </span>
                 </div>
             </div>
@@ -185,10 +185,10 @@
 
             <div class="col-md-3">
                 <div class="input-group input-group-sm pull-left">
-                    <input name="cutoffDate" type="text" class="form-control" ng-model="template.cutoffDate" datepicker-popup="yyyy/MM/dd" is-open="opened_cutoffDate"
-                           disabled/>
+                    <input name="cutoffDate" type="text" class="form-control input-sm" placeholder="截止日期"
+                           ng-model="template.cutoffDate" bs-datepicker>
                     <span class="input-group-btn">
-                        <button class="btn btn-default" ng-click="open($event,'cutoffDate')"><i class="fa fa-calendar"></i>&nbsp;</button>
+                        <button class="btn btn-default"><i class="fa fa-calendar"></i>&nbsp;</button>
                     </span>
                 </div>
             </div>

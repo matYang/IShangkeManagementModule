@@ -12,4 +12,12 @@ app.constant('app', { //constant 'app' assemble things like restAPI and configs
         count: 20,   //每页记录数
         total: 0    //记录总数
     }
-});
+})
+    .config(function($datepickerProvider) {
+        angular.extend($datepickerProvider.defaults, {
+            dateFormat: 'yyyy-MM-dd',
+            startWeek: 1,
+            dateType:'number',
+            autoclose:true
+        });
+    });

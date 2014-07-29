@@ -9,25 +9,26 @@
                 <div><input type="text" class="form-control input-sm"
                             ng-model="filter_tmp.id"/></div>
             </div>
-            <div class="form-group from-group-sm" ng>
+            <div class="form-group from-group-sm">
                 <label class="control-label" for="">下单日期</label>
 
                 <div class="input-group input-group-sm">
-                    <input type="text" class="form-control" ng-model="filter_tmp.createTimeStart" datepicker-popup="yyyy/MM/dd" is-open="opened1" ng-init="opened1=false"
-                          />
+                    <input name="createTimeStart" type="text"
+                           class="form-control input-sm" ng-model="filter_tmp.createTimeStart" data-min-date="{{filter_tmp.createTimeEnd}}" bs-datepicker>
                     <span class="input-group-btn">
                         <button class="btn btn-default" ng-click="open($event,1)"><i class="fa fa-calendar"></i>&nbsp;</button>
                     </span>
                 </div>
                 <span class="pull-left" style="padding: 5px 2px 0">到</span>
                 <div class="input-group input-group-sm">
-                    <input type="text" class="form-control" ng-model="filter_tmp.createTimeStart" datepicker-popup="yyyy/MM/dd" is-open="opened2" ng-init="opened2=false"
-                          />
+                    <input name="createTimeEnd" type="text"
+                           class="form-control input-sm" ng-model="filter_tmp.createTimeEnd" data-min-date="{{filter_tmp.createTimeStart}}"  bs-datepicker>
                     <span class="input-group-btn">
                         <button class="btn btn-default" ng-click="open($event,2)"><i class="fa fa-calendar"></i>&nbsp;</button>
                     </span>
                 </div>
             </div>
+
             <div class="form-group">
                 <label></label>
 
