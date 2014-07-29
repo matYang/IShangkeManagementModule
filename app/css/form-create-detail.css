@@ -11,6 +11,16 @@
     height: 80px;
 }
 
+/*日期选择样式调整*/
+.datepicker{
+    width: 240px;
+    padding: 0}
+    .datepicker thead .btn{
+        /*去除头部按钮的边框*/
+        border:none;}
+    .datepicker .dow{
+        /*周一周二的字体大小*/
+        font-size: 14px;}
 
 .form-detail legend{
     margin-bottom: 10px;

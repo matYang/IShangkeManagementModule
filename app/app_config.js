@@ -18,6 +18,8 @@ app.constant('app', { //constant 'app' assemble things like restAPI and configs
             dateFormat: 'yyyy-MM-dd',
             startWeek: 1,
             dateType:'number',
-            autoclose:true
+            autoclose:true,
+            iconLeft:'fa fa-chevron-left',
+            iconRight:'fa fa-chevron-right'
         });
     });
