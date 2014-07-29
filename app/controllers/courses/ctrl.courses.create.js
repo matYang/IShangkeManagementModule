@@ -2,7 +2,13 @@
 appControllers.controller('coursesCreateCtrl',
     ['$scope', 'app', function ($scope, app) {
         var restAPI = app.restAPI.courses;
+        $scope.options = {
+            studyDays:app.tools.toOptions(app.Enum.studyDays)
+        };
         $scope.Enum = app.Enum;
+        app.getCategory().then(function(data){
+            $scope.category  = data.data;
+        });
         //新建课程需要选择机构（admin需要）
         $scope.choosed = {
             //todo 字段未确定

@@ -3,7 +3,12 @@ appControllers.controller('templatesCreateCtrl',
     ['$scope','app', function ($scope,app) {
         var Templates = app.restAPI.templates;
         $scope.title = '新建课程模板';
-
+        app.getCategory().then(function(data){
+            $scope.category  = data.data;
+        });
+        $scope.options = {
+            studyDays:app.tools.toOptions(app.Enum.studyDays)
+        };
         $scope.Enum = app.Enum;
         $scope.choosed = {
             //todo 字段未确定

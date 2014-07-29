@@ -43,6 +43,7 @@ appControllers.controller('partnersCtrl',
                 //error
             });
         };
+        doRefresh();
         /******************用户操作事件*****************/
             //课程操作
         $scope.operate = function (id, op) {
