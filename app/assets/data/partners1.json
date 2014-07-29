@@ -5,8 +5,29 @@
     "instDistinction": "",
     "partnerQualification": "",
     "addressList": [
-        "address 1",
-        "address 2",
-        "address 3"
+        {
+            "id":11,
+            "detail":"地点11"
+        },
+        {
+            "id":12,
+            "detail":"地点12"
+        }
+    ],
+    "teacherList":[
+        {
+            "id":1,
+            "partnerId":1,
+            "imgUrl":"http://hdn.xnimg.cn/photos/hdn521/20140713/2310/h_main_HM6z_279f00037fae1986.jpg",
+            "name":"小夏",
+            "intro":"负责任的美女老师"
+        },
+        {
+            "id":1,
+            "partnerId":1,
+            "imgUrl":"http://hdn.xnimg.cn/photos/hdn321/20120117/1430/h_main_uMg0_7a8f000389e52f75.jpg",
+            "name":"小雨",
+            "intro":"负责任的帅哥老师"
+        }
     ]
 }

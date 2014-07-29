@@ -5,48 +5,15 @@
             "wholeName": "whole name 1",
             "instName": "inst name 1",
             "instDistinction": "",
-            "partnerQualification": "",
-            "addressList": [
-                "address 1",
-                "address 2",
-                "address 3"
-            ]
+            "partnerQualification": ""
+
         },
         {
-            "id": 2,
+            "id": 1,
             "wholeName": "whole name 2",
             "instName": "inst name 2",
             "instDistinction": "",
-            "partnerQualification": "",
-            "addressList": [
-                "address 1",
-                "address 2",
-                "address 3"
-            ]
-        },
-        {
-            "id": 3,
-            "wholeName": "whole name 3",
-            "instName": "inst name 3",
-            "instDistinction": "",
-            "partnerQualification": "",
-            "addressList": [
-                "address 1",
-                "address 2",
-                "address 3"
-            ]
-        },
-        {
-            "id": 4,
-            "wholeName": "whole name 4",
-            "instName": "inst name 4",
-            "instDistinction": "",
-            "partnerQualification": "",
-            "addressList": [
-                "address 1",
-                "address 2",
-                "address 3"
-            ]
+            "partnerQualification": ""
         }
     ],
     "index": 1,
