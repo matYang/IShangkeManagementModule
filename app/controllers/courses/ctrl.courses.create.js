@@ -12,8 +12,7 @@ appControllers.controller('coursesCreateCtrl',
         });
         //新建课程需要选择机构（admin需要）
         $scope.choosed = {
-            //todo 字段未确定
-            partner: app.rootScope.global.user.partner || null,
+            partner: null,
             template: null
         };
         $scope.$watch(function(){return $scope.choosed.partner},function(){
@@ -33,18 +32,33 @@ appControllers.controller('coursesCreateCtrl',
                     }
                 }
             });
-            //selectedItem is passed from modal controller
-            modal.result.then(function (selectedItem) {
-                $scope.choosed[optionName] = selectedItem;
-            });
+            return modal.result;
         };
         $scope.choosePartner = function () {
             if (app.rootScope.global.isAdmin&&app.rootScope.port=='admin'){
-                modalAction('partners');
+                //登录用户为admin
+                modalAction('partners').then(function (selectedItem) {
+                    $scope.choosed.partner = selectedItem;
+                    $scope.course.partnerId = selectedItem.id;
+                    //获取机构的详情用来填充options （教师列表和地址）
+                    app.getPartnerById(selectedItem.id).then(function(data){
+                        $scope.options.addressList = data.addressList;
+                        $scope.options.teacherList = data.teacherList;
+                    },function(){
+                        app.toaster.pop('error','获取机构-'+selectedItem.instName+'的信息失败','请重新选择机构或刷新重试');
+                    })
+                });
+            }else{
+                //登录用户为partner
+                if(app.rootScope.global.user&&app.rootScope.global.user.partner){
+
+                }
             }
         };
         $scope.chooseTemplate = function () {
-            modalAction('templates');
+            modalAction('templates').then(function (selectedItem) {
+                $scope.choosed.template = selectedItem;
+            });
         };
 
         $scope.submitCourse = function(course){

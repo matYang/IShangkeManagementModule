@@ -56,11 +56,11 @@
         <label class="col-md-3 control-label">教师列表</label>
         <div class="col-md-5">
             <ul>
-                <li>111</li>
-                <li>{{1406342351000|date:'yyyy-MM-dd hh:mm:ss'}}</li>
-                <li>222</li>
-                <li>222</li>
-                <li>222</li>
+                <li ng-repeat="teacher in teacherList">
+                    <img ng-src="teacher.imgUrl" alt="教师照片"/>
+                    <label>{{teacher.name}}</label>
+                    <p>{{teacher.info}}</p>
+                </li>
             </ul>
         </div>
     </div>
@@ -134,7 +134,7 @@
         <label class="col-md-3 control-label">上课日子</label>
 
         <div class="col-md-3">
-            <button class="btn btn-default btn-sm" ng-model="course.studyDays" max-length="4"
+            <button class="btn btn-default btn-sm" ng-model="course.studyDays" max-length="7"
                     data-html="1" data-multiple="1" ng-options="item.value as item.label for item in options.studyDays" bs-select>
                 选择 <span class="caret"></span>
             </button>
@@ -208,16 +208,18 @@
         <label class="col-md-3 control-label">选择上课地点</label>
 
         <div class="col-md-5">
-            <input type="text" class="form-control"
-                   name="addressId" ng-model="template.addressId">
+            <button name="addressId" ng-model="course.addressId" class="btn btn-default btn-sm"
+                    bs-select ng-options="item.id as item.detail for item in options.addressList">
+            </button>
         </div>
     </div>
     <div class="form-group form-group-sm">
         <label class="col-md-3 control-label">选择报名地点</label>
 
         <div class="col-md-5">
-            <input type="text" class="form-control"
-                   name="regLocation" ng-model="template.regLocation">
+            <button name="addressId" ng-model="course.regAddressId" class="btn btn-default btn-sm"
+                    bs-select ng-options="item.id as item.detail for item in options.addressList">
+            </button>
         </div>
     </div>
 

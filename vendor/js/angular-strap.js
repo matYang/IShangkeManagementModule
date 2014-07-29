@@ -2416,7 +2416,7 @@ angular.module('mgcrea.ngStrap.select', [
       caretHtml: '&nbsp;<span class="caret"></span>',
       placeholder: '-请选择-',
       maxLength: 3,
-      maxLengthHtml: 'selected',
+      maxLengthHtml: '已选择',
       iconCheckmark: 'fa fa-check'
     };
   this.$get = [

@@ -1,7 +1,7 @@
 appControllers.controller('chooseCtrl',
     ['$scope', 'app', '$modalInstance', 'optionName', 'partner', function ($scope, app, $modalInstance, optionName, partner) {
         /**
-         * @optionName can be 'partner' and 'template'*/
+         * @optionName can be 'partners' and 'templates'*/
             //todo then you can has the right api to get the options
         console.log(optionName);
         console.log(partner);
@@ -11,8 +11,12 @@ appControllers.controller('chooseCtrl',
         $scope.selected = {};
 
         var doRefresh = $scope.doRefresh = function () {
-            //todo use restAPI to get options
-            var resource = app.restAPI[optionName].get(angular.extend({},$scope.page,{parterId: partner && partner.id}));
+            var resource = {};
+            if(optionName == 'partners'){
+                resource = app.restAPI[optionName].get(angular.extend({},$scope.page));
+            }else if(optionName =='templates'){
+                resource = app.restAPI[optionName].get(angular.extend({},$scope.page,{parterId: partner && partner.id}));
+            }
             resource.$promise.then(function (data) {
                 $scope.items = data.data;
                 $scope.page.start = data.start;
@@ -20,11 +24,6 @@ appControllers.controller('chooseCtrl',
                 $scope.page.total = data.total;
             }, function () {
             });
-
-            $scope.items = [
-                {label: '方法', value: 12},
-                {label: '订单', value: 54}
-            ];
         };
         doRefresh();
         //下一页

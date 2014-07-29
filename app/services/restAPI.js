@@ -95,10 +95,26 @@ appServices
         }
     ])
     //返回课程目录数据 使用promiseGet对数据使用内存缓存
-    .factory('getCategory', ['restAPI', 'cache', 'promiseGet','toaster',
-        function (restAPI, cache, promiseGet,toaster) {
+    .factory('getCategory', ['restAPI', 'cache', 'promiseGet',
+        function (restAPI, cache, promiseGet) {
             return function(){
                 return promiseGet({}, restAPI.category, 'category', cache.category);
+            };
+        }
+    ])
+    //根据id获取partner的详细信息 todo 是否需要进行缓存
+    .factory('getPartnerById', ['restAPI', 'cache', 'promiseGet',
+        function (restAPI, cache, promiseGet) {
+            return function(id){
+                return promiseGet({ID:id}, restAPI.partners, null,null);
+            };
+        }
+    ])
+//根据id获取模板的详细信息 todo 是否需要进行缓存
+    .factory('getTemplateById', ['restAPI', 'cache', 'promiseGet',
+        function (restAPI, cache, promiseGet) {
+            return function(id){
+                return promiseGet({ID:id}, restAPI.templates, null,null);
             };
         }
     ])

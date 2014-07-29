@@ -3,8 +3,10 @@
 app.run(
     ['app', '$rootScope', '$cookieStore', '$localStorage', '$location', '$timeout', '$state', 'Auth', 'restAPI',
         '$log', '$modal', '$parse', 'toaster', 'Enum', 'PageView', 'operateService', 'promiseGet', 'cache', 'getCategory', 'tools',
+        'getPartnerById','getTemplateById',
         function (app, $rootScope, $cookieStore, $localStorage, $location, $timeout, $state, Auth, restAPI,
-                  $log, $modal, $parse, toaster, Enum, PageView, operateService, promiseGet, cache, getCategory, tools) {
+                  $log, $modal, $parse, toaster, Enum, PageView, operateService, promiseGet, cache, getCategory, tools,
+                  getPartnerById,getTemplateById) {
             //$rootScope has some global functions and params
             $rootScope.$state = $state;
             $rootScope.global = {
@@ -42,6 +44,8 @@ app.run(
             app.promiseGet = promiseGet;
             app.tools = tools;
             app.getCategory = getCategory; //获取目录数据的promise 使用了内存缓存
+            app.getPartnerById = getPartnerById; //
+            app.getTemplateById = getTemplateById; //
             app.exec_operate = operateService.exec_operate;//todo 订单 模板 课程等的操作 待完成
             app.rootScope = $rootScope;
             app.timeout = $timeout;
