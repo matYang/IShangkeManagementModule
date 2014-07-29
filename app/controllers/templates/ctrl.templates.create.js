@@ -27,6 +27,8 @@ appControllers.controller('templatesCreateCtrl',
                 });
                 //selectedItem is passed from modal controller
                 modal.result.then(function (selectedItem) {
+                    //清空之前选择的所有template信息
+                    $scope.template = {};
                     $scope.choosed['partner'] = selectedItem;
                     $scope.template.partnerId = selectedItem.id;
                     //获取机构的详情用来填充options （教师列表和地址，机构图片）

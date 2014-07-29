@@ -41,6 +41,8 @@ appControllers.controller('coursesCreateCtrl',
             if (app.rootScope.global.isAdmin && app.rootScope.port == 'admin') {
                 //登录用户为admin
                 modalAction('partners').then(function (selectedItem) {
+                    //清空之前选择的所有信息
+                    $scope.course = {};
                     $scope.choosed.partner = selectedItem;
                     $scope.course.partnerId = selectedItem.id;
                     //获取机构的详情用来填充options （教师列表和地址）
@@ -55,6 +57,8 @@ appControllers.controller('coursesCreateCtrl',
         };
         $scope.chooseTemplate = function () {
             modalAction('templates').then(function (selectedItem) {
+                //清空之前选择的除了partnerId之外的所有信息
+                $scope.course={partnerId:$scope.course.partnerId};
                 $scope.choosed.template = selectedItem;
                 $scope.course.templateId = selectedItem.id;
                 app.getTemplateById(selectedItem.id).then(function (data) {
