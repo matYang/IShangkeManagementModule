@@ -41,7 +41,7 @@ appServices
                     //测试模式使用GET
                     methods = {
                         'post': { method: 'GET' },
-                        'update': { method: 'GET' },
+                        'update': { method: 'PUT' },
                         'operate': { method: 'GET' }
                     };
                 } else {

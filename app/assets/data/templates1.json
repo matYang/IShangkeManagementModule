@@ -1,5 +1,6 @@
 {
     "id": 1,
+    "partnerId":1,
     "courseName": "课程名test",
     "status": 2,
 

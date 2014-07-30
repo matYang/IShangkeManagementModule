@@ -5,11 +5,11 @@
 appDirectives.directive('scrollFix', ['$window', function ($window) {
     var link = function (scope, ele, attrs) {
         var marginTop = 20;
-        var fix_height = $window.innerHeight - 2 * marginTop;
-        var offsetTop = ele[0].offsetTop - marginTop;
-        var offsetLeft = ele[0].offsetLeft;
         var offsetWidth = ele[0].offsetWidth;
+        var offsetTop = ele[0].offsetTop - marginTop;
         var act = function () {
+            var fix_height = $window.innerHeight - 2 * marginTop;
+            var offsetLeft = ele[0].offsetLeft;
 
             var top = $window.scrollY || document.documentElement.scrollTop || document.body.scrollTop;
             var style = {};
