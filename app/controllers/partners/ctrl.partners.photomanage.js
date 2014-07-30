@@ -2,6 +2,8 @@
 appControllers.controller('partnersPhotomanageCtrl',
     ['$scope','restAPI','$state', 'app', function ($scope, restAPI, $state, app) {
         var Partners = restAPI.partners, Photos = restAPI.photos;
+        var id = $state.params.id;
+        $scope.id = id;
         $scope.doRefresh = function() {
             Partners.get({ID:id},function(data){
                 $scope.item = data;

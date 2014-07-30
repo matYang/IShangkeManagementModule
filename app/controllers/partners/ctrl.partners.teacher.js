@@ -14,12 +14,9 @@ appControllers.controller('partnersTeacherCtrl',
             $upload.upload({
                 url: uploadUrl,
                 method: "POST",
-                data : {
-                    teacherList : $scope.teachers
-                },
-                file: files,
-                fileFormDataName: fileNames
-            }).success(function(response) {
+                file: $files[0],
+                fileFormDataName: "teacherImg1"
+            }).success(function(response, status) {
                 if (response.status > 0) {
                     app.toaster.pop("error", "教师添加失败", "");
                     $scope.errorMsg = response.status + ': ' + response.data;

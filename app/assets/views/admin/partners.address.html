@@ -1,0 +1,27 @@
+<div>
+    <form class="col-md-12 form-horizontal" role="form" name="validateForm" w5c-form-validate novalidate>
+    	<div ng-repeat="address in item.addressList">
+    		<label>名字</label>
+	        <input type="text" ng-model="address.name">
+    		<label>详细地址</label>
+	        <input type="text" ng-model="address.detail">
+    		<label>纬度</label>
+	        <input type="text" ng-model="address.lat">
+    		<label>经度</label>
+	        <input type="text" ng-model="address.lng">
+        	<input type="button" class="btn btn-primary" value="删除" ng-click="removeTeacher($index)" />
+        	<input type="button" class="btn btn-primary" value="更新" ng-click="update($index)" />
+        </div>
+        <div >
+        	<label>名字</label>
+	        <input type="text" ng-model="address.name">
+    		<label>详细地址</label>
+	        <input type="text" ng-model="address.detail">
+    		<label>经度</label>
+	        <input type="text" ng-model="address.lat">
+    		<label>纬度</label>
+	        <input type="text" ng-model="address.lng">
+        	<input type="button" class="btn btn-primary" value="新建" ng-click="create($index)" />
+        </div>
+    </form>
+</div>
