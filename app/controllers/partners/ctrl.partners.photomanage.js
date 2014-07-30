@@ -1,7 +1,7 @@
 'use strict';
 appControllers.controller('partnersPhotomanageCtrl',
     ['$scope','restAPI','$state', 'app', function ($scope, restAPI, $state, app) {
-        var Partners = restAPI.partners;
+        var Partners = restAPI.partners, Photos = restAPI.photos;
         $scope.doRefresh = function() {
             Partners.get({ID:id},function(data){
                 $scope.item = data;
@@ -21,6 +21,13 @@ appControllers.controller('partnersPhotomanageCtrl',
             app.state.go('admin.pasrtners.detail', {id: id});
         };
         $scope.update = function () {
+            Photos.get($scope.item, function(data){
+                        app.toaster.pop('success', "照片更新成功", "");
+                app.log.info('photo update success');
+                app.state.go('admin.partners.detail', {id: id});
+            },function(){
+                //error
+            });
             // app.state.go('admin.pasrtners.detail', {id: id});
         };
     }]

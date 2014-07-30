@@ -4,31 +4,9 @@ appControllers.controller('partnersPhotoCtrl',
         var Partners = restAPI.partners;
         var id = $state.params.id;
         //TODO: replace with real url
-        var uploadUrl = "/tempurl"
+        var uploadUrl = "../a-api/" + "v2/classPhoto/upload"
         $scope.imgs = [{}];
         $scope.onFileSelect = function($files, $index) {
-            for ( var i = 0; i < $files.length; i++) {
-                var $file = $files[i];
-                $scope.imgs[$index].photo = $file;
-                if ($scope.fileReaderSupported && $file.type.indexOf('image') > -1) {
-                    var fileReader = new FileReader();
-                    fileReader.readAsDataURL($files[i]);
-                    var loadFile = function(fileReader, index) {
-                        fileReader.onload = function(e) {
-                        }
-                    }(fileReader, i);
-                }
-            }
-        };
-        $scope.upload = function() {
-            var files = [], fileNames = [];
-            for (var i = 0; i < $scope.imgs.length; i++) {
-                files[i] = $scope.imgs[i].photo;
-                fileNames[i] = "classImg" + (i + 1);
-                $scope.imgs[i].photo = null;
-            }
-            $scope.errorMsg = null;
-
             $upload.upload({
                 url: uploadUrl,
                 method: "POST",
@@ -40,8 +18,8 @@ appControllers.controller('partnersPhotoCtrl',
                     app.toaster.pop("error", "照片添加失败", "");
                     $scope.errorMsg = response.status + ': ' + response.data;
                 } else {
+                    $scope.imgs[$index].classPhotoUrl = response.data.imgUrl;
                     app.toaster.pop("success", "照片添加成功", "");
-                    app.state.go("admin.partners.detail", {id: id});
                 }
             }).progress(function(evt) {
                 // Math.min is to fix IE which reports 200% sometimes
