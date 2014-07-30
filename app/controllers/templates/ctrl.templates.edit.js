@@ -32,14 +32,14 @@ appControllers.controller('templatesEditCtrl',
         };
         $scope.doRefresh();
         //提交新建的模板
-        $scope.update_template = function (template) {
+        $scope.updateTemplate = function (template) {
             //需要对教师的列表进行map
             template.teacherList = template.teacherList.map(function (v) {
                 return {id: v};
             });
             Templates.update({ID:id},template, function (data) {
                 app.toaster.pop('success', "课程模板创建成功", "");
-                app.log.info('create template success');
+                app.log.info('update template success');
                 //todo 提示查看该条信息 或者留在此页
                 app.state.go('admin.templates.list');
 
