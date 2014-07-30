@@ -9,14 +9,15 @@ appControllers.controller('partnersCreateCtrl',
         $scope.addLocation = function () {
             var len = $scope.partner.addressList.length;
             $scope.partner.addressList[len] = "";
-        }
+        };
         $scope.removeLocation = function (index) {
-            while (index < $scope.partner.addressList.length - 1) {
-                if ($scope.partner.addressList[index] = $scope.partner.addressList[index + 1]);
-                index++;
-            }
-            $scope.partner.addressList.pop();
-        }
+            $scope.partner.addressList.splice(index,1);
+//            while (index < $scope.partner.addressList.length - 1) {
+//                if ($scope.partner.addressList[index] = $scope.partner.addressList[index + 1]);
+//                index++;
+//            }
+//            $scope.partner.addressList.pop();
+        };
         $scope.create = function(){
             Partners.save($scope.partner, function(data){
                 //todo create success to do something
@@ -27,6 +28,6 @@ appControllers.controller('partnersCreateCtrl',
             },function(){
                 app.log.error('create error');
             })
-        }
+        };
     }]
 );
