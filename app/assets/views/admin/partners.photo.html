@@ -1,5 +1,5 @@
 <div ng-controller="partnersPhotoCtrl">
-    <form class="col-md-12 form-horizontal" role="form" name="validateForm" w5c-form-validate novalidate>
+    <form class="col-xs-12 form-horizontal" role="form" name="validateForm" w5c-form-validate novalidate>
     	<div ng-repeat="img in imgs">
     		<label>图片{{$index + 1}}</label>
         	<input type="file" name="classImg{{$index + 1}}" ng-file-select="onFileSelect($files, $index)">
