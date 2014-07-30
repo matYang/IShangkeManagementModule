@@ -14,6 +14,7 @@ var app = angular.module('app', [
     'ngStorage',
     'toaster',
     'angular-loading-bar',
+    'textAngular',
 
     'appRoutes',
     'appServices',

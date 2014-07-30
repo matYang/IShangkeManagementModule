@@ -245,24 +245,24 @@ angular.module("w5c.validator")
                         }
                     });
 
-                    //press the enter button
-                    form.bind("keydown keypress", function (event) {
-                        if (event.which === 13) {
-                            var currentInput = document.activeElement;
-                            if (currentInput.type !== "textarea") {
-                                //todo should remove jquery method
-                                angular.element(this).find("button").focus();
-                                currentInput.focus();
-                                doValidate();
-                                event.preventDefault();
-                                if (scope[formName].$valid && angular.isFunction(formSubmitFn)) {
-                                    scope.$apply(function () {
-                                        formSubmitFn(scope);
-                                    });
-                                }
-                            }
-                        }
-                    });
+                    //press the enter button no need of quick press enter button to submit
+//                    form.bind("keydown keypress", function (event) {
+//                        if (event.which === 13) {
+//                            var currentInput = document.activeElement;
+//                            if (currentInput.type !== "textarea") {
+//                                //todo should remove jquery method
+//                                angular.element(this).find("button").focus();
+//                                currentInput.focus();
+//                                doValidate();
+//                                event.preventDefault();
+//                                if (scope[formName].$valid && angular.isFunction(formSubmitFn)) {
+//                                    scope.$apply(function () {
+//                                        formSubmitFn(scope);
+//                                    });
+//                                }
+//                            }
+//                        }
+//                    });
                 }
 
 

@@ -158,7 +158,7 @@
             <label class="col-md-3 control-label">班级类型</label>
 
             <div class="col-md-5">
-                <input type="text" class="form-control"
+                <input type="text" class="form-control" placeholder="如至少25人"
                        name="classSize" ng-model="template.classSize">
             </div>
         </div>
@@ -403,7 +403,7 @@
             </div>
         </div>
     </form>
-    <div class="col-md-3 pull-right">
+    <div class="col-md-3 pull-right" scroll-fix>
         <div>
             <label>【机构信息】</label>
             <button class="btn btn-default btn-sm" ng-click="choosePartner()">{{choosed.partner.instName ||  '--请选择-- '}}</button>

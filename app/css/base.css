@@ -29,8 +29,7 @@ a{
 }
 /*测试代码专用*/
 pre:before{
-    position: absolute;
-    top:2px;right: 25px;
+    float: right;
     content:'FOR TEST';
     font-weight: bold;
     color: #b94a48;
