@@ -229,9 +229,6 @@
                 </button>
             </div>
         </div>
-        {{classPhotoList}}
-
-
         <legend>教学信息</legend>
         <div class="form-group form-group-sm">
             <label class="col-xs-3 control-label">课程介绍</label>
@@ -408,6 +405,8 @@
             <label>【机构信息】</label>
             <button class="btn btn-default btn-sm" ng-click="choosePartner()">{{choosed.partner.instName ||  '--请选择-- '}}</button>
         </div>
+        <br/>
+        <button ng-show="template.partnerId!==undefined" class="btn btn-default btn-warning btn-sm" ng-click="clear()">清空所填信息</button>
         <hr/>
         <pre>{{template|json}}</pre>
     </div>

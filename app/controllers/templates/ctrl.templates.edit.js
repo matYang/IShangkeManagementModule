@@ -34,17 +34,16 @@ appControllers.controller('templatesEditCtrl',
         //提交新建的模板
         $scope.updateTemplate = function (template) {
             //需要对教师的列表进行map
-            template.teacherList = template.teacherList.map(function (v) {
-                return {id: v};
-            });
-            Templates.update({ID:id},template, function (data) {
-                app.toaster.pop('success', "课程模板创建成功", "");
-                app.log.info('update template success');
-                //todo 提示查看该条信息 或者留在此页
-                app.state.go('admin.templates.list');
-
+            if (template.teacherList !== undefined) {
+                template.teacherList = template.teacherList.map(function (v) {
+                    return {id: v};
+                });
+            }
+            Templates.update({ID: id}, template, function (data) {
+                app.toaster.pop('success', '课程模板>' + template.courseName + '修改成功',
+                        '<a href="#/admin/templates/' + data.id + '"><strong>查看该信息</strong></a> 或者 <a href="#/admin/templates"><strong>返回列表</strong></a>', 0, 'trustedHtml');
             }, function () {
-                app.log.error('create error');
+                app.toaster.pop('error', "课程模板>" + template.courseName + "修改成功", "");
             })
         };
     }]

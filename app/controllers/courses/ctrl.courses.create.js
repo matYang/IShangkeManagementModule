@@ -58,7 +58,7 @@ appControllers.controller('coursesCreateCtrl',
         $scope.chooseTemplate = function () {
             modalAction('templates').then(function (selectedItem) {
                 //清空之前选择的除了partnerId之外的所有信息
-                $scope.course={partnerId:$scope.course.partnerId};
+                $scope.course = {partnerId: $scope.course.partnerId};
                 $scope.choosed.template = selectedItem;
                 $scope.course.templateId = selectedItem.id;
                 app.getTemplateById(selectedItem.id).then(function (data) {
@@ -71,21 +71,25 @@ appControllers.controller('coursesCreateCtrl',
                 })
             });
         };
-
+        $scope.clear = function () {
+            $scope.course = {
+                partnerId: $scope.course.partnerId || undefined,
+                templateId: $scope.course.templateId || undefined,
+                courseName: $scope.course.courseName || undefined,
+                originalPrice: $scope.course.originalPrice || undefined,
+                price: $scope.course.price || undefined,
+                categoryId: $scope.course.categoryId || undefined,
+                teacherList: $scope.course.teacherList || undefined,
+                classPhotoList: $scope.course.classPhotoList || undefined
+            };
+        };
         $scope.submitCourse = function (course) {
             restAPI.save(course, function (data) {
-                //todo success
-                app.toaster.pop('error', '创建课程--' + course.courseName + '成功', '');
+                app.toaster.pop('success', '课程>' + course.courseName + '创建成功',
+                        '<a href="#/admin/courses/' + data.id + '"><strong>查看该信息</strong></a> 或者 <a href="#/admin/courses"><strong>返回列表</strong></a>', 0, 'trustedHtml');
             }, function () {
                 app.toaster.pop('error', '创建课程失败', '请稍后再试');
             });
-        };
-
-        //打开日期
-        $scope.open = function ($event, id) {
-            $event.preventDefault();
-            $event.stopPropagation();
-            $scope['opened_' + id] = true;
         };
     }]
 );

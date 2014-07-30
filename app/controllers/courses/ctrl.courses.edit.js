@@ -1,6 +1,6 @@
 'use strict';
 appControllers.controller('coursesEditCtrl',
-    ['$scope','app', function ($scope,app) {
+    ['$scope', 'app', function ($scope, app) {
         var Courses = app.restAPI.templates;
         var id = app.state.params.id;
         app.getCategory().then(function (data) {
@@ -9,7 +9,7 @@ appControllers.controller('coursesEditCtrl',
         $scope.options = angular.copy(app.options);
 
         $scope.doRefresh = function () {
-            Courses.get({ID:id}).$promise.then(function (course) {
+            Courses.get({ID: id}).$promise.then(function (course) {
                 $scope.course = course;
                 return app.getPartnerById(course.partnerId);
             }).then(function (partner) {
@@ -24,14 +24,11 @@ appControllers.controller('coursesEditCtrl',
         //提交新建的模板
         $scope.submitCourse = function (course) {
             //需要对教师的列表进行map
-            Courses.update({ID:id},course, function (data) {
-                app.toaster.pop('success', "课程模板创建成功", "");
-                app.log.info('update course success');
-                //todo 提示查看该条信息 或者留在此页
-                app.state.go('admin.courses.list');
-
+            Courses.update({ID: id}, course, function (data) {
+                app.toaster.pop('success', '课程>' + course.courseName + '修改成功',
+                        '<a href="#/admin/courses/'+data.id+'"><strong>查看该信息</strong></a> 或者 <a href="#/admin/courses"><strong>返回列表</strong></a>', 0, 'trustedHtml');
             }, function () {
-                app.log.error('create error');
+                app.toaster.pop('error', "课程>" + course.courseName + "修改失败", "");
             })
         };
     }]
