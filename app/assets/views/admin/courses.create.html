@@ -7,26 +7,9 @@
     </div>
 
 </div>
-<!--选择机构以及模板-->
-<div class="row">
-    <div class="col-md-4 text-center">
-        <label>【机构信息】</label>
-        <button class="btn btn-default btn-sm" ng-click="choosePartner()">{{choosed.partner.instName ||  '--请选择-- '}}</button>
-    </div>
-    <div ng-if="choosed.partner" class="col-md-4 text-center">
-        <label>【选用课程模板】</label>
-        <button class="btn btn-default btn-sm" ng-click="chooseTemplate()">{{choosed.template.courseName || ' --请选择-- '}}</button>
-    </div>
-</div>
-<br/>
-        <!--测试模式下加入！-->
-<div class="row" ng-show="choosed.template">
-    <div class="col-md-4">
-        <pre>
-            course:{{course|json}}
-        </pre>
-    </div>
-    <form class="col-md-8 form-horizontal form-create" role="form" name="validateForm" w5c-form-validate novalidate>
+
+<div class="row" >
+    <form ng-show="choosed.template" class="col-md-8 form-horizontal form-create" role="form" name="validateForm" w5c-form-validate novalidate>
 
     <legend>根据模板生成的不可更改信息</legend>
     <div class="form-group form-group-sm">
@@ -77,18 +60,18 @@
 
         <div class="col-md-7">
             <div class="input-group input-group-sm col-md-5 pull-left">
-                <input name="startDate" type="text" class="form-control" ng-model="course.startDate" datepicker-popup="yyyy/MM/dd" is-open="opened_startDate"
-                       max-date="course.finishDate"/>
+                <input name="startDate" type="text" class="form-control input-sm" placeholder="开始"
+                       ng-model="course.startDate" data-max-date="{{course.finishDate}}" bs-datepicker>
                     <span class="input-group-btn">
-                        <button class="btn btn-default" ng-click="open($event,'startDate')"><i class="fa fa-calendar"></i>&nbsp;</button>
+                        <button class="btn btn-default"><i class="fa fa-calendar"></i>&nbsp;</button>
                     </span>
             </div>
             <span class="pull-left" style="padding: 5px 2px 0">到</span>
             <div class="input-group input-group-sm col-md-5 pull-left">
-                <input name="finishDate" type="text" class="form-control" ng-model="course.finishDate" datepicker-popup="yyyy/MM/dd" is-open="opened_finishDate"
-                       min-date="course.startDate"/>
+                <input name="finishDate" type="text" class="form-control input-sm" placeholder="结束"
+                       ng-model="course.finishDate" data-min-date="{{course.startDate}}" bs-datepicker>
                     <span class="input-group-btn">
-                        <button class="btn btn-default" ng-click="open($event,'finishDate')"><i class="fa fa-calendar"></i>&nbsp;</button>
+                        <button class="btn btn-default"><i class="fa fa-calendar"></i>&nbsp;</button>
                     </span>
             </div>
         </div>
@@ -193,11 +176,11 @@
 
         <div class="col-md-3">
             <div class="input-group input-group-sm pull-left">
-                <input name="cutoffDate" type="text" class="form-control" ng-model="course.cutoffDate" datepicker-popup="yyyy/MM/dd" is-open="opened_cutoffDate"
-                        disabled/>
-                    <span class="input-group-btn">
-                        <button class="btn btn-default" ng-click="open($event,'cutoffDate')"><i class="fa fa-calendar"></i>&nbsp;</button>
-                    </span>
+                <input name="finishDate" type="text" class="form-control input-sm" placeholder="截止日期"
+                       ng-model="course.cutoffDate" data-min-date="{{course.startDate}}" bs-datepicker>
+                <span class="input-group-btn">
+                    <button class="btn btn-default"><i class="fa fa-calendar"></i>&nbsp;</button>
+                </span>
             </div>
         </div>
     </div>
@@ -407,5 +390,23 @@
     </div>
 
     </form>
+    <!--右侧面板-->
+    <div class="col-md-4 pull-right">
+        <!--选择机构以及模板-->
+        <div>
+            <label>【机构信息】</label>
+            <button class="btn btn-default btn-sm" ng-click="choosePartner()">{{choosed.partner.instName ||  '--请选择-- '}}</button>
+        </div>
+        <hr/>
+        <!--测试模式下加入！-->
+        <div ng-if="choosed.partner">
+            <label>【选用课程模板】</label>
+            <button class="btn btn-default btn-sm" ng-click="chooseTemplate()">{{choosed.template.courseName || ' --请选择-- '}}</button>
+        </div>
+        <hr/>
+        <pre>
+            course:{{course|json}}
+        </pre>
+    </div>
 </div>
 <!--order_new content end-->

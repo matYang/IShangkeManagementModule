@@ -9,7 +9,7 @@
 </div>
 <div class="row">
 
-    <form class="col-md-9 form-horizontal form-create" role="form" name="validateForm" w5c-form-validate novalidate>
+    <form ng-show="choosed.partner" class="col-md-9 form-horizontal form-create" role="form" name="validateForm" w5c-form-validate novalidate>
         <legend>重要信息</legend>
         <div class="form-group form-group-sm">
             <label class="col-md-3 control-label">模板名(*)</label>
@@ -403,9 +403,11 @@
             </div>
         </div>
     </form>
-    <div class="col-md-3">
-        <label>【机构信息】</label>
-        <button class="btn btn-default" ng-click="choosePartner()">{{choosed.partner.instName ||  '--请选择-- '}}</button>
+    <div class="col-md-3 pull-right">
+        <div>
+            <label>【机构信息】</label>
+            <button class="btn btn-default btn-sm" ng-click="choosePartner()">{{choosed.partner.instName ||  '--请选择-- '}}</button>
+        </div>
         <hr/>
         <pre>{{template|json}}</pre>
     </div>
