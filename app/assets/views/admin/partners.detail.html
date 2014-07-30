@@ -4,6 +4,7 @@
     <div class="pull-right">{{ title }}</div>
 </div>
 <div class="row">
+    <h3>机构基本信息</h3>
     <div class="col-md-12 form-horizontal">
         <div class="form-group form-group-sm">
             <label class="col-sm-3 control-label">合作机构ID</label>
@@ -58,6 +59,7 @@
             <input class="btn btn-primary" type="button" value="修改logo" ui-sref="admin.partners.logo({id:{{id}}})" />
             <input class="btn btn-primary" type="button" value="添加教师" ui-sref="admin.partners.teacher({id:{{id}}})" />
             <input class="btn btn-primary" type="button" value="添加照片" ui-sref="admin.partners.photo({id:{{id}}})" />
+            <input class="btn btn-primary" type="button" value="修改地址" ui-sref="admin.partners.address({id:{{id}}})" />
             <input class="btn btn-primary" ng-show="partner.teacherList && partner.teacherList.length" type="button" value="管理教师" ui-sref="admin.partners.teachermanage({id:{{id}}})" />
             <input class="btn btn-primary" ng-show="partner.classPhotoList && partner.classPhotoList.length" type="button" value="管理照片" ui-sref="admin.partners.photomanage({id:{{id}}})" />
             <input class="btn btn-primary" type="button" value="编辑资料" ui-sref="admin.partners.edit({id:{{id}}})" />
