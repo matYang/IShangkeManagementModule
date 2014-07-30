@@ -82,11 +82,12 @@ appControllers.controller('coursesCreateCtrl',
                 teacherList: $scope.course.teacherList || undefined,
                 classPhotoList: $scope.course.classPhotoList || undefined
             };
+            app.window.scrollTo(0,0);
         };
         $scope.submitCourse = function (course) {
             restAPI.save(course, function (data) {
                 app.toaster.pop('success', '课程>' + course.courseName + '创建成功',
-                        '<a href="#/admin/courses/' + data.id + '"><strong>查看该信息</strong></a> 或者 <a href="#/admin/courses"><strong>返回列表</strong></a>', 0, 'trustedHtml');
+                        '<a href="#/admin/courses/' + data.id + '"><strong>查看该信息</strong></a> 或者 <a><strong>继续创建</strong></a>', 0, 'trustedHtml',$scope.clear);
             }, function () {
                 app.toaster.pop('error', '创建课程失败', '请稍后再试');
             });

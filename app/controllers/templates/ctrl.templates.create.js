@@ -50,6 +50,7 @@ appControllers.controller('templatesCreateCtrl',
         };
         $scope.clear = function(){
             $scope.template = {partnerId:$scope.template.partnerId||undefined};
+            app.window.scrollTo(0,0);
         };
         //提交新建的模板
         $scope.submit_template = function (template) {
@@ -61,7 +62,7 @@ appControllers.controller('templatesCreateCtrl',
             }
             Templates.save(template, function (data) {
                 app.toaster.pop('success', '课程模板>' + template.courseName + '创建成功',
-                        '<a href="#/admin/templates/'+data.id+'"><strong>查看该信息</strong></a> 或者 <a ng-click="template"><strong>返回列表</strong></a>', 0, 'trustedHtml');
+                        '<a href="#/admin/templates/'+data.id+'"><strong>查看该信息</strong></a> 或者 <a><strong>继续创建</strong></a>', 0, 'trustedHtml',$scope.clear);
             }, function () {
                 app.toaster.pop('error', '创建课程模板>' + template.courseName + '失败', '');
             })

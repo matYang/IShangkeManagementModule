@@ -1,10 +1,10 @@
 'use strict';
 /* App Runtime */
 app.run(
-    ['app', '$rootScope', '$cookieStore', '$localStorage', '$location', '$timeout', '$state', 'Auth', 'restAPI',
+    ['app', '$rootScope', '$cookieStore', '$localStorage', '$location','$window', '$timeout', '$state', 'Auth', 'restAPI',
         '$log', '$modal', '$parse', 'toaster', 'Enum', 'PageView', 'operateService', 'promiseGet', 'cache', 'getCategory', 'tools',
         'getPartnerById','getTemplateById',
-        function (app, $rootScope, $cookieStore, $localStorage, $location, $timeout, $state, Auth, restAPI,
+        function (app, $rootScope, $cookieStore, $localStorage, $location,$window, $timeout, $state, Auth, restAPI,
                   $log, $modal, $parse, toaster, Enum, PageView, operateService, promiseGet, cache, getCategory, tools,
                   getPartnerById,getTemplateById) {
             //$rootScope has some global functions and params
@@ -32,6 +32,7 @@ app.run(
             //assemble things to reduce inject times in controllers,just need 'app'
             //for angular will cache all the inject module
             app.state = $state;
+            app.window = $window;
             app.storage = $localStorage;
             app.toaster = toaster;
             app.log = $log; //$log can log/info/warn/error
