@@ -32,10 +32,10 @@
             <div class="col-xs-5"><input type="text" class="form-control" id="hqLocation" name="hqLocation" ng-model="partner.hqLocation" required=""/></div>
         </div>
         <div class="form-group form-group-sm">
-            <label class="col-xs-3 control-label">校区地址:</label>
+            <label class="col-xs-3 control-label">校区地址（经纬度选填）:</label>
             <div class="col-xs-5">
             <div ng-repeat="location in partner.addressList track by $index">
-                <input type="text" class="form-control addressList" id="addressList{{$index}}" name="addressList{{$index}}" ng-model="partner.addressList[$index]" required=""/>
+                <input type="text" class="form-control addressList" name="addressList{{$index}}" ng-model="partner.addressList[$index]"/>
                 <a ng-click="removeLocation($index)" class="glyphicon-remove">删除</a>
             </div>
             <a id="addLocation" ng-click="addLocation()">增加更多地址</a>
@@ -43,16 +43,20 @@
         </div>
 
         <div class="form-group form-group-sm">
-            <label class="col-xs-3 control-label">默认课程截止日:</label>
-            <div class="col-xs-5"><input type="text" class="form-control" id="defaultCutoffDay" name="defaultCutoffDay" ng-model="partner.defaultCutoffDay" required=""/></div>
+            <label class="col-xs-3 control-label">默认课程截止天数:</label>
+            <div class="col-xs-5">
+                <input type="number" class="form-control" name="cutoffDay" ng-model="partner.cutoffDay" placeholder="课程开始前多少天前截止"/>
+            </div>
         </div>
         <div class="form-group form-group-sm">
             <label class="col-xs-3 control-label">默认截止日几点截止:</label>
-            <div class="col-xs-5"><input type="text" class="form-control" id="defaultCutoffTime" name="defaultCutoffTime" ng-model="partner.defaultCutoffTime" required=""/></div>
+            <div class="col-xs-5">
+                <input type="number" class="form-control" name="defaultCutoffTime" ng-model="partner.defaultCutoffTime" placeholder="如1120即为11点20分"/>
+            </div>
         </div>
 
         <div class="form-group form-group-sm">
-            <label class="col-xs-3 control-label">查询号:</label>
+            <label class="col-xs-3 control-label">识别号:</label>
             <div class="col-xs-5"><input type="text" class="form-control" id="reference" name="reference" ng-model="partner.reference" required=""/></div>
         </div>
         <div class="form-group form-group-sm">
