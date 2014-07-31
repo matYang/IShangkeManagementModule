@@ -22,7 +22,7 @@ appControllers.controller('templatesEditCtrl',
                 $scope.options.addressList = partner.addressList;
                 var teacherList = [];
                 angular.forEach(partner.teacherList, function (teacher) {
-                    teacher.label = '<img src="' + teacher.imgUrl + '" alt="' + teacher.name + '" class="pic-micro"/>' + teacher.name;
+                    teacher.label = '<img src="' + teacher.imgUrl + '" alt="' + teacher.name + '" class="img-micro"/>' + teacher.name;
                     teacherList.push(teacher);
                 });
                 $scope.options.teacherList = teacherList;
