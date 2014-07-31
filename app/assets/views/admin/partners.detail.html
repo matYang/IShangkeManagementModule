@@ -1,69 +1,73 @@
 <div class="row">
-    <a ui-sref="admin.partners.list" class="btn fa fa-arrow-left pull-left"> Back</a>
-
-    <div class="pull-right">{{ title }}</div>
+    <div class="col-xs-12">
+        <h3>
+            <small><a ui-sref="admin.partners.list" class="btn fa fa-chevron-left pull-left"> 返回列表 </a></small>
+            机构基本信息<small>--{{partner.instName}}</small>
+        </h3>
+    </div>
 </div>
 <div class="row">
-    <h3>机构基本信息</h3>
-    <div class="col-md-12 form-horizontal">
+    <form class="col-xs-9 form-horizontal">
         <div class="form-group form-group-sm">
-            <label class="col-sm-3 control-label">合作机构ID</label>
-            <div class="col-md-4">{{partner.id}}</div>
+            <label class="col-xs-4 control-label">合作机构ID</label>
+            <div class="col-xs-5 form-control-static">{{partner.id}}</div>
         </div>
         <div class="form-group form-group-sm">
-            <label class="col-sm-3 control-label">学校名:</label>
-            <div class="col-md-4">{{partner.instName}}</div>
+            <label class="col-xs-4 control-label">机构简称:</label>
+            <div class="col-xs-5 form-control-static">{{partner.instName}}</div>
         </div>
         <div class="form-group form-group-sm">
-            <label class="col-sm-3 control-label">机构全称:</label>
-            <div class="col-md-4">{{partner.wholeName}}</div>
+            <label class="col-xs-4 control-label">机构全称:</label>
+            <div class="col-xs-5 form-control-static">{{partner.wholeName}}</div>
         </div>
         <div class="form-group form-group-sm">
-            <label class="col-sm-3 control-label">机构简介:</label>
-            <div class="col-md-4">{{ partner.partnerIntro }}</div>
+            <label class="col-xs-4 control-label">机构简介:</label>
+            <div class="col-xs-5 form-control-static">{{ partner.partnerIntro }}</div>
         </div>
         <div class="form-group form-group-sm">
-            <label class="col-sm-3 control-label">机构荣誉:</label>
-            <div class="col-md-4">{{ partner.partnerDistinction }}</div>
+            <label class="col-xs-4 control-label">机构荣誉:</label>
+            <div class="col-xs-5 form-control-static">{{ partner.partnerDistinction }}</div>
         </div>
         <div class="form-group form-group-sm">
-            <label class="col-sm-3 control-label">合作伙伴资格:</label>
-            <div class="col-md-4">{{partner.partnerQualification}}</div>
+            <label class="col-xs-4 control-label">合作伙伴资格:</label>
+            <div class="col-xs-5 form-control-static">{{partner.partnerQualification}}</div>
         </div>
         <div class="form-group form-group-sm">
-            <label class="col-sm-3 control-label">公司总部地址:</label>
-            <div class="col-md-4">{{partner.hqLocation}}</div>
+            <label class="col-xs-4 control-label">公司总部地址:</label>
+            <div class="col-xs-5 form-control-static">{{partner.hqLocation}}</div>
         </div>
         <div class="form-group form-group-sm">
-            <label class="col-sm-3 control-label">校区地址:</label>
-            <div class="col-md-4">{{partner.subLocation}}</div>
+            <label class="col-xs-4 control-label">校区地址:</label>
+            <div class="col-xs-5 form-control-static">{{partner.subLocation}}</div>
         </div>
         <div class="form-group form-group-sm">
-            <label class="col-sm-3 control-label">默认课程截止日:</label>
-            <div class="col-md-4">{{partner.defaultCutoffDay}}</div>
+            <label class="col-xs-4 control-label">默认课程截止日:</label>
+            <div class="col-xs-5 form-control-static">{{partner.cutoffDay}}</div>
         </div>
         <div class="form-group form-group-sm">
-            <label class="col-sm-3 control-label">默认截止日几点截止:</label>
-            <div class="col-md-4">{{partner.defaultCutoffTime}}</div>
+            <label class="col-xs-4 control-label">默认截止日几点截止:</label>
+            <div class="col-xs-5 form-control-static">{{partner.cutoffTime}}</div>
         </div>
         <div class="form-group form-group-sm">
-            <label class="col-sm-3 control-label">查询号:</label>
-            <div class="col-md-4">{{partner.reference}}</div>
+            <label class="col-xs-4 control-label">查询号:</label>
+            <div class="col-xs-5 form-control-static">{{partner.reference}}</div>
         </div>
         <div class="form-group form-group-sm">
-            <label class="col-sm-3 control-label">Logo:</label>
-            <div class="col-md-4"><img ng-show="!!partner.logoUrl" ng-src="{{partner.logoUrl}}"></div>
+            <label class="col-xs-4 control-label">Logo:</label>
+            <div class="col-xs-5 form-control-static"><img ng-show="!!partner.logoUrl" ng-src="{{partner.logoUrl}}"></div>
         </div>
 
-        <div class="col-xs-4 col-xs-offset-3">
-            <input class="btn btn-primary" type="button" value="修改资料" ui-sref="admin.partners.edit({id:{{id}}})" />
-            <input class="btn btn-primary" type="button" value="修改logo" ui-sref="admin.partners.logo({id:{{id}}})" />
-            <input class="btn btn-primary" type="button" value="添加教师" ui-sref="admin.partners.teacher({id:{{id}}})" />
-            <input class="btn btn-primary" type="button" value="添加照片" ui-sref="admin.partners.photo({id:{{id}}})" />
-            <input class="btn btn-primary" type="button" value="修改地址" ui-sref="admin.partners.address({id:{{id}}})" />
-            <input class="btn btn-primary" ng-show="partner.teacherList && partner.teacherList.length" type="button" value="管理教师" ui-sref="admin.partners.teachermanage({id:{{id}}})" />
-            <input class="btn btn-primary" ng-show="partner.classPhotoList && partner.classPhotoList.length" type="button" value="管理照片" ui-sref="admin.partners.photomanage({id:{{id}}})" />
-            <input class="btn btn-primary" type="button" value="编辑资料" ui-sref="admin.partners.edit({id:{{id}}})" />
-        </div>
+    </form>
+    <div class="col-xs-3" scroll-fix>
+        <label>可执行的操作</label>
+        <hr/>
+        <input class="btn btn-primary" type="button" value="修改资料" ui-sref="admin.partners.edit({id:{{id}}})" />
+        <input class="btn btn-primary" type="button" value="修改logo" ui-sref="admin.partners.logo({id:{{id}}})" />
+        <input class="btn btn-primary" type="button" value="添加教师" ui-sref="admin.partners.teacher({id:{{id}}})" />
+        <input class="btn btn-primary" type="button" value="添加照片" ui-sref="admin.partners.photo({id:{{id}}})" />
+        <input class="btn btn-primary" type="button" value="修改地址" ui-sref="admin.partners.address({id:{{id}}})" />
+        <input class="btn btn-primary" ng-show="partner.teacherList && partner.teacherList.length" type="button" value="管理教师" ui-sref="admin.partners.teachermanage({id:{{id}}})" />
+        <input class="btn btn-primary" ng-show="partner.classPhotoList && partner.classPhotoList.length" type="button" value="管理照片" ui-sref="admin.partners.photomanage({id:{{id}}})" />
+        <input class="btn btn-primary" type="button" value="编辑资料" ui-sref="admin.partners.edit({id:{{id}}})" />
     </div>
 </div>
