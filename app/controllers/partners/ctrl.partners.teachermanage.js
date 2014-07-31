@@ -1,4 +1,4 @@
-'use strict';
+    'use strict';
 appControllers.controller('partnersTeachermanageCtrl',
     ['$scope','restAPI','$state', 'app', function ($scope, restAPI, $state, app) {
         var Teachers = restAPI.teachers, Partners = restAPI.partners;
@@ -12,8 +12,8 @@ appControllers.controller('partnersTeachermanageCtrl',
         };
 
         $scope.removeTeacher = function ($index) {
-            while ($index < item.teacherList.length - 1) {
-                item.teacherList[$index] = item.teacherList[$index+1];
+            while ($index < $scope.item.teacherList.length - 1) {
+                $scope.item.teacherList[$index] = $scope.item.teacherList[$index+1];
                 $index++;
             }
             item.teacherList.pop();
@@ -30,6 +30,7 @@ appControllers.controller('partnersTeachermanageCtrl',
                 app.log.error('update error');
             });
         };
+        $scope.doRefresh();
     }]
 );
 
