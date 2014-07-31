@@ -32,17 +32,6 @@
             <div class="col-md-5"><input type="text" class="form-control" id="hqLocation" name="hqLocation" ng-model="partner.hqLocation" required=""/></div>
         </div>
         <div class="form-group form-group-sm">
-            <label class="col-sm-3 control-label">校区地址:</label>
-            <div class="col-md-5">
-            <div ng-repeat="location in partner.addressList track by $index">
-                <input type="text" class="form-control addressList" id="addressList{{$index}}" name="addressList{{$index}}" ng-model="partner.addressList[$index]" required=""/>
-                <a ng-click="removeLocation($index)" class="glyphicon-remove">删除</a>
-            </div>
-            <a id="addLocation" ng-click="addLocation()">增加更多地址</a>
-            </div>
-        </div>
-
-        <div class="form-group form-group-sm">
             <label class="col-sm-3 control-label">默认课程截止日:</label>
             <div class="col-md-5"><input type="text" class="form-control" id="defaultCutoffDay" name="defaultCutoffDay" ng-model="partner.defaultCutoffDay" required=""/></div>
         </div>
