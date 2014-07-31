@@ -1,8 +1,38 @@
 'use strict';
 appControllers.controller('partnersPhotoCtrl',
     ['$scope','restAPI','$state', '$upload', 'app', function ($scope, restAPI, $state, $upload, app) {
+        /**
+         * 初始化页面信息
+         */
         var Partners = restAPI.partners, Photos = restAPI.photos;
         var id = $state.params.id;
+        $scope.partner = {
+            teacherList:[]
+        };
+        $scope.doRefresh = function() {
+            app.getPartnerById(id).then(function(partner){
+                $scope.partner = partner;
+            },function(){
+                //error
+            });
+        };
+        $scope.doRefresh(); //获取机构详情
+
+        /**
+         * 增删图片
+         */
+        $scope.addPhoto = function () {
+            $scope.imgs[$scope.imgs.length] = {};
+        };
+        $scope.removePhoto = function () {
+            $scope.imgs[$scope.imgs.length] = {};
+        };
+
+
+
+        /**
+         * 上传图片
+         */
         //TODO: replace with real url
         var uploadUrl = "../a-api/" + "v2/classPhoto/upload"
         $scope.imgs = [{}];
@@ -36,27 +66,22 @@ appControllers.controller('partnersPhotoCtrl',
             }
             return result;
         };
-        $scope.addPhoto = function () {
-          $scope.imgs[$scope.imgs.length] = {};
-        };
-        $scope.save = function () {
-            Photos.save({id:id, classPhotoList:$scope.imgs}, function (status) {
-                app.toaster.pop("success", "保存成功", "");
-                app.state.go('admin.pasrtners.detail', {id: id});
-            }, function () {
 
+        /**
+         * 提交更新的信息
+         */
+        $scope.submit = function () {
+            Teachers.update({ID:id},$scope.partner, function (data) {
+                app.toaster.pop('success', "教师更新成功", "");
+                app.state.go('admin.partners.detail', {id: id});
+
+            },function(){
+                app.log.error('update error');
             });
         };
 
         //from photo manage js below
-        $scope.id = id;
-        $scope.doRefresh = function() {
-            Partners.get({ID:id},function(data){
-                $scope.item = data;
-            },function(){
-                //error
-            });
-        };
+
 
         $scope.removePhoto = function ($index) {
             while ($index < item.classPhotoList.length - 1) {

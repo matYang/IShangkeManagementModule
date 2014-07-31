@@ -19,7 +19,7 @@ appServices
                     'templates': ['/data/templates:ID.json/:OP', '/template/:ID/:OP'],
                     'courses': ['/data/courses:ID.json', '/course/:ID/:OP'],
                     'partners': ['/data/partners:ID.json', '/partner/:ID/:OP'],
-                    'teachers': ['', '/teacher/:ID/:OP'],
+                    'teachers': ['/data/teachers:ID.json', '/teacher/:ID/:OP'],
                     'photos': ['', '/photo/:ID/:OP'],
                     'addresses': ['', '/address/:ID/:OP'],
                     // /api/v2/booking/1/
@@ -40,6 +40,7 @@ appServices
                     params = {};
                     //测试模式使用GET
                     methods = {
+                        'query':  {method:'GET', isArray:false},
                         'post': { method: 'GET' },
                         'update': { method: 'GET' },
                         'operate': { method: 'GET' }
@@ -47,6 +48,7 @@ appServices
                 } else {
                     params = {ID: '@ID', OP: '@OP'};
                     methods = {
+                        'query':  {method:'GET', isArray:false},
                         'post': { method: 'POST' },
                         'update': { method: 'PUT' },
                         'operate': { method: 'POST' }

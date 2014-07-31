@@ -1,40 +1,59 @@
 <div class="row">
-    <form class="col-xs-9 form-horizontal" role="form" name="validateForm" w5c-form-validate novalidate>
-        <div class="clearfix">
-            <div ng-repeat="teacher in partner.teacherList" class="img-thumbnail pull-left" style="width:200px">
-                <img ng-src="{{teacher.imgUrl}}" class="img-micro center-block"/>
-                <input type="file" name="teacherImg{{$index}}" ng-file-select="onFileSelect($files, $index)"
-                       ng-model="teacher.teacherImg"/>
+    <div class="col-xs-9 form-horizontal">
+        <div class="row">
+            <div class="col-xs-12">
+                <p>&gt;&gt;教师总数：<strong>{{total}}</strong></p>
+                <div ng-repeat="teacher in teachers track by teacher.id" class="img-thumbnail pull-left"
+                     style="width:200px;position: relative;margin-bottom: 10px;margin-right: 10px">
+                    <img ng-src="{{teacher.imgUrl}}" class="img-micro center-block"/>
+                    <!--不在编辑状态中-->
+                    <div  ng-hide="teacher.edit">
+                        <label>姓名</label>
+                        <p>{{teacher.name}}</p>
+                        <label>简介</label>
+                        <p style="height: 40px">{{teacher.intro}}</p>
+                    </div>
+                    <!--进入编辑状态-->
+                    <p  ng-show="teacher.edit">
+                        <input type="file" name="teacherImg{{$index}}" ng-file-select="onFileSelect($files, $index)"
+                               ng-model="teacher.teacherImg" style="position: absolute;top: 5px;right: 5px;width: 72px;"/>
+                        <label>姓名</label>
+                        <input class="form-control input-sm" type="text" name="teacherName{{$index}}"
+                               ng-model="teacher.name">
+                        <label>简介</label>
+                        <textarea style="height: 40px;" ng-show="teacher.edit" class="form-control input-sm" type="text" name="teacherIntro{{$index}}"
+                                  ng-model="teacher.intro"></textarea>
+                    </p>
 
-                <p>
-                    <label>姓名</label>
-                    <input class="form-control input-sm" type="text" name="teacherName{{$index}}" ng-model="teacher.name">
-                </p>
+                    <p>
+                        <button ng-show="teacher.edit" class="btn btn-primary btn-sm" ng-click="updateTeacher($index)">保存</button>
+                        <button ng-show="teacher.edit" class="btn btn-default btn-sm" ng-click="teacher.edit=false">取消</button>
 
-                <p>
-                    <label>简介</label>
-                    <textarea class="form-control input-sm" type="text" name="teacherIntro{{$index}}" ng-model="teacher.intro"></textarea>
-                </p>
-
-                <p>
-                    <button class="btn btn-default btn-sm">编辑</button>
-                    <button class="btn btn-warning btn-sm"  ng-click="removeTeacher($index)">删除</button>
-                </p>
+                        <button ng-hide="teacher.edit" class="btn btn-default btn-sm" ng-click="teacher.edit=true">编辑</button>
+                        <button ng-hide="teacher.edit" class="btn btn-warning btn-sm" ng-click="deleteTeacher($index)">删除</button>
+                    </p>
+                </div>
             </div>
+
         </div>
 
         <div>
-            <button class="btn btn-default btn-sm" ng-click="addTeacher()">增加</button>
-            <button class="btn btn-primary btn-sm" ng-click="submit()">保存</button>
-        </div>
-    </form>
 
-    <div class="col-xs-3">
-        <button class="btn btn-default btn-sm" ng-click="doRefresh()">刷新</button>
+        </div>
+    </div>
+
+    <div class="col-xs-3" scroll-fix>
         <hr/>
-        <pre>
-            {{partner.instName}}
-            {{partner.teacherList|json}}
-        </pre>
+        <button class="btn btn-default" ng-click="addTeacher()">添加新教师</button>&nbsp;<button class="btn btn-default" ng-click="doRefresh()">刷新</button>
+        <hr/>
+        <label>快速链接</label>
+
+        <p><a class="center-block" ui-sref="admin.partners.logo({id:partnerId})">查看机构logo</a></p>
+        <p><a class="center-block" ui-sref="admin.partners.photo({id:partnerId})">查看机构照片</a></p>
+        <hr/>
+        <p><a ui-sref="admin.partners.detail({id:partnerId})">返回机构详情</a></p>
+        <!--<pre>-->
+            <!--{{teachers|json}}-->
+        <!--</pre>-->
     </div>
 </div>

@@ -31,7 +31,7 @@
                 <li ui-sref-active="active"><a ui-sref="admin.query_bookings">订单查询</a></li>
                 <li ng-class="{active: $state.includes('admin.courses')}"><a ui-sref="admin.courses.list">课程管理</a></li>
                 <li ng-class="{active: $state.includes('admin.templates')}"><a ui-sref="admin.templates.list">模板管理</a></li>
-                <li ng-if="port=='admin'" ui-sref-active="active"><a ui-sref="admin.partners.list">机构管理</a></li>
+                <li ng-class="{active: $state.includes('admin.partners')}" ng-if="port=='admin'"><a ui-sref="admin.partners.list">机构管理</a></li>
             </ul>
         </div>
     </nav>
