@@ -1,3 +1,4 @@
+/*创建表格的头部提示性标题*/
 .form-create legend{
     margin-bottom: 10px;
     font-size: 16px;
@@ -6,10 +7,18 @@
 
 
 /*选择教师图片的select框 img.pic-micro*/
-.pic-micro{
+.img-micro {
     width: 80px;
     height: 80px;
 }
+/*机构logo图片*/
+.img-logo{
+    width: 160px;
+    height: 160px;
+    background: linear-gradient(#eeeeee,#ffffff,#eeeeee);
+}
+
+
 
 /*日期选择样式调整*/
 .datepicker{
@@ -19,7 +28,7 @@
         /*去除头部按钮的边框*/
         border:none;}
     .datepicker .dow{
-        /*周一周二的字体大小*/
+        /*周一周二等的字体大小*/
         font-size: 14px;}
 
 .form-detail legend{

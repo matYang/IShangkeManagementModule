@@ -3,9 +3,12 @@
     <form class="col-xs-12 form-horizontal" role="form" name="validateForm">
         <div class="form-group">
             <div class="col-xs-4 col-xs-offset-3">
+                <!--这边需要一张默认图片作为背景-->
+                <img alt="" class="img-thumbnail img-logo margin-bottom"/>
+                <p ng-show="!!logo">文件名：{{logo.name}} 类型：{{logo.type}} 大小：{{logo.size}}B</p>
                 <input type="file" ng-file-select="onFileSelect($files)"/>
-                
-                <input type="button" ng-click="upload()" value="上传"/>
+                <br/>
+                <input class="btn btn-default btn-sm" type="button" ng-click="upload()" value="上传logo"/>
             </div>
         </div>
 
