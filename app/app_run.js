@@ -56,7 +56,8 @@ app.run(
                 studyDays:tools.toOptions(app.Enum.studyDays),
                 schooltimeDay:tools.toOptions(app.Enum.schooltimeDay),
                 schooltimeWeek:tools.toOptions(app.Enum.schooltimeWeek),
-                classType:tools.toOptions(app.Enum.classType)
+                classType:tools.toOptions(app.Enum.classType),
+                partnerQualification:tools.toOptions(app.Enum.partnerQualification)
             };
 
 
