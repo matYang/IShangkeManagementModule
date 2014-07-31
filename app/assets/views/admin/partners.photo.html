@@ -1,5 +1,5 @@
-<div ng-controller="partnersPhotoCtrl">
-    <form class="col-xs-12 form-horizontal" role="form" name="validateForm" w5c-form-validate novalidate>
+<div class="row">
+    <form class="col-xs-12 form-horizontal" role="form" name="validateForm">
     	<div ng-repeat="img in imgs">
     		<label>图片{{$index + 1}}</label>
         	<input type="file" name="classImg{{$index + 1}}" ng-file-select="onFileSelect($files, $index)">
@@ -9,5 +9,17 @@
         <input type="button" ng-show="noUploading()" value="提 交" ng-click="save()"/>
         <input type="button" value="取 消" ng-click="cancel()" />
         <span ng-show="!noUploading()"/>图片上传中</span>
+    </form>
+</div>
+
+<div class="row">
+    <form class="col-xs-12 form-horizontal" role="form" name="validateForm">
+        <div ng-repeat="photo in item.classPhotoList">
+            <label>照片</label>
+            <img ng-src="{{photo.classPhotoUrl}}"/>
+            <input type="button" value="删除" ng-click="removePhoto($index)" />
+        </div>
+        <input type="button" ng-click="update()" value="更新" />
+
     </form>
 </div>

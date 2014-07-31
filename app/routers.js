@@ -166,12 +166,6 @@ appRoutes.config(function ($stateProvider, $urlRouterProvider, $httpProvider, $l
             controller: 'partnersAddressCtrl',
             access:'admin'
         })
-        .state('admin.partners.photomanage', {
-            url: '/{id:[0-9]}/photomanage',
-            templateUrl: 'views/admin/partners.photomanage.html',
-            controller: 'partnersPhotomanageCtrl',
-            access:'admin'
-        })
         .state('admin.partners.teachermanage', {
             url: '/{id:[0-9]}/teacherManage',
             templateUrl: 'views/admin/partners.teachermanage.html',
