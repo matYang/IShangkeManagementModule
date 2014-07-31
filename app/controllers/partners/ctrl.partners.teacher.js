@@ -1,10 +1,10 @@
 'use strict';
 appControllers.controller('partnersTeacherCtrl',
     ['$scope','restAPI','$state', '$upload', 'app', function ($scope, restAPI, $state, $upload, app) {
-        var Teachers = restAPI.teachers;
+        var Teachers = restAPI.teachers, Partners = restAPI.partners;
         var id = $state.params.id;
         //TODO: replace with real url
-        var uploadUrl = "../a-api/v2/" + "teacher/upload"
+        var uploadUrl = "../a-api/v2/" + "teacher/upload";
         $scope.teachers = [{}];
         $scope.fileReaderSupported = window.FileReader != null && (window.FileAPI == null || FileAPI.html5 != false);
         $scope.hasUploader = function(index) {
@@ -32,14 +32,14 @@ appControllers.controller('partnersTeacherCtrl',
 
         $scope.addTeacher = function () {
           $scope.teachers[$scope.teachers.length] = {};
-        }
+        };
         $scope.removeTeacher = function (index) {
             while (index < $scope.teachers.length - 1) {
                 if ($scope.teachers[index] = $scope.teachers[index + 1]);
                 index++;
             }
             $scope.teachers.pop();
-        }
+        };
         $scope.submit = function () {
             Teachers.save({id:id, teacherList:$scope.teachers}, function (data) {
                 app.toaster.pop('success', "教师创建成功", "");
@@ -49,10 +49,36 @@ appControllers.controller('partnersTeacherCtrl',
             },function(){
                 app.log.error('create error');
             });
-        }
-        $scope.cancel = function () {
-            app.state.go('admin.partners.detail', {data: id});
         };
+
+        $scope.doRefresh = function() {
+            Partners.get({ID:id},function(data){
+                $scope.item = data;
+            },function(){
+                //error
+            });
+        };
+
+        $scope.removeTeacher = function ($index) {
+            while ($index < $scope.item.teacherList.length - 1) {
+                $scope.item.teacherList[$index] = $scope.item.teacherList[$index+1];
+                $index++;
+            }
+            item.teacherList.pop();
+        };
+        $scope.cancel = function () {
+            app.state.go('admin.pasrtners.detail', {id: id});
+        };
+        $scope.update = function () {
+            Teachers.save({id:id, teacherList:$scope.item.teacherList}, function(response){
+                app.toaster.pop('success', "教师更新成功", "");
+                app.log.info('teacher update success');
+                app.state.go('admin.partners.detail', {id: id});
+            }, function () {
+                app.log.error('update error');
+            });
+        };
+        $scope.doRefresh();
     }]
 );
 
