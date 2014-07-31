@@ -21,10 +21,9 @@
         <div class="form-group form-group-sm">
             <label class="col-xs-3 control-label">合作伙伴资格:</label>
             <div class="col-xs-5">
-                <select class="form-control" id="partnerQualification" name="partnerQualification" ng-model="partner.partnerQualification">
-                    <option value="0">已认证</option>
-                    <option value="1">未认证</option>
-                </select>   
+                <button name="partnerQualification" ng-model="partner.partnerQualification" class="btn btn-default btn-sm"
+                        bs-select ng-options="item.value as item.label for item in options.partnerQualification">
+                </button>
             </div>
         </div>
         <div class="form-group form-group-sm">
@@ -70,7 +69,8 @@
         </div>
     </form>
     <div class="col-xs-3" scroll-fix>
-
+        <button class="btn btn-default btn-warning btn-sm" ng-click="clear()">清空所填信息</button>
+        <hr/>
         <pre>{{partner|json}}</pre>
     </div>
 </div>

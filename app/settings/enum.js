@@ -25,6 +25,10 @@ app.value('Enum', {
             6:'周六',
             7:'周日'
         },
+        partnerQualification: {
+            1:'已认证',
+            2:'未认证'
+        },
         //关于页面的text
         PageText:{
           'partners':'合作机构',
