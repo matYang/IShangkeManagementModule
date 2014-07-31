@@ -1,6 +1,6 @@
 <!--filter-->
 <div class="row margin-bottom">
-    <div class="col-md-2" scroll-fix>
+    <div class="col-xs-2" scroll-fix>
         <tabset vertical="true" type="pills">
             <label>审核状态</label>
             <li class="nav-divider"></li>
@@ -13,7 +13,7 @@
         <p ng-hide="filter.id==''">模板号:{{filter.id}}</p>
         <p ng-hide="filter.name==''">模板名:{{filter.name}}</p>
     </div>
-    <div class="col-md-10">
+    <div class="col-xs-10">
         <form class="form-horizontal filter-form">
             <div class="form-group">
                 <label class="control-label" for="">模板号</label>
@@ -32,8 +32,8 @@
             </div>
         </form>
         <div class="row">
-            <pre class="col-md-6">filter{{filter|json}}</pre>
-            <pre class="col-md-6">filter_tmp{{filter_tmp|json}}</pre>
+            <pre class="col-xs-6">filter{{filter|json}}</pre>
+            <pre class="col-xs-6">filter_tmp{{filter_tmp|json}}</pre>
         </div>
 
 

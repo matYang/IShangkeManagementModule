@@ -1,15 +1,45 @@
 'use strict';
 /*
- * todo 用于左侧面板在滚动时切换为固定状态
+ * todo 用于面板在滚动时切换为固定状态
  * */
-appDirectives.directive('scrollFix', function() {
+appDirectives.directive('scrollFix', ['$window', function ($window) {
+    var link = function (scope, ele, attrs) {
+        var marginTop = 20;
+        var offsetWidth = ele[0].offsetWidth;
+        var offsetTop = ele[0].offsetTop - marginTop;
+        var act = function () {
+            var fix_height = $window.innerHeight - 2 * marginTop;
+            var offsetLeft = ele[0].offsetLeft;
+
+            var top = $window.scrollY || document.documentElement.scrollTop || document.body.scrollTop;
+            var style = {};
+            if (top > offsetTop) {
+                style = {
+                    'position': 'fixed',
+                    'top': marginTop,
+                    'left': offsetLeft,
+                    'width': offsetWidth,
+                    'height': fix_height,
+                    'overflow': 'auto'
+                };
+            } else {
+                style = {
+                    'position': null,
+                    'top': null,
+                    'left': null,
+                    'width': null,
+                    'height': null
+                };
+            }
+            ele.css(style);
+        };
+        angular.element(document).bind('scroll', act);
+    };
     return {
-        restrict: 'EA',
+        restrict: 'A', //just can use like <div scroll-fix>
         scope: {},
 //        controller: 'TabsetController',
 //        templateUrl: 'template/tabs/tabset.html',
-        link: function(scope, element, attrs) {
-
-        }
+        link: link
     };
-});
+}]);

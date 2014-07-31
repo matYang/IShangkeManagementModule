@@ -1,6 +1,7 @@
 {
     "id": 1,
-    "courseName": "bfdgbbqqq",
+    "partnerId":1,
+    "courseName": "课程名test",
     "status": 2,
 
     "price": 1800,
@@ -24,8 +25,11 @@
     "cutoffDate":1442222222222,
     "suitableStudent":"希望提高公务员考试成绩且有一定基础的学生",
 
+    "wholeName": "XXXXXXX教育机构",
+    "instName": "XX教育",
+    "logoUrl": "http://testimgsbucket.oss-cn-hangzhou.aliyuncs.com/lg.jpg",
     "regAddressId": 11,
-    "regAddress": "机构报名地址1",
+    "regAddress": "机构报名地址",
     "addressId": 12,
     "address": "机构上课地址",
     "teacherList":[

@@ -32,7 +32,7 @@ appFilters
                 for (k in array) {
                     days.push(app.Enum.studyDays[array[k]]);
                 }
-                return days.join() || '无';
+                return days.join(', ') || '无';
             };
         }
     ])

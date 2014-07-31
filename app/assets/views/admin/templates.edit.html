@@ -1,1 +1,398 @@
-template edit
+<div class="row">
+    <div class="col-xs-12">
+        <h3>
+            <small><a ui-sref="admin.templates.list" class="btn fa fa-chevron-left pull-left"> 返回列表</a></small>
+            编辑课程模板<small>--{{template.courseName}}</small>
+        </h3>
+    </div>
+
+</div>
+<div class="row">
+
+<form class="col-xs-9 form-horizontal form-create" role="form" name="validateForm" w5c-form-validate novalidate>
+<legend>重要信息</legend>
+<div class="form-group form-group-sm">
+    <label class="col-xs-3 control-label">模板名(*)</label>
+
+    <div class="col-xs-5">
+        <input type="text" class="form-control"
+               name="courseName" ng-model="template.courseName"
+               required="">
+    </div>
+</div>
+<div class="form-group form-group-sm">
+    <label class="col-xs-3 control-label">原价格(*)</label>
+
+    <div class="col-xs-3">
+        <input type="number" class="form-control" min="0"
+               name="originalPrice" ng-model="template.originalPrice"
+               required="">
+    </div>
+</div>
+<div class="form-group form-group-sm">
+    <label class="col-xs-3 control-label">爱上课价格(*)</label>
+
+    <div class="col-xs-3">
+        <input type="number" class="form-control" min="0"
+               name="price" ng-model="template.price"
+               required="">
+    </div>
+</div>
+<div class="form-group form-group-sm">
+    <label class="col-xs-3 control-label">课程所属类别(*)</label>
+    <div class="col-xs-7">
+        <button name="level_1" class="btn btn-default btn-sm" ng-model="cat_1" ng-options="item as item.name for item in category"
+                ng-change="cat_2=null;template.categoryId=undefined" placeholder="选择一级目录" bs-select>
+        </button>
+        <button name="level_2" class="btn btn-default btn-sm" ng-model="cat_2" ng-options="item as item.name for item in cat_1.children"
+                ng-change="template.categoryId=undefined" placeholder="选择二级目录" bs-select>
+        </button>
+        <button class="btn btn-default btn-sm" name="categoryId" ng-model="template.categoryId" ng-options="item.value as item.name for item in cat_2.children"
+                placeholder="选择三级目录" bs-select>
+        </button>
+    </div>
+</div>
+
+<legend>基本信息</legend>
+<div class="form-group form-group-sm">
+    <label class="col-xs-3 control-label">开课日期</label>
+
+    <div class="col-xs-7">
+        <div class="input-group input-group-sm col-xs-5 pull-left">
+            <input name="startDate" type="text" class="form-control input-sm" placeholder="开始"
+                   ng-model="template.startDate" data-max-date="{{template.finishDate}}" bs-datepicker>
+                    <span class="input-group-btn">
+                        <button class="btn btn-default"><i class="fa fa-calendar"></i>&nbsp;</button>
+                    </span>
+        </div>
+        <span class="pull-left" style="padding: 5px 2px 0">到</span>
+        <div class="input-group input-group-sm col-xs-5 pull-left">
+            <input name="finishDate" type="text" class="form-control input-sm" placeholder="结束"
+                   ng-model="template.finishDate" data-min-date="{{template.startDate}}" bs-datepicker>
+                    <span class="input-group-btn">
+                        <button class="btn btn-default"><i class="fa fa-calendar"></i>&nbsp;</button>
+                    </span>
+        </div>
+    </div>
+</div>
+<div class="form-group form-group-sm">
+    <label class="col-xs-3 control-label">上课时间1</label>
+
+    <div class="col-xs-2">
+        <input type="number" class="form-control" name="startTime1" ng-model="template.startTime1" min="0">
+    </div>
+    <span class="pull-left" style="padding: 5px 2px 0">-</span>
+    <div class="col-xs-2">
+        <input type="number" class="form-control" name="finishTime1" ng-model="template.finishTime1" min="0">
+    </div>
+    <span class="help-block">如900-1100即为09:00-11:00</span>
+</div>
+<div class="form-group form-group-sm">
+    <label class="col-xs-3 control-label">上课时间2</label>
+
+    <div class="col-xs-2">
+        <input type="number" class="form-control" name="startTime2" ng-model="template.startTime2" min="0">
+    </div>
+    <span class="pull-left" style="padding: 5px 2px 0">-</span>
+    <div class="col-xs-2">
+        <input type="number" class="form-control" name="finishTime2" ng-model="template.finishTime2" min="0">
+    </div>
+    <span class="help-block">可填两个上课时间段</span>
+</div>
+<div class="form-group form-group-sm">
+    <label class="col-xs-3 control-label">一天中的上课区间</label>
+
+    <div class="col-xs-3">
+        <button name="schooltimeDay" ng-model="template.schooltimeDay" class="btn btn-default btn-sm"
+                bs-select  ng-options="item.value as item.label for item in options.schooltimeDay">
+        </button>
+    </div>
+</div>
+<div class="form-group form-group-sm">
+    <label class="col-xs-3 control-label">一周中的上课区间</label>
+
+    <div class="col-xs-3">
+        <button name="schooltimeWeek" ng-model="template.schooltimeWeek" class="btn btn-default btn-sm"
+                bs-select ng-options="item.value as item.label for item in options.schooltimeWeek">
+        </button>
+    </div>
+</div>
+<div class="form-group form-group-sm">
+    <label class="col-xs-3 control-label">上课日子</label>
+
+    <div class="col-xs-3">
+        <button class="btn btn-default btn-sm" ng-model="template.studyDays" max-length="7"
+                data-multiple="1" ng-options="item.value as item.label for item in options.studyDays" bs-select>
+            选择 <span class="caret"></span>
+        </button>
+    </div>
+</div>
+
+<div class="form-group form-group-sm">
+    <label class="col-xs-3 control-label">课时数量</label>
+
+    <div class="col-xs-3">
+        <input type="number" class="form-control" min="0"
+               name="courseHourNum" ng-model="template.courseHourNum">
+    </div>
+</div>
+<div class="form-group form-group-sm">
+    <label class="col-xs-3 control-label">课时长度</label>
+
+    <div class="col-xs-3">
+        <input type="number" class="form-control" min="0"
+               name="courseHourLength" ng-model="template.courseHourLength">
+    </div>
+    <span class="help-block">分钟</span>
+</div>
+<div class="form-group form-group-sm">
+    <label class="col-xs-3 control-label">班级类型</label>
+
+    <div class="col-xs-5">
+        <input type="text" class="form-control" placeholder="如至少25人"
+               name="classSize" ng-model="template.classSize">
+    </div>
+</div>
+<div class="form-group form-group-sm">
+    <label class="col-xs-3 control-label">班级分类</label>
+
+    <div class="col-xs-4">
+        <button name="schooltimeWeek" ng-model="template.classType" class="btn btn-default btn-sm"
+                bs-select ng-options="item.value as item.label for item in options.classType">
+        </button>
+    </div>
+    <span class="help-block">用于搜索</span>
+</div>
+<div class="form-group form-group-sm">
+    <label class="col-xs-3 control-label">开班要求</label>
+
+    <div class="col-xs-5">
+        <input type="text" class="form-control"
+               name="openCourseRequirement" ng-model="template.openCourseRequirement">
+    </div>
+</div>
+<div class="form-group form-group-sm">
+    <label class="col-xs-3 control-label">报名截止日期</label>
+
+    <div class="col-xs-3">
+        <div class="input-group input-group-sm pull-left">
+            <input name="cutoffDate" type="text" class="form-control input-sm" placeholder="截止日期"
+                   ng-model="template.cutoffDate" bs-datepicker>
+                    <span class="input-group-btn">
+                        <button class="btn btn-default"><i class="fa fa-calendar"></i>&nbsp;</button>
+                    </span>
+        </div>
+    </div>
+</div>
+<div class="form-group form-group-sm">
+    <label class="col-xs-3 control-label">适合学员</label>
+
+    <div class="col-xs-5">
+        <input type="text" class="form-control"
+               name="suitableStudent" ng-model="template.suitableStudent">
+    </div>
+</div>
+<div class="form-group form-group-sm">
+    <label class="col-xs-3 control-label">选择上课地点</label>
+
+    <div class="col-xs-5">
+        <button name="addressId" ng-model="template.addressId" class="btn btn-default btn-sm"
+                bs-select ng-options="item.id as item.detail for item in options.addressList">
+        </button>
+    </div>
+</div>
+<div class="form-group form-group-sm">
+    <label class="col-xs-3 control-label">选择报名地点</label>
+
+    <div class="col-xs-5">
+        <button name="addressId" ng-model="template.regAddressId" class="btn btn-default btn-sm"
+                bs-select ng-options="item.id as item.detail for item in options.addressList">
+        </button>
+    </div>
+</div>
+<div class="form-group form-group-sm">
+    <label class="col-xs-3 control-label">选择教师</label>
+
+    <div class="col-xs-5">
+        <button class="btn btn-default btn-sm" ng-model="template.teacherList" max-length="10"
+                data-html="1" data-multiple="1" ng-options="item.id as item.label for item in options.teacherList" bs-select>
+            选择教师 <span class="caret"></span>
+        </button>
+    </div>
+</div>
+
+<legend>教学信息</legend>
+<div class="form-group form-group-sm">
+    <label class="col-xs-3 control-label">课程介绍</label>
+
+    <div class="col-xs-5">
+        <textarea type="text" class="form-control"
+                  name="courseIntro" ng-model="template.courseIntro"></textarea>
+    </div>
+</div>
+<div class="form-group form-group-sm">
+    <label class="col-xs-3 control-label">教学目标</label>
+
+    <div class="col-xs-5">
+        <input type="text" class="form-control"
+               name="goal" ng-model="template.goal">
+    </div>
+</div>
+<div class="form-group form-group-sm">
+    <label class="col-xs-3 control-label">先修知识</label>
+
+    <div class="col-xs-5">
+        <input type="text" class="form-control"
+               name="prerequest" ng-model="template.prerequest">
+    </div>
+</div>
+<div class="form-group form-group-sm">
+    <label class="col-xs-3 control-label">上课形式</label>
+
+    <div class="col-xs-5">
+        <input type="text" class="form-control"
+               name="teachingMethod" ng-model="template.teachingMethod">
+    </div>
+</div>
+<div class="form-group form-group-sm">
+    <label class="col-xs-3 control-label">教材介绍</label>
+
+    <div class="col-xs-5">
+        <input type="text" class="form-control"
+               name="teachingMaterialIntro" ng-model="template.teachingMaterialIntro">
+    </div>
+</div>
+<div class="form-group form-group-sm">
+    <label class="col-xs-3 control-label">教材费用</label>
+
+    <div class="col-xs-5">
+        <input type="text" class="form-control"
+               name="teachingMaterialFee" ng-model="template.teachingMaterialFee">
+    </div>
+</div>
+<div class="form-group form-group-sm">
+    <label class="col-xs-3 control-label">课程提纲</label>
+
+    <div class="col-xs-5">
+        <textarea type="text" class="form-control"
+                  name="outline" ng-model="template.outline"></textarea>
+    </div>
+</div>
+<legend>教学补充</legend>
+<div class="form-group form-group-sm">
+    <label class="col-xs-3 control-label">课件下载</label>
+
+    <div class="col-xs-5">
+        <input type="text" class="form-control"
+               name="downloadMaterials" ng-model="template.downloadMaterials">
+    </div>
+</div>
+<div class="form-group form-group-sm">
+    <label class="col-xs-3 control-label">题库支持</label>
+
+    <div class="col-xs-5">
+        <input type="text" class="form-control"
+               name="questionBank" ng-model="template.questionBank">
+    </div>
+</div>
+<div class="form-group form-group-sm">
+    <label class="col-xs-3 control-label">班主任导学</label>
+
+    <div class="col-xs-5">
+        <input type="text" class="form-control"
+               name="classTeacher" ng-model="template.classTeacher">
+    </div>
+</div>
+<div class="form-group form-group-sm">
+    <label class="col-xs-3 control-label">讲练结合</label>
+
+    <div class="col-xs-5">
+        <input type="text" class="form-control"
+               name="teachingAndExercise" ng-model="template.teachingAndExercise">
+    </div>
+</div>
+<div class="form-group form-group-sm">
+    <label class="col-xs-3 control-label">阶段测评</label>
+
+    <div class="col-xs-5">
+        <input type="text" class="form-control"
+               name="quiz" ng-model="template.quiz">
+    </div>
+</div>
+<div class="form-group form-group-sm">
+    <label class="col-xs-3 control-label">课后答疑</label>
+
+    <div class="col-xs-5">
+        <input type="text" class="form-control"
+               name="questionSession" ng-model="template.questionSession">
+    </div>
+</div>
+<div class="form-group form-group-sm">
+    <label class="col-xs-3 control-label">课后作业</label>
+
+    <div class="col-xs-5">
+        <input type="text" class="form-control"
+               name="assignments" ng-model="template.assignments">
+    </div>
+</div>
+<div class="form-group form-group-sm">
+    <label class="col-xs-3 control-label">作业批改</label>
+
+    <div class="col-xs-5">
+        <input type="text" class="form-control"
+               name="marking" ng-model="template.marking">
+    </div>
+</div>
+<legend>教学保障</legend>
+<div class="form-group form-group-sm">
+    <label class="col-xs-3 control-label">签约保过</label>
+
+    <div class="col-xs-5">
+        <input type="text" class="form-control"
+               name="passAgreement" ng-model="template.passAgreement">
+    </div>
+</div>
+<div class="form-group form-group-sm">
+    <label class="col-xs-3 control-label">高分奖励</label>
+
+    <div class="col-xs-5">
+        <input type="text" class="form-control"
+               name="highScoreReward" ng-model="template.highScoreReward">
+    </div>
+</div>
+<legend>特色服务</legend>
+<div class="form-group form-group-sm">
+    <label class="col-xs-3 control-label">结业证书</label>
+
+    <div class="col-xs-5">
+        <input type="text" class="form-control"
+               name="certification" ng-model="template.certification">
+    </div>
+</div>
+<div class="form-group form-group-sm">
+    <label class="col-xs-3 control-label">课后互动</label>
+
+    <div class="col-xs-5">
+        <input type="text" class="form-control"
+               name="extracurricular" ng-model="template.extracurricular">
+    </div>
+</div>
+<div class="form-group form-group-sm">
+    <label class="col-xs-3 control-label">赠送服务</label>
+
+    <div class="col-xs-5">
+        <input type="text" class="form-control"
+               name="bonusService" ng-model="template.bonusService">
+    </div>
+</div>
+<!--提交-->
+<div class="form-group form-group-sm">
+    <div class="col-xs-5 col-xs-offset-3">
+        <input type="submit" class="btn btn-primary" value="提 交" w5c-form-submit="updateTemplate(template)"/>
+    </div>
+</div>
+</form>
+<div class="col-xs-3 pull-right" scroll-fix="">
+    <pre>{{template|json}}</pre>
+</div>
+</div>

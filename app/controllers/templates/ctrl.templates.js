@@ -4,7 +4,7 @@ appControllers.controller('templatesCtrl',
         //获取课程模板资源
         var restAPI = app.restAPI.templates;
         var pageView = app.PageView['templates'];
-        $scope.tabs = pageView.tabs;
+        $scope.tabs = angular.copy(pageView.tabs);
         $scope.th = pageView.th;
         $scope.page = angular.copy(app.default_page);
         //filter选择的值 用户展现当前数据的筛选条件

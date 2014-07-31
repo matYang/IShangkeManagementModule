@@ -1,7 +1,7 @@
 <!--filter-->
 <div class="row margin-bottom">
     <!--左侧状态栏-->
-    <div class="col-md-2" scroll-fix>
+    <div class="col-xs-2" scroll-fix>
         <tabset vertical="true" type="pills">
             <li class="nav-divider"></li>
             <tab ng-repeat="a in tabs" heading="{{a.label}}" active="a.active"
@@ -13,7 +13,7 @@
         <label ng-hide="1">当前筛选</label>
     </div>
     <!--右侧内容面板-->
-    <div class="col-md-10">
+    <div class="col-xs-10">
         <!--筛选表单-->
         <form class="form-horizontal filter-form">
             <div class="form-group">
@@ -36,8 +36,8 @@
             </label>
         </form>
         <div class="row">
-            <pre class="col-md-6">filter{{filter|json}}</pre>
-            <pre class="col-md-6">filter_tmp{{filter_tmp|json}}</pre>
+            <pre class="col-xs-6">filter{{filter|json}}</pre>
+            <pre class="col-xs-6">filter_tmp{{filter_tmp|json}}</pre>
         </div>
 
         <!--表格列表-->
