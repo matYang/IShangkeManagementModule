@@ -2,20 +2,19 @@
 appControllers.controller('partnersCreateCtrl',
     ['$scope', 'app', function ($scope, app) {
         var Partners = app.restAPI.partners;
-        $scope.title = '这里是新建机构页面';
+        $scope.title = '新建机构';
         $scope.options = app.options;
-        $scope.partner = {};
-        var new_address = ""; //todo单个地址的model 添加经纬度
-        var addressList = $scope.partner.addressList = [new_address];
+        $scope.partner = {addressList: [""]};
+        var addressList = $scope.partner.addressList = [""];
         $scope.addLocation = function () {
-            addressList.push(new_address);
+            addressList.push("");
         };
         $scope.removeLocation = function (index) {
             addressList.splice(index, 1);
         };
         $scope.clear = function () {
             $scope.partner = {
-                addressList: [new_address]
+                addressList: [""]
             };
         };
         $scope.create = function (partner) {

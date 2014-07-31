@@ -1,34 +1,40 @@
 <div class="row">
-    <form class="col-xs-12 form-horizontal" role="form" name="validateForm" w5c-form-validate novalidate>
-    	<div ng-repeat="teacher in teachers">
-    		<label>照片</label>
-	        <input type="file" name="teacherImg{{$index}}" ng-file-select="onFileSelect($files, $index)" ng-model="teacher.teacherImg"/>
+    <form class="col-xs-9 form-horizontal" role="form" name="validateForm" w5c-form-validate novalidate>
+        <div class="clearfix">
+            <div ng-repeat="teacher in partner.teacherList" class="img-thumbnail pull-left" style="width:200px">
+                <img ng-src="{{teacher.imgUrl}}" class="img-micro center-block"/>
+                <input type="file" name="teacherImg{{$index}}" ng-file-select="onFileSelect($files, $index)"
+                       ng-model="teacher.teacherImg"/>
 
-    		<label>姓名</label>
-	        <input type="text" name="teacherName{{$index}}" ng-model="teacher.teacherName">
-    		<label>简介</label>
-	        <input type="text" name="teacherIntro{{$index}}" ng-model="teacher.teacherIntro">
-        	<input type="button" value="删除" ng-click="removeTeacher($index)" />
+                <p>
+                    <label>姓名</label>
+                    <input class="form-control input-sm" type="text" name="teacherName{{$index}}" ng-model="teacher.name">
+                </p>
+
+                <p>
+                    <label>简介</label>
+                    <textarea class="form-control input-sm" type="text" name="teacherIntro{{$index}}" ng-model="teacher.intro"></textarea>
+                </p>
+
+                <p>
+                    <button class="btn btn-default btn-sm">编辑</button>
+                    <button class="btn btn-warning btn-sm"  ng-click="removeTeacher($index)">删除</button>
+                </p>
+            </div>
         </div>
-        <input type="button" ng-click="addTeacher()" value="增加" />
-        <input type="button" ng-click="upload()" value="上传" />
 
-    </form>
-</div>
-<h4>教师管理</h4>
-<div class="row">
-    <form class="col-xs-12 form-horizontal" role="form" name="validateForm" w5c-form-validate novalidate>
-        <div ng-repeat="teacher in item.teacherList">
-            <label>照片</label>
-            <img ng-src="{{teacher.teacherImgUrl}}"/>
-
-            <label>姓名</label>
-            <input type="text" name="teacherName{{$index}}" ng-model="teacher.teacherName">
-            <label>简介</label>
-            <input type="text" name="teacherIntro{{$index}}" ng-model="teacher.teacherIntro">
-            <input type="button" value="删除" ng-click="removeTeacher($index)" />
+        <div>
+            <button class="btn btn-default btn-sm" ng-click="addTeacher()">增加</button>
+            <button class="btn btn-primary btn-sm" ng-click="submit()">保存</button>
         </div>
-        <input type="button" ng-click="update()" value="上传" />
-
     </form>
+
+    <div class="col-xs-3">
+        <button class="btn btn-default btn-sm" ng-click="doRefresh()">刷新</button>
+        <hr/>
+        <pre>
+            {{partner.instName}}
+            {{partner.teacherList|json}}
+        </pre>
+    </div>
 </div>

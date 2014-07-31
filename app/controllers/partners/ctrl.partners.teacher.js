@@ -1,11 +1,38 @@
 'use strict';
 appControllers.controller('partnersTeacherCtrl',
     ['$scope','restAPI','$state', '$upload', 'app', function ($scope, restAPI, $state, $upload, app) {
+        /**
+         * 初始化页面信息
+         */
         var Teachers = restAPI.teachers, Partners = restAPI.partners;
         var id = $state.params.id;
+        $scope.partner = {
+            teacherList:[]
+        };
+        $scope.doRefresh = function() {
+            app.getPartnerById(id).then(function(partner){
+                $scope.partner = partner;
+            },function(){
+                //error
+            });
+        };
+        $scope.doRefresh(); //获取机构详情
+
+        /**
+         * 增删教师
+         */
+        $scope.addTeacher = function () {
+            $scope.partner.teacherList.push({});
+        };
+        $scope.removeTeacher = function ($index) {
+            $scope.partner.teacherList.splice($index,1);
+        };
+
+        /**
+         * 上传图片
+         */
         //TODO: replace with real url
         var uploadUrl = "../a-api/v2/" + "teacher/upload";
-        $scope.teachers = [{}];
         $scope.fileReaderSupported = window.FileReader != null && (window.FileAPI == null || FileAPI.html5 != false);
         $scope.hasUploader = function(index) {
             return $scope.upload[index] != null;
@@ -30,55 +57,24 @@ appControllers.controller('partnersTeacherCtrl',
             });
         };
 
-        $scope.addTeacher = function () {
-          $scope.teachers[$scope.teachers.length] = {};
-        };
-        $scope.removeTeacher = function (index) {
-            while (index < $scope.teachers.length - 1) {
-                if ($scope.teachers[index] = $scope.teachers[index + 1]);
-                index++;
-            }
-            $scope.teachers.pop();
-        };
+        /**
+         * 提交更新的信息
+         */
         $scope.submit = function () {
-            Teachers.save({id:id, teacherList:$scope.teachers}, function (data) {
-                app.toaster.pop('success', "教师创建成功", "");
-                app.log.info('create teacher success');
-                app.state.go('admin.partners.detail', {id: id});
-
-            },function(){
-                app.log.error('create error');
-            });
-        };
-
-        $scope.doRefresh = function() {
-            Partners.get({ID:id},function(data){
-                $scope.item = data;
-            },function(){
-                //error
-            });
-        };
-
-        $scope.removeTeacher = function ($index) {
-            while ($index < $scope.item.teacherList.length - 1) {
-                $scope.item.teacherList[$index] = $scope.item.teacherList[$index+1];
-                $index++;
-            }
-            item.teacherList.pop();
-        };
-        $scope.cancel = function () {
-            app.state.go('admin.pasrtners.detail', {id: id});
-        };
-        $scope.update = function () {
-            Teachers.save({id:id, teacherList:$scope.item.teacherList}, function(response){
+            Teachers.update({ID:id},$scope.partner, function (data) {
                 app.toaster.pop('success', "教师更新成功", "");
-                app.log.info('teacher update success');
                 app.state.go('admin.partners.detail', {id: id});
-            }, function () {
+
+            },function(){
                 app.log.error('update error');
             });
         };
-        $scope.doRefresh();
+
+        /*返回详情页面*/
+        $scope.cancel = function () {
+            app.state.go('admin.pasrtners.detail', {id: id});
+        };
+
     }]
 );
 
