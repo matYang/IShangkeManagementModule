@@ -1,0 +1,17 @@
+<div class="modal-header"><h4>上传{{title}}</h4></div>
+<div class="modal-body">
+    <img ng-src="item.imgUrl" alt="" class="img-md"/>
+    <input class="input-file" type="file" name="teacherImg{{$index}}"
+           ng-file-select="onFileSelect($files, $index)"
+           ng-model="imgFile">
+    <label>姓名/标题</label>
+    <input class="form-control input-sm" type="text" name="teacherName{{$index}}"
+           ng-model="item.title">
+    <label>简介/描述</label>
+    <textarea style="height: 40px;" class="form-control input-sm" type="text" name="teacherIntro{{$index}}"
+              ng-model="item.description"></textarea>
+</div>
+<div class="modal-footer">
+    <button class="btn btn-primary" ng-click="ok()">确定</button>
+    <button class="btn btn-default" ng-click="cancel()">取消</button>
+</div>

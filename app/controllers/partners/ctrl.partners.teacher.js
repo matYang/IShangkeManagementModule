@@ -10,6 +10,8 @@ appControllers.controller('partnersTeacherCtrl',
         $scope.doRefresh = function () {
             Teachers.query({partnerId: partnerId, start: 0, count: 1000}, function (data) {
                 $scope.teachers = data.data;
+            },function(){
+                app.toaster.pop('error', "教师信息获取失败", "");
             });
         };
         $scope.doRefresh(); //获取该机构的教师列表
@@ -40,6 +42,15 @@ appControllers.controller('partnersTeacherCtrl',
          * 增加教师 todo（打开modal）
          */
         $scope.addTeacher = function () {
+            var modalInstance = app.modal.open({
+                templateUrl: '/views/admin/modals/uploadImg.html',
+                controller: 'uploadImgCtrl'
+            });
+
+            modalInstance.result.then(function (new_item) {
+                $scope.teachers.push({id:new_item.id,imgUrl:new_item.imgUrl,name:new_item.title,intro:new_item.description});
+            }, function () {
+            });
         };
 
         /**
