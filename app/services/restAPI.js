@@ -20,7 +20,7 @@ appServices
                     'courses': ['/data/courses:ID.json', '/course/:ID/:OP'],
                     'partners': ['/data/partners:ID.json', '/partner/:ID/:OP'],
                     'teachers': ['/data/teachers:ID.json', '/teacher/:ID/:OP'],
-                    'photos': ['', '/photo/:ID/:OP'],
+                    'photos': ['/data/classPhotos:ID.json', '/classPhoto/:ID/:OP'],
                     'addresses': ['', '/address/:ID/:OP'],
                     // /api/v2/booking/1/
                     'bookings': ['/data/bookings:ID.json/:OP', '/booking/:ID/:OP'],

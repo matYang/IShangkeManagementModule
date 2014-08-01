@@ -8,10 +8,7 @@ appControllers.controller('coursesCtrl',
         $scope.th = pageView.th;
         $scope.page = angular.copy(app.default_page);
         //filter选择的值 用户展现当前数据的筛选条件
-        $scope.filter = {
-            id: '',     //模板号
-            name: ''   //模板名
-        };
+        $scope.filter = {};
         //filter临时存储 用于用户输入
         $scope.filter_tmp = angular.copy($scope.filter);
         //标签页的tab filter

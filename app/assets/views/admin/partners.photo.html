@@ -1,25 +1,66 @@
+
+
 <div class="row">
+    <form class="col-xs-9 form-horizontal" role="form" name="validateForm">
+        <div ng-repeat="photo in photos track by photo.id" class="img-thumbnail pull-left">
+            <img ng-src="{{photo.imgUrl}}"  class="img-md center-block"/>
+            <!--不在编辑状态中-->
+            <div  ng-hide="photo.edit">
+                <label>标题</label>
+                <p>{{photo.title}}</p>
+                <label>描述</label>
+                <p>{{photo.description}}</p>
+            </div>
+            <!--进入编辑状态-->
+            <p  ng-show="photo.edit">
+                <input class="input-file" type="file" name="teacherImg{{$index}}" ng-file-select="onFileSelect($files, $index)"
+                       ng-model="photo.imgFile">
+                <label>姓名</label>
+                <input class="form-control input-sm" type="text" name="teacherName{{$index}}"
+                       ng-model="photo.title">
+                <label>简介</label>
+                <textarea style="height: 40px;" class="form-control input-sm" type="text" name="teacherIntro{{$index}}"
+                          ng-model="photo.description"></textarea>
+            </p>
+            <p>
+                <button ng-show="photo.edit" class="btn btn-primary btn-sm" ng-click="updateClassPhoto($index)">保存</button>
+                <button ng-show="photo.edit" class="btn btn-default btn-sm" ng-click="photo.edit=false">取消</button>
+
+                <button ng-hide="photo.edit" class="btn btn-default btn-sm" ng-click="photo.edit=true">编辑</button>
+                <button ng-hide="photo.edit" class="btn btn-warning btn-sm" ng-click="deleteClassPhoto($index)">删除</button>
+            </p>
+        </div>
+
+    </form>
+
+
+    <div class="col-xs-3" scroll-fix>
+        <hr/>
+        <button class="btn btn-default" ng-click="addClassPhoto()">添加新照片</button>&nbsp;<button class="btn btn-default" ng-click="doRefresh()">刷新</button>
+        <hr/>
+        <label>快速链接</label>
+
+        <p><a class="center-block" ui-sref="admin.partners.logo({id:partnerId})">查看机构logo</a></p>
+        <p><a class="center-block" ui-sref="admin.partners.photo({id:partnerId})">查看机构照片</a></p>
+        <hr/>
+        <p><a ui-sref="admin.partners.detail({id:partnerId})">返回机构详情</a></p>
+        <pre>
+        {{photos|json}}
+        </pre>
+    </div>
+</div>
+
+<div class="row">
+    该部分为图片上传
     <form class="col-xs-12 form-horizontal" role="form" name="validateForm">
-    	<div ng-repeat="img in imgs">
-    		<label>图片{{$index + 1}}</label>
-        	<input type="file" name="classImg{{$index + 1}}" ng-file-select="onFileSelect($files, $index)">
-        	<input type="hidden" name="classImgUrl{{$index + 1}}" ng-model="item.classPhotoList[$index].imgUrl">
+        <div ng-repeat="img in imgs">
+            <label>图片{{$index + 1}}</label>
+            <input type="file" name="classImg{{$index + 1}}" ng-file-select="onFileSelect($files, $index)">
+            <input type="hidden" name="classImgUrl{{$index + 1}}" ng-model="item.classPhotoList[$index].imgUrl">
         </div>
         <input type="button" value="增 加" ng-click="addPhoto()" />
         <input type="button" ng-show="noUploading()" value="提 交" ng-click="save()"/>
         <input type="button" value="取 消" ng-click="cancel()" />
         <span ng-show="!noUploading()"/>图片上传中</span>
-    </form>
-</div>
-
-<div class="row">
-    <form class="col-xs-12 form-horizontal" role="form" name="validateForm">
-        <div ng-repeat="photo in item.classPhotoList">
-            <label>照片</label>
-            <img ng-src="{{photo.classPhotoUrl}}"/>
-            <input type="button" value="删除" ng-click="removePhoto($index)" />
-        </div>
-        <input type="button" ng-click="update()" value="更新" />
-
     </form>
 </div>

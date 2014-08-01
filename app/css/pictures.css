@@ -1,0 +1,32 @@
+/*小图 img.pic-micro*/
+.img-micro {
+    width: 80px;
+    height: 80px;
+}
+
+/*中图 img.pic-md*/
+.img-md {
+    width: 120px;
+    height: 120px;
+}
+
+/*机构logo图片*/
+.img-logo {
+    width: 160px;
+    height: 160px;
+    background: linear-gradient(#eeeeee, #ffffff, #eeeeee);
+}
+
+/*带有图片和文字的卡片样式*/
+.img-thumbnail {
+    width: 200px;
+    position: relative;
+    margin-bottom: 10px;
+    margin-right: 10px;}
+    /*图片上传input*/
+    .input-file{
+        position: absolute;
+        top: 5px;right: 5px;
+        width: 72px;}
+    textarea{
+        height: 40px;}

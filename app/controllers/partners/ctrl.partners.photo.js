@@ -5,31 +5,48 @@ appControllers.controller('partnersPhotoCtrl',
          * 初始化页面信息
          */
         var Partners = restAPI.partners, Photos = restAPI.photos;
-        var id = $state.params.id;
+        var partnerId = $state.params.id;
         $scope.partner = {
             teacherList:[]
         };
         $scope.doRefresh = function() {
-            app.getPartnerById(id).then(function(partner){
-                $scope.partner = partner;
-            },function(){
-                //error
+            Photos.query({partnerId: partnerId, start: 0, count: 1000}, function (data) {
+                console.log(data.data)
+                $scope.photos = data.data;
             });
         };
         $scope.doRefresh(); //获取机构详情
 
+
         /**
-         * 增删图片
+         * class photo的更新和删除
          */
-        $scope.addPhoto = function () {
-            $scope.imgs[$scope.imgs.length] = {};
+        $scope.updateClassPhoto = function (index) {
+            var photo = $scope.photos[index];
+            Photos.update({ID: photo.id}, photo, function (data) {
+                photo.edit = false;
+                app.toaster.pop('success', "照片更新成功", "");
+            }, function () {
+                app.toaster.pop('error', "照片更新失败", "");
+            });
         };
-        $scope.removePhoto = function () {
-            $scope.imgs[$scope.imgs.length] = {};
+        $scope.deleteClassPhoto = function (index) {
+            var photo = $scope.photos[index];
+            Photos.delete({ID: photo.id}, function () {
+                $scope.photos.splice(index,1);//进行本地删除 todo seems slowly
+                app.toaster.pop('success', "照片删除成功", "");
+            }, function () {
+                app.toaster.pop('error', "照片删除失败", "");
+            });
         };
 
 
 
+        /**
+         * 增加class photo todo（打开modal）
+         */
+        $scope.addClassPhoto = function () {
+        };
         /**
          * 上传图片
          */
@@ -67,42 +84,6 @@ appControllers.controller('partnersPhotoCtrl',
             return result;
         };
 
-        /**
-         * 提交更新的信息
-         */
-        $scope.submit = function () {
-            Teachers.update({ID:id},$scope.partner, function (data) {
-                app.toaster.pop('success', "教师更新成功", "");
-                app.state.go('admin.partners.detail', {id: id});
-
-            },function(){
-                app.log.error('update error');
-            });
-        };
-
-        //from photo manage js below
-
-
-        $scope.removePhoto = function ($index) {
-            while ($index < item.classPhotoList.length - 1) {
-                item.classPhotoList[$index] = item.classPhotoList[$index+1];
-                $index++;
-            }
-            item.classPhotoList.pop();
-        };
-        $scope.cancel = function () {
-            app.state.go('admin.pasrtners.detail', {id: id});
-        };
-        $scope.update = function () {
-            Photos.get($scope.item, function(data){
-                app.toaster.pop('success', "照片更新成功", "");
-                app.log.info('photo update success');
-                app.state.go('admin.partners.detail', {id: id});
-            },function(){
-                //error
-            });
-            // app.state.go('admin.pasrtners.detail', {id: id});
-        };
     }]
 );
 

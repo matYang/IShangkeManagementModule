@@ -10,7 +10,6 @@ appControllers.controller('partnersTeacherCtrl',
         $scope.doRefresh = function () {
             Teachers.query({partnerId: partnerId, start: 0, count: 1000}, function (data) {
                 $scope.teachers = data.data;
-                $scope.total = data.total;
             });
         };
         $scope.doRefresh(); //获取该机构的教师列表
