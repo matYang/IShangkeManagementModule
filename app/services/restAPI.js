@@ -30,9 +30,9 @@ appServices
             var resource_maker = function (recourseName) {
                 var port = $rootScope.port;
                 var api = '';
-                if (port == 'partner') api = '/p-api/';
-                else if (port == 'admin') api = '/a-api/';
-                var prefix = api + app.version;
+                if (port == 'partner') api = app.api_partner;
+                else if (port == 'admin') api = app.api_admin;
+                var prefix = app.host+ api + '/'+ app.version;
                 var url = app.test_mode ? api_config.resources[recourseName][0] : prefix + api_config.resources[recourseName][1];
                 var params = {};
                 var methods = {};
