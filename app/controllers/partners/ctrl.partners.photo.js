@@ -1,11 +1,11 @@
 'use strict';
 appControllers.controller('partnersPhotoCtrl',
-    ['$scope', 'restAPI', '$state','app', function ($scope, restAPI, $state, app) {
+    ['$scope','app', function ($scope, app) {
         /**
          * 初始化页面信息
          */
-        var Partners = restAPI.partners, Photos = restAPI.photos;
-        var partnerId = $scope.partnerId = $state.params.id;
+        var Photos = app.restAPI.photos;
+        var partnerId = $scope.partnerId = app.state.params.id;
         //TODO: replace with real url
         var uploadUrl = "/a-api/v2/classPhoto/upload?partnerId="+partnerId;
         $scope.photos = [];
@@ -49,10 +49,12 @@ appControllers.controller('partnersPhotoCtrl',
             var modalInstance = app.modal.open({
                 templateUrl: '/views/admin/modals/uploadImg.html',
                 controller: 'uploadImgCtrl',
+                size:'sm',
                 resolve:{
                     args:function(){
                         return{
-                            api:uploadUrl
+                            uploadUrl:uploadUrl,
+                            restAPI:Photos
                         }
                     }
                 }

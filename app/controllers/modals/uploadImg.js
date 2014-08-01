@@ -1,7 +1,12 @@
 appControllers.controller('uploadImgCtrl',
     ['$scope', 'app', '$modalInstance','args', function ($scope, app, $modalInstance,args) {
-        console.log(args);
+        /**
+         * init
+         */
+        var restAPI = args.restApi;
+        var uploadUrl = args.uploadUrl;
         //item的字有图片imgUrl 标题或者名字title/name 描述或者简介description/intro
+        $scope.uploading = false;
         $scope.item = {
             imgUrl:undefined,
             title:undefined,
@@ -11,40 +16,27 @@ appControllers.controller('uploadImgCtrl',
         /**
          * 上传图片
          */
-        //TODO: replace with real url
-        var uploadUrl = args.api;
-        $scope.imgs = [
-            {}
-        ];
-        $scope.uploading = [];
         $scope.onFileSelect = function ($files, $index) {
+            //上传开始
+            $scope.uploading = true;
             app.$upload.upload({
                 url: uploadUrl,
                 method: "POST",
                 data: {},
                 file: $files[0]
-//                fileFormDataName: "classPhoto" //default is 'file'
             }).success(function (data, status) {
                 if (status !== 200) {
-                    app.toaster.pop("error", "照片上传失败", "");
-                    $scope.errorMsg = response.status + ': ' + data;
+                    //todo 错误信息处理
+                    $scope.errorMsg = data.status + ': ' + data;
                 } else {
                     $scope.item.imgUrl = data.imgUrl;
-                    app.toaster.pop("success", "照片上传成功", "");
                 }
-                $scope.uploading[$index] = false;
+                //todo 上传结束 error时也需要修改为false
+                $scope.uploading = false;
             }).progress(function (evt) {
-                // Math.min is to fix IE which reports 200% sometimes
-                $scope.progress[index] = Math.min(100, parseInt(100.0 * evt.loaded / evt.total));
+                //todo  Math.min is to fix IE which reports 200% sometimes
+                $scope.progress = Math.min(100, parseInt(100.0 * evt.loaded / evt.total));
             });
-            $scope.uploading[$index] = true;
-        };
-        $scope.noUploading = function () {
-            var result = true, i;
-            for (i = 0; i < $scope.uploading.length; i++) {
-                result = result && !$scope.uploading[i];
-            }
-            return result;
         };
 
         /**
