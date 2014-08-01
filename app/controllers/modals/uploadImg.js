@@ -1,5 +1,6 @@
 appControllers.controller('uploadImgCtrl',
-    ['$scope', 'app', '$modalInstance', function ($scope, app, $modalInstance) {
+    ['$scope', 'app', '$modalInstance','args', function ($scope, app, $modalInstance,args) {
+        console.log(args);
         //item的字有图片imgUrl 标题或者名字title/name 描述或者简介description/intro
         $scope.item = {
             imgUrl:undefined,
@@ -11,7 +12,7 @@ appControllers.controller('uploadImgCtrl',
          * 上传图片
          */
         //TODO: replace with real url
-        var uploadUrl = "../a-api/" + "v2/classPhoto/upload"
+        var uploadUrl = args.api
         $scope.imgs = [
             {}
         ];

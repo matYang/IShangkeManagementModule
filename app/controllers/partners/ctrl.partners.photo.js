@@ -6,6 +6,7 @@ appControllers.controller('partnersPhotoCtrl',
          */
         var Partners = restAPI.partners, Photos = restAPI.photos;
         var partnerId = $scope.partnerId = $state.params.id;
+        var uploadUrl = "/a-api/v2/classPhoto/upload?partnerId="+partnerId;
         $scope.photos = [];
         $scope.doRefresh = function () {
             Photos.query({partnerId: partnerId, start: 0, count: 1000}, function (data) {
@@ -46,7 +47,14 @@ appControllers.controller('partnersPhotoCtrl',
         $scope.addClassPhoto = function () {
             var modalInstance = app.modal.open({
                 templateUrl: '/views/admin/modals/uploadImg.html',
-                controller: 'uploadImgCtrl'
+                controller: 'uploadImgCtrl',
+                resolve:{
+                    args:function(){
+                        return{
+                            api:uploadUrl
+                        }
+                    }
+                }
             });
 
             modalInstance.result.then(function (new_item) {
@@ -59,7 +67,6 @@ appControllers.controller('partnersPhotoCtrl',
          * 上传图片
          */
         //TODO: replace with real url
-        var uploadUrl = "../a-api/" + "v2/classPhoto/upload"
         $scope.imgs = [
             {}
         ];

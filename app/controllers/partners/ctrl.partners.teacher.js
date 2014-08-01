@@ -6,6 +6,8 @@ appControllers.controller('partnersTeacherCtrl',
          */
         var Teachers = restAPI.teachers, Partners = restAPI.partners;
         var partnerId = $scope.partnerId = $state.params.id;
+        //TODO: replace with real url
+        var uploadUrl = "/a-api/v2/teacher/upload?partnerId="+partnerId;
         $scope.teachers = [];
         $scope.doRefresh = function () {
             Teachers.query({partnerId: partnerId, start: 0, count: 1000}, function (data) {
@@ -44,7 +46,14 @@ appControllers.controller('partnersTeacherCtrl',
         $scope.addTeacher = function () {
             var modalInstance = app.modal.open({
                 templateUrl: '/views/admin/modals/uploadImg.html',
-                controller: 'uploadImgCtrl'
+                controller: 'uploadImgCtrl',
+                resolve:{
+                    args:function(){
+                        return{
+                            api:uploadUrl
+                        }
+                    }
+                }
             });
 
             modalInstance.result.then(function (new_item) {
@@ -56,8 +65,6 @@ appControllers.controller('partnersTeacherCtrl',
         /**
          * 上传图片
          */
-        //TODO: replace with real url
-        var uploadUrl = "../a-api/v2/" + "teacher/upload";
         $scope.fileReaderSupported = window.FileReader != null && (window.FileAPI == null || FileAPI.html5 != false);
         $scope.hasUploader = function (index) {
             return $scope.upload[index] != null;
