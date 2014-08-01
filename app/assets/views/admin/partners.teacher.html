@@ -15,15 +15,12 @@
             </div>
             <!--进入编辑状态-->
             <p ng-show="teacher.edit">
-                <input class="input-file" type="file" name="teacherImg{{$index}}"
-                       ng-file-select="onFileSelect($files, $index)"
+                <input class="input-file" type="file" ng-file-select="onFileSelect($files, $index)"
                        ng-model="teacher.imgFile">
                 <label>姓名</label>
-                <input class="form-control input-sm" type="text" name="teacherName{{$index}}"
-                       ng-model="teacher.name">
+                <input class="form-control input-sm" type="text" ng-model="teacher.name">
                 <label>简介</label>
-                <textarea class="form-control input-sm" type="text" name="teacherIntro{{$index}}"
-                          ng-model="teacher.intro"></textarea>
+                <textarea class="form-control input-sm" ng-model="teacher.intro"></textarea>
             </p>
 
             <p>

@@ -1,11 +1,12 @@
 'use strict';
 appControllers.controller('partnersPhotoCtrl',
-    ['$scope', 'restAPI', '$state', '$upload', 'app', function ($scope, restAPI, $state, $upload, app) {
+    ['$scope', 'restAPI', '$state','app', function ($scope, restAPI, $state, app) {
         /**
          * 初始化页面信息
          */
         var Partners = restAPI.partners, Photos = restAPI.photos;
         var partnerId = $scope.partnerId = $state.params.id;
+        //TODO: replace with real url
         var uploadUrl = "/a-api/v2/classPhoto/upload?partnerId="+partnerId;
         $scope.photos = [];
         $scope.doRefresh = function () {
@@ -15,7 +16,7 @@ appControllers.controller('partnersPhotoCtrl',
                 app.toaster.pop('error', "机构照片信息获取失败", "");
             });
         };
-        $scope.doRefresh(); //获取机构详情
+        $scope.doRefresh();
 
 
         /**
@@ -66,41 +67,28 @@ appControllers.controller('partnersPhotoCtrl',
         /**
          * 上传图片
          */
-        //TODO: replace with real url
-        $scope.imgs = [
-            {}
-        ];
-        $scope.uploading = [];
         $scope.onFileSelect = function ($files, $index) {
-            $upload.upload({
+            //上传开始
+            $scope.photos[$index].uploading = true;
+            app.$upload.upload({
                 url: uploadUrl,
                 method: "POST",
                 data: {},
-                file: $files[0],
-                fileFormDataName: "classPhoto1"
-            }).success(function (response, status) {
+                file: $files[0]
+            }).success(function (data, status) {
                 if (status !== 200) {
-                    app.toaster.pop("error", "照片添加失败", "");
-                    $scope.errorMsg = response.status + ': ' + response.data;
+                    //todo 错误信息处理
+                    $scope.errorMsg = data.status + ': ' + data;
                 } else {
-                    $scope.imgs[$index].imgUrl = response.data.imgUrl;
-                    app.toaster.pop("success", "照片添加成功", "");
+                    $scope.photos[$index].imgUrl = data.imgUrl;
                 }
-                $scope.uploading[$index] = false;
+                //todo 上传结束 error时也需要修改为false
+                $scope.photos[$index].uploading = false;
             }).progress(function (evt) {
-                // Math.min is to fix IE which reports 200% sometimes
+                //todo  Math.min is to fix IE which reports 200% sometimes
                 $scope.progress[index] = Math.min(100, parseInt(100.0 * evt.loaded / evt.total));
             });
-            $scope.uploading[$index] = true;
         };
-        $scope.noUploading = function () {
-            var result = true, i;
-            for (i = 0; i < $scope.uploading.length; i++) {
-                result = result && !$scope.uploading[i];
-            }
-            return result;
-        };
-
     }]
 );
 

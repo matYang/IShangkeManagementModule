@@ -2,10 +2,10 @@
 /* App Runtime */
 app.run(
     ['app', '$rootScope', '$cookieStore', '$localStorage', '$location','$window', '$timeout', '$state', 'Auth', 'restAPI',
-        '$log', '$modal', '$parse', 'toaster', 'Enum', 'PageView', 'operateService', 'promiseGet', 'cache', 'getCategory', 'tools',
+        '$log','$upload', '$modal', '$parse', 'toaster', 'Enum', 'PageView', 'operateService', 'promiseGet', 'cache', 'getCategory', 'tools',
         'getPartnerById','getTemplateById',
         function (app, $rootScope, $cookieStore, $localStorage, $location,$window, $timeout, $state, Auth, restAPI,
-                  $log, $modal, $parse, toaster, Enum, PageView, operateService, promiseGet, cache, getCategory, tools,
+                  $log, $upload, $modal, $parse, toaster, Enum, PageView, operateService, promiseGet, cache, getCategory, tools,
                   getPartnerById,getTemplateById) {
             //$rootScope has some global functions and params
             $rootScope.$state = $state;
@@ -36,6 +36,7 @@ app.run(
             app.storage = $localStorage;
             app.toaster = toaster;
             app.log = $log; //$log can log/info/warn/error
+            app.$upload = $upload;
             app.modal = $modal;
             app.parse = $parse;
             app.Enum = Enum;

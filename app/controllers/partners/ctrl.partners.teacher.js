@@ -16,7 +16,7 @@ appControllers.controller('partnersTeacherCtrl',
                 app.toaster.pop('error', "教师信息获取失败", "");
             });
         };
-        $scope.doRefresh(); //获取该机构的教师列表
+        $scope.doRefresh();
 
         /**
          * 教师信息的更新和删除
@@ -66,25 +66,25 @@ appControllers.controller('partnersTeacherCtrl',
          * 上传图片
          */
         $scope.fileReaderSupported = window.FileReader != null && (window.FileAPI == null || FileAPI.html5 != false);
-        $scope.hasUploader = function (index) {
-            return $scope.upload[index] != null;
-        };
         $scope.onFileSelect = function ($files, $index) {
-            $upload.upload({
+            //上传开始
+            $scope.teachers[$index].uploading = true;
+            app.$upload.upload({
                 url: uploadUrl,
                 method: "POST",
-                file: $files[0],
-                fileFormDataName: "teacherImg1"
-            }).success(function (response, status) {
-                if (response.status > 0) {
-                    app.toaster.pop("error", "教师添加失败", "");
-                    $scope.errorMsg = response.status + ': ' + response.data;
+                data: {},
+                file: $files[0]
+            }).success(function (data, status) {
+                if (status !== 200) {
+                    //todo 错误信息处理
+                    $scope.errorMsg = data.status + ': ' + data;
                 } else {
-                    $scope.teachers[$index].teacherImgUrl = response.data.imgUrl;
-                    app.toaster.pop("success", "教师添加成功", "");
+                    $scope.teachers[$index].imgUrl = data.imgUrl;
                 }
+                //todo 上传结束 error时也需要修改为false
+                $scope.teachers[$index].uploading = false;
             }).progress(function (evt) {
-                // Math.min is to fix IE which reports 200% sometimes
+                //todo  Math.min is to fix IE which reports 200% sometimes
                 $scope.progress[index] = Math.min(100, parseInt(100.0 * evt.loaded / evt.total));
             });
         };

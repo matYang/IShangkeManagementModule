@@ -12,24 +12,24 @@ appControllers.controller('uploadImgCtrl',
          * 上传图片
          */
         //TODO: replace with real url
-        var uploadUrl = args.api
+        var uploadUrl = args.api;
         $scope.imgs = [
             {}
         ];
         $scope.uploading = [];
         $scope.onFileSelect = function ($files, $index) {
-            $upload.upload({
+            app.$upload.upload({
                 url: uploadUrl,
                 method: "POST",
                 data: {},
-                file: $files[0],
-                fileFormDataName: "classPhoto1"
-            }).success(function (response, status) {
+                file: $files[0]
+//                fileFormDataName: "classPhoto" //default is 'file'
+            }).success(function (data, status) {
                 if (status !== 200) {
                     app.toaster.pop("error", "照片上传失败", "");
-                    $scope.errorMsg = response.status + ': ' + response.data;
+                    $scope.errorMsg = response.status + ': ' + data;
                 } else {
-                    $scope.imgs[$index].imgUrl = response.data.imgUrl;
+                    $scope.item.imgUrl = data.imgUrl;
                     app.toaster.pop("success", "照片上传成功", "");
                 }
                 $scope.uploading[$index] = false;

@@ -15,15 +15,12 @@
             </div>
             <!--进入编辑状态-->
             <p ng-show="photo.edit">
-                <input class="input-file" type="file" name="teacherImg{{$index}}"
-                       ng-file-select="onFileSelect($files, $index)"
+                <input class="input-file" type="file" ng-file-select="onFileSelect($files, $index)"
                        ng-model="photo.imgFile">
                 <label>姓名</label>
-                <input class="form-control input-sm" type="text" name="teacherName{{$index}}"
-                       ng-model="photo.title">
+                <input class="form-control input-sm" type="text" ng-model="photo.title">
                 <label>简介</label>
-                <textarea style="height: 40px;" class="form-control input-sm" type="text" name="teacherIntro{{$index}}"
-                          ng-model="photo.description"></textarea>
+                <textarea class="form-control input-sm" ng-model="photo.description"></textarea>
             </p>
 
             <p>
@@ -57,19 +54,4 @@
         {{photos|json}}
         </pre>
     </div>
-</div>
-
-<div class="row">
-    该部分为图片上传
-    <form class="col-xs-12 form-horizontal" role="form" name="validateForm">
-        <div ng-repeat="img in imgs">
-            <label>图片{{$index + 1}}</label>
-            <input type="file" name="classImg{{$index + 1}}" ng-file-select="onFileSelect($files, $index)">
-            <input type="hidden" name="classImgUrl{{$index + 1}}" ng-model="item.classPhotoList[$index].imgUrl">
-        </div>
-        <input type="button" value="增 加" ng-click="addPhoto()"/>
-        <input type="button" ng-show="noUploading()" value="提 交" ng-click="save()"/>
-        <input type="button" value="取 消" ng-click="cancel()"/>
-        <span ng-show="!noUploading()"/>图片上传中</span>
-    </form>
 </div>
