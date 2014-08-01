@@ -20,13 +20,22 @@
 /*带有图片和文字的卡片样式*/
 .img-thumbnail {
     width: 200px;
+    height: 300px;
     position: relative;
     margin-bottom: 10px;
     margin-right: 10px;}
+    .img-thumbnail p{
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-height: 44px;}
     /*图片上传input*/
     .input-file{
         position: absolute;
         top: 5px;right: 5px;
         width: 72px;}
-    textarea{
-        height: 40px;}
+    .img-thumbnail textarea{
+        max-height:50px;}
+    .img-thumbnail .bottom{
+        position: absolute;
+        bottom:0;right: 10px;
+        text-align: right}

@@ -51,15 +51,16 @@ appControllers.controller('partnersTeacherCtrl',
                 resolve:{
                     args:function(){
                         return{
+                            partnerId:partnerId,
                             uploadUrl:uploadUrl,
-                            restAPI:Teachers
+                            name:'teachers'
                         }
                     }
                 }
             });
 
             modalInstance.result.then(function (new_item) {
-                $scope.teachers.push({id:new_item.id,imgUrl:new_item.imgUrl,name:new_item.title,intro:new_item.description});
+                $scope.teachers.push(new_item);
             }, function () {
             });
         };

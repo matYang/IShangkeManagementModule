@@ -14,23 +14,20 @@
                 <p>{{photo.description}}</p>
             </div>
             <!--进入编辑状态-->
-            <p ng-show="photo.edit">
+            <div ng-show="photo.edit">
                 <input class="input-file" type="file" ng-file-select="onFileSelect($files, $index)"
                        ng-model="photo.imgFile">
                 <label>姓名</label>
                 <input class="form-control input-sm" type="text" ng-model="photo.title">
                 <label>简介</label>
                 <textarea class="form-control input-sm" ng-model="photo.description"></textarea>
-            </p>
+            </div>
 
-            <p>
-                <button ng-show="photo.edit" class="btn btn-primary btn-sm" ng-click="updateClassPhoto($index)">保存
-                </button>
+            <p class="bottom">
+                <button ng-show="photo.edit" class="btn btn-primary btn-sm" ng-click="updateClassPhoto($index)">保存</button>
                 <button ng-show="photo.edit" class="btn btn-default btn-sm" ng-click="photo.edit=false">取消</button>
-
                 <button ng-hide="photo.edit" class="btn btn-default btn-sm" ng-click="photo.edit=true">编辑</button>
-                <button ng-hide="photo.edit" class="btn btn-warning btn-sm" ng-click="deleteClassPhoto($index)">删除
-                </button>
+                <button ng-hide="photo.edit" class="btn btn-warning btn-sm" ng-click="deleteClassPhoto($index)">删除</button>
             </p>
         </div>
 

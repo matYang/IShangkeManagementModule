@@ -53,8 +53,9 @@ appControllers.controller('partnersPhotoCtrl',
                 resolve:{
                     args:function(){
                         return{
+                            partnerId:partnerId,
                             uploadUrl:uploadUrl,
-                            restAPI:Photos
+                            name:'photos'
                         }
                     }
                 }

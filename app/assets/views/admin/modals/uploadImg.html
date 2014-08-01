@@ -12,6 +12,9 @@
               ng-model="item.description"></textarea>
 </div>
 <div class="modal-footer">
-    <button class="btn btn-primary" ng-click="ok()">确定</button>
+    <button class="btn btn-primary" ng-click="ok()" ng-disabled="creating">
+        <span ng-hide="creating">确定</span>
+        <span ng-show="creating">创建中。。</span>
+    </button>
     <button class="btn btn-default" ng-click="cancel()">取消</button>
 </div>

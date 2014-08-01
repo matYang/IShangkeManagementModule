@@ -3,7 +3,7 @@
         <p>&gt;&gt;教师总数：<strong>{{teachers.length}}</strong></p>
 
         <div ng-repeat="teacher in teachers track by teacher.id" class="img-thumbnail pull-left">
-            <img ng-src="{{teacher.imgUrl}}" class="img-micro center-block"/>
+            <img ng-src="{{teacher.imgUrl}}" class="img-md center-block"/>
             <!--不在编辑状态中-->
             <div ng-hide="teacher.edit">
                 <label>姓名</label>
@@ -11,19 +11,19 @@
                 <p>{{teacher.name}}</p>
                 <label>简介</label>
 
-                <p style="height: 40px">{{teacher.intro}}</p>
+                <p>{{teacher.intro}}</p>
             </div>
             <!--进入编辑状态-->
-            <p ng-show="teacher.edit">
+            <div ng-show="teacher.edit">
                 <input class="input-file" type="file" ng-file-select="onFileSelect($files, $index)"
                        ng-model="teacher.imgFile">
                 <label>姓名</label>
                 <input class="form-control input-sm" type="text" ng-model="teacher.name">
                 <label>简介</label>
                 <textarea class="form-control input-sm" ng-model="teacher.intro"></textarea>
-            </p>
+            </div>
 
-            <p>
+            <p class="bottom">
                 <button ng-show="teacher.edit" class="btn btn-primary btn-sm" ng-click="updateTeacher($index)">保存
                 </button>
                 <button ng-show="teacher.edit" class="btn btn-default btn-sm" ng-click="teacher.edit=false">取消</button>
