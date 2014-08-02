@@ -1,6 +1,6 @@
 <!--order_new content start-->
 <div class="row">
-    <form class="col-xs-12 form-horizontal" role="form" name="validateForm">
+    <form class="col-xs-9 form-horizontal" role="form" name="validateForm">
         <div class="form-group">
             <div class="col-xs-4 col-xs-offset-3">
                 <!--这边需要一张默认图片作为背景-->
@@ -13,5 +13,15 @@
         </div>
 
     </form>
+    <div class="col-xs-3">
+
+        <label>快速链接</label>
+
+        <p><a class="center-block" ui-sref="admin.partners.logo({id:partnerId})">&gt;查看机构logo</a></p>
+
+        <p><a class="center-block" ui-sref="admin.partners.photo({id:partnerId})">&gt;查看机构照片</a></p>
+        <hr/>
+        <p><a ui-sref="admin.partners.detail({id:partnerId})">返回机构详情</a></p>
+    </div>
 </div>
 <!--order_new content end-->

@@ -7,22 +7,38 @@ appControllers.controller('partnersTeacherCtrl',
         var Teachers = app.restAPI.teachers;
         var partnerId = $scope.partnerId = app.state.params.id;
         //TODO: replace with real url
-        var uploadUrl = "/a-api/v2/teacher/upload?partnerId="+partnerId;
+        var uploadUrl = "/a-api/v2/teacher/upload?partnerId=" + partnerId;
+        var teachers_edit = {}; //使用mao保存进入修改状态前的teacher
         $scope.teachers = [];
         $scope.doRefresh = function () {
             Teachers.query({partnerId: partnerId, start: 0, count: 1000}, function (data) {
                 $scope.teachers = data.data;
-            },function(){
+            }, function () {
                 app.toaster.pop('error', "教师信息获取失败", "");
             });
         };
         $scope.doRefresh();
 
         /**
+         * 进入和退出编辑模式
+         */
+        $scope.editTeacher = function ($index) {
+            //在edit更改前进行原始teacher的保存
+            var teacher = angular.copy($scope.teachers[$index]);
+            teachers_edit[teacher.id] = teacher;
+            $scope.teachers[$index].edit = true;
+        };
+        $scope.cancelEdit = function($index){
+            var id = $scope.teachers[$index].id;
+            $scope.teachers[$index] = teachers_edit[id];
+            delete teachers_edit[id];
+        };
+
+        /**
          * 教师信息的更新和删除
          */
-        $scope.updateTeacher = function (index) {
-            var teacher = $scope.teachers[index];
+        $scope.updateTeacher = function ($index) {
+            var teacher = $scope.teachers[$index];
             Teachers.update({ID: teacher.id}, teacher, function (data) {
                 teacher.edit = false;
                 app.toaster.pop('success', "教师>" + teacher.name + "的资料更新成功", "");
@@ -30,10 +46,10 @@ appControllers.controller('partnersTeacherCtrl',
                 app.toaster.pop('error', "教师>" + teacher.name + "的资料更新失败", "");
             });
         };
-        $scope.deleteTeacher = function (index) {
-            var teacher = $scope.teachers[index];
+        $scope.deleteTeacher = function ($index) {
+            var teacher = $scope.teachers[$index];
             Teachers.delete({ID: teacher.id}, function () {
-                $scope.teachers.splice(index,1);//进行本地删除 todo seems slowly
+                $scope.teachers.splice($index, 1);//进行本地删除 todo seems slowly
                 app.toaster.pop('success', "教师>" + teacher.name + "删除成功", "");
             }, function () {
                 app.toaster.pop('error', "教师>" + teacher.name + "删除失败", "");
@@ -47,13 +63,13 @@ appControllers.controller('partnersTeacherCtrl',
             var modalInstance = app.modal.open({
                 templateUrl: '/views/admin/modals/uploadImg.html',
                 controller: 'uploadImgCtrl',
-                size:'sm',
-                resolve:{
-                    args:function(){
+                size: 'sm',
+                resolve: {
+                    args: function () {
                         return{
-                            partnerId:partnerId,
-                            uploadUrl:uploadUrl,
-                            name:'teachers'
+                            partnerId: partnerId,
+                            uploadUrl: uploadUrl,
+                            name: 'teachers'
                         }
                     }
                 }

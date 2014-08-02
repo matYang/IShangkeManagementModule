@@ -8,6 +8,7 @@ appControllers.controller('partnersPhotoCtrl',
         var partnerId = $scope.partnerId = app.state.params.id;
         //TODO: replace with real url
         var uploadUrl = "/a-api/v2/classPhoto/upload?partnerId="+partnerId;
+        var photos_edit = {}; //使用map保存进入修改状态前的class photo
         $scope.photos = [];
         $scope.doRefresh = function () {
             Photos.query({partnerId: partnerId, start: 0, count: 1000}, function (data) {
@@ -18,11 +19,24 @@ appControllers.controller('partnersPhotoCtrl',
         };
         $scope.doRefresh();
 
-
+        /**
+         * 进入和退出编辑模式
+         */
+        $scope.editPhoto = function ($index) {
+            //在edit更改前进行原始photo的保存
+            var photo = angular.copy($scope.photos[$index]);
+            photos_edit[photo.id] = photo;
+            $scope.photos[$index].edit = true;
+        };
+        $scope.cancelEdit = function($index){
+            var id = $scope.photos[$index].id;
+            $scope.photos[$index] = photos_edit[id];
+            delete photos_edit[id];
+        };
         /**
          * class photo的更新和删除
          */
-        $scope.updateClassPhoto = function (index) {
+        $scope.updatePhoto = function (index) {
             var photo = $scope.photos[index];
             Photos.update({ID: photo.id}, photo, function (data) {
                 photo.edit = false;
@@ -31,7 +45,7 @@ appControllers.controller('partnersPhotoCtrl',
                 app.toaster.pop('error', "照片更新失败", "");
             });
         };
-        $scope.deleteClassPhoto = function (index) {
+        $scope.deletePhoto = function (index) {
             var photo = $scope.photos[index];
             Photos.delete({ID: photo.id}, function () {
                 $scope.photos.splice(index, 1);//进行本地删除 todo seems slowly
@@ -45,7 +59,7 @@ appControllers.controller('partnersPhotoCtrl',
         /**
          * 增加class photo todo（打开modal）
          */
-        $scope.addClassPhoto = function () {
+        $scope.addPhoto = function () {
             var modalInstance = app.modal.open({
                 templateUrl: '/views/admin/modals/uploadImg.html',
                 controller: 'uploadImgCtrl',

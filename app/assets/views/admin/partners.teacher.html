@@ -1,4 +1,12 @@
 <div class="row">
+    <div class="col-xs-12">
+        <h3>
+            <small><a ui-sref="admin.partners.list" class="btn fa fa-chevron-left pull-left"> 返回列表 </a></small>
+            教师列表<small>--{{template.courseName}}</small>
+        </h3>
+    </div>
+</div>
+<div class="row">
     <div class="col-xs-9 form-horizontal">
         <p>&gt;&gt;教师总数：<strong>{{teachers.length}}</strong></p>
 
@@ -26,9 +34,9 @@
             <p class="bottom">
                 <button ng-show="teacher.edit" class="btn btn-primary btn-sm" ng-click="updateTeacher($index)">保存
                 </button>
-                <button ng-show="teacher.edit" class="btn btn-default btn-sm" ng-click="teacher.edit=false">取消</button>
+                <button ng-show="teacher.edit" class="btn btn-default btn-sm" ng-click="cancelEdit($index)">取消</button>
 
-                <button ng-hide="teacher.edit" class="btn btn-default btn-sm" ng-click="teacher.edit=true">编辑</button>
+                <button ng-hide="teacher.edit" class="btn btn-default btn-sm" ng-click="editTeacher($index)">编辑</button>
                 <button ng-hide="teacher.edit" class="btn btn-warning btn-sm" ng-click="deleteTeacher($index)">删除
                 </button>
             </p>
@@ -43,13 +51,13 @@
         <hr/>
         <label>快速链接</label>
 
-        <p><a class="center-block" ui-sref="admin.partners.logo({id:partnerId})">查看机构logo</a></p>
+        <p><a class="center-block" ui-sref="admin.partners.logo({id:partnerId})">&gt;查看机构logo</a></p>
 
-        <p><a class="center-block" ui-sref="admin.partners.photo({id:partnerId})">查看机构照片</a></p>
+        <p><a class="center-block" ui-sref="admin.partners.photo({id:partnerId})">&gt;查看机构照片</a></p>
         <hr/>
         <p><a ui-sref="admin.partners.detail({id:partnerId})">返回机构详情</a></p>
-        <!--<pre>-->
-        <!--{{teachers|json}}-->
-        <!--</pre>-->
+        <pre>
+        {{teachers|json}}
+        </pre>
     </div>
 </div>
