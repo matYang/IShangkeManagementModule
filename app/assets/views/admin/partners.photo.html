@@ -49,14 +49,15 @@
         <button class="btn btn-default" ng-click="doRefresh()">刷新</button>
         <hr/>
         <label>快速链接</label>
-
-        <p><a class="center-block" ui-sref="admin.partners.detail.logo({id:partnerId})">&gt;查看机构logo</a></p>
+        <p>&gt;
+            <a ui-sref="admin.partners.detail({id:partner.id})">查看</a>
+            /
+            <a ui-sref="admin.partners.detail.edit({id:partner.id})">修改</a>
+            机构基本信息
+        </p>
+        <p><a class="center-block" ui-sref="admin.partners.detail.logo({id:partner.id})">&gt;修改机构logo</a></p>
         <p>查看机构照片</p>
-        <p><a class="center-block" ui-sref="admin.partners.detail.teacher({id:partnerId})">&gt;查看机构教师</a></p>
+        <p><a class="center-block" ui-sref="admin.partners.detail.teacher({id:partner.id})">&gt;查看机构教师</a></p>
         <hr/>
-        <p><a ui-sref="admin.partners.detail({id:partnerId})">返回机构详情</a></p>
-        <pre>
-        {{photos|json}}
-        </pre>
     </div>
 </div>

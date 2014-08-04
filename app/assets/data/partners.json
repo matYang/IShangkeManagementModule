@@ -5,7 +5,9 @@
             "wholeName": "机构全称1",
             "instName": "机构1",
             "instDistinction": "",
-            "partnerQualification": ""
+            "partnerQualification": "",
+            "logoUrl":"http://hdn.xnimg.cn/photos/hdn321/20120117/1430/h_main_uMg0_7a8f000389e52f75.jpg"
+
 
         },
         {
@@ -13,7 +15,8 @@
             "wholeName": "机构全称2",
             "instName": "机构2",
             "instDistinction": "",
-            "partnerQualification": ""
+            "partnerQualification": "",
+            "logoUrl":"http://hdn.xnimg.cn/photos/hdn321/20120117/1430/h_main_uMg0_7a8f000389e52f75.jpg"
         }
     ],
     "start": 0,

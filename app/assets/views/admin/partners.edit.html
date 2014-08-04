@@ -8,12 +8,12 @@
     </div>
 </div>
 <div class="row">
-    <form class="col-xs-12 form-horizontal" role="form" name="validateForm" w5c-form-validate novalidate>
+    <form class="col-xs-9 form-horizontal" role="form" name="validateForm" w5c-form-validate novalidate>
         <div class="form-group form-group-sm">
             <label class="col-xs-3 control-label">机构ID:</label>
 
-            <div class="col-xs-4">
-                <input type="disabled" class="form-control" id="id" name="id" ng-model="partner.id"/>
+            <div class="col-xs-4 form-control-static">
+                {{partner.id}}
             </div>
         </div>
         <div class="form-group form-group-sm">
@@ -95,4 +95,16 @@
             </div>
         </div>
     </form>
+    <div class="col-xs-3" scroll-fix>
+        <label>快速链接</label>
+        <p>&gt;
+            <a ui-sref="admin.partners.detail({id:partner.id})">查看</a>
+            /
+            <span>修改</span>
+            机构基本信息
+        </p>
+        <p><a class="center-block" ui-sref="admin.partners.detail.logo({id:partner.id})">&gt;修改机构logo</a></p>
+        <p><a class="center-block" ui-sref="admin.partners.detail.photo({id:partner.id})">&gt;查看机构照片</a></p>
+        <p><a class="center-block" ui-sref="admin.partners.detail.teacher({id:partner.id})">&gt;查看机构教师</a></p>
+    </div>
 </div>

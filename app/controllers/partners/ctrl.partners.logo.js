@@ -6,7 +6,8 @@ appControllers.controller('partnersLogoCtrl',
         //上传地址为/a-api/v2/partner/1/logo
         var uploadUrl = "/a-api/v2/" + "partner/" + partnerId + "/logo";
         //todo 初始化logo
-        $scope.logoUrl = undefined;
+//        $scope.logoUrl = angular.copy($scope.partner.logoUrl);
+        console.log($scope.partner);
         $scope.onFileSelect = function ($files) {
             for (var i = 0; i < $files.length; i++) {
                 var $file = $files[i];
@@ -33,7 +34,7 @@ appControllers.controller('partnersLogoCtrl',
                 file: $scope.logo
             }).success(function (data) {//response is the partner obj
                 //todo 获取上传图片的url
-                $scope.logoUrl = data.logoUrl;
+                $scope.partner.logoUrl = data.logoUrl;
                 app.toaster.pop("success", "logo修改成功", "");
                 app.state.go("admin.partners.detail", {id: id});
             }).progress(function (evt) {
