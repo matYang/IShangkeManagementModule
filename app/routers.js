@@ -54,25 +54,25 @@ appRoutes.config(function ($stateProvider, $urlRouterProvider, $httpProvider, $l
         //课程管理页面
         .state('admin.courses.list', {
             url: '',
-            templateUrl: 'views/admin/courses.html',
+            templateUrl: 'views/admin/course/courses.html',
             controller: 'coursesCtrl'
         })
         //新建课程
         .state('admin.courses.create', {
             url: '/create',
-            templateUrl: 'views/admin/courses.create.html',
+            templateUrl: 'views/admin/course/courses.create.html',
             controller: 'coursesCreateCtrl'
         })
         //查看课程
         .state('admin.courses.detail', {
             url: '/{id:[0-9]}',
-            templateUrl: 'views/admin/courses.detail.html',
+            templateUrl: 'views/admin/course/courses.detail.html',
             controller: 'coursesDetailCtrl'
         })
         //编辑课程
         .state('admin.courses.edit', {
             url: '/{id:[0-9]}/edit',
-            templateUrl: 'views/admin/courses.edit.html',
+            templateUrl: 'views/admin/course/courses.edit.html',
             controller: 'coursesEditCtrl'
         })
 
@@ -87,25 +87,25 @@ appRoutes.config(function ($stateProvider, $urlRouterProvider, $httpProvider, $l
         //课程模板列表
         .state('admin.templates.list', {
             url: '',
-            templateUrl: 'views/admin/templates.html',
+            templateUrl: 'views/admin/template/templates.html',
             controller: 'templatesCtrl'
         })
         //新建课程模板
         .state('admin.templates.create', {
             url: '/create',
-            templateUrl: 'views/admin/templates.create.html',
+            templateUrl: 'views/admin/template/templates.create.html',
             controller: 'templatesCreateCtrl'
         })
         //查看课程模板
         .state('admin.templates.detail', {
             url: '/{id:[0-9]}',
-            templateUrl: 'views/admin/templates.detail.html',
+            templateUrl: 'views/admin/template/templates.detail.html',
             controller: 'templatesDetailCtrl'
         })
         //编辑课程模板
         .state('admin.templates.edit', {
             url: '/{id:[0-9]}/edit',
-            templateUrl: 'views/admin/templates.edit.html',
+            templateUrl: 'views/admin/template/templates.edit.html',
             controller: 'templatesEditCtrl'
         })
 
@@ -120,13 +120,13 @@ appRoutes.config(function ($stateProvider, $urlRouterProvider, $httpProvider, $l
         })
         .state('admin.partners.list', {
             url: '',
-            templateUrl: 'views/admin/partners.html',
+            templateUrl: 'views/admin/partner/partners.html',
             controller: 'partnersCtrl',
             access:'admin'
         })
         .state('admin.partners.create', {
             url: '/create',
-            templateUrl: 'views/admin/partners.create.html',
+            templateUrl: 'views/admin/partner/partners.create.html',
             controller: 'partnersCreateCtrl',
             access:'admin'
         })
@@ -134,37 +134,38 @@ appRoutes.config(function ($stateProvider, $urlRouterProvider, $httpProvider, $l
         //todo 子路由分为机构基本信息、机构logo、机构照片、机构教师、机构地址
         .state('admin.partners.detail', {
             url: '/{id:[0-9]}',
-            templateUrl: 'views/admin/partners.detail.html',
+            templateUrl: 'views/admin/partner/partners.detail.html',
             controller: 'partnersDetailCtrl',
             access:'admin'
         })
+        //课程非基本信息的编辑和查看
         .state('admin.partners.detail.edit', {
             url: '/edit',
-            templateUrl: 'views/admin/partners.edit.html',
+            templateUrl: 'views/admin/partner/detail/partners.edit.html',
             controller: 'partnersEditCtrl',
             access:'admin'
         })
         .state('admin.partners.detail.logo', {
             url: '/logo',
-            templateUrl: 'views/admin/partners.logo.html',
+            templateUrl: 'views/admin/partner/detail/partners.logo.html',
             controller: 'partnersLogoCtrl',
             access:'admin'
         })
         .state('admin.partners.detail.photo', {
             url: '/photo',
-            templateUrl: 'views/admin/partners.photo.html',
+            templateUrl: 'views/admin/partner/detail/partners.photo.html',
             controller: 'partnersPhotoCtrl',
             access:'admin'
         })
         .state('admin.partners.detail.teacher', {
             url: '/teacher',
-            templateUrl: 'views/admin/partners.teacher.html',
+            templateUrl: 'views/admin/partner/detail/partners.teacher.html',
             controller: 'partnersTeacherCtrl',
             access:'admin'
         })
         .state('admin.partners.detail.address', {
             url: '/address',
-            templateUrl: 'views/admin/partners.address.html',
+            templateUrl: 'views/admin/partner/detail/partners.address.html',
             controller: 'partnersAddressCtrl',
             access:'admin'
         })
