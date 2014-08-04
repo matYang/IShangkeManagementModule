@@ -3,10 +3,10 @@ appControllers.controller('partnersLogoCtrl',
     ['$scope', '$upload', 'app', function ($scope, $upload, app) {
         var Partners = app.restAPI.partners;
         var partnerId = $scope.partnerId = app.state.params.id;
+        //上传地址为/a-api/v2/partner/1/logo
+        var uploadUrl = "/a-api/v2/" + "partner/" + partnerId + "/logo";
         //todo 初始化logo
         $scope.logoUrl = undefined;
-        //TODO: replace with real url
-        var uploadUrl = "/a-api/v2/" + "partner/" + partnerId + "/logo";
         $scope.onFileSelect = function ($files) {
             for (var i = 0; i < $files.length; i++) {
                 var $file = $files[i];
@@ -21,6 +21,7 @@ appControllers.controller('partnersLogoCtrl',
                 }
             }
         };
+        /*上传操作 返回图片地址 更改logoUrl的值*/
         $scope.upload = function () {
             var files = [], fileNames = [];
             $scope.errorMsg = null;
@@ -30,15 +31,20 @@ appControllers.controller('partnersLogoCtrl',
                 method: "POST",
                 data: {partnerId: partnerId},
                 file: $scope.logo
-            }).success(function (response) {
+            }).success(function (data) {//response is the partner obj
                 //todo 获取上传图片的url
-                app.toaster.pop("success", "logo上传成功", "");
+                $scope.logoUrl = data.logoUrl;
+                app.toaster.pop("success", "logo修改成功", "");
                 app.state.go("admin.partners.detail", {id: id});
             }).progress(function (evt) {
-                // Math.min is to fix IE which reports 200% sometimes
+                //todo Math.min is to fix IE which reports 200% sometimes
                 $scope.progress[index] = Math.min(100, parseInt(100.0 * evt.loaded / evt.total));
             });
+            //todo 上传失败
+
+
         };
+        /*取消则返回详情页*/
         $scope.cancel = function () {
             app.state.go('admin.partners.detail', {id: partnerId});
         };

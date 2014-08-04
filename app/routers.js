@@ -130,38 +130,40 @@ appRoutes.config(function ($stateProvider, $urlRouterProvider, $httpProvider, $l
             controller: 'partnersCreateCtrl',
             access:'admin'
         })
+        //查看机构详情 父路由的controller负责获取机构的详情（子路由共享父路由的scope中的值）
+        //todo 子路由分为机构基本信息、机构logo、机构照片、机构教师、机构地址
         .state('admin.partners.detail', {
             url: '/{id:[0-9]}',
             templateUrl: 'views/admin/partners.detail.html',
             controller: 'partnersDetailCtrl',
             access:'admin'
         })
-        .state('admin.partners.edit', {
-            url: '/{id:[0-9]}/edit',
+        .state('admin.partners.detail.edit', {
+            url: '/edit',
             templateUrl: 'views/admin/partners.edit.html',
             controller: 'partnersEditCtrl',
             access:'admin'
         })
-        .state('admin.partners.logo', {
-            url: '/{id:[0-9]}/logo',
+        .state('admin.partners.detail.logo', {
+            url: '/logo',
             templateUrl: 'views/admin/partners.logo.html',
             controller: 'partnersLogoCtrl',
             access:'admin'
         })
-        .state('admin.partners.photo', {
-            url: '/{id:[0-9]}/photo',
+        .state('admin.partners.detail.photo', {
+            url: '/photo',
             templateUrl: 'views/admin/partners.photo.html',
             controller: 'partnersPhotoCtrl',
             access:'admin'
         })
-        .state('admin.partners.teacher', {
-            url: '/{id:[0-9]}/teacher',
+        .state('admin.partners.detail.teacher', {
+            url: '/teacher',
             templateUrl: 'views/admin/partners.teacher.html',
             controller: 'partnersTeacherCtrl',
             access:'admin'
         })
-        .state('admin.partners.address', {
-            url: '/{id:[0-9]}/address',
+        .state('admin.partners.detail.address', {
+            url: '/address',
             templateUrl: 'views/admin/partners.address.html',
             controller: 'partnersAddressCtrl',
             access:'admin'

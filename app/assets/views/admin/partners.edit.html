@@ -1,71 +1,97 @@
 <div class="row">
-    <a ui-sref="admin.partners.list" class="btn fa fa-arrow-left pull-left"> Back</a>
-
-    <div class="pull-right">{{ title }}</div>
+    <div class="col-xs-12">
+        <h3>
+            <small><a ui-sref="admin.partners.list" class="btn fa fa-chevron-left pull-left"> 返回列表 </a></small>
+            修改基本信息
+            <small>--{{partner.instName}}</small>
+        </h3>
+    </div>
 </div>
 <div class="row">
     <form class="col-xs-12 form-horizontal" role="form" name="validateForm" w5c-form-validate novalidate>
         <div class="form-group form-group-sm">
             <label class="col-xs-3 control-label">机构ID:</label>
+
             <div class="col-xs-4">
                 <input type="disabled" class="form-control" id="id" name="id" ng-model="partner.id"/>
             </div>
         </div>
         <div class="form-group form-group-sm">
             <label class="col-xs-3 control-label">机构全称:</label>
-            <div class="col-xs-4"><input type="text" class="form-control" id="wholeName" name="wholeName" ng-model="partner.wholeName" required="" /></div>
+
+            <div class="col-xs-4"><input type="text" class="form-control" id="wholeName" name="wholeName"
+                                         ng-model="partner.wholeName" required=""/></div>
         </div>
         <div class="form-group form-group-sm">
             <label class="col-xs-3 control-label">学校名:</label>
-            <div class="col-xs-4"><input type="text" class="form-control" id="instName" name="instName" ng-model="partner.instName" required=""/></div>
+
+            <div class="col-xs-4"><input type="text" class="form-control" id="instName" name="instName"
+                                         ng-model="partner.instName" required=""/></div>
         </div>
         <div class="form-group form-group-sm">
             <label class="col-xs-3 control-label">机构简介:</label>
-            <div class="col-xs-4"><input type="text" class="form-control" id="partnerIntro" name="partnerIntro" ng-model="partner.partnerIntro " required=""/></div>
+
+            <div class="col-xs-4"><input type="text" class="form-control" id="partnerIntro" name="partnerIntro"
+                                         ng-model="partner.partnerIntro " required=""/></div>
         </div>
         <div class="form-group form-group-sm">
             <label class="col-xs-3 control-label">机构荣誉:</label>
-            <div class="col-xs-4"><input type="text" class="form-control" id="partnerDistinction" name="partnerDistinction" ng-model=" partner.partnerDistinction"/></div>
+
+            <div class="col-xs-4"><input type="text" class="form-control" id="partnerDistinction"
+                                         name="partnerDistinction" ng-model=" partner.partnerDistinction"/></div>
         </div>
         <div class="form-group form-group-sm">
             <label class="col-xs-3 control-label">合作伙伴资格:</label>
+
             <div class="col-xs-4">
-                <select class="form-control" id="partnerQualification" name="partnerQualification" ng-model="partner.partnerQualification">
+                <select class="form-control" id="partnerQualification" name="partnerQualification"
+                        ng-model="partner.partnerQualification">
                     <option value="0">已认证</option>
                     <option value="1">未认证</option>
-                </select>   
+                </select>
             </div>
         </div>
         <div class="form-group form-group-sm">
             <label class="col-xs-3 control-label">公司总部地址:</label>
-            <div class="col-xs-4"><input type="text" class="form-control" id="hqLocation" name="hqLocation" ng-model="partner.hqLocation" required=""/></div>
+
+            <div class="col-xs-4"><input type="text" class="form-control" id="hqLocation" name="hqLocation"
+                                         ng-model="partner.hqLocation" required=""/></div>
         </div>
         <div class="form-group form-group-sm">
             <label class="col-xs-3 control-label">校区地址:</label>
+
             <div class="col-xs-4">
-            <div ng-repeat="location in partner.addressList track by $index">
-                <input type="text" class="form-control subLocations" id="addressList{{$index}}" name="addressList{{$index}}" ng-model="partner.addressList[$index]" required=""/>
-                <a ng-click="removeLocation($index)" class="glyphicon-remove">删除</a>
-            </div>
-            <a id="addLocation" ng-click="addLocation()">增加更多地址</a>
+                <div ng-repeat="location in partner.addressList track by $index">
+                    <input type="text" class="form-control subLocations" id="addressList{{$index}}"
+                           name="addressList{{$index}}" ng-model="partner.addressList[$index]" required=""/>
+                    <a ng-click="removeLocation($index)" class="glyphicon-remove">删除</a>
+                </div>
+                <a id="addLocation" ng-click="addLocation()">增加更多地址</a>
             </div>
         </div>
 
         <div class="form-group form-group-sm">
             <label class="col-xs-3 control-label">默认课程截止日:</label>
-            <div class="col-xs-4"><input type="text" class="form-control" id="defaultCutoffDay" name="defaultCutoffDay" ng-model="partner.defaultCutoffDay" required=""/></div>
+
+            <div class="col-xs-4"><input type="text" class="form-control" id="defaultCutoffDay" name="defaultCutoffDay"
+                                         ng-model="partner.defaultCutoffDay" required=""/></div>
         </div>
         <div class="form-group form-group-sm">
             <label class="col-xs-3 control-label">默认截止日几点截止:</label>
-            <div class="col-xs-4"><input type="text" class="form-control" id="defaultCutoffTime" name="defaultCutoffTime" ng-model="partner.defaultCutoffTime" required=""/></div>
+
+            <div class="col-xs-4"><input type="text" class="form-control" id="defaultCutoffTime"
+                                         name="defaultCutoffTime" ng-model="partner.defaultCutoffTime" required=""/>
+            </div>
         </div>
         <div class="form-group form-group-sm">
             <label class="col-xs-3 control-label">查询号:</label>
-            <div class="col-xs-4"><input type="text" class="form-control" id="reference" name="reference" ng-model="partner.reference" required=""/></div>
+
+            <div class="col-xs-4"><input type="text" class="form-control" id="reference" name="reference"
+                                         ng-model="partner.reference" required=""/></div>
         </div>
         <div class="form-group">
             <div class="col-xs-4 col-xs-offset-3">
-                <input type="submit"  class="btn btn-primary" value="提 交" w5c-form-submit="edit()"/>
+                <input type="submit" class="btn btn-primary" value="提 交" w5c-form-submit="edit()"/>
             </div>
         </div>
     </form>
