@@ -57,9 +57,9 @@
     <label class="col-xs-3 control-label">上课时间</label>
     <div class="col-xs-8">
         <p class="form-control-static">
-            {{template.startTime1}}-{{template.finishTime1}}
+            {{template.startTime1|toHHmm}}-{{template.finishTime1|toHHmm}}
             <span ng-show="template.startTime2!=null">
-                {{template.startTime2}}-{{template.finishTime2}}
+                {{template.startTime2|toHHmm}}-{{template.finishTime2|toHHmm}}
             </span>
         </p>
     </div>

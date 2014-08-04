@@ -1,9 +1,17 @@
 'use strict';
 
 /* Filters */
+//todo 输入的错误的值的异常处理
 appFilters
-    //通用的独立filter
-
+    /*通用的独立filter*/
+    //将4位以内的数字转换成HH:mm
+    .filter('toHHmm', function () {
+        return function(value){
+            if(value === undefined) return '';
+            value = value.toString().sub(0,4);
+            return value.sub(-1,2)+'：'+value.sub(0,2);
+        };
+    })
     //以下为需要作为option并且value to text
     /*班级类型*/
     .filter('classType', ['app',
@@ -64,6 +72,10 @@ appFilters
                     var category = app.cache.category.get('category').data;
                     //filter course category
                     //value is fixed | start is from 0 to value.length |cat is from top level to bottom level
+                    /**
+                     *
+                     * @param 6位的类目数值 截取的两位数的开始位置 目录的json
+                     */
                     var getCat = function (value, start, cat) {
                         if (start >= value.length)return '';
                         for (a in cat.children) {

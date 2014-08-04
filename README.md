@@ -38,12 +38,6 @@ yoke
 
 2.***`brunch w -s`*** or ***`brunch w -sp 1234`*** to use port '1234'
 
-
-##命名约定
-1.变量使用下划线
-
-2.函数使用驼峰
-
 ##response format
 对于操作的返回
     with http status
