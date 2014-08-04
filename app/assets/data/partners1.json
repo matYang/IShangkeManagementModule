@@ -2,40 +2,70 @@
     "id": 1,
     "wholeName": "whole name 1",
     "instName": "inst name 1",
-    "instDistinction": "",
-    "partnerQualification": "",
-    "logoUrl":"http://hdn.xnimg.cn/photos/hdn321/20120117/1430/h_main_uMg0_7a8f000389e52f75.jpg",
+    "rating": 3.2,
+    "logoUrl": "http://hdn.xnimg.cn/photos/hdn321/20120117/1430/h_main_uMg0_7a8f000389e52f75.jpg",
+    "reference":"2331128923",
+    "partnerIntro":"这里是机构简介内容",
+    "partnerDistinction": "这里是机构荣誉信息",
+    "partnerQualification": 1,
+    "hqLocation":"这里是机构总部地址",
+    "cutoffDay":3,
+    "cutoffTime":1200,
+
     "addressList": [
         {
-            "id":11,
-            "detail":"地点11"
+            "id": 11,
+            "detail": "地点11"
         },
         {
-            "id":12,
-            "detail":"地点12"
+            "id": 12,
+            "detail": "地点12"
         }
     ],
-    "teacherList":[
+    "teacherList": [
         {
-            "id":1,
-            "partnerId":1,
-            "imgUrl":"http://hdn.xnimg.cn/photos/hdn521/20140713/2310/h_main_HM6z_279f00037fae1986.jpg",
-            "name":"小夏",
-            "intro":"负责任的美女老师"
+            "id": 1,
+            "partnerId": 1,
+            "imgUrl": "http://hdn.xnimg.cn/photos/hdn521/20140713/2310/h_main_HM6z_279f00037fae1986.jpg",
+            "name": "小夏",
+            "intro": "负责任的美女老师"
         },
         {
-            "id":3,
-            "partnerId":1,
-            "imgUrl":"http://testimgsbucket.oss-cn-hangzhou.aliyuncs.com/t2.png",
-            "name":"小y",
-            "intro":"负责任的美女老师"
+            "id": 3,
+            "partnerId": 1,
+            "imgUrl": "http://testimgsbucket.oss-cn-hangzhou.aliyuncs.com/t2.png",
+            "name": "小y",
+            "intro": "负责任的美女老师"
         },
         {
-            "id":2,
-            "partnerId":1,
-            "imgUrl":"http://hdn.xnimg.cn/photos/hdn321/20120117/1430/h_main_uMg0_7a8f000389e52f75.jpg",
-            "name":"小雨",
-            "intro":"负责任的帅哥老师"
+            "id": 2,
+            "partnerId": 1,
+            "imgUrl": "http://hdn.xnimg.cn/photos/hdn321/20120117/1430/h_main_uMg0_7a8f000389e52f75.jpg",
+            "name": "小雨",
+            "intro": "负责任的帅哥老师"
+        }
+    ],
+    "classPhotoList": [
+        {
+            "id": 1,
+            "partnerId": 1,
+            "imgUrl": "http://hdn.xnimg.cn/photos/hdn521/20140713/2310/h_main_HM6z_279f00037fae1986.jpg",
+            "title": "机构图片1",
+            "description": "1111"
+        },
+        {
+            "id": 3,
+            "partnerId": 1,
+            "imgUrl": "http://testimgsbucket.oss-cn-hangzhou.aliyuncs.com/t2.png",
+            "title": "机构图片2",
+            "description": "22222"
+        },
+        {
+            "id": 2,
+            "partnerId": 1,
+            "imgUrl": "http://hdn.xnimg.cn/photos/hdn321/20120117/1430/h_main_uMg0_7a8f000389e52f75.jpg",
+            "title": "机构图片3",
+            "description": "33333"
         }
     ]
 }

@@ -1,39 +1,24 @@
 'use strict';
 appControllers.controller('partnersEditCtrl',
-    ['$scope','restAPI','$state', function ($scope,restAPI,$state) {
-        var Partners = restAPI.partners;
-        var id = $state.params.id;
-
-        $scope.addLocation = function () {
-            var len = $scope.partner.addressList.length;
-            $scope.partner.addressList[len] = "";
-        }
-        $scope.removeLocation = function (index) {
-            while (index < $scope.partner.addressList.length - 1) {
-                if ($scope.partner.addressList[index] = $scope.partner.addressList[index + 1]);
-                index++;
-            }
-            $scope.partner.addressList.pop();
-        }
-        
-        $scope.doRefresh = function(){
-            Partners.get({ID:id}, function(data){
-                $scope.partner = data;
-            }, function () {
-                //error
+    ['$scope','app', function ($scope,app) {
+        var Partners = app.restAPI.partners;
+        var id = app.state.params.id;
+        $scope.options = angular.copy(app.options); // avoid to change original value
+        $scope.Epartner = angular.copy($scope.partner); //a copy of partner
+        //提交更新
+        $scope.submit = function () {
+            Partners.update({ID:id},$scope.Epartner, function(partner){
+                $scope.partner = partner;
+                app.toaster.pop('success', "机构信息更新成功", "");
+                app.state.go('admin.partners.detail', {id: id});
+            },function(){
+                app.toaster.pop('error', "机构信息更新失败", "请稍后再试");
             });
         };
-        $scope.edit = function () {
-            Partners.put($scope.partner, function(data){
-                app.toaster.pop('success', "机构创建成功", "");
-                app.log.info('create partner success');
-                app.state.go('admin.partners.detail', {data: id});
-            });
-        };
+        //取消更新 返回基本信息页
         $scope.cancel = function () {
-            app.state.go('admin.partners.detail', {data: id});
+            app.state.go('admin.partners.detail', {id: id});
         };
-        $scope.doRefresh();
     }]
 );
 

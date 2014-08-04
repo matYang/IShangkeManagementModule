@@ -10,101 +10,99 @@
 <div class="row">
     <form class="col-xs-9 form-horizontal" role="form" name="validateForm" w5c-form-validate novalidate>
         <div class="form-group form-group-sm">
-            <label class="col-xs-3 control-label">机构ID:</label>
+            <label class="col-xs-4 control-label">机构ID:</label>
 
-            <div class="col-xs-4 form-control-static">
-                {{partner.id}}
+            <div class="col-xs-5 form-control-static">
+                {{Epartner.id}}
             </div>
         </div>
         <div class="form-group form-group-sm">
-            <label class="col-xs-3 control-label">机构全称:</label>
+            <label class="col-xs-4 control-label">机构全称:</label>
 
-            <div class="col-xs-4"><input type="text" class="form-control" id="wholeName" name="wholeName"
-                                         ng-model="partner.wholeName" required=""/></div>
-        </div>
-        <div class="form-group form-group-sm">
-            <label class="col-xs-3 control-label">学校名:</label>
-
-            <div class="col-xs-4"><input type="text" class="form-control" id="instName" name="instName"
-                                         ng-model="partner.instName" required=""/></div>
-        </div>
-        <div class="form-group form-group-sm">
-            <label class="col-xs-3 control-label">机构简介:</label>
-
-            <div class="col-xs-4"><input type="text" class="form-control" id="partnerIntro" name="partnerIntro"
-                                         ng-model="partner.partnerIntro " required=""/></div>
-        </div>
-        <div class="form-group form-group-sm">
-            <label class="col-xs-3 control-label">机构荣誉:</label>
-
-            <div class="col-xs-4"><input type="text" class="form-control" id="partnerDistinction"
-                                         name="partnerDistinction" ng-model=" partner.partnerDistinction"/></div>
-        </div>
-        <div class="form-group form-group-sm">
-            <label class="col-xs-3 control-label">合作伙伴资格:</label>
-
-            <div class="col-xs-4">
-                <select class="form-control" id="partnerQualification" name="partnerQualification"
-                        ng-model="partner.partnerQualification">
-                    <option value="0">已认证</option>
-                    <option value="1">未认证</option>
-                </select>
+            <div class="col-xs-5">
+                <input type="text" class="form-control" name="wholeName" ng-model="Epartner.wholeName"/>
             </div>
         </div>
         <div class="form-group form-group-sm">
-            <label class="col-xs-3 control-label">公司总部地址:</label>
+            <label class="col-xs-4 control-label">机构简称:</label>
 
-            <div class="col-xs-4"><input type="text" class="form-control" id="hqLocation" name="hqLocation"
-                                         ng-model="partner.hqLocation" required=""/></div>
-        </div>
-        <div class="form-group form-group-sm">
-            <label class="col-xs-3 control-label">校区地址:</label>
-
-            <div class="col-xs-4">
-                <div ng-repeat="location in partner.addressList track by $index">
-                    <input type="text" class="form-control subLocations" id="addressList{{$index}}"
-                           name="addressList{{$index}}" ng-model="partner.addressList[$index]" required=""/>
-                    <a ng-click="removeLocation($index)" class="glyphicon-remove">删除</a>
-                </div>
-                <a id="addLocation" ng-click="addLocation()">增加更多地址</a>
-            </div>
-        </div>
-
-        <div class="form-group form-group-sm">
-            <label class="col-xs-3 control-label">默认课程截止日:</label>
-
-            <div class="col-xs-4"><input type="text" class="form-control" id="defaultCutoffDay" name="defaultCutoffDay"
-                                         ng-model="partner.defaultCutoffDay" required=""/></div>
-        </div>
-        <div class="form-group form-group-sm">
-            <label class="col-xs-3 control-label">默认截止日几点截止:</label>
-
-            <div class="col-xs-4"><input type="text" class="form-control" id="defaultCutoffTime"
-                                         name="defaultCutoffTime" ng-model="partner.defaultCutoffTime" required=""/>
+            <div class="col-xs-5">
+                <input type="text" class="form-control" name="instName" ng-model="Epartner.instName" required=""/>
             </div>
         </div>
         <div class="form-group form-group-sm">
-            <label class="col-xs-3 control-label">查询号:</label>
+            <label class="col-xs-4 control-label">机构简介:</label>
 
-            <div class="col-xs-4"><input type="text" class="form-control" id="reference" name="reference"
-                                         ng-model="partner.reference" required=""/></div>
+            <div class="col-xs-5">
+                <textarea class="form-control" name="partnerIntro" ng-model="Epartner.partnerIntro"></textarea>
+            </div>
+        </div>
+        <div class="form-group form-group-sm">
+            <label class="col-xs-4 control-label">机构荣誉:</label>
+
+            <div class="col-xs-5">
+                <input type="text" class="form-control" name="partnerDistinction"
+                       ng-model=" Epartner.partnerDistinction"/>
+            </div>
+        </div>
+        <div class="form-group form-group-sm">
+            <label class="col-xs-4 control-label">合作伙伴资格:</label>
+
+            <div class="col-xs-5">
+                <button class="btn btn-default btn-sm" id="partnerQualification" name="partnerQualification"
+                        ng-model="Epartner.partnerQualification"
+                        bs-select ng-options="item.value as item.label for item in options.partnerQualification">
+                </button>
+            </div>
+        </div>
+        <div class="form-group form-group-sm">
+            <label class="col-xs-4 control-label">公司总部地址:</label>
+
+            <div class="col-xs-5">
+                <input type="text" class="form-control" name="hqLocation" ng-model="Epartner.hqLocation"/></div>
+        </div>
+
+        <div class="form-group form-group-sm">
+            <label class="col-xs-4 control-label">默认课程截止天数:</label>
+
+            <div class="col-xs-5">
+                <input type="number" class="form-control" name="defaultCutoffDay" ng-model="Epartner.defaultCutoffDay"/>
+            </div>
+        </div>
+        <div class="form-group form-group-sm">
+            <label class="col-xs-4 control-label">默认截止日几点截止:</label>
+
+            <div class="col-xs-5">
+                <input type="number" class="form-control" name="defaultCutoffTime"
+                       ng-model="Epartner.defaultCutoffTime"/>
+            </div>
+        </div>
+        <div class="form-group form-group-sm">
+            <label class="col-xs-4 control-label">查询号:</label>
+
+            <div class="col-xs-5">
+                <input type="text" class="form-control" name="reference" ng-model="Epartner.reference"/>
+            </div>
         </div>
         <div class="form-group">
-            <div class="col-xs-4 col-xs-offset-3">
-                <input type="submit" class="btn btn-primary" value="提 交" w5c-form-submit="edit()"/>
+            <div class="col-xs-5 col-xs-offset-4">
+                <input type="submit" class="btn btn-primary" value="提 交" w5c-form-submit="submit()"/>
+                <button class="btn btn-warning btn-sm" ng-click="cancel()">取消</button>
             </div>
         </div>
     </form>
     <div class="col-xs-3" scroll-fix>
         <label>快速链接</label>
-        <p>&gt;
-            <a ui-sref="admin.partners.detail({id:partner.id})">查看</a>
-            /
-            <span>修改</span>
+
+        <p>
+            &gt;<a ui-sref="admin.partners.detail({id:partner.id})">查看</a> / <span>修改</span>
             机构基本信息
         </p>
+
         <p><a class="center-block" ui-sref="admin.partners.detail.logo({id:partner.id})">&gt;修改机构logo</a></p>
+
         <p><a class="center-block" ui-sref="admin.partners.detail.photo({id:partner.id})">&gt;查看机构照片</a></p>
+
         <p><a class="center-block" ui-sref="admin.partners.detail.teacher({id:partner.id})">&gt;查看机构教师</a></p>
     </div>
 </div>

@@ -8,8 +8,8 @@ appFilters
     .filter('toHHmm', function () {
         return function(value){
             if(value === undefined) return '';
-            value = value.toString().sub(0,4);
-            return value.sub(-1,2)+'：'+value.sub(0,2);
+            value = value.toString().substr(0,4);
+            return value.substr(0,2)+':'+value.substr(2,2);
         };
     })
     //以下为需要作为option并且value to text
@@ -18,6 +18,14 @@ appFilters
         function (app) {
             return function (value) {
                 return app.Enum.classType[value] || '未知类型';
+            };
+        }
+    ])
+    //资质信息
+    .filter('partnerQualification', ['app',
+        function (app) {
+            return function (value) {
+                return app.Enum.partnerQualification[value] || '未知';
             };
         }
     ])
@@ -68,17 +76,17 @@ appFilters
         function (app) {
             return function (value) {
                 if (typeof value === 'string') {
-                    var result = [];
                     var category = app.cache.category.get('category').data;
                     //filter course category
                     //value is fixed | start is from 0 to value.length |cat is from top level to bottom level
                     /**
                      *
-                     * @param 6位的类目数值 截取的两位数的开始位置 目录的json
+                     * @param value start cat
+                     * @description 6位的类目数值 截取的两位数的开始位置 目录的json
                      */
                     var getCat = function (value, start, cat) {
                         if (start >= value.length)return '';
-                        for (a in cat.children) {
+                        for (var a in cat.children) {
                             if (cat.children[a].value == value.substr(0, start + 2))
                                 return cat.children[a].name + '--' + getCat(value, start + 2, cat.children[a]);
                         }
