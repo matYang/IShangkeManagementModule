@@ -1,63 +1,31 @@
-<div class="row">
-    <div class="col-xs-12">
-        <h3>
-            <small><a ui-sref="admin.partners.list" class="btn fa fa-chevron-left pull-left"> 返回机构列表 </a></small>
-            机构照片列表<small>--{{partner.instName}}</small>
-        </h3>
+<!--该部分内容位于partner中的detail的col-xs-9的ui-view中-->
+<p>&gt;&gt;机构照片总数：<strong>{{photos.length}}</strong></p>
+
+<div ng-repeat="photo in photos track by photo.id" class="img-thumbnail pull-left">
+    <img ng-src="{{photo.imgUrl}}" class="img-md center-block"/>
+    <!--不在编辑状态中-->
+    <div ng-hide="photo.edit">
+        <label>标题</label>
+
+        <p>{{photo.title}}</p>
+        <label>描述</label>
+
+        <p>{{photo.description}}</p>
     </div>
-</div>
-<div class="row">
-    <div class="col-xs-9 form-horizontal" role="form" name="validateForm">
-        <p>&gt;&gt;机构照片总数：<strong>{{photos.length}}</strong></p>
-
-        <div ng-repeat="photo in photos track by photo.id" class="img-thumbnail pull-left">
-            <img ng-src="{{photo.imgUrl}}" class="img-md center-block"/>
-            <!--不在编辑状态中-->
-            <div ng-hide="photo.edit">
-                <label>标题</label>
-
-                <p>{{photo.title}}</p>
-                <label>描述</label>
-
-                <p>{{photo.description}}</p>
-            </div>
-            <!--进入编辑状态-->
-            <div ng-show="photo.edit">
-                <input class="input-file" type="file" ng-file-select="onFileSelect($files, $index)"
-                       ng-model="photo.imgFile">
-                <label>姓名</label>
-                <input class="form-control input-sm" type="text" ng-model="photo.title">
-                <label>简介</label>
-                <textarea class="form-control input-sm" ng-model="photo.description"></textarea>
-            </div>
-
-            <p class="bottom">
-                <button ng-show="photo.edit" class="btn btn-primary btn-sm" ng-click="updatePhoto($index)">保存</button>
-                <button ng-show="photo.edit" class="btn btn-default btn-sm" ng-click="cancelEdit($index)">取消</button>
-                <button ng-hide="photo.edit" class="btn btn-default btn-sm" ng-click="editPhoto($index)">编辑</button>
-                <button ng-hide="photo.edit" class="btn btn-warning btn-sm" ng-click="deletePhoto($index)">删除</button>
-            </p>
-        </div>
-
+    <!--进入编辑状态-->
+    <div ng-show="photo.edit">
+        <input class="input-file" type="file" ng-file-select="onFileSelect($files, $index)"
+               ng-model="photo.imgFile">
+        <label>姓名</label>
+        <input class="form-control input-sm" type="text" ng-model="photo.title">
+        <label>简介</label>
+        <textarea class="form-control input-sm" ng-model="photo.description"></textarea>
     </div>
 
-
-    <div class="col-xs-3" scroll-fix>
-        <hr/>
-        <button class="btn btn-default" ng-click="addPhoto()">添加新照片</button>
-        &nbsp;
-        <button class="btn btn-default" ng-click="doRefresh()">刷新</button>
-        <hr/>
-        <label>快速链接</label>
-        <p>&gt;
-            <a ui-sref="admin.partners.detail({id:partner.id})">查看</a>
-            /
-            <a ui-sref="admin.partners.detail.edit({id:partner.id})">修改</a>
-            机构基本信息
-        </p>
-        <p><a class="center-block" ui-sref="admin.partners.detail.logo({id:partner.id})">&gt;修改机构logo</a></p>
-        <p>查看机构照片</p>
-        <p><a class="center-block" ui-sref="admin.partners.detail.teacher({id:partner.id})">&gt;查看机构教师</a></p>
-        <hr/>
-    </div>
+    <p class="bottom">
+        <button ng-show="photo.edit" class="btn btn-primary btn-sm" ng-click="updatePhoto($index)">保存</button>
+        <button ng-show="photo.edit" class="btn btn-default btn-sm" ng-click="cancelEdit($index)">取消</button>
+        <button ng-hide="photo.edit" class="btn btn-default btn-sm" ng-click="editPhoto($index)">编辑</button>
+        <button ng-hide="photo.edit" class="btn btn-warning btn-sm" ng-click="deletePhoto($index)">删除</button>
+    </p>
 </div>

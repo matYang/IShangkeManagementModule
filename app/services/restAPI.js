@@ -16,14 +16,16 @@ appServices
                     //RO--role ID--id OP--operate
                     // Example request api: /api/v2/login /api/v2/login
                     'auth': ['/data/:RO.json/:OP', '/:OP'],
+                    // /api/v2/booking/1/
+                    'bookings': ['/data/bookings:ID.json/:OP', '/booking/:ID/:OP'],
                     'templates': ['/data/templates:ID.json/:OP', '/template/:ID/:OP'],
                     'courses': ['/data/courses:ID.json', '/course/:ID/:OP'],
+
                     'partners': ['/data/partners:ID.json', '/partner/:ID/:OP'],
                     'teachers': ['/data/teachers:ID.json', '/teacher/:ID/:OP'],
                     'photos': ['/data/classPhotos:ID.json', '/classPhoto/:ID/:OP'],
-                    'addresses': ['', '/address/:ID/:OP'],
-                    // /api/v2/booking/1/
-                    'bookings': ['/data/bookings:ID.json/:OP', '/booking/:ID/:OP'],
+                    'addresses': ['/data/addresses:ID.json', '/address/:ID/:OP'],
+
                     'category': ['/data/category.json', '/category']
                 }
             };
@@ -62,9 +64,12 @@ appServices
                 'templates': resource_maker('templates'),
                 'courses': resource_maker('courses'),
                 'bookings': resource_maker('bookings'),
+
                 'partners': resource_maker('partners'),
                 'teachers': resource_maker('teachers'),
                 'photos': resource_maker('photos'),
+                'addresses': resource_maker('addresses'),
+
                 'category': resource_maker('category')
 
             };

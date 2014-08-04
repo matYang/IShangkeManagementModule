@@ -1,27 +1,48 @@
-<div>
-    <form class="col-md-12 form-horizontal" role="form" name="validateForm" w5c-form-validate novalidate>
-    	<div ng-repeat="address in item.addressList">
-    		<label>名字</label>
-	        <input type="text" ng-model="address.name">
-    		<label>详细地址</label>
-	        <input type="text" ng-model="address.detail">
-    		<label>纬度</label>
-	        <input type="text" ng-model="address.lat">
-    		<label>经度</label>
-	        <input type="text" ng-model="address.lng">
-        	<input type="button" class="btn btn-primary" value="删除" ng-click="removeTeacher($index)" />
-        	<input type="button" class="btn btn-primary" value="更新" ng-click="update($index)" />
-        </div>
-        <div >
-        	<label>名字</label>
-	        <input type="text" ng-model="address.name">
-    		<label>详细地址</label>
-	        <input type="text" ng-model="address.detail">
-    		<label>经度</label>
-	        <input type="text" ng-model="address.lat">
-    		<label>纬度</label>
-	        <input type="text" ng-model="address.lng">
-        	<input type="button" class="btn btn-primary" value="新建" ng-click="create($index)" />
-        </div>
-    </form>
-</div>
+<!--该部分内容位于partner中的detail的col-xs-9的ui-view中-->
+<table class="table table-condensed" ng-form="address" novalidate>
+    <thead>
+    <td width="40%">
+        <input type="text" class="form-control input-sm" placeholder="地址" ng-model="item.detail" required=""/>
+    </td>
+    <td width="20%">
+        <input type="number" class="form-control input-sm" placeholder="经度（可选）" ng-model="item.lat"/>
+    </td>
+    <td width="20%">
+        <input type="number" class="form-control input-sm" placeholder="纬度（可选）" ng-model="item.lng"/>
+    </td>
+    <td width="20%" class="text-right" style="padding-right: 0">
+        <button class="btn btn-primary btn-sm"  ng-disabled="address.$invalid">
+            <span ng-hide="creating" ng-click="addAddress()">新 增</span>
+            <span ng-show="creating">创建中</span>
+        </button>
+        <button class="btn btn-default btn-sm" ng-click="init()">清空输入</button>
+    </td>
+    </thead>
+</table>
+<table class="table table-bordered table-condensed">
+    <thead>
+    <th width="40%">地址</th>
+    <th width="20%">经度</th>
+    <th width="20%">纬度</th>
+    <th width="20%">操作</th>
+    </thead>
+    <tbody>
+    <tr ng-repeat="a in addresses track by a.id">
+        <!--不在编辑状态中-->
+        <td ng-hide="a.edit">{{a.detail}}</td>
+        <td ng-hide="a.edit">{{a.lat}}</td>
+        <td ng-hide="a.edit">{{a.lng}}</td>
+        <!--进入编辑状态-->
+        <td ng-show="a.edit"><input class="form-control input-sm" type="text" ng-model="a.detail"></td>
+        <td ng-show="a.edit"><input class="form-control input-sm" type="text" ng-model="a.lat"></td>
+        <td ng-show="a.edit"><input class="form-control input-sm" type="text" ng-model="a.lng"></td>
+
+        <td class="bottom">
+            <button ng-show="a.edit" class="btn btn-primary btn-sm" ng-click="updateAddress($index)">保存</button>
+            <button ng-show="a.edit" class="btn btn-default btn-sm" ng-click="cancelEdit($index)">取消</button>
+            <button ng-hide="a.edit" class="btn btn-default btn-sm" ng-click="editAddress($index)">编辑</button>
+            <button ng-hide="a.edit" class="btn btn-warning btn-sm" ng-click="deleteAddress($index)">删除</button>
+        </td>
+    </tr>
+    </tbody>
+</table>

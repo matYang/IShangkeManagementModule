@@ -1,86 +1,92 @@
-<div ui-view>
+<div>
     <div class="row">
         <div class="col-xs-12">
             <h3>
                 <small><a ui-sref="admin.partners.list" class="btn fa fa-chevron-left pull-left"> 返回列表 </a></small>
-                机构基本信息
+                机构信息
                 <small>--{{partner.instName}}</small>
             </h3>
         </div>
     </div>
     <div class="row">
-        <form class="col-xs-9 form-horizontal">
-            <div class="form-group form-group-sm">
-                <label class="col-xs-4 control-label">合作机构ID</label>
+        <div class="col-xs-9" ui-view>
+            <form class="form-horizontal">
+                <div class="form-group form-group-sm">
+                    <label class="col-xs-4 control-label">合作机构ID</label>
 
-                <div class="col-xs-5 form-control-static">{{partner.id}}</div>
-            </div>
-            <div class="form-group form-group-sm">
-                <label class="col-xs-4 control-label">Logo:</label>
-
-                <div class="col-xs-5 form-control-static"><img ng-show="!!partner.logoUrl" ng-src="{{partner.logoUrl}}">
+                    <div class="col-xs-5 form-control-static">{{partner.id}}</div>
                 </div>
-            </div>
-            <div class="form-group form-group-sm">
-                <label class="col-xs-4 control-label">机构简称:</label>
+                <div class="form-group form-group-sm">
+                    <label class="col-xs-4 control-label">Logo:</label>
 
-                <div class="col-xs-5 form-control-static">{{partner.instName}}</div>
-            </div>
-            <div class="form-group form-group-sm">
-                <label class="col-xs-4 control-label">机构全称:</label>
-
-                <div class="col-xs-5 form-control-static">{{partner.wholeName}}</div>
-            </div>
-            <div class="form-group form-group-sm">
-                <label class="col-xs-4 control-label">机构简介:</label>
-
-                <div class="col-xs-5 form-control-static">{{ partner.partnerIntro }}</div>
-            </div>
-            <div class="form-group form-group-sm">
-                <label class="col-xs-4 control-label">机构荣誉:</label>
-
-                <div class="col-xs-5 form-control-static">{{ partner.partnerDistinction }}</div>
-            </div>
-            <div class="form-group form-group-sm">
-                <label class="col-xs-4 control-label">合作伙伴资格:</label>
-
-                <div class="col-xs-5 form-control-static">{{partner.partnerQualification|partnerQualification}}</div>
-            </div>
-            <div class="form-group form-group-sm">
-                <label class="col-xs-4 control-label">公司总部地址:</label>
-
-                <div class="col-xs-5 form-control-static">{{partner.hqLocation}}</div>
-            </div>
-            <div class="form-group form-group-sm">
-                <label class="col-xs-4 control-label">校区地址:</label>
-
-                <div class="col-xs-5 form-control-static">
-                    <ol>
-                        <li ng-repeat="location in partner.addressList">{{location.detail}}</li>
-                    </ol>
+                    <div class="col-xs-5 form-control-static"><img ng-show="!!partner.logoUrl" ng-src="{{partner.logoUrl}}">
+                    </div>
                 </div>
-            </div>
-            <div class="form-group form-group-sm">
-                <label class="col-xs-4 control-label">默认课程截止日:</label>
+                <div class="form-group form-group-sm">
+                    <label class="col-xs-4 control-label">机构简称:</label>
 
-                <div class="col-xs-5 form-control-static">报名提前{{partner.cutoffDay}}天截止</div>
-            </div>
-            <div class="form-group form-group-sm">
-                <label class="col-xs-4 control-label">默认截止日几点截止:</label>
+                    <div class="col-xs-5 form-control-static">{{partner.instName}}</div>
+                </div>
+                <div class="form-group form-group-sm">
+                    <label class="col-xs-4 control-label">机构全称:</label>
 
-                <div class="col-xs-5 form-control-static">{{partner.cutoffTime |toHHmm}}</div>
-            </div>
-            <div class="form-group form-group-sm">
-                <label class="col-xs-4 control-label">查询号:</label>
+                    <div class="col-xs-5 form-control-static">{{partner.wholeName}}</div>
+                </div>
+                <div class="form-group form-group-sm">
+                    <label class="col-xs-4 control-label">机构简介:</label>
 
-                <div class="col-xs-5 form-control-static">{{partner.reference}}</div>
-            </div>
-        </form>
+                    <div class="col-xs-5 form-control-static">{{ partner.partnerIntro }}</div>
+                </div>
+                <div class="form-group form-group-sm">
+                    <label class="col-xs-4 control-label">机构荣誉:</label>
+
+                    <div class="col-xs-5 form-control-static">{{ partner.partnerDistinction }}</div>
+                </div>
+                <div class="form-group form-group-sm">
+                    <label class="col-xs-4 control-label">合作伙伴资格:</label>
+
+                    <div class="col-xs-5 form-control-static">{{partner.partnerQualification|partnerQualification}}</div>
+                </div>
+                <div class="form-group form-group-sm">
+                    <label class="col-xs-4 control-label">公司总部地址:</label>
+
+                    <div class="col-xs-5 form-control-static">{{partner.hqLocation}}</div>
+                </div>
+                <div class="form-group form-group-sm">
+                    <label class="col-xs-4 control-label">校区地址:</label>
+
+                    <div class="col-xs-5 form-control-static">
+                        <ol>
+                            <li ng-repeat="location in partner.addressList">{{location.detail}}</li>
+                        </ol>
+                    </div>
+                </div>
+                <div class="form-group form-group-sm">
+                    <label class="col-xs-4 control-label">默认课程截止日:</label>
+
+                    <div class="col-xs-5 form-control-static">报名提前{{partner.cutoffDay}}天截止</div>
+                </div>
+                <div class="form-group form-group-sm">
+                    <label class="col-xs-4 control-label">默认截止日几点截止:</label>
+
+                    <div class="col-xs-5 form-control-static">{{partner.cutoffTime |toHHmm}}</div>
+                </div>
+                <div class="form-group form-group-sm">
+                    <label class="col-xs-4 control-label">查询号:</label>
+
+                    <div class="col-xs-5 form-control-static">{{partner.reference}}</div>
+                </div>
+            </form>
+        </div>
+
         <div class="col-xs-3" scroll-fix>
+            <hr/>
             <label>快速链接</label>
 
-            <p>
-                &gt;<span>查看</span> / <a ui-sref="admin.partners.detail.edit({id:partner.id})">修改</a>
+            <p>&gt;
+                <a ui-sref="admin.partners.detail({id:partner.id})">查看</a>
+                /
+                <a ui-sref="admin.partners.detail.edit({id:partner.id})">修改</a>
                 机构基本信息
             </p>
 
@@ -89,6 +95,9 @@
             <p><a class="center-block" ui-sref="admin.partners.detail.photo({id:partner.id})">&gt;查看机构照片</a></p>
 
             <p><a class="center-block" ui-sref="admin.partners.detail.teacher({id:partner.id})">&gt;查看机构教师</a></p>
+
+            <p><a class="center-block" ui-sref="admin.partners.detail.address({id:partner.id})">&gt;查看校区地址</a></p>
+            <hr/>
         </div>
     </div>
 </div>

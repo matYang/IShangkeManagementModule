@@ -9,6 +9,7 @@ appControllers.controller('partnersPhotoCtrl',
         var uploadUrl = "/a-api/v2/classPhoto/upload?partnerId="+partnerId;
         var photos_edit = {}; //使用map保存进入修改状态前的class photo
         $scope.photos = [];
+        //todo 照片的获取可直接通过父scope的partner中的classPhoto
         $scope.doRefresh = function () {
             Photos.query({partnerId: partnerId, start: 0, count: 1000}, function (data) {
                 $scope.photos = data.data;
@@ -21,7 +22,7 @@ appControllers.controller('partnersPhotoCtrl',
         /**
          * 进入和退出编辑模式
          */
-        $scope.editPhoto = function ($index) {
+        $scope.editAddress = function ($index) {
             //在edit更改前进行原始photo的保存
             var photo = angular.copy($scope.photos[$index]);
             photos_edit[photo.id] = photo;
@@ -35,7 +36,7 @@ appControllers.controller('partnersPhotoCtrl',
         /**
          * class photo的更新和删除
          */
-        $scope.updatePhoto = function (index) {
+        $scope.updateAddress = function (index) {
             var photo = $scope.photos[index];
             Photos.update({ID: photo.id}, photo, function (data) {
                 photo.edit = false;
@@ -45,7 +46,7 @@ appControllers.controller('partnersPhotoCtrl',
                 app.toaster.pop('error', "照片更新失败", "");
             });
         };
-        $scope.deletePhoto = function (index) {
+        $scope.deleteAddress = function (index) {
             var photo = $scope.photos[index];
             Photos.delete({ID: photo.id}, function () {
                 $scope.photos.splice(index, 1);//进行本地删除 todo seems slowly

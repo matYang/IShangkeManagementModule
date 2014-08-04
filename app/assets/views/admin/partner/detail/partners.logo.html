@@ -1,40 +1,16 @@
-<div class="row">
-    <div class="col-xs-12">
-        <h3>
-            <small><a ui-sref="admin.partners.list" class="btn fa fa-chevron-left pull-left"> 返回机构列表 </a></small>
-            机构logo<small>--{{partner.instName}}</small>
+<!--该部分内容位于partner中的detail的col-xs-9的ui-view中-->
+<form class="form-horizontal" role="form" name="validateForm">
+    <div class="form-group">
+        <div class="col-xs-4 col-xs-offset-3">
+            <!--这边需要一张默认图片作为背景-->
+            <img alt="" class="img-thumbnail img-logo margin-bottom" ng-src="{{partner.logoUrl}}"/>
 
-        </h3>
-    </div>
-</div>
-<div class="row">
-    <form class="col-xs-9 form-horizontal" role="form" name="validateForm">
-        <div class="form-group">
-            <div class="col-xs-4 col-xs-offset-3">
-                <!--这边需要一张默认图片作为背景-->
-                <img alt="" class="img-thumbnail img-logo margin-bottom" ng-src="{{partner.logoUrl}}"/>
-                <p ng-show="!!logo">文件名：{{logo.name}} 类型：{{logo.type}} 大小：{{logo.size}}B</p>
-                <input type="file" ng-file-select="onFileSelect($files)"/>
-                <br/>
-                <input class="btn btn-default btn-sm" type="button" ng-click="upload()" value="上传logo"/>
-                <button class="btn btn-default btn-sm" ng-click="cancel()">取消</button>
-            </div>
+            <p ng-show="!!logo">文件名：{{logo.name}} 类型：{{logo.type}} 大小：{{logo.size}}B</p>
+            <input type="file" ng-file-select="onFileSelect($files)"/>
+            <br/>
+            <input class="btn btn-default btn-sm" type="button" ng-click="upload()" value="上传logo"/>
+            <button class="btn btn-default btn-sm" ng-click="cancel()">取消</button>
         </div>
-
-    </form>
-    <div class="col-xs-3">
-
-        <label>快速链接</label>
-        <p>&gt;
-            <a ui-sref="admin.partners.detail({id:partner.id})">查看</a>
-            /
-            <a ui-sref="admin.partners.detail.edit({id:partner.id})">修改</a>
-            机构基本信息
-        </p>
-        <p>修改机构logo</p>
-        <p><a class="center-block" ui-sref="admin.partners.detail.photo({id:partner.id})">&gt;查看机构照片</a></p>
-        <p><a class="center-block" ui-sref="admin.partners.detail.teacher({id:partner.id})">&gt;查看机构教师</a></p>
-
     </div>
-</div>
-<!--order_new content end-->
+
+</form>

@@ -1,66 +1,34 @@
-<div class="row">
-    <div class="col-xs-12">
-        <h3>
-            <small><a ui-sref="admin.partners.list" class="btn fa fa-chevron-left pull-left"> 返回机构列表 </a></small>
-            教师列表<small>--{{partner.instName}}</small>
-        </h3>
+<!--该部分内容位于partner中的detail的col-xs-9的ui-view中-->
+<p>&gt;&gt;教师总数：<strong>{{teachers.length}}</strong></p>
+
+<div ng-repeat="teacher in teachers track by teacher.id" class="img-thumbnail pull-left">
+    <img ng-src="{{teacher.imgUrl}}" class="img-md center-block"/>
+    <!--不在编辑状态中-->
+    <div ng-hide="teacher.edit">
+        <label>姓名</label>
+
+        <p>{{teacher.name}}</p>
+        <label>简介</label>
+
+        <p>{{teacher.intro}}</p>
     </div>
-</div>
-<div class="row">
-    <div class="col-xs-9 form-horizontal">
-        <p>&gt;&gt;教师总数：<strong>{{teachers.length}}</strong></p>
-
-        <div ng-repeat="teacher in teachers track by teacher.id" class="img-thumbnail pull-left">
-            <img ng-src="{{teacher.imgUrl}}" class="img-md center-block"/>
-            <!--不在编辑状态中-->
-            <div ng-hide="teacher.edit">
-                <label>姓名</label>
-
-                <p>{{teacher.name}}</p>
-                <label>简介</label>
-
-                <p>{{teacher.intro}}</p>
-            </div>
-            <!--进入编辑状态-->
-            <div ng-show="teacher.edit">
-                <input class="input-file" type="file" ng-file-select="onFileSelect($files, $index)"
-                       ng-model="teacher.imgFile">
-                <label>姓名</label>
-                <input class="form-control input-sm" type="text" ng-model="teacher.name">
-                <label>简介</label>
-                <textarea class="form-control input-sm" ng-model="teacher.intro"></textarea>
-            </div>
-
-            <p class="bottom">
-                <button ng-show="teacher.edit" class="btn btn-primary btn-sm" ng-click="updateTeacher($index)">保存
-                </button>
-                <button ng-show="teacher.edit" class="btn btn-default btn-sm" ng-click="cancelEdit($index)">取消</button>
-
-                <button ng-hide="teacher.edit" class="btn btn-default btn-sm" ng-click="editTeacher($index)">编辑</button>
-                <button ng-hide="teacher.edit" class="btn btn-warning btn-sm" ng-click="deleteTeacher($index)">删除
-                </button>
-            </p>
-        </div>
+    <!--进入编辑状态-->
+    <div ng-show="teacher.edit">
+        <input class="input-file" type="file" ng-file-select="onFileSelect($files, $index)"
+               ng-model="teacher.imgFile">
+        <label>姓名</label>
+        <input class="form-control input-sm" type="text" ng-model="teacher.name">
+        <label>简介</label>
+        <textarea class="form-control input-sm" ng-model="teacher.intro"></textarea>
     </div>
 
-    <div class="col-xs-3" scroll-fix>
-        <hr/>
-        <button class="btn btn-default" ng-click="addTeacher()">添加新教师</button>
-        &nbsp;
-        <button class="btn btn-default" ng-click="doRefresh()">刷新</button>
-        <hr/>
-        <label>快速链接</label>
+    <p class="bottom">
+        <button ng-show="teacher.edit" class="btn btn-primary btn-sm" ng-click="updateTeacher($index)">保存
+        </button>
+        <button ng-show="teacher.edit" class="btn btn-default btn-sm" ng-click="cancelEdit($index)">取消</button>
 
-        <p>&gt;
-            <a ui-sref="admin.partners.detail({id:partner.id})">查看</a>
-            /
-            <a ui-sref="admin.partners.detail.edit({id:partner.id})">修改</a>
-            机构基本信息
-        </p>
-        <p><a class="center-block" ui-sref="admin.partners.detail.logo({id:partner.id})">&gt;修改机构logo</a></p>
-        <p><a class="center-block" ui-sref="admin.partners.detail.photo({id:partner.id})">&gt;查看机构照片</a></p>
-        <p>查看机构教师</p>
-        <hr/>
-        <p><a ui-sref="admin.partners.detail({id:partner.id})">返回机构详情</a></p>
-    </div>
+        <button ng-hide="teacher.edit" class="btn btn-default btn-sm" ng-click="editTeacher($index)">编辑</button>
+        <button ng-hide="teacher.edit" class="btn btn-warning btn-sm" ng-click="deleteTeacher($index)">删除
+        </button>
+    </p>
 </div>

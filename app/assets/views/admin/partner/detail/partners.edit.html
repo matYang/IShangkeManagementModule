@@ -1,108 +1,84 @@
-<div class="row">
-    <div class="col-xs-12">
-        <h3>
-            <small><a ui-sref="admin.partners.list" class="btn fa fa-chevron-left pull-left"> 返回列表 </a></small>
-            修改基本信息
-            <small>--{{partner.instName}}</small>
-        </h3>
+<!--该部分内容位于partner中的detail的col-xs-9的ui-view中-->
+<form class="form-horizontal" role="form" name="validateForm" w5c-form-validate novalidate>
+    <div class="form-group form-group-sm">
+        <label class="col-xs-4 control-label">机构ID:</label>
+
+        <div class="col-xs-5 form-control-static">
+            {{Epartner.id}}
+        </div>
     </div>
-</div>
-<div class="row">
-    <form class="col-xs-9 form-horizontal" role="form" name="validateForm" w5c-form-validate novalidate>
-        <div class="form-group form-group-sm">
-            <label class="col-xs-4 control-label">机构ID:</label>
+    <div class="form-group form-group-sm">
+        <label class="col-xs-4 control-label">机构全称:</label>
 
-            <div class="col-xs-5 form-control-static">
-                {{Epartner.id}}
-            </div>
+        <div class="col-xs-5">
+            <input type="text" class="form-control" name="wholeName" ng-model="Epartner.wholeName"/>
         </div>
-        <div class="form-group form-group-sm">
-            <label class="col-xs-4 control-label">机构全称:</label>
-
-            <div class="col-xs-5">
-                <input type="text" class="form-control" name="wholeName" ng-model="Epartner.wholeName"/>
-            </div>
-        </div>
-        <div class="form-group form-group-sm">
-            <label class="col-xs-4 control-label">机构简称:</label>
-
-            <div class="col-xs-5">
-                <input type="text" class="form-control" name="instName" ng-model="Epartner.instName" required=""/>
-            </div>
-        </div>
-        <div class="form-group form-group-sm">
-            <label class="col-xs-4 control-label">机构简介:</label>
-
-            <div class="col-xs-5">
-                <textarea class="form-control" name="partnerIntro" ng-model="Epartner.partnerIntro"></textarea>
-            </div>
-        </div>
-        <div class="form-group form-group-sm">
-            <label class="col-xs-4 control-label">机构荣誉:</label>
-
-            <div class="col-xs-5">
-                <input type="text" class="form-control" name="partnerDistinction"
-                       ng-model=" Epartner.partnerDistinction"/>
-            </div>
-        </div>
-        <div class="form-group form-group-sm">
-            <label class="col-xs-4 control-label">合作伙伴资格:</label>
-
-            <div class="col-xs-5">
-                <button class="btn btn-default btn-sm" id="partnerQualification" name="partnerQualification"
-                        ng-model="Epartner.partnerQualification"
-                        bs-select ng-options="item.value as item.label for item in options.partnerQualification">
-                </button>
-            </div>
-        </div>
-        <div class="form-group form-group-sm">
-            <label class="col-xs-4 control-label">公司总部地址:</label>
-
-            <div class="col-xs-5">
-                <input type="text" class="form-control" name="hqLocation" ng-model="Epartner.hqLocation"/></div>
-        </div>
-
-        <div class="form-group form-group-sm">
-            <label class="col-xs-4 control-label">默认课程截止天数:</label>
-
-            <div class="col-xs-5">
-                <input type="number" class="form-control" name="defaultCutoffDay" ng-model="Epartner.defaultCutoffDay"/>
-            </div>
-        </div>
-        <div class="form-group form-group-sm">
-            <label class="col-xs-4 control-label">默认截止日几点截止:</label>
-
-            <div class="col-xs-5">
-                <input type="number" class="form-control" name="defaultCutoffTime"
-                       ng-model="Epartner.defaultCutoffTime"/>
-            </div>
-        </div>
-        <div class="form-group form-group-sm">
-            <label class="col-xs-4 control-label">查询号:</label>
-
-            <div class="col-xs-5">
-                <input type="text" class="form-control" name="reference" ng-model="Epartner.reference"/>
-            </div>
-        </div>
-        <div class="form-group">
-            <div class="col-xs-5 col-xs-offset-4">
-                <input type="submit" class="btn btn-primary" value="提 交" w5c-form-submit="submit()"/>
-                <button class="btn btn-warning btn-sm" ng-click="cancel()">取消</button>
-            </div>
-        </div>
-    </form>
-    <div class="col-xs-3" scroll-fix>
-        <label>快速链接</label>
-
-        <p>
-            &gt;<a ui-sref="admin.partners.detail({id:partner.id})">查看</a> / <span>修改</span>
-            机构基本信息
-        </p>
-
-        <p><a class="center-block" ui-sref="admin.partners.detail.logo({id:partner.id})">&gt;修改机构logo</a></p>
-
-        <p><a class="center-block" ui-sref="admin.partners.detail.photo({id:partner.id})">&gt;查看机构照片</a></p>
-
-        <p><a class="center-block" ui-sref="admin.partners.detail.teacher({id:partner.id})">&gt;查看机构教师</a></p>
     </div>
-</div>
+    <div class="form-group form-group-sm">
+        <label class="col-xs-4 control-label">机构简称:</label>
+
+        <div class="col-xs-5">
+            <input type="text" class="form-control" name="instName" ng-model="Epartner.instName" required=""/>
+        </div>
+    </div>
+    <div class="form-group form-group-sm">
+        <label class="col-xs-4 control-label">机构简介:</label>
+
+        <div class="col-xs-5">
+            <textarea class="form-control" name="partnerIntro" ng-model="Epartner.partnerIntro"></textarea>
+        </div>
+    </div>
+    <div class="form-group form-group-sm">
+        <label class="col-xs-4 control-label">机构荣誉:</label>
+
+        <div class="col-xs-5">
+            <input type="text" class="form-control" name="partnerDistinction"
+                   ng-model=" Epartner.partnerDistinction"/>
+        </div>
+    </div>
+    <div class="form-group form-group-sm">
+        <label class="col-xs-4 control-label">合作伙伴资格:</label>
+
+        <div class="col-xs-5">
+            <button class="btn btn-default btn-sm" id="partnerQualification" name="partnerQualification"
+                    ng-model="Epartner.partnerQualification"
+                    bs-select ng-options="item.value as item.label for item in options.partnerQualification">
+            </button>
+        </div>
+    </div>
+    <div class="form-group form-group-sm">
+        <label class="col-xs-4 control-label">公司总部地址:</label>
+
+        <div class="col-xs-5">
+            <input type="text" class="form-control" name="hqLocation" ng-model="Epartner.hqLocation"/></div>
+    </div>
+
+    <div class="form-group form-group-sm">
+        <label class="col-xs-4 control-label">默认课程截止天数:</label>
+
+        <div class="col-xs-5">
+            <input type="number" class="form-control" name="defaultCutoffDay" ng-model="Epartner.defaultCutoffDay"/>
+        </div>
+    </div>
+    <div class="form-group form-group-sm">
+        <label class="col-xs-4 control-label">默认截止日几点截止:</label>
+
+        <div class="col-xs-5">
+            <input type="number" class="form-control" name="defaultCutoffTime"
+                   ng-model="Epartner.defaultCutoffTime"/>
+        </div>
+    </div>
+    <div class="form-group form-group-sm">
+        <label class="col-xs-4 control-label">查询号:</label>
+
+        <div class="col-xs-5">
+            <input type="text" class="form-control" name="reference" ng-model="Epartner.reference"/>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-xs-5 col-xs-offset-4">
+            <input type="submit" class="btn btn-primary" value="提 交" w5c-form-submit="submit()"/>
+            <button class="btn btn-warning btn-sm" ng-click="cancel()">取消</button>
+        </div>
+    </div>
+</form>

@@ -9,6 +9,7 @@ appControllers.controller('partnersTeacherCtrl',
         var uploadUrl = "/a-api/v2/teacher/upload?partnerId=" + partnerId;
         var teachers_edit = {}; //使用mao保存进入修改状态前的teacher
         $scope.teachers = [];
+        //todo 教师的获取可直接通过父scope的partner中的teacherList
         $scope.doRefresh = function () {
             Teachers.query({partnerId: partnerId, start: 0, count: 1000}, function (data) {
                 $scope.teachers = data.data;
