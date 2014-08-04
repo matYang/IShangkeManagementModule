@@ -5,8 +5,7 @@ appControllers.controller('partnersPhotoCtrl',
          * 初始化页面信息
          */
         var Photos = app.restAPI.photos;
-        var partnerId = $scope.partnerId = app.state.params.id;
-        //TODO: replace with real url
+        var partnerId = app.state.params.id;
         var uploadUrl = "/a-api/v2/classPhoto/upload?partnerId="+partnerId;
         var photos_edit = {}; //使用map保存进入修改状态前的class photo
         $scope.photos = [];
@@ -40,6 +39,7 @@ appControllers.controller('partnersPhotoCtrl',
             var photo = $scope.photos[index];
             Photos.update({ID: photo.id}, photo, function (data) {
                 photo.edit = false;
+                delete photos_edit[photo.id];
                 app.toaster.pop('success', "照片更新成功", "");
             }, function () {
                 app.toaster.pop('error', "照片更新失败", "");

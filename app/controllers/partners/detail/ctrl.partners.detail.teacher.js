@@ -5,8 +5,7 @@ appControllers.controller('partnersTeacherCtrl',
          * 初始化页面信息
          */
         var Teachers = app.restAPI.teachers;
-        var partnerId = $scope.partnerId = app.state.params.id;
-        //TODO: replace with real url
+        var partnerId = app.state.params.id;
         var uploadUrl = "/a-api/v2/teacher/upload?partnerId=" + partnerId;
         var teachers_edit = {}; //使用mao保存进入修改状态前的teacher
         $scope.teachers = [];
@@ -41,6 +40,7 @@ appControllers.controller('partnersTeacherCtrl',
             var teacher = $scope.teachers[$index];
             Teachers.update({ID: teacher.id}, teacher, function (data) {
                 teacher.edit = false;
+                delete teachers_edit[teacher.id];
                 app.toaster.pop('success', "教师>" + teacher.name + "的资料更新成功", "");
             }, function () {
                 app.toaster.pop('error', "教师>" + teacher.name + "的资料更新失败", "");

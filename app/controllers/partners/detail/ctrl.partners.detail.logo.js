@@ -5,8 +5,6 @@ appControllers.controller('partnersLogoCtrl',
         var partnerId = app.state.params.id;
         //上传地址为/a-api/v2/partner/1/logo
         var uploadUrl = "/a-api/v2/" + "partner/" + partnerId + "/logo";
-        //todo 初始化logo
-//        $scope.logoUrl = angular.copy($scope.partner.logoUrl);
         $scope.onFileSelect = function ($files) {
             for (var i = 0; i < $files.length; i++) {
                 var $file = $files[i];
