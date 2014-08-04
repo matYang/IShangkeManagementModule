@@ -5,18 +5,22 @@
 </div>
 <div class="row">
     <form class="col-xs-9 form-horizontal" role="form" name="validateForm" w5c-form-validate novalidate>
-        <input type="hidden" class="form-control" id="id" name="id" ng-model="partner.id"/>
+        <input type="hidden" class="form-control" name="id" ng-model="partner.id"/>
         <div class="form-group form-group-sm">
             <label class="col-xs-3 control-label">机构全称:</label>
-            <div class="col-xs-5"><input type="text" class="form-control" id="wholeName" name="wholeName" ng-model="partner.wholeName" required="" /></div>
+            <div class="col-xs-5"><input type="text" class="form-control" name="wholeName" ng-model="partner.wholeName"/></div>
+        </div>
+        <div class="form-group form-group-sm">
+            <label class="col-xs-3 control-label">机构简称:</label>
+            <div class="col-xs-5"><input type="text" class="form-control" name="instName" ng-model="partner.instName" required=""/></div>
         </div>
         <div class="form-group form-group-sm">
             <label class="col-xs-3 control-label">机构简介:</label>
-            <div class="col-xs-5"><input type="text" class="form-control" id="partnerIntro" name="partnerIntro" ng-model="partner.partnerIntro " required=""/></div>
+            <div class="col-xs-5"><input type="text" class="form-control" name="partnerIntro" ng-model="partner.partnerIntro"/></div>
         </div>
         <div class="form-group form-group-sm">
             <label class="col-xs-3 control-label">机构荣誉:</label>
-            <div class="col-xs-5"><input type="text" class="form-control" id="partnerDistinction" name="partnerDistinction" ng-model=" partner.partnerDistinction"/></div>
+            <div class="col-xs-5"><input type="text" class="form-control" name="partnerDistinction" ng-model="partner.partnerDistinction"/></div>
         </div>
         <div class="form-group form-group-sm">
             <label class="col-xs-3 control-label">合作伙伴资格:</label>
@@ -27,19 +31,23 @@
             </div>
         </div>
         <div class="form-group form-group-sm">
-            <label class="col-xs-3 control-label">公司总部地址:</label>
-            <div class="col-xs-5"><input type="text" class="form-control" id="hqLocation" name="hqLocation" ng-model="partner.hqLocation" required=""/></div>
+            <label class="col-xs-3 control-label">评分:</label>
+            <div class="col-xs-5"><input type="number" class="form-control" name="rating" ng-model="partner.rating"/></div>
         </div>
         <div class="form-group form-group-sm">
-            <label class="col-xs-3 control-label">校区地址（经纬度选填）:</label>
-            <div class="col-xs-5">
-            <div ng-repeat="location in partner.addressList track by $index">
-                <input type="text" class="form-control addressList" name="addressList{{$index}}" ng-model="partner.addressList[$index]"/>
-                <a ng-click="removeLocation($index)" class="glyphicon-remove">删除</a>
-            </div>
-            <a id="addLocation" ng-click="addLocation()">增加更多地址</a>
-            </div>
+            <label class="col-xs-3 control-label">公司总部地址:</label>
+            <div class="col-xs-5"><input type="text" class="form-control" name="hqLocation" ng-model="partner.hqLocation"/></div>
         </div>
+        <!--<div class="form-group form-group-sm">-->
+            <!--<label class="col-xs-3 control-label">校区地址（经纬度选填）:</label>-->
+            <!--<div class="col-xs-5">-->
+            <!--<div ng-repeat="location in partner.addressList track by $index">-->
+                <!--<input type="text" class="form-control addressList" name="addressList{{$index}}" ng-model="partner.addressList[$index]"/>-->
+                <!--<a ng-click="removeLocation($index)" class="glyphicon-remove">删除</a>-->
+            <!--</div>-->
+            <!--<a id="addLocation" ng-click="addLocation()">增加更多地址</a>-->
+            <!--</div>-->
+        <!--</div>-->
 
         <div class="form-group form-group-sm">
             <label class="col-xs-3 control-label">默认课程截止天数:</label>
@@ -56,11 +64,7 @@
 
         <div class="form-group form-group-sm">
             <label class="col-xs-3 control-label">识别号:</label>
-            <div class="col-xs-5"><input type="text" class="form-control" id="reference" name="reference" ng-model="partner.reference" required=""/></div>
-        </div>
-        <div class="form-group form-group-sm">
-            <label class="col-xs-3 control-label">学校名:</label>
-            <div class="col-xs-5"><input type="text" class="form-control" id="instName" name="instName" ng-model="partner.instName" required=""/></div>
+            <div class="col-xs-5"><input type="text" class="form-control" name="reference" ng-model="partner.reference" required=""/></div>
         </div>
         <div class="form-group">
             <div class="col-xs-5 col-xs-offset-3">

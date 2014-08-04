@@ -52,7 +52,7 @@ appControllers.controller('partnersCtrl',
                 promise = restAPI.delete({ID: id});
             }
             else if(op=='submitUpdated'){
-                app.state.go('admin.partners.edit', {id:id});
+                app.state.go('admin.partners.detail.edit', {id:id});
                 return;
             }
             else {

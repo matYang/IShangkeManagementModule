@@ -2,12 +2,11 @@
 appControllers.controller('partnersLogoCtrl',
     ['$scope', '$upload', 'app', function ($scope, $upload, app) {
         var Partners = app.restAPI.partners;
-        var partnerId = $scope.partnerId = app.state.params.id;
+        var partnerId = app.state.params.id;
         //上传地址为/a-api/v2/partner/1/logo
         var uploadUrl = "/a-api/v2/" + "partner/" + partnerId + "/logo";
         //todo 初始化logo
 //        $scope.logoUrl = angular.copy($scope.partner.logoUrl);
-        console.log($scope.partner);
         $scope.onFileSelect = function ($files) {
             for (var i = 0; i < $files.length; i++) {
                 var $file = $files[i];
@@ -36,7 +35,7 @@ appControllers.controller('partnersLogoCtrl',
                 //todo 获取上传图片的url
                 $scope.partner.logoUrl = data.logoUrl;
                 app.toaster.pop("success", "logo修改成功", "");
-                app.state.go("admin.partners.detail", {id: id});
+                app.state.go("admin.partners.detail", {id: partnerId});
             }).progress(function (evt) {
                 //todo Math.min is to fix IE which reports 200% sometimes
                 $scope.progress[index] = Math.min(100, parseInt(100.0 * evt.loaded / evt.total));
