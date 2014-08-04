@@ -7,8 +7,14 @@ appControllers.controller('partnersEditCtrl',
         $scope.Epartner = angular.copy($scope.partner); //a copy of partner
         //提交更新
         $scope.submit = function () {
+            if(app.test_mode){
+                $scope.$parent.partner = $scope.Epartner;
+                app.toaster.pop('success', "机构信息更新成功", "");
+                app.state.go('admin.partners.detail', {id: partnerId});
+                return
+            }
             Partners.update({ID:partnerId},$scope.Epartner, function(partner){
-                $scope.partner = partner;
+                $scope.$parent.partner = partner;
                 app.toaster.pop('success', "机构信息更新成功", "");
                 app.state.go('admin.partners.detail', {id: partnerId});
             },function(){

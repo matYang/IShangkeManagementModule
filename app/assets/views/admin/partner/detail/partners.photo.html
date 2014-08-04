@@ -1,5 +1,8 @@
 <!--该部分内容位于partner中的detail的col-xs-9的ui-view中-->
-<p>&gt;&gt;机构照片总数：<strong>{{photos.length}}</strong></p>
+<p class="clearfix">
+    &gt;&gt;机构照片总数：<strong>{{photos.length}}</strong>
+    <button class="btn btn-primary pull-right" ng-click="addPhoto()">新增照片</button>
+</p>
 
 <div ng-repeat="photo in photos track by photo.id" class="img-thumbnail pull-left">
     <img ng-src="{{photo.imgUrl}}" class="img-md center-block"/>

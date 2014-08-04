@@ -1,5 +1,8 @@
 <!--该部分内容位于partner中的detail的col-xs-9的ui-view中-->
-<p>&gt;&gt;教师总数：<strong>{{teachers.length}}</strong></p>
+<p class="clearfix">
+    &gt;&gt;教师总数：<strong>{{teachers.length}}</strong>
+    <button class="btn btn-primary pull-right" ng-click="addTeacher()">新增教师</button>
+</p>
 
 <div ng-repeat="teacher in teachers track by teacher.id" class="img-thumbnail pull-left">
     <img ng-src="{{teacher.imgUrl}}" class="img-md center-block"/>

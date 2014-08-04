@@ -35,35 +35,19 @@ pre:before{
     color: #b94a48;
     text-shadow: 0 0 0.8px #ce8483;
 }
-/*表单验证*/
-form .w5c-error {
-    color: #b94a48;
-    display: block;
-    margin-top: 5px;
-}
 
-/*
- * 数据列表和filter表单 的通用样式 及筛选组件样式
-**/
-
-/*filter部分的表单央视*/
-.filter-form .form-group label,.filter-form .form-group div{
-    float: left;
+.side-nav a{
+    padding: 4px;
+    text-decoration: none;
+    border-radius: 4px;
+    display: inline-block;
+    margin-left: 5px;
 }
-.filter-form .form-group>label{
-    width: 80px;
-    padding-right: 15px;
+.side-nav a:hover{
+    background: #2299dd;
+    color: #ffffff;
 }
-.filter-form .form-group>div{
-    width: 200px;
+.side-nav a.active{
+    background: #333333;
+    color: #ffffff;
 }
-
-/*数据列表的通用样式*/
-.table thead tr th,.table tbody tr td{
-    padding-left: 10px;
-    text-align: left;
-}
-.table .operations a{
-    margin: 0 2px;
-}
-
