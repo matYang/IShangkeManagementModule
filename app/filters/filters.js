@@ -2,6 +2,8 @@
 
 /* Filters */
 appFilters
+    //通用的独立filter
+
     //以下为需要作为option并且value to text
     /*班级类型*/
     .filter('classType', ['app',
