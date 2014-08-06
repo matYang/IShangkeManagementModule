@@ -2,8 +2,8 @@ appControllers.controller('loginCtrl',
     //注入了authService.js中的Auth服务
     ['$scope','Auth','app', function ($scope,Auth,app) {
         $scope.login = {
-            autologin: true,
-            username: '',
+            remember: true,
+            accoutIdentifier: '',
             password: ''
         };
         $scope.submit = function(){
