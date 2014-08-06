@@ -3,7 +3,7 @@ app
         host: '..', //todo 主域
         version: 'v2', //api版本信息
         test_mode: false, //todo 测试模式
-        api_admin: '/api', //todo admin的api入口
+        api_admin: '/a-api', //todo admin的api入口
         api_partner: '/p-api',//todo partner的api入口
 
         small_img: "",//小图的url前缀

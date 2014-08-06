@@ -12,21 +12,18 @@ app.run(
             $rootScope.global = {
                 user: null,
                 isLogin: false,
-                isAdmin: true
+                isAdmin: $rootScope.port === 'admin'
             };
             if (app.test_mode) {
                 var user = {};
-                if ($rootScope.port == 'admin')user = {username: 'admin', group: 'admin_group'};
-                else if ($rootScope.port == 'partner')user = {username: 'partner', group: 'partner_group'};
-
+                if ($rootScope.global.isAdmin)user = {username: 'admin'};
+                else if ($rootScope.global.isAdmin)user = {username: 'partner'};
                 $rootScope.global.user = user;
-                $cookieStore.put('user', $rootScope.global.user);
             }
             //check user login status to init $rootScope.global
             Auth.checkUser();
             $rootScope.logout = function () {
                 Auth.logout();
-                Auth.checkUser();
             };
 
             //assemble things to reduce inject times in controllers,just need 'app'
@@ -66,8 +63,6 @@ app.run(
             getCategory();
             //router的权限控制
             $rootScope.$on('$stateChangeStart', function (event, toState, toParams, fromState, fromParams) {
-                console.log('route change');
-
 //                        event.preventDefault();
                 // transitionTo() promise will be rejected with
                 // a 'transition prevented' error

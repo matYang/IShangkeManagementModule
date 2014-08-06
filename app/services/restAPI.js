@@ -15,7 +15,7 @@ appServices
                     //[0] is the fake api,[1] is the real api
                     //RO--role ID--id OP--operate
                     // Example request api: /api/v2/login /api/v2/login
-                    'auth': ['/data/:RO.json/:OP', '/:OP'],
+                    'auth': ['/data/:RO.json/:OP', 'user/:ID/:OP'],
                     // /api/v2/booking/1/
                     'bookings': ['/data/bookings:ID.json/:OP', '/booking/:ID/:OP'],
                     'templates': ['/data/templates:ID.json/:OP', '/template/:ID/:OP'],

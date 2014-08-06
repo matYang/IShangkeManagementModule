@@ -38,7 +38,7 @@ appControllers.controller('coursesCreateCtrl',
             return modal.result;
         };
         $scope.choosePartner = function () {
-            if (app.rootScope.global.isAdmin && app.rootScope.port == 'admin') {
+            if (app.rootScope.global.isAdmin) {
                 //登录用户为admin
                 modalAction('partners').then(function (selectedItem) {
                     //清空之前选择的所有信息

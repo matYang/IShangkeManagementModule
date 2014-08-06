@@ -14,7 +14,7 @@ appControllers.controller('templatesCreateCtrl',
         };
         //选择机构
         $scope.choosePartner = function () {
-            if (app.rootScope.global.isAdmin && app.rootScope.port == 'admin') {
+            if (app.rootScope.global.isAdmin) {
                 var modal = app.modal.open({
                     templateUrl: '/views/admin/modals/choose.html',
                     controller: 'chooseCtrl',
