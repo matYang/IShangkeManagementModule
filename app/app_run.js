@@ -68,6 +68,9 @@ app.run(
                     var isLogin = $rootScope.global.isLogin;
                     var isToLoginPage = $state.get('login') == toState;
                     var isFromLoginPage = $state.get('login') == fromState;
+                    $log.info('isLogin:'+isLogin);
+                    $log.info('isToLoginPage:'+isToLoginPage);
+                    $log.info('isFromLoginPage:'+isFromLoginPage);
                     /*需要处理以下三种情况*/
                     //已登录用户想要进入登录页面
                     if (isLogin && isToLoginPage) {
