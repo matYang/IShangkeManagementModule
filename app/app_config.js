@@ -1,6 +1,6 @@
 app
     .constant('app', { //constant 'app' assemble things like restAPI and configs
-        host: 'http://192.168.2.115:8080/iShangkeProject-UserWeb', //todo 主域
+        host: '..', //todo 主域
         version: 'v2', //api版本信息
         test_mode: false, //todo 测试模式
         api_admin: '/api', //todo admin的api入口
