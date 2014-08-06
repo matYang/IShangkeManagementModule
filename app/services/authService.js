@@ -14,7 +14,7 @@ appServices.factory('Auth',
                         });
                     }
                 },
-                login: function (user) {//date为登录信息对象 包含username和password
+                login: function (user) {//date为登录信息对象
                     user.remember = user.remember ? 1 : 0;
                     //这里使用promise模式 在controller中调用login先进行以下处理流程
                     var defer = $q.defer();
@@ -23,7 +23,7 @@ appServices.factory('Auth',
                         $rootScope.global.user = result_user;
                         $rootScope.global.isLogin = true;
                         $log.log('login success');
-                        defer.resolve('login success');
+                        defer.resolve(result_user);
                     }, function () {
                         defer.reject('login failed');
                     });

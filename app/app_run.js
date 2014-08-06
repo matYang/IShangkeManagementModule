@@ -16,8 +16,8 @@ app.run(
             };
             if (app.test_mode) {
                 var user = {};
-                if ($rootScope.global.isAdmin)user = {username: 'admin'};
-                else if ($rootScope.global.isAdmin)user = {username: 'partner'};
+                if ($rootScope.global.isAdmin)user = {name: 'admin'};
+                else if ($rootScope.global.isAdmin)user = {name: 'partner'};
                 $rootScope.global.user = user;
             }
             //check user login status to init $rootScope.global
