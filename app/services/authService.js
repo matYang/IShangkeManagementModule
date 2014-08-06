@@ -12,11 +12,13 @@ appServices.factory('Auth',
                         auth.get({OP: 'findSession'}, function (user) {
                             $rootScope.global.user = user;
                             $rootScope.global.isLogin = true;
-                            $log.log('session found');
+                            $log.log('checking user:session found');
                             defer.resolve();
                         });
                     }else{
-                        $log.log('checking user:not login');
+                        //已登录
+                        defer.resolve();
+                        $log.log('checking user:logined');
                     }
                     return defer.promise;
                 },
