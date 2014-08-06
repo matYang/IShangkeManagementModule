@@ -62,51 +62,55 @@ app.run(
             //router的权限控制
             $rootScope.$on('$stateChangeStart', function (event, toState, toParams, fromState, fromParams) {
                 $log.log('route change');
-                Auth.checkUser();
+                Auth.checkUser().then(routeControll);
 //                        event.preventDefault();
                 // transitionTo() promise will be rejected with
                 // a 'transition prevented' error
-                var isLogin = $rootScope.global.isLogin;
-                var isToLoginPage = $state.get('login') == toState;
-                var isFromLoginPage = $state.get('login') == fromState;
-                /*需要处理以下三种情况*/
-                //已登录用户想要进入登录页面
-                if (isToLoginPage && isLogin) {
-                    //已登录用户在非登录页面要进入登录页面 不触发路由改变
-                    if (fromState.name && !isFromLoginPage) {
-                        event.preventDefault();
-                        return;
+                function routeControll(){
+                    var isLogin = $rootScope.global.isLogin;
+                    var isToLoginPage = $state.get('login') == toState;
+                    var isFromLoginPage = $state.get('login') == fromState;
+                    /*需要处理以下三种情况*/
+                    //已登录用户想要进入登录页面
+                    if (isToLoginPage && isLogin) {
+                        //已登录用户在非登录页面要进入登录页面 不触发路由改变
+                        if (fromState.name && !isFromLoginPage) {
+                            event.preventDefault();
+                            return;
+                        }
+                        //admin already login don't need to go to login page
+                        $log.info('already login as admin:TO admin.home');
+                        $location.path('/admin');
                     }
-                    //admin already login don't need to go to login page
-                    $log.info('already login as admin:TO admin.home');
-                    $location.path('/admin');
-                }
-                //未登录用户想要进入非登录页面
-                else if (!isToLoginPage && !isLogin) {
-                    //for a bug when user change the route in the address input frame
-                    // the view will not render correctly, you need to prevent from changing router when in login page
-                    //未登录用户在登录页面要进入非登录页面 不触发路由改变
-                    if (isFromLoginPage) {
-                        event.preventDefault();
-                        return;
+                    //未登录用户想要进入非登录页面
+                    else if (!isToLoginPage && !isLogin) {
+                        //for a bug when user change the route in the address input frame
+                        // the view will not render correctly, you need to prevent from changing router when in login page
+                        //未登录用户在登录页面要进入非登录页面 不触发路由改变
+                        if (isFromLoginPage) {
+                            $log.info('not login&from login page:prevent route change');
+                            event.preventDefault();
+                            return;
+                        }
+                        //user not login can not go anywhere except login page
+                        $log.warn('not login&not from login page:TO login');
+                        $location.path('/login');
                     }
-                    //user not login can not go anywhere except login page
-                    $log.warn('not login:TO login');
-                    $location.path('/login');
-                }
-                //处理已登录用户的权限 带有admin权限的路由需要验证用户的权限(默认权限为partner)
-                //该情况与第一种情况存在交际交集
-                if (toState.access && toState.access == 'admin' && !$rootScope.global.isAdmin) {
+                    //处理已登录用户的权限 带有admin权限的路由需要验证用户的权限(默认权限为partner)
+                    //该情况与第一种情况存在交际交集
+                    if (toState.access && toState.access == 'admin' && !$rootScope.global.isAdmin) {
 
-                    $log.warn('Insufficient privilege');
-                    //如果是第一次进入网站 则进入admin首页（未登录情况在情况2中已处理）
-                    if (!fromState.name) $location.path('/admin');
-                    //同样不触发路由
-                    else {
-                        event.preventDefault();
-                        return;
+                        $log.warn('Insufficient privilege');
+                        //如果是第一次进入网站 则进入admin首页（未登录情况在情况2中已处理）
+                        if (!fromState.name) $location.path('/admin');
+                        //同样不触发路由
+                        else {
+                            event.preventDefault();
+                            return;
+                        }
                     }
                 }
+
             });
         }]
 );

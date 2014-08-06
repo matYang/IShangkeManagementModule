@@ -5,15 +5,20 @@ appServices.factory('Auth',
             var auth = restAPI.auth;
             return {
                 checkUser: function () {
-                    $log.log('finding session');
+                    var defer = $q.defer();
+                    $log.log('checking user');
                     //检测用户的状态（从内存中的用户信息以及调用findSession的） user的初始值为null
                     if (!$rootScope.global.user) {
                         auth.get({OP: 'findSession'}, function (user) {
                             $rootScope.global.user = user;
                             $rootScope.global.isLogin = true;
                             $log.log('session found');
+                            defer.resolve();
                         });
+                    }else{
+                        $log.log('checking user:not login');
                     }
+                    return defer.promise;
                 },
                 login: function (user) {//date为登录信息对象
                     user.remember = user.remember ? 1 : 0;
