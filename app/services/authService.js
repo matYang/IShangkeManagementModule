@@ -5,12 +5,13 @@ appServices.factory('Auth',
             var auth = restAPI.auth;
             return {
                 checkUser: function () {
+                    $log.log('finding session');
                     //检测用户的状态（从内存中的用户信息以及调用findSession的） user的初始值为null
                     if (!$rootScope.global.user) {
                         auth.get({OP: 'findSession'}, function (user) {
                             $rootScope.global.user = user;
                             $rootScope.global.isLogin = true;
-                            $log.log('find session');
+                            $log.log('session found');
                         });
                     }
                 },
@@ -34,12 +35,15 @@ appServices.factory('Auth',
                     //发送用户注销请求
                     auth.put({ID: $rootScope.global.user.id, OP: 'logout'}, function () {
                         //success
+                        $log.log('logout success');
                     }, function () {
                         //error
+                        $log.log('logout failed');
                     });
                     $rootScope.global.user = null;
                     $rootScope.global.isLogin = false;
                     $location.path('/login');
+
                 }
             }
         }]

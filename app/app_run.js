@@ -20,8 +20,6 @@ app.run(
                 else if ($rootScope.global.isAdmin)user = {name: 'partner'};
                 $rootScope.global.user = user;
             }
-            //check user login status to init $rootScope.global
-            Auth.checkUser();
             $rootScope.logout = function () {
                 Auth.logout();
             };
@@ -63,6 +61,8 @@ app.run(
             getCategory();
             //router的权限控制
             $rootScope.$on('$stateChangeStart', function (event, toState, toParams, fromState, fromParams) {
+                $log.log('route change');
+                Auth.checkUser();
 //                        event.preventDefault();
                 // transitionTo() promise will be rejected with
                 // a 'transition prevented' error
