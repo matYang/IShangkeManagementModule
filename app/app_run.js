@@ -1,12 +1,10 @@
 'use strict';
 /* App Runtime */
 app.run(
-    ['app', '$rootScope', '$cookieStore', '$localStorage', '$location','$window', '$timeout', '$state', 'Auth', 'restAPI',
-        '$log','$upload', '$modal', '$parse', 'toaster', 'Enum', 'PageView', 'operateService', 'promiseGet', 'cache', 'getCategory', 'tools',
-        'getPartnerById','getTemplateById',
-        function (app, $rootScope, $cookieStore, $localStorage, $location,$window, $timeout, $state, Auth, restAPI,
-                  $log, $upload, $modal, $parse, toaster, Enum, PageView, operateService, promiseGet, cache, getCategory, tools,
-                  getPartnerById,getTemplateById) {
+    ['app', '$rootScope', '$cookieStore', '$localStorage', '$location', '$window', '$timeout', '$state', 'Auth', 'restAPI',
+        '$log', '$upload', '$modal', '$parse', 'toaster', 'Enum', 'PageView', 'operateService', 'promiseGet', 'cache', 'getCategory', 'tools',
+        'getPartnerById', 'getTemplateById',
+        function (app, $rootScope, $cookieStore, $localStorage, $location, $window, $timeout, $state, Auth, restAPI, $log, $upload, $modal, $parse, toaster, Enum, PageView, operateService, promiseGet, cache, getCategory, tools, getPartnerById, getTemplateById) {
             //$rootScope has some global functions and params
             $rootScope.$state = $state;
             $rootScope.global = {
@@ -49,11 +47,11 @@ app.run(
             app.timeOffset = 0;
             app.timestamp = Date.now() + 0;
             app.options = {
-                studyDays:tools.toOptions(app.Enum.studyDays),
-                schooltimeDay:tools.toOptions(app.Enum.schooltimeDay),
-                schooltimeWeek:tools.toOptions(app.Enum.schooltimeWeek),
-                classType:tools.toOptions(app.Enum.classType),
-                partnerQualification:tools.toOptions(app.Enum.partnerQualification)
+                studyDays: tools.toOptions(app.Enum.studyDays),
+                schooltimeDay: tools.toOptions(app.Enum.schooltimeDay),
+                schooltimeWeek: tools.toOptions(app.Enum.schooltimeWeek),
+                classType: tools.toOptions(app.Enum.classType),
+                partnerQualification: tools.toOptions(app.Enum.partnerQualification)
             };
 
 
@@ -66,15 +64,15 @@ app.run(
 //                        event.preventDefault();
                 // transitionTo() promise will be rejected with
                 // a 'transition prevented' error
-                function routeControll(){
+                function routeControll() {
                     var isLogin = $rootScope.global.isLogin;
                     var isToLoginPage = $state.get('login') == toState;
                     var isFromLoginPage = $state.get('login') == fromState;
                     /*需要处理以下三种情况*/
                     //已登录用户想要进入登录页面
-                    if (isToLoginPage && isLogin) {
+                    if (isLogin && isToLoginPage) {
                         //已登录用户在非登录页面要进入登录页面 不触发路由改变
-                        if (fromState.name && !isFromLoginPage) {
+                        if (!isFromLoginPage) {
                             event.preventDefault();
                             return;
                         }
@@ -83,7 +81,7 @@ app.run(
                         $location.path('/admin');
                     }
                     //未登录用户想要进入非登录页面
-                    else if (!isToLoginPage && !isLogin) {
+                    else if (!isLogin && !isToLoginPage) {
                         //for a bug when user change the route in the address input frame
                         // the view will not render correctly, you need to prevent from changing router when in login page
                         //未登录用户在登录页面要进入非登录页面 不触发路由改变
@@ -97,11 +95,11 @@ app.run(
                         $location.path('/login');
                     }
                     //处理已登录用户的权限 带有admin权限的路由需要验证用户的权限(默认权限为partner)
-                    //该情况与第一种情况存在交际交集
+                    //该情况与第一种情况存在交集
                     if (toState.access && toState.access == 'admin' && !$rootScope.global.isAdmin) {
 
                         $log.warn('Insufficient privilege');
-                        //如果是第一次进入网站 则进入admin首页（未登录情况在情况2中已处理）
+                        //如果是第一次进入网站(fromState name is undefined) 则进入admin首页
                         if (!fromState.name) $location.path('/admin');
                         //同样不触发路由
                         else {

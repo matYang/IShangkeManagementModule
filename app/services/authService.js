@@ -6,7 +6,6 @@ appServices.factory('Auth',
             return {
                 checkUser: function () {
                     var defer = $q.defer();
-                    $log.log('checking user');
                     //检测用户的状态（从内存中的用户信息以及调用findSession的） user的初始值为null
                     if (!$rootScope.global.user) {
                         auth.get({OP: 'findSession'}, function (user) {
