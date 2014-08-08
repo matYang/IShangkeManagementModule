@@ -8261,7 +8261,7 @@ function $HttpProvider() {
         }
 
         $httpBackend(config.method, url, reqData, done, reqHeaders, config.timeout,
-            config.withCredentials, config.responseType);
+            config.withCredentials, config.responseType, isDefined(config.async) ? config.async : true);//for async or sync requset
       }
 
       return promise;
@@ -8377,7 +8377,7 @@ function createHttpBackend($browser, createXhr, $browserDefer, callbacks, rawDoc
   var ABORTED = -1;
 
   // TODO(vojta): fix the signature
-  return function(method, url, post, callback, headers, timeout, withCredentials, responseType) {
+  return function(method, url, post, callback, headers, timeout, withCredentials, responseType, async) {
     var status;
     $browser.$$incOutstandingRequestCount();
     url = url || $browser.url();
@@ -8397,8 +8397,7 @@ function createHttpBackend($browser, createXhr, $browserDefer, callbacks, rawDoc
     } else {
 
       var xhr = createXhr(method);
-
-      xhr.open(method, url, true);
+      xhr.open(method, url, async);
       forEach(headers, function(value, key) {
         if (isDefined(value)) {
             xhr.setRequestHeader(key, value);

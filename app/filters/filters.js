@@ -81,13 +81,15 @@ appFilters
                     //value is fixed | start is from 0 to value.length |cat is from top level to bottom level
                     /**
                      *
-                     * @param value start cat
+                     * @param value
+                     * @param start
+                     * @param cat
                      * @description 6位的类目数值 截取的两位数的开始位置 目录的json
                      */
                     var getCat = function (value, start, cat) {
                         if (start >= value.length)return '';
                         for (var a in cat.children) {
-                            if (cat.children[a].value == value.substr(0, start + 2))
+                            if (cat.children.hasOwnProperty(a)&&cat.children[a].value == value.substr(0, start + 2))
                                 return cat.children[a].name + '--' + getCat(value, start + 2, cat.children[a]);
                         }
                         return '未知--'

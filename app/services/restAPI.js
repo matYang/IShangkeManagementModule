@@ -10,12 +10,15 @@
 appServices
     .factory('restAPI', ['$resource', 'app', '$rootScope',
         function ($resource, app, $rootScope) {
+            var isAdmin = $rootScope.port === 'admin';
+            var prefix = app.host + (isAdmin ? app.api_admin : app.api_partner) + '/' + app.version;
+
             var api_config = {
                 resources: {
                     //[0] is the fake api,[1] is the real api
                     //RO--role ID--id OP--operate
                     // Example request api: /api/v2/login /api/v2/login
-                    'auth': ['/data/:RO.json/:OP', '/user/:ID/:OP'],
+                    'auth': ['/data/user.json?:ID:OP', '/user/:ID/:OP'],
                     // /api/v2/booking/1/
                     'bookings': ['/data/bookings:ID.json/:OP', '/booking/:ID/:OP'],
                     'templates': ['/data/templates:ID.json/:OP', '/template/:ID/:OP'],
@@ -30,11 +33,7 @@ appServices
                 }
             };
             var resource_maker = function (recourseName) {
-                var port = $rootScope.port;
-                var api = '';
-                if (port == 'partner') api = app.api_partner;
-                else if (port == 'admin') api = app.api_admin;
-                var prefix = app.host+ api + '/'+ app.version;
+
                 var url = app.test_mode ? api_config.resources[recourseName][0] : prefix + api_config.resources[recourseName][1];
                 var params = {};
                 var methods = {};
@@ -42,7 +41,7 @@ appServices
                     params = {};
                     //测试模式使用GET
                     methods = {
-                        'query':  {method:'GET', isArray:false},
+                        'query': {method: 'GET', isArray: false},
                         'post': { method: 'GET' },
                         'update': { method: 'GET' },
                         'operate': { method: 'GET' }
@@ -50,13 +49,17 @@ appServices
                 } else {
                     params = {ID: '@ID', OP: '@OP'};
                     methods = {
-                        'query':  {method:'GET', isArray:false},
+                        'query': {method: 'GET', isArray: false},
                         'post': { method: 'POST' },
                         'update': { method: 'PUT' },
                         'operate': { method: 'POST' }
                     };
                 }
                 return $resource(url, params, methods)
+            };
+
+            var makeResourceUrl = function (resourceName) {
+                return prefix + '/' + resourceName;
             };
 
             return {
@@ -70,7 +73,9 @@ appServices
                 'photos': resource_maker('photos'),
                 'addresses': resource_maker('addresses'),
 
-                'category': resource_maker('category')
+                'category': resource_maker('category'),
+
+                'makeResourceUrl': makeResourceUrl//资源的地址
 
             };
         }
@@ -109,7 +114,7 @@ appServices
     //返回课程目录数据 使用promiseGet对数据使用内存缓存
     .factory('getCategory', ['restAPI', 'cache', 'promiseGet',
         function (restAPI, cache, promiseGet) {
-            return function(){
+            return function () {
                 return promiseGet({}, restAPI.category, 'category', cache.category);
             };
         }
@@ -117,16 +122,16 @@ appServices
     //根据id获取partner的详细信息 todo 是否需要进行缓存
     .factory('getPartnerById', ['restAPI', 'cache', 'promiseGet',
         function (restAPI, cache, promiseGet) {
-            return function(id){
-                return promiseGet({ID:id}, restAPI.partners, null,null);
+            return function (id) {
+                return promiseGet({ID: id}, restAPI.partners, null, null);
             };
         }
     ])
 //根据id获取模板的详细信息 todo 是否需要进行缓存
     .factory('getTemplateById', ['restAPI', 'cache', 'promiseGet',
         function (restAPI, cache, promiseGet) {
-            return function(id){
-                return promiseGet({ID:id}, restAPI.templates, null,null);
+            return function (id) {
+                return promiseGet({ID: id}, restAPI.templates, null, null);
             };
         }
     ])
