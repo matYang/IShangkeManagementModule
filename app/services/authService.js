@@ -40,7 +40,6 @@ appServices.factory('Auth',
                     xhr.send();
 
                     var user = JSON.parse(xhr.responseText);
-                    console.log(user);
                     if (user && user.id >= 0) {
                         $rootScope.global.user = user;
                         $rootScope.global.isLogin = true;
