@@ -32,7 +32,7 @@ appServices.factory('Auth',
                     if (app.test_mode) {
                         xhr.open('GET', '/data/user.json', true);
                     } else {
-                        xhr.open('POST', restAPI.makeResourceUrl('user') + '/findSession', false);
+                        xhr.open('GET', restAPI.makeResourceUrl('user') + '/findSession', false);
                     }
 
 
