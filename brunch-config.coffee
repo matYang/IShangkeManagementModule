@@ -62,12 +62,12 @@ exports.config =
         jQuery: true
       warnOnly: true
 
-    gzip:
-      paths:
-        javascript: 'js'
-        stylesheet: 'css'
-      removeOriginalFiles: false
-      renameGzipFilesToOriginalFiles: true
+#    gzip:
+#      paths:
+#        javascript: 'js'
+#        stylesheet: 'css'
+#      removeOriginalFiles: false
+#      renameGzipFilesToOriginalFiles: true
 
     uglify:
       mangle: true #是否压缩变量名
