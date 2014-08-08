@@ -69,10 +69,6 @@ app.run(
                 var isLogin = $rootScope.global.isLogin;
                 var isToLoginPage = $state.get('login') === toState;
                 var isFromLoginPage = $state.get('login') === fromState;
-                $log.log('isLogin:' + isLogin);
-                $log.log('isToLoginPage:' + isToLoginPage);
-                $log.log('isFromLoginPage:' + isFromLoginPage);
-
 
                 /*需要处理以下三种情况*/
 

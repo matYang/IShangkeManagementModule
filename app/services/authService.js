@@ -45,8 +45,10 @@ appServices.factory('Auth',
                         $rootScope.global.user = user;
                         $rootScope.global.isLogin = true;
                         $log.log('checking user:session found');
+                    }else{
+                        $log.log('checking user:session not found');
                     }
-                    $log.log('checking user:session not found');
+
                 },
                 login: function (user) {//date为登录信息对象
                     user.remember = user.remember ? 1 : 0;
