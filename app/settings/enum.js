@@ -29,7 +29,7 @@ app.value('Enum', {
             1: '已认证',
             2: '未认证'
         },
-        //关于页面的text
+        //关于页面的text 使用key对应中文
         PageText: {
             'partners': '合作机构',
             'templates': '课程模板',
