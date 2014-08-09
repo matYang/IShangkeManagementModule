@@ -52,7 +52,7 @@
             <a class="btn btn-default btn-sm text-danger" href="#"><i class="fa fa-trash-o"></i> 删除</a>
         </div>
         <!--表格列表-->
-        <table class="table table-condensed table-hover">
+        <table class="table table-condensed table-hover table-bordered margin-top">
             <thead>
             <tr>
                 <th ng-repeat="t in th" width="{{t.w}}%">
@@ -66,6 +66,7 @@
                 <td>{{item.courseName|| '无'}}</td>
                 <td>{{item.price| currency}}</td>
                 <td>{{item.originalPrice| currency}}</td>
+                <td>{{item.categoryName || '无'}}</td>
                 <td>{{item.status | courseStatusText}}</td>
                 <td class="operations">
                     <a ui-sref="main.courses.detail({id:item.id})">查看</a>

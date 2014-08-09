@@ -6,6 +6,7 @@
             "status": 2,
             "price": 1800,
             "originalPrice": 2000,
+            "categoryName": "雅思",
             "startDate": 1441111111111,
             "finishDate": 1442222222222,
             "actionList":[

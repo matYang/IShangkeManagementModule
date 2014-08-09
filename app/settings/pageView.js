@@ -17,7 +17,7 @@ app.factory('PageView', function(){
         bookingTh:[
             //n--name w-width percent
             {n: '订单号', w: '8'},
-            {n: '入学人', w: '10'},
+            {n: '入学人姓名', w: '10'},
             {n: '价格', w: '6'},
             {n: '预约报名日期', w: '12'},
             {n: '支付方式', w: '10'},
@@ -45,8 +45,8 @@ app.factory('PageView', function(){
         'templates': {
             tabs: common.statusTabs,
             th: [
-                {n: '模板号', w: '8'},
-                {n: '模板名', w: '8'},
+                {n: '模板号', w: '10'},
+                {n: '模板名', w: '20'},
                 {n: '爱上课价格', w: '13'},
                 {n: '原价', w: '11'},
                 {n: '状态', w: '12'},
@@ -56,12 +56,13 @@ app.factory('PageView', function(){
         'courses': {
             tabs: common.statusTabs,
             th: [
-                {n: '课程号', w: '8'},
-                {n: '课程名', w: '8'},
-                {n: '爱上课价格', w: '13'},
-                {n: '原价', w: '11'},
+                {n: '课程号', w: '10'},
+                {n: '课程名', w: '20'},
+                {n: '爱上课价格', w: '12'},
+                {n: '原价', w: '12'},
+                {n: '类别', w: '12'},
                 {n: '状态', w: '12'},
-                {n: '操作', w: '30'}
+                {n: '操作', w: '22'}
             ]
         },
         'partners': {
