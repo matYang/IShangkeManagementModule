@@ -33,7 +33,7 @@ appControllers.controller('partnersLogoCtrl',
                 //todo 获取上传图片的url
                 $scope.partner.logoUrl = data.logoUrl;
                 app.toaster.pop("success", "logo修改成功", "");
-                app.state.go("admin.partners.detail", {id: partnerId});
+                app.state.go("main.partners.detail", {id: partnerId});
             }).progress(function (evt) {
                 //todo Math.min is to fix IE which reports 200% sometimes
                 $scope.progress[index] = Math.min(100, parseInt(100.0 * evt.loaded / evt.total));
@@ -44,7 +44,7 @@ appControllers.controller('partnersLogoCtrl',
         };
         /*取消则返回详情页*/
         $scope.cancel = function () {
-            app.state.go('admin.partners.detail', {id: partnerId});
+            app.state.go('main.partners.detail', {id: partnerId});
         };
     }]
 );

@@ -1,5 +1,5 @@
 'use strict';
-appControllers.controller('queryBookingsCtrl',
+appControllers.controller('searchBookingsCtrl',
     ['$scope', 'restAPI', 'app', function ($scope, restAPI, app) {
         var restAPI = restAPI.bookings;
         $scope.th = app.PageView['common'].bookingTh;
@@ -46,7 +46,7 @@ appControllers.controller('queryBookingsCtrl',
                 app.toaster.pop('success', "订单" + id + "操作成功", "");
                 doRefresh();
             }, function (data) {
-                app.toaster.pop('success', "订单" + id + "操作失败", "");
+                app.toaster.pop('error', "订单" + id + "操作失败", "");
             })
         };
 

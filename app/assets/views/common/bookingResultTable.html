@@ -17,7 +17,7 @@
         <td>{{item.status | bookingStatusText}}</td>
         <td>{{item.createTime | date:'yyyy-MM-dd HH:mm'}}</td>
         <td class="operations">
-            <a ui-sref="admin.bookings.detail({id:item.id})">查看</a>
+            <a ui-sref="main.bookings.detail({id:item.id})">查看</a>
             <!--todo 这里需要动态生成可操作的按钮-->
             <a ng-repeat="op in item.actionList" ng-click="operate(item.id,op.name)">{{op.name |
                 bookingOperationText}}</a>

@@ -10,20 +10,20 @@ appControllers.controller('partnersEditCtrl',
             if(app.test_mode){
                 $scope.$parent.partner = $scope.Epartner;
                 app.toaster.pop('success', "机构信息更新成功", "");
-                app.state.go('admin.partners.detail', {id: partnerId});
+                app.state.go('main.partners.detail', {id: partnerId});
                 return
             }
             Partners.update({ID:partnerId},$scope.Epartner, function(partner){
                 $scope.$parent.partner = partner;
                 app.toaster.pop('success', "机构信息更新成功", "");
-                app.state.go('admin.partners.detail', {id: partnerId});
+                app.state.go('main.partners.detail', {id: partnerId});
             },function(){
                 app.toaster.pop('error', "机构信息更新失败", "请稍后再试");
             });
         };
         //取消更新 返回基本信息页
         $scope.cancel = function () {
-            app.state.go('admin.partners.detail', {id: partnerId});
+            app.state.go('main.partners.detail', {id: partnerId});
         };
     }]
 );

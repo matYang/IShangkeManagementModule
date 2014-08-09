@@ -1,8 +1,8 @@
 'use strict';
-appControllers.controller('oldBookingsCtrl',
+appControllers.controller('newBookingsCtrl',
     ['$scope', 'restAPI', 'app', function ($scope, restAPI, app) {
         var restAPI = restAPI.bookings;
-        var pageView = app.PageView['oldBookings'];
+        var pageView = app.PageView['newBookings'];
         //标签页的tab filter
         var filter_tab = {};
         $scope.tabs = pageView.tabs;
@@ -21,8 +21,7 @@ appControllers.controller('oldBookingsCtrl',
 
         //tab选择事件
         $scope.chooseTab = function (tab) {
-            filter_tab = {};
-            $scope.clearFilter();
+            init();
             angular.forEach(tab.value, function (v, k) {
                 filter_tab[k] = v;
             });
@@ -61,7 +60,7 @@ appControllers.controller('oldBookingsCtrl',
                 app.toaster.pop('success', "订单" + id + "操作成功", "");
                 doRefresh();
             }, function (data) {
-                app.toaster.pop('success', "订单" + id + "操作失败", "");
+                app.toaster.pop('error', "订单" + id + "操作失败", "");
             })
         };
     }]

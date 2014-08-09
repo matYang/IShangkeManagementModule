@@ -50,7 +50,7 @@ appControllers.controller('partnersCtrl',
                 promise = restAPI.delete({ID: id});
             }
             else if(op=='submitUpdated'){
-                app.state.go('admin.partners.detail.edit', {id:id});
+                app.state.go('main.partners.detail.edit', {id:id});
                 return;
             }
             else {
@@ -60,7 +60,7 @@ appControllers.controller('partnersCtrl',
                 app.toaster.pop('success', "机构" + id + "操作成功", "");
                 doRefresh();
             }, function (data) {
-                app.toaster.pop('success', "机构" + id + "操作失败", "");
+                app.toaster.pop('error', "机构" + id + "操作失败", "");
             })
         };
     }]

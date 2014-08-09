@@ -94,13 +94,12 @@ app.run(
                 if (isToLoginPage && isLogin) {
                     //已登录用户在非登录页面()要进入登录页面 不触发路由改变
                     if (fromState.name && !isFromLoginPage) {
-                        console.log(event)
                         event.preventDefault();
                         return;
                     }
                     //admin already login don't need to go to login page
-                    $log.info('already login as admin:TO admin.home');
-                    $location.path('/admin');
+                    $log.info('already login as admin:TO main.home');
+                    $location.path('/main');
                     return
                 }
 
@@ -109,8 +108,8 @@ app.run(
                 if (toState.access && toState.access === 'admin' && !$rootScope.global.isAdmin) {
 
                     $log.warn('Insufficient privilege');
-                    //如果是第一次进入网站 则进入admin首页（未登录情况在情况2中已处理）
-                    if (!fromState.name) $location.path('/admin');
+                    //如果是第一次进入网站 则进入首页（未登录情况在情况2中已处理）
+                    if (!fromState.name) $location.path('/main');
                     //同样不触发路由
                     else {
                         event.preventDefault();

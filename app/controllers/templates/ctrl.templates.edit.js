@@ -43,7 +43,7 @@ appControllers.controller('templatesEditCtrl',
                 app.toaster.pop('success', '课程模板>' + template.courseName + '修改成功',
                         '<a href="#/admin/templates/' + data.id + '"><strong>查看该信息</strong></a> 或者 <a href="#/admin/templates"><strong>返回列表</strong></a>', 0, 'trustedHtml');
             }, function () {
-                app.toaster.pop('error', "课程模板>" + template.courseName + "修改成功", "");
+                app.toaster.pop('error', "课程模板>" + template.courseName + "修改失败", "");
             })
         };
     }]

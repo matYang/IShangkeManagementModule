@@ -62,7 +62,7 @@ appControllers.controller('partnersTeacherCtrl',
          */
         $scope.addTeacher = function () {
             var modalInstance = app.modal.open({
-                templateUrl: '/views/admin/modals/uploadImg.html',
+                templateUrl: '/views/main/modals/uploadImg.html',
                 controller: 'uploadImgCtrl',
                 size: 'sm',
                 resolve: {

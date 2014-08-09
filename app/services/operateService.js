@@ -3,6 +3,7 @@ appServices.factory('operateService',
     ['$rootScope', '$cookieStore', 'restAPI', '$q', '$location','toaster',
         function ($rootScope, $cookieStore, restAPI, $q, $location,toaster) {
             //todo this need to be tested later
+            //用于提取通用的执行记录操作的方法 未采用
             var auth = restAPI.auth;
             return {
                 //通用的记录操作方法 todo 应使用promise模式返回用于执行doRefresh()以更新页面
@@ -14,7 +15,7 @@ appServices.factory('operateService',
                         promise = restAPI.delete({ID: id});
                     }
                     else if (op == 'submitUpdated') {
-                        app.state.go(['admin',resourceName,'edit'].join('.'), {id: id});
+                        app.state.go(['main',resourceName,'edit'].join('.'), {id: id});
                         return;
                     }
                     else {
@@ -24,7 +25,7 @@ appServices.factory('operateService',
                         toaster.pop('success', "课程" + id + "操作成功", "");
                         doRefresh();
                     }, function (data) {
-                        toaster.pop('success', "课程" + id + "操作失败", "");
+                        toaster.pop('error', "课程" + id + "操作失败", "");
                     })
                 }
             }

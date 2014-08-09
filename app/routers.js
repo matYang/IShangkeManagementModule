@@ -10,169 +10,175 @@ appRoutes.config(function ($stateProvider, $urlRouterProvider, $httpProvider, $l
             controller: 'loginCtrl'
         })
 
-        /* admin abstract page 用于显示通用的组件 导航条*/
-        .state('admin', {
+        /* main abstract page 用于显示通用的组件 导航条*/
+        .state('main', {
             abstract: true,
-            url: '/admin',
-            templateUrl: 'views/admin.html'
+            url: '/main',
+            templateUrl: 'views/main.html'
         })
 
-        /**************** admin登录主页面 ****************/
-        .state('admin.home', {
+        /**************** 登录主页面 ****************/
+        .state('main.home', {
             url: '',
-            templateUrl: 'views/admin/home.html',
+            templateUrl: 'views/main/home.html',
             controller: 'homeCtrl'
         })
 
+
+        .state('main.bookings', {
+            abstract: true,
+            url: '/bookings',
+            template: '<div ui-view></div>'
+        })
         /**************** 新单处理页面 ****************/
-        .state('admin.new_bookings', {
-            url: '/bookings/new',
-            templateUrl: 'views/admin/bookings.html',
+        .state('main.bookings.new', {
+            url: '/new',
+            templateUrl: 'views/main/bookings.html',
             controller: 'newBookingsCtrl'
         })
 
         /**************** 旧单审核页面 ****************/
-        .state('admin.old_bookings', {
-            url: '/bookings/old',
-            templateUrl: 'views/admin/bookings.html',
+        .state('main.bookings.old', {
+            url: '/old',
+            templateUrl: 'views/main/bookings.html',
             controller: 'oldBookingsCtrl'
         })
 
         /**************** 订单查询页面 ****************/
-        .state('admin.query_bookings', {
-            url: '/bookings/query',
-            templateUrl: 'views/admin/bookings.query.html',
-            controller: 'queryBookingsCtrl'
+        .state('main.bookings.search', {
+            url: '/search',
+            templateUrl: 'views/main/bookings.search.html',
+            controller: 'searchBookingsCtrl'
         })
 
         /**************** 订单详情页面 ****************/
-        .state('admin.bookings.detail', {
-            url: '/bookings/{id:[0-9]}',
-            templateUrl: 'views/admin/bookings.detail.html',
+        .state('main.bookings.detail', {
+            url: '/{id:[0-9]}',
+            templateUrl: 'views/main/bookings.detail.html',
             controller: 'bookingsDetailCtrl'
         })
 
         /*************** 课程信息管理 ***************/
-        .state('admin.courses', {
+        .state('main.courses', {
             abstract: true,
             url: '/courses',
             template: '<div ui-view></div>'
         })
         //课程管理页面
-        .state('admin.courses.list', {
+        .state('main.courses.list', {
             url: '',
-            templateUrl: 'views/admin/course/courses.html',
+            templateUrl: 'views/main/course/courses.html',
             controller: 'coursesCtrl'
         })
         //新建课程
-        .state('admin.courses.create', {
+        .state('main.courses.create', {
             url: '/create',
-            templateUrl: 'views/admin/course/courses.create.html',
+            templateUrl: 'views/main/course/courses.create.html',
             controller: 'coursesCreateCtrl'
         })
         //查看课程
-        .state('admin.courses.detail', {
+        .state('main.courses.detail', {
             url: '/{id:[0-9]}',
-            templateUrl: 'views/admin/course/courses.detail.html',
+            templateUrl: 'views/main/course/courses.detail.html',
             controller: 'coursesDetailCtrl'
         })
         //编辑课程
-        .state('admin.courses.edit', {
+        .state('main.courses.edit', {
             url: '/{id:[0-9]}/edit',
-            templateUrl: 'views/admin/course/courses.edit.html',
+            templateUrl: 'views/main/course/courses.edit.html',
             controller: 'coursesEditCtrl'
         })
 
 
 
         /**************** 课程模板管理 ****************/
-        .state('admin.templates', {
+        .state('main.templates', {
             abstract: true,
             url: '/templates',
             template: '<div ui-view></div>'
         })
         //课程模板列表
-        .state('admin.templates.list', {
+        .state('main.templates.list', {
             url: '',
-            templateUrl: 'views/admin/template/templates.html',
+            templateUrl: 'views/main/template/templates.html',
             controller: 'templatesCtrl'
         })
         //新建课程模板
-        .state('admin.templates.create', {
+        .state('main.templates.create', {
             url: '/create',
-            templateUrl: 'views/admin/template/templates.create.html',
+            templateUrl: 'views/main/template/templates.create.html',
             controller: 'templatesCreateCtrl'
         })
         //查看课程模板
-        .state('admin.templates.detail', {
+        .state('main.templates.detail', {
             url: '/{id:[0-9]}',
-            templateUrl: 'views/admin/template/templates.detail.html',
+            templateUrl: 'views/main/template/templates.detail.html',
             controller: 'templatesDetailCtrl'
         })
         //编辑课程模板
-        .state('admin.templates.edit', {
+        .state('main.templates.edit', {
             url: '/{id:[0-9]}/edit',
-            templateUrl: 'views/admin/template/templates.edit.html',
+            templateUrl: 'views/main/template/templates.edit.html',
             controller: 'templatesEditCtrl'
         })
 
 
         /****************机构信息管理***************/
         //查看机构信息
-        .state('admin.partners', {
+        .state('main.partners', {
             url: '/partners',
             template: '<div ui-view></div>',
             abstract: true,
             access:'admin'
         })
-        .state('admin.partners.list', {
+        .state('main.partners.list', {
             url: '',
-            templateUrl: 'views/admin/partner/partners.html',
+            templateUrl: 'views/main/partner/partners.html',
             controller: 'partnersCtrl',
             access:'admin'
         })
-        .state('admin.partners.create', {
+        .state('main.partners.create', {
             url: '/create',
-            templateUrl: 'views/admin/partner/partners.create.html',
+            templateUrl: 'views/main/partner/partners.create.html',
             controller: 'partnersCreateCtrl',
             access:'admin'
         })
         //查看机构详情 父路由的controller负责获取机构的详情（子路由共享父路由的scope中的值）
         //todo 子路由分为机构基本信息、机构logo、机构照片、机构教师、机构地址
-        .state('admin.partners.detail', {
+        .state('main.partners.detail', {
             url: '/{id:[0-9]}',
-            templateUrl: 'views/admin/partner/partners.detail.html',
+            templateUrl: 'views/main/partner/partners.detail.html',
             controller: 'partnersDetailCtrl',
             access:'admin'
         })
         //课程非基本信息的编辑和查看
-        .state('admin.partners.detail.edit', {
+        .state('main.partners.detail.edit', {
             url: '/edit',
-            templateUrl: 'views/admin/partner/detail/partners.edit.html',
+            templateUrl: 'views/main/partner/detail/partners.edit.html',
             controller: 'partnersEditCtrl',
             access:'admin'
         })
-        .state('admin.partners.detail.logo', {
+        .state('main.partners.detail.logo', {
             url: '/logo',
-            templateUrl: 'views/admin/partner/detail/partners.logo.html',
+            templateUrl: 'views/main/partner/detail/partners.logo.html',
             controller: 'partnersLogoCtrl',
             access:'admin'
         })
-        .state('admin.partners.detail.photo', {
+        .state('main.partners.detail.photo', {
             url: '/photo',
-            templateUrl: 'views/admin/partner/detail/partners.photo.html',
+            templateUrl: 'views/main/partner/detail/partners.photo.html',
             controller: 'partnersPhotoCtrl',
             access:'admin'
         })
-        .state('admin.partners.detail.teacher', {
+        .state('main.partners.detail.teacher', {
             url: '/teacher',
-            templateUrl: 'views/admin/partner/detail/partners.teacher.html',
+            templateUrl: 'views/main/partner/detail/partners.teacher.html',
             controller: 'partnersTeacherCtrl',
             access:'admin'
         })
-        .state('admin.partners.detail.address', {
+        .state('main.partners.detail.address', {
             url: '/address',
-            templateUrl: 'views/admin/partner/detail/partners.address.html',
+            templateUrl: 'views/main/partner/detail/partners.address.html',
             controller: 'partnersAddressCtrl',
             access:'admin'
         })

@@ -16,8 +16,8 @@ app.factory('PageView', function(){
         ],
         bookingTh:[
             //n--name w-width percent
-            {n: '订单号', w: '6'},
-            {n: '入学人', w: '15'},
+            {n: '订单号', w: '8'},
+            {n: '入学人', w: '10'},
             {n: '价格', w: '6'},
             {n: '预约报名日期', w: '12'},
             {n: '支付方式', w: '10'},

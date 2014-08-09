@@ -55,7 +55,7 @@ appControllers.controller('coursesCtrl',
                 promise = restAPI.delete({ID: id});
             }
             else if(op=='submitUpdated'){
-                app.state.go('admin.courses.edit',{id:id});
+                app.state.go('main.courses.edit',{id:id});
                 return;
             }
             else {
@@ -65,7 +65,7 @@ appControllers.controller('coursesCtrl',
                 app.toaster.pop('success', "课程" + id + "操作成功", "");
                 doRefresh();
             }, function (data) {
-                app.toaster.pop('success', "课程" + id + "操作失败", "");
+                app.toaster.pop('error', "课程" + id + "操作失败", "");
             })
         };
 

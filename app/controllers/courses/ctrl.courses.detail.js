@@ -21,7 +21,7 @@ appControllers.controller('coursesDetailCtrl',
                 promise = restAPI.delete({ID: id});
             }
             else if (op == 'submitUpdated') {
-                app.state.go('admin.courses.edit', {id: id});
+                app.state.go('main.courses.edit', {id: id});
                 return;
             }
             else {
@@ -31,13 +31,13 @@ appControllers.controller('coursesDetailCtrl',
                 app.toaster.pop('success', "课程" + id + "操作成功", "");
                 //如果是删除操作 那么应该返回列表页面
                 if (op === 'delete') {
-                    app.state.go('admin.courses.list');
+                    app.state.go('main.courses.list');
                     return;
                 } else {
                     doRefresh();
                 }
             }, function (data) {
-                app.toaster.pop('success', "课程" + id + "操作失败", "");
+                app.toaster.pop('error', "课程" + id + "操作失败", "");
             })
         };
     }]

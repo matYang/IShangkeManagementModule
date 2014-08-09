@@ -20,7 +20,7 @@ appControllers.controller('templatesDetailCtrl',
                 promise = restAPI.delete({ID: id});
             }
             else if (op == 'submitUpdated') {
-                app.state.go('admin.templates.edit', {id: id});
+                app.state.go('main.templates.edit', {id: id});
                 return;
             }
             else {
@@ -30,13 +30,13 @@ appControllers.controller('templatesDetailCtrl',
                 app.toaster.pop('success', "课程模板" + id + "操作成功", "");
                 //如果是删除操作 那么应该返回列表页面
                 if (op === 'delete') {
-                    app.state.go('admin.templates.list');
+                    app.state.go('main.templates.list');
                     return;
                 } else {
                     doRefresh();
                 }
             }, function (data) {
-                app.toaster.pop('success', "课程模板" + id + "操作失败", "");
+                app.toaster.pop('error', "课程模板" + id + "操作失败", "");
             })
         };
     }]

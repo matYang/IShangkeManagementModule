@@ -11,7 +11,7 @@ appControllers.controller('loginCtrl',
             //todo 需要验证输入的信息 使用w5c-validate 参考课程模板的创建
             Auth.login(data).then(function(user){
                 app.toaster.pop('success','登录成功','欢迎你，'+user.name);
-                app.state.go('admin.home');
+                app.state.go('main.home');
             },function(){
                 app.toaster.pop('error','未知错误')
             });

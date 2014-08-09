@@ -16,7 +16,7 @@ appControllers.controller('templatesCreateCtrl',
         $scope.choosePartner = function () {
             if (app.rootScope.global.isAdmin) {
                 var modal = app.modal.open({
-                    templateUrl: '/views/admin/modals/choose.html',
+                    templateUrl: '/views/main/modals/choose.html',
                     controller: 'chooseCtrl',
                     resolve: {
                         optionName: function () {

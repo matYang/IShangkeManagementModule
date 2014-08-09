@@ -56,7 +56,7 @@ appControllers.controller('templatesCtrl',
                 promise = restAPI.delete({ID: id});
             }
             else if (op == 'submitUpdated') {
-                app.state.go('admin.templates.edit',{id:id});
+                app.state.go('main.templates.edit',{id:id});
                 return;
             }
             else {
@@ -66,7 +66,7 @@ appControllers.controller('templatesCtrl',
                 app.toaster.pop('success', "课程" + id + "操作成功", "");
                 doRefresh();
             }, function (data) {
-                app.toaster.pop('success', "课程" + id + "操作失败", "");
+                app.toaster.pop('error', "课程" + id + "操作失败", "");
             })
         };
 

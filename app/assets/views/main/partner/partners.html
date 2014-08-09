@@ -40,7 +40,7 @@
 
         <!--操作栏-->
         <div class="btn-toolbar">
-            <a class="btn btn-primary" ui-sref="admin.partners.create"><i class="fa fa-plus"></i> 新建机构 </a>
+            <a class="btn btn-primary" ui-sref="main.partners.create"><i class="fa fa-plus"></i> 新建机构 </a>
             <a class="btn btn-default btn-sm text-danger" href="#"><i class="fa fa-trash-o"></i> 删除</a>
         </div>
         <!--表格列表-->
@@ -58,7 +58,7 @@
                 <td>{{item.wholeName|| '无'}}</td>
                 <td>{{item.reference || '无'}}</td>
                 <td class="operations">
-                    <a ui-sref="admin.partners.detail({id:item.id})">详细/管理</a>
+                    <a ui-sref="main.partners.detail({id:item.id})">详细/管理</a>
                 </td>
             </tr>
             </tbody>

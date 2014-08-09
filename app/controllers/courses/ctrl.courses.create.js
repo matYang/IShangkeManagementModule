@@ -24,7 +24,7 @@ appControllers.controller('coursesCreateCtrl',
         /*从弹出的modal中进行机构和模板的选择*/
         var modalAction = function (optionName) {
             var modal = app.modal.open({
-                templateUrl: '/views/admin/modals/choose.html',
+                templateUrl: '/views/main/modals/choose.html',
                 controller: 'chooseCtrl',
                 resolve: {
                     optionName: function () {

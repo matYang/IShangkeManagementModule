@@ -2,7 +2,7 @@
     <div class="row">
         <div class="col-xs-12">
             <h3>
-                <small><a ui-sref="admin.partners.list" class="btn fa fa-chevron-left pull-left"> 返回列表 </a></small>
+                <small><a ui-sref="main.partners.list" class="btn fa fa-chevron-left pull-left"> 返回列表 </a></small>
                 机构信息
                 <small>--{{partner.instName}}</small>
             </h3>
@@ -74,22 +74,22 @@
             <hr/>
             <label class="margin-bottom">快速链接</label>
             <p>
-                <a ng-class="{active:$state.current.name===('admin.partners.detail')}" ui-sref="admin.partners.detail({id:partner.id})">查看</a>
+                <a ng-class="{active:$state.current.name===('admin.partners.detail')}" ui-sref="main.partners.detail({id:partner.id})">查看</a>
                 <span>/</span>
-                <a ng-class="{active:$state.current.name===('admin.partners.detail.edit')}" ui-sref="admin.partners.detail.edit({id:partner.id})">修改</a>
+                <a ng-class="{active:$state.current.name===('admin.partners.detail.edit')}" ui-sref="main.partners.detail.edit({id:partner.id})">修改</a>
                 <span>基本信息</span>
             </p>
             <p><a ng-class="{active:$state.current.name===('admin.partners.detail.logo')}"
-                  ui-sref="admin.partners.detail.logo({id:partner.id})">修改机构logo</a></p>
+                  ui-sref="main.partners.detail.logo({id:partner.id})">修改机构logo</a></p>
 
             <p><a ng-class="{active:$state.current.name===('admin.partners.detail.photo')}"
-                  ui-sref="admin.partners.detail.photo({id:partner.id})">管理机构照片</a></p>
+                  ui-sref="main.partners.detail.photo({id:partner.id})">管理机构照片</a></p>
 
             <p><a ng-class="{active:$state.current.name===('admin.partners.detail.teacher')}"
-                  ui-sref="admin.partners.detail.teacher({id:partner.id})">管理机构教师</a></p>
+                  ui-sref="main.partners.detail.teacher({id:partner.id})">管理机构教师</a></p>
 
             <p><a ng-class="{active:$state.current.name===('admin.partners.detail.address')}"
-                  ui-sref="admin.partners.detail.address({id:partner.id})">管理校区地址</a></p>
+                  ui-sref="main.partners.detail.address({id:partner.id})">管理校区地址</a></p>
             <hr/>
         </div>
     </div>
