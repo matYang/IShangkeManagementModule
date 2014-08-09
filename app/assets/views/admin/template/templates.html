@@ -55,7 +55,7 @@
                 <td>{{item.name|| '无'}}</td>
                 <td>{{item.price| currency}}</td>
                 <td>{{item.originalPrice| currency}}</td>
-                <td>{{item.status| statusText}}</td>
+                <td>{{item.status| courseStatusText}}</td>
                 <td class="operations">
                     <a ui-sref="admin.templates.detail({id:item.id})">查看</a>
                     <a ng-repeat="op in item.actionList" ng-click="operate(item.id,op.name)">
