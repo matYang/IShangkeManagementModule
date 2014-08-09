@@ -35,6 +35,11 @@ app.value('Enum', {
             'templates': '课程模板',
             'courses': '课程'
         },
+        //支付方式的test
+        payTypeText:{
+            0:'线上支付',
+            1:'线下支付'
+        },
         //状态的text
         courseStatusText: {
             //课程和课程模板的状态

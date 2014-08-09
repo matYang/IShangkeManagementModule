@@ -55,6 +55,13 @@ appFilters
         }
     ])
     //以下为仅需要value to text
+    .filter('payTypeText', ['app',
+        function (app) {
+            return function (value) {
+                return app.Enum.payTypeText[value] || '未知方式';
+            };
+        }
+    ])
     /*记录可操作的按钮text*/
     .filter('courseOperationText', ['app',
         function (app) {

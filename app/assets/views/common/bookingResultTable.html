@@ -11,9 +11,11 @@
     <tr ng-repeat="item in items">
         <td>{{item.id || '无'}}</td>
         <td>{{item.name || '无'}}</td>
-        <td>{{item.price || '无'}}</td>
-        <td>{{item.status | bookingStatusText}}</td>
-        <td>{{item.creationTime|date}}</td>
+        <td>{{item.price | currency}}</td>
+        <td>{{item.scheduledTime | date:'yyyy-MM-dd'}}</td>
+        <td>{{item.status | payTypeText}}</td>
+        <td>{{item.type | }}</td>
+        <td>{{item.createTime | 'yyyy-MM-dd HH-mm'}}</td>
         <td class="operations">
             <a ui-sref="admin.bookings.detail({id:item.id})">查看</a>
             <!--todo 这里需要动态生成可操作的按钮-->
