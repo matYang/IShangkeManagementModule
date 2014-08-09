@@ -3,16 +3,22 @@ appControllers.controller('oldBookingsCtrl',
     ['$scope', 'restAPI', 'app', function ($scope, restAPI, app) {
         var restAPI = restAPI.bookings;
         var pageView = app.PageView['oldBookings'];
-        $scope.tabs = pageView.tabs;
-        $scope.th = pageView.th;
-        $scope.page = angular.copy(app.default_page);
-        //filter选择的值 用户展现当前数据的筛选条件
-        $scope.filter = {
-        };
-        //filter临时存储 用于用户输入
-        $scope.filter_tmp = angular.copy($scope.filter);
         //标签页的tab filter
         var filter_tab = {};
+        $scope.tabs = pageView.tabs;
+        $scope.th = pageView.th;
+
+        var init = function(){
+            filter_tab = {};
+            $scope.items = [];
+            $scope.page = angular.copy(app.default_page);
+            //filter选择的值 用户展现当前数据的筛选条件
+            $scope.filter = {};
+            //filter临时存储 用于用户输入
+            $scope.filter_tmp = angular.copy($scope.filter);
+        };
+        init();
+
         //tab选择事件
         $scope.chooseTab = function (tab) {
             filter_tab = {};
