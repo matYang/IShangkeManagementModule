@@ -26,15 +26,15 @@ app.factory('PageView', function(){
         'common':common,
         'newBookings': {
             tabs: [
-                {label: '今日待处理', active: true, value: {status: 0, createTimeStart: new Date()}},
-                {label: '往日待处理', active: false, value: {status: 0, createTimeEnd: new Date()}}
+                {label: '今日待处理', active: true, value: {status: 0, createTimeStart: new Date().getTime()}},
+                {label: '往日待处理', active: false, value: {status: 0, createTimeEnd: new Date().getTime()}}
             ],
             th: common.bookingTh
         },
         'oldBookings': {
             tabs: [
-                {label: '待审核', active: true, value: {status: 0, createTimeStart: new Date()}},
-                {label: '往日待处理', active: false, value: {status: 0, createTimeEnd: new Date()}}
+                {label: '待审核', active: true, value: {status: 0, createTimeStart: new Date().getTime()}},
+                {label: '往日待处理', active: false, value: {status: 0, createTimeEnd: new Date().getTime()}}
             ],
             th: common.bookingTh
         },

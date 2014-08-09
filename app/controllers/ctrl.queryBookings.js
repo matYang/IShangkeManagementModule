@@ -6,7 +6,7 @@ appControllers.controller('queryBookingsCtrl',
         $scope.page = angular.copy(app.default_page);
         //filter选择的值 用户展现当前数据的筛选条件
         $scope.filter = {
-            id: ''    //订单号
+//            id: ''    //订单号
         };
         //filter临时存储 用于用户输入
 
@@ -18,7 +18,7 @@ appControllers.controller('queryBookingsCtrl',
 
         var doRefresh = $scope.doRefresh = function () {
             //使用课程模板资源请求数据 筛选条件为当前选择的值
-            restAPI.get(angular.extend({}, filter_tab, $scope.filter_tmp, $scope.page), function (data) {
+            restAPI.get(angular.extend({}, $scope.filter_tmp, $scope.page), function (data) {
                 //更新当前数据的筛选条件
                 $scope.filter = angular.copy($scope.filter_tmp);
                 $scope.items = data.data;
