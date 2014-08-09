@@ -26,7 +26,7 @@ appServices
                     'auth': ['/data/user.json?:ID:OP', '/user/:ID/:OP'],
                     // /api/v2/booking/1/
                     'bookings': ['/data/bookings:ID.json/:OP', '/booking/:ID/:OP'],
-                    'templates': ['/data/templates:ID.json/:OP', '/template/:ID/:OP'],
+                    'templates': ['/data/templates:ID.json/:OP', '/courseTemplate/:ID/:OP'],
                     'courses': ['/data/courses:ID.json', '/course/:ID/:OP'],
 
                     'partners': ['/data/partners:ID.json', '/partner/:ID/:OP'],
