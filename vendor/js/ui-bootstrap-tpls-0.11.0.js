@@ -2174,12 +2174,14 @@ angular.module('ui.bootstrap.pagination', [])
   };
 
   this.render = function() {
-    $scope.page = parseInt(ngModelCtrl.$viewValue, 10) || 1;
+//    $scope.page = parseInt(ngModelCtrl.$viewValue, 10) || 1;//delete
+      $scope.page = (parseInt(ngModelCtrl.$viewValue, 10))/self.itemsPerPage + 1;//Jet view value is start value
   };
 
   $scope.selectPage = function(page) {
     if ( $scope.page !== page && page > 0 && page <= $scope.totalPages) {
-      ngModelCtrl.$setViewValue(page);
+//      ngModelCtrl.$setViewValue(page);//delete
+      ngModelCtrl.$setViewValue((page - 1) * self.itemsPerPage);//Jet view value is start value
       ngModelCtrl.$render();
     }
   };
