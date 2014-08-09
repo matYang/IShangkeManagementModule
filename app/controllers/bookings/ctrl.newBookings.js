@@ -1,14 +1,13 @@
 'use strict';
-appControllers.controller('oldBookingsCtrl',
+appControllers.controller('newBookingsCtrl',
     ['$scope', 'restAPI', 'app', function ($scope, restAPI, app) {
         var restAPI = restAPI.bookings;
-        var pageView = app.PageView['oldBookings'];
+        var pageView = app.PageView['newBookings'];
         $scope.tabs = pageView.tabs;
         $scope.th = pageView.th;
         $scope.page = angular.copy(app.default_page);
         //filter选择的值 用户展现当前数据的筛选条件
         $scope.filter = {
-            id: ''    //订单号
         };
         //filter临时存储 用于用户输入
         $scope.filter_tmp = angular.copy($scope.filter);
