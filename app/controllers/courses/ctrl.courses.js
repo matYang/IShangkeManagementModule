@@ -25,7 +25,7 @@ appControllers.controller('coursesCtrl',
         };
         $scope.clearFilter = function () {
             angular.forEach($scope.filter_tmp, function (v, k) {
-                $scope.filter_tmp[k] = '';
+                $scope.filter_tmp[k] = undefined;
             });
         };
         //根据 过滤信息和分页信息 刷新课程模板列表

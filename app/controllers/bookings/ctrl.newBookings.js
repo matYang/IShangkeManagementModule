@@ -25,7 +25,7 @@ appControllers.controller('newBookingsCtrl',
         };
         $scope.clearFilter = function () {
             angular.forEach($scope.filter_tmp, function (v, k) {
-                $scope.filter_tmp[k] = '';
+                $scope.filter_tmp[k] = undefined;
             });
         };
 
