@@ -277,7 +277,7 @@
         <li ng-click="doRefresh()"><i class="fa fa-refresh"></i> 刷新</li>
         <li ng-repeat="op in course.actionList" ng-click="operate(course.id,op.name)">
             <span ng-if="op.name=='submitUpdated'">修改</span>
-            <span ng-if="op.name!='submitUpdated'">{{op.name | operationText}}</span>
+            <span ng-if="op.name!='submitUpdated'">{{op.name | courseOperationText}}</span>
         </li>
     </ul>
 </div>

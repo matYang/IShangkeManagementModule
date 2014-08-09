@@ -17,9 +17,11 @@ app.factory('PageView', function(){
         bookingTh:[
             //n--name w-width percent
             {n: '订单号', w: '10'},
+            {n: '创建人', w: '20'},
+            {n: '价格', w: '10'},
+            {n: '状态', w: '10'},
             {n: '创建时间', w: '20'},
-            {n: '最后修改时间', w: '20'},
-            {n: '操作', w: '30'}
+            {n: '操作', w: '25'}
         ]
     };
     return {

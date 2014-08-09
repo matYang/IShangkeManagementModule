@@ -14,17 +14,22 @@
 
                 <div class="input-group input-group-sm">
                     <input name="createTimeStart" type="text"
-                           class="form-control input-sm" ng-model="filter_tmp.createTimeStart" data-max-date="{{filter_tmp.createTimeEnd}}" bs-datepicker>
+                           class="form-control input-sm" ng-model="filter_tmp.createTimeStart"
+                           data-max-date="{{filter_tmp.createTimeEnd}}" bs-datepicker>
                     <span class="input-group-btn">
-                        <button class="btn btn-default" ng-click="open($event,1)"><i class="fa fa-calendar"></i>&nbsp;</button>
+                        <button class="btn btn-default" ng-click="open($event,1)"><i class="fa fa-calendar"></i>&nbsp;
+                        </button>
                     </span>
                 </div>
                 <span class="pull-left" style="padding: 5px 2px 0">到</span>
+
                 <div class="input-group input-group-sm">
                     <input name="createTimeEnd" type="text"
-                           class="form-control input-sm" ng-model="filter_tmp.createTimeEnd" data-min-date="{{filter_tmp.createTimeStart}}"  bs-datepicker>
+                           class="form-control input-sm" ng-model="filter_tmp.createTimeEnd"
+                           data-min-date="{{filter_tmp.createTimeStart}}" bs-datepicker>
                     <span class="input-group-btn">
-                        <button class="btn btn-default" ng-click="open($event,2)"><i class="fa fa-calendar"></i>&nbsp;</button>
+                        <button class="btn btn-default" ng-click="open($event,2)"><i class="fa fa-calendar"></i>&nbsp;
+                        </button>
                     </span>
                 </div>
             </div>
@@ -44,37 +49,7 @@
             <pre class="col-xs-6">filter_tmp{{filter_tmp|json}}</pre>
         </div>
 
-        <!--表格列表-->
-        <table class="table table-condensed table-hover">
-            <thead>
-            <tr>
-                <th ng-repeat="t in th" width="{{t.w}}%">
-                    {{ t.n }}
-                </th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr ng-repeat="item in items">
-                <td>{{item.id || '无'}}</td>
-                <td>{{item.name|| '无'}}</td>
-                <td class="operations">
-                    <a ui-sref="admin.bookings.detail({id:item.id})">查看</a>
-                    <!--todo 这里需要动态生成可操作的按钮-->
-                    <a ng-repeat="op in item.actionList" ng-click="operate(item.id,op.name)">{{op.name |
-                        operationText}}</a>
-                </td>
-            </tr>
-            </tbody>
-        </table>
-        <div class="page clearfix">
-            <p class="pull-left">共{{page.total}}条记录，每页显示{{page.count}}条记录</p>
-            <pagination class="pull-right" ng-model="page.start" total-items="page.total" items-per-page="page.count"
-                        ng-change="doRefresh()"
-                        max-size="9"
-                        class="pagination-sm"
-                        boundary-links="true" rotate="false" num-pages="total_pages"
-                        previous-text="上一页" next-text="下一页"></pagination>
-        </div>
+        <div ng-include="'/views/common/bookingResultTable'"></div>
 
     </div>
 </div>

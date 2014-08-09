@@ -56,18 +56,32 @@ appFilters
     ])
     //以下为仅需要value to text
     /*记录可操作的按钮text*/
-    .filter('operationText', ['app',
+    .filter('courseOperationText', ['app',
         function (app) {
             return function (op_name) {
-                return app.Enum.operationsText[op_name] || '未知操作';
+                return app.Enum.courseOperationText[op_name] || '未知操作';
             };
         }
     ])
-    /*记录的状态 包括订单状态、课程和课程模板的状态*/
-    .filter('statusText', ['app',
+    .filter('bookingOperationText', ['app',
+        function (app) {
+            return function (op_name) {
+                return app.Enum.bookingOperationText[op_name] || '未知操作';
+            };
+        }
+    ])
+    /*记录的状态 订单状态、课程和课程模板的状态*/
+    .filter('courseStatusText', ['app',
         function (app) {
             return function (value) {
-                return app.Enum.statusText[value] || '未知状态';
+                return app.Enum.courseStatusText[value] || '未知状态';
+            };
+        }
+    ])
+    .filter('bookingStatusText', ['app',
+        function (app) {
+            return function (value) {
+                return app.Enum.bookingStatusText[value] || '未知状态';
             };
         }
     ])
