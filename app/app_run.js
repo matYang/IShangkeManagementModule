@@ -6,7 +6,9 @@ app.run(
         'getPartnerById', 'getTemplateById',
         function (app, $rootScope, $cookieStore, $localStorage, $location, $window, $timeout, $state, Auth, restAPI, $log, $upload, $modal, $parse, toaster, Enum, PageView, operateService, promiseGet, cache, getCategory, tools, getPartnerById, getTemplateById) {
 
-
+            if(app.test_mode){
+                $log.info('RUN IN TEST MODE');
+            }
             //$rootScope has some global functions and params
             $rootScope.$state = $state;
             $rootScope.global = {

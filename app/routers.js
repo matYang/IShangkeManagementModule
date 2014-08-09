@@ -47,7 +47,7 @@ appRoutes.config(function ($stateProvider, $urlRouterProvider, $httpProvider, $l
 
         /**************** 订单详情页面 ****************/
         .state('admin.bookings.detail', {
-            url: '/bookings/query',
+            url: '/bookings/{id:[0-9]}',
             templateUrl: 'views/admin/bookings.detail.html',
             controller: 'bookingsDetailCtrl'
         })
