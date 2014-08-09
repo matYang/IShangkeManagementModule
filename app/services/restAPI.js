@@ -6,6 +6,11 @@
  'query':  {method:'GET', isArray:true}
  'remove': {method:'DELETE'}
  'delete': {method:'DELETE'}
+ 新增或修改的方法:
+ 'post': POST
+ 'query': GET isArray false
+ 'operate': PUT
+ 'update': PUT
  * */
 appServices
     .factory('restAPI', ['$resource', 'app', '$rootScope',
@@ -52,7 +57,7 @@ appServices
                         'query': {method: 'GET', isArray: false},
                         'post': { method: 'POST' },
                         'update': { method: 'PUT' },
-                        'operate': { method: 'POST' }
+                        'operate': { method: 'PUT' }
                     };
                 }
                 return $resource(url, params, methods)
