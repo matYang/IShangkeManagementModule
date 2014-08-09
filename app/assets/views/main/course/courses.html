@@ -63,7 +63,9 @@
             <tbody>
             <tr ng-repeat="item in items">
                 <td>{{item.id || '无'}}</td>
-                <td>{{item.name|| '无'}}</td>
+                <td>{{item.courseName|| '无'}}</td>
+                <td>{{item.price| currency}}</td>
+                <td>{{item.originalPrice| currency}}</td>
                 <td>{{item.status | courseStatusText}}</td>
                 <td class="operations">
                     <a ui-sref="main.courses.detail({id:item.id})">查看</a>

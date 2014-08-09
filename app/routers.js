@@ -53,7 +53,7 @@ appRoutes.config(function ($stateProvider, $urlRouterProvider, $httpProvider, $l
 
         /**************** 订单详情页面 ****************/
         .state('main.bookings.detail', {
-            url: '/{id:[0-9]}',
+            url: '/{id}',
             templateUrl: 'views/main/bookings.detail.html',
             controller: 'bookingsDetailCtrl'
         })
@@ -78,13 +78,13 @@ appRoutes.config(function ($stateProvider, $urlRouterProvider, $httpProvider, $l
         })
         //查看课程
         .state('main.courses.detail', {
-            url: '/{id:[0-9]}',
+            url: '/{id}',
             templateUrl: 'views/main/course/courses.detail.html',
             controller: 'coursesDetailCtrl'
         })
         //编辑课程
         .state('main.courses.edit', {
-            url: '/{id:[0-9]}/edit',
+            url: '/{id}/edit',
             templateUrl: 'views/main/course/courses.edit.html',
             controller: 'coursesEditCtrl'
         })
@@ -111,13 +111,13 @@ appRoutes.config(function ($stateProvider, $urlRouterProvider, $httpProvider, $l
         })
         //查看课程模板
         .state('main.templates.detail', {
-            url: '/{id:[0-9]}',
+            url: '/{id}',
             templateUrl: 'views/main/template/templates.detail.html',
             controller: 'templatesDetailCtrl'
         })
         //编辑课程模板
         .state('main.templates.edit', {
-            url: '/{id:[0-9]}/edit',
+            url: '/{id}/edit',
             templateUrl: 'views/main/template/templates.edit.html',
             controller: 'templatesEditCtrl'
         })
@@ -146,7 +146,7 @@ appRoutes.config(function ($stateProvider, $urlRouterProvider, $httpProvider, $l
         //查看机构详情 父路由的controller负责获取机构的详情（子路由共享父路由的scope中的值）
         //todo 子路由分为机构基本信息、机构logo、机构照片、机构教师、机构地址
         .state('main.partners.detail', {
-            url: '/{id:[0-9]}',
+            url: '/{id}',
             templateUrl: 'views/main/partner/partners.detail.html',
             controller: 'partnersDetailCtrl',
             access:'admin'
