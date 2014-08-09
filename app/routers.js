@@ -45,6 +45,13 @@ appRoutes.config(function ($stateProvider, $urlRouterProvider, $httpProvider, $l
             controller: 'queryBookingsCtrl'
         })
 
+        /**************** 订单详情页面 ****************/
+        .state('admin.bookings.detail', {
+            url: '/bookings/query',
+            templateUrl: 'views/admin/bookings.detail.html',
+            controller: 'bookingsDetailCtrl'
+        })
+
         /*************** 课程信息管理 ***************/
         .state('admin.courses', {
             abstract: true,
