@@ -9,7 +9,7 @@ app
         //默认的分页
         default_page: {
             start: 0,    // 起始记录
-            count: 20,   //每页记录数
+            count: 10,   //每页记录数
             total: 0    //记录总数
         }
     })
