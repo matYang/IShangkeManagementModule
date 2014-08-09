@@ -27,15 +27,14 @@ appServices.factory('Auth',
 //                    }
 //                    return defer.promise;
 
-                    //sync method
+                    //sync method to check user
                     var xhr = new window.XMLHttpRequest();//ie>8
                     if (app.test_mode) {
-                        xhr.open('GET', '/data/user.json', true);
+                        xhr.open('GET', '/data/user.json', false);
                     } else {
                         xhr.open('GET', restAPI.makeResourceUrl('user') + '/findSession', false);
-                        xhr.setRequestHeader('content-type', 'application/json');
                     }
-
+                    xhr.setRequestHeader('content-type', 'application/json');
                     xhr.send();
 
                     var user = JSON.parse(xhr.responseText);
