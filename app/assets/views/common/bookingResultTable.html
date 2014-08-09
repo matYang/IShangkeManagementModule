@@ -13,8 +13,8 @@
         <td>{{item.name || '无'}}</td>
         <td>{{item.price | currency}}</td>
         <td>{{item.scheduledTime | date:'yyyy-MM-dd'}}</td>
-        <td>{{item.status | payTypeText}}</td>
-        <td>{{item.type | }}</td>
+        <td>{{item.type | payTypeText}}</td>
+        <td>{{item.status | bookingStatusText}}</td>
         <td>{{item.createTime | 'yyyy-MM-dd HH-mm'}}</td>
         <td class="operations">
             <a ui-sref="admin.bookings.detail({id:item.id})">查看</a>
