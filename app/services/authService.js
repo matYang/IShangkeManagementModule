@@ -33,10 +33,9 @@ appServices.factory('Auth',
                         xhr.open('GET', '/data/user.json', true);
                     } else {
                         xhr.open('GET', restAPI.makeResourceUrl('user') + '/findSession', false);
+                        xhr.setRequestHeader('content-type', 'application/json');
                     }
 
-
-                    xhr.setRequestHeader('content-type', 'application/json');
                     xhr.send();
 
                     var user = JSON.parse(xhr.responseText);
