@@ -1,5 +1,5 @@
-appControllers.controller('chooseCtrl',
-    ['$scope', 'app', '$modalInstance', 'optionName', 'partner', function ($scope, app, $modalInstance, optionName, partner) {
+appControllers.controller('chooseCtrl', ['$scope', 'app', '$modalInstance', 'optionName', 'partner',
+    function ($scope, app, $modalInstance, optionName, partner) {
         /**
          * @optionName can be 'partners' and 'templates'*/
         $scope.title = app.Enum.PageText[optionName];
@@ -9,10 +9,10 @@ appControllers.controller('chooseCtrl',
 
         var doRefresh = $scope.doRefresh = function () {
             var resource = {};
-            if(optionName == 'partners'){
-                resource = app.restAPI[optionName].get(angular.extend({},$scope.page));
-            }else if(optionName =='templates'){
-                resource = app.restAPI[optionName].get(angular.extend({},$scope.page,{parterId: partner && partner.id}));
+            if (optionName == 'partners') {
+                resource = app.restAPI[optionName].get(angular.extend({}, $scope.page));
+            } else if (optionName == 'templates') {
+                resource = app.restAPI[optionName].get(angular.extend({}, $scope.page, {parterId: partner && partner.id}));
             }
             resource.$promise.then(function (data) {
                 $scope.items = data.data;
@@ -47,5 +47,5 @@ appControllers.controller('chooseCtrl',
         $scope.cancel = function () {
             $modalInstance.dismiss('cancel');
         };
-    }]
-);
+    }
+]);

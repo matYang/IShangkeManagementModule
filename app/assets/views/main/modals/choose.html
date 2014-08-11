@@ -1,14 +1,17 @@
 <div class="modal-header"><h4>选择{{title}}<small>--双击可进行快速选择</small></h4></div>
 <div class="modal-body">
-    <ul>
-        <li ng-repeat="item in items">
-            <a ng-click="selected.item = item" ng-dblclick="selected.item = item;ok()">{{ item.instName || item.courseName}}</a>
+    <ul class="list-group">
+        <li class="list-group-item" ng-repeat="item in items track by item.id" ng-class="{'active':item.id===selected.item.id}"
+            ng-click="selected.item = item" ng-dblclick="selected.item = item;ok()">
+            <label>{{ item.instName || item.courseName}}</label>
+            <i class="pull-right fa fa-check fa-stack hidden"></i>
         </li>
     </ul>
+    <div ng-if="items===''" class="text-center">暂未创建任何{{title}}</div>
 </div>
 <div class="modal-footer">
     {{page}}
-    <div ng-if="items!=''">
+    <div ng-if="items!==''">
         <div ng-click="prePage()" ng-if="page.start >= page.count"
              class="ion-ios7-arrow-left icon-left button button-clear button-dark">上一页
         </div>
