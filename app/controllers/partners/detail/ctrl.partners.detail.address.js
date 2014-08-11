@@ -35,9 +35,11 @@ appControllers.controller('partnersAddressCtrl',
          * address的更新和删除
          */
         $scope.updateAddress = function (index) {
-            var address = $scope.addresses[index];
+            var address = angular.copy($scope.addresses[index]);
+            //todo 暂时使用直接删除无用字段的方式
+            delete address.edit;
             Addresses.update({ID: address.id}, address, function (data) {
-                address.edit = false;
+                $scope.addresses[index].edit = false;
                 delete addresses_edit[address.id];
                 app.toaster.pop('success', "校区地址更新成功", "");
             }, function () {
@@ -45,8 +47,7 @@ appControllers.controller('partnersAddressCtrl',
             });
         };
         $scope.deleteAddress = function (index) {
-            var address = $scope.addresses[index];
-            Addresses.delete({ID: address.id}, function () {
+            Addresses.delete({ID: $scope.addresses[index].id}, function () {
                 $scope.addresses.splice(index, 1);//进行本地删除 todo seems slowly
                 app.toaster.pop('success', "校区地址删除成功", "");
             }, function () {

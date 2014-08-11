@@ -22,12 +22,16 @@
         <!--筛选表单-->
         <form class="form-horizontal filter-form">
             <div class="form-group">
-                <label class="control-label" for="">课程号</label>
+                <label ng-if="global.isAdmin" class="control-label">机构ID</label>
+                <div ng-if="global.isAdmin">
+                    <input type="text" class="form-control input-sm"
+                            ng-model="partnerId"/>
+                </div>
 
+                <label class="control-label">课程号</label>
                 <div><input type="text" class="form-control input-sm"
                             ng-model="filter_tmp.id"/></div>
-                <label class="control-label" for="">课程名</label>
-
+                <label class="control-label">课程名</label>
                 <div><input type="text" class="form-control input-sm"
                             ng-model="filter_tmp.name"/></div>
             </div>

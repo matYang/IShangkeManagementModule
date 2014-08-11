@@ -4,6 +4,11 @@
         <!--筛选表单-->
         <form class="form-horizontal filter-form">
             <div class="form-group">
+                <label ng-if="global.isAdmin" class="control-label">机构ID</label>
+                <div ng-if="global.isAdmin">
+                    <input type="text" class="form-control input-sm"
+                           ng-model="partnerId"/>
+                </div>
                 <label class="control-label" for="">订单号</label>
 
                 <div><input type="text" class="form-control input-sm"

@@ -3,6 +3,7 @@ appControllers.controller('searchBookingsCtrl',
     ['$scope', 'restAPI', 'app', function ($scope, restAPI, app) {
         var restAPI = restAPI.bookings;
         $scope.th = app.PageView['common'].bookingTh;
+        $scope.partnerId = app.rootScope.global.user&&app.rootScope.global.user.partnerId;
         var init = function(){
 
             $scope.items = [];
@@ -22,7 +23,7 @@ appControllers.controller('searchBookingsCtrl',
 
         var doRefresh = $scope.doRefresh = function () {
             //使用课程模板资源请求数据 筛选条件为当前选择的值
-            restAPI.get(angular.extend({}, $scope.filter_tmp, $scope.page), function (data) {
+            restAPI.get(angular.extend({partnerId:$scope.partnerId}, $scope.filter_tmp, $scope.page), function (data) {
                 //更新当前数据的筛选条件
                 $scope.filter = angular.copy($scope.filter_tmp);
                 $scope.items = data.data;

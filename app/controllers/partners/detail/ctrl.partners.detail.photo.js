@@ -37,9 +37,11 @@ appControllers.controller('partnersPhotoCtrl',
          * class photo的更新和删除
          */
         $scope.updateAddress = function (index) {
-            var photo = $scope.photos[index];
+            var photo = angular.copy($scope.photos[index]);
+            //todo 暂时使用直接删除无用字段的方式
+            delete photo.edit;
             Photos.update({ID: photo.id}, photo, function (data) {
-                photo.edit = false;
+                $scope.photos[index].edit = false;
                 delete photos_edit[photo.id];
                 app.toaster.pop('success', "照片更新成功", "");
             }, function () {
@@ -47,8 +49,7 @@ appControllers.controller('partnersPhotoCtrl',
             });
         };
         $scope.deleteAddress = function (index) {
-            var photo = $scope.photos[index];
-            Photos.delete({ID: photo.id}, function () {
+            Photos.delete({ID: $scope.photos[index].id}, function () {
                 $scope.photos.splice(index, 1);//进行本地删除 todo seems slowly
                 app.toaster.pop('success', "照片删除成功", "");
             }, function () {

@@ -38,9 +38,10 @@ appControllers.controller('partnersTeacherCtrl',
          * 教师信息的更新和删除
          */
         $scope.updateTeacher = function ($index) {
-            var teacher = $scope.teachers[$index];
+            var teacher = angular.copy($scope.teachers[$index]);
+            delete teacher.edit;
             Teachers.update({ID: teacher.id}, teacher, function (data) {
-                teacher.edit = false;
+                $scope.teachers[$index].edit = false;
                 delete teachers_edit[teacher.id];
                 app.toaster.pop('success', "教师>" + teacher.name + "的资料更新成功", "");
             }, function () {
@@ -48,8 +49,7 @@ appControllers.controller('partnersTeacherCtrl',
             });
         };
         $scope.deleteTeacher = function ($index) {
-            var teacher = $scope.teachers[$index];
-            Teachers.delete({ID: teacher.id}, function () {
+            Teachers.delete({ID: $scope.teachers[$index].id}, function () {
                 $scope.teachers.splice($index, 1);//进行本地删除 todo seems slowly
                 app.toaster.pop('success', "教师>" + teacher.name + "删除成功", "");
             }, function () {
