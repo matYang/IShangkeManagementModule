@@ -6,7 +6,7 @@
 
     "price": 1800,
     "originalPrice": 2000,
-    "categoryId":"000102",
+    "categoryValue":"000102",
 
     "startDate": 1441111111111,
     "finishDate": 1442222222222,

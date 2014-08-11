@@ -78,7 +78,7 @@ appControllers.controller('coursesCreateCtrl',
                 courseName: $scope.course.courseName || undefined,
                 originalPrice: $scope.course.originalPrice || undefined,
                 price: $scope.course.price || undefined,
-                categoryId: $scope.course.categoryId || undefined,
+                categoryValue: $scope.course.categoryValue || undefined,
                 teacherList: $scope.course.teacherList || undefined,
                 classPhotoList: $scope.course.classPhotoList || undefined
             };
