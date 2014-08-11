@@ -2,19 +2,19 @@
 app.value('Enum', {
         //课程分类的options todo  confirm value
         classType: {
-            1: 'VIP 1对1',
-            2: '小班授课（小于6人）',
-            3: '中班授课（6-30人）',
-            4: '大班授课（30人+）'
+            0: 'VIP 1对1',
+            1: '小班授课（小于6人）',
+            2: '中班授课（6-30人）',
+            3: '大班授课（30人+）'
         },
         schooltimeDay: {
-            1: '上午',
-            2: '下午',
-            3: '晚上'
+            0: '上午',
+            1: '下午',
+            2: '晚上'
         },
         schooltimeWeek: {
-            1: '平时',
-            2: '周末'
+            0: '平时',
+            1: '周末'
         },
         studyDays: {
             1: '周一',
@@ -27,7 +27,7 @@ app.value('Enum', {
         },
         partnerQualification: {
             1: '已认证',
-            2: '未认证'
+            0: '未认证'
         },
         //关于页面的text 使用key对应中文
         PageText: {
