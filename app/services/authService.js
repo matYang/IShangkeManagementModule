@@ -1,10 +1,11 @@
 'use strict';
 appServices.factory('Auth',
-    ['$rootScope', '$cookieStore', 'restAPI', '$q', '$location', '$log', 'app',
-        function ($rootScope, $cookieStore, restAPI, $q, $location, $log, app) {
+    ['$rootScope', 'getPartnerById', 'restAPI', '$q', '$location', '$log', 'app',
+        function ($rootScope, getPartnerById, restAPI, $q, $location, $log, app) {
             var auth = restAPI.auth;
             return {
                 checkUser: function () {
+                    var self = this;
 //                    var defer = $q.defer();
                     //检测用户的状态（从内存中的用户信息以及调用findSession的） user的初始值为null
 //                    if (!$rootScope.global.user) {
@@ -42,7 +43,8 @@ appServices.factory('Auth',
                         $rootScope.global.user = user;
                         $rootScope.global.isLogin = true;
                         $log.log('checking user:session found');
-                    }else{
+                        self.initPartner(); //进行partner信息的初始化
+                    } else {
                         $log.log('checking user:session not found');
                     }
 
@@ -55,6 +57,7 @@ appServices.factory('Auth',
                         //根据返回的用户信息设置内存中保存的用户信息 以及cookie
                         $rootScope.global.user = result_user;
                         $rootScope.global.isLogin = true;
+                        self.initPartner(); //进行partner信息的初始化
                         $log.log('login success');
                         defer.resolve(result_user);
                     }, function () {
@@ -76,6 +79,17 @@ appServices.factory('Auth',
                     $rootScope.global.isLogin = false;
                     $location.path('/login');
 
+                },
+                initPartner: function () {
+                    if (!$rootScope.global.isAdmin //如果是partner
+                        && $rootScope.global.isLogin && $rootScope.global.user.partnerId//如果处于登录状态 并且partnerId不为空
+                        ) {
+                        $log.log('pulling partner info');
+                        getPartnerById($rootScope.global.user.partnerId).then(function (partner) {
+                            $rootScope.global.user.partner = partner;
+                        });
+
+                    }
                 }
             }
         }]

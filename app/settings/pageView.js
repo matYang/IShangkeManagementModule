@@ -1,6 +1,6 @@
 'use strict';
 //table中的th
-app.factory('PageView', function(){
+app.factory('PageView', function () {
     var common = {
         statusTabs: [
             {label: '待审核', active: true, value: {status: 0}},
@@ -14,7 +14,7 @@ app.factory('PageView', function(){
             {label: '已下线', active: false, value: {status: 1}},
             {label: '已删除', active: false, value: {status: 2} }
         ],
-        bookingTh:[
+        bookingTh: [
             //n--name w-width percent
             {n: '订单号', w: '8'},
             {n: '入学人姓名', w: '10'},
@@ -27,11 +27,17 @@ app.factory('PageView', function(){
         ]
     };
     return {
-        'common':common,
+        'common': common,
         'newBookings': {
             tabs: [
-                {label: '今日待处理', active: true, value: {status: 0, createTimeStart: new Date().getTime()}},
-                {label: '往日待处理', active: false, value: {status: 0, createTimeEnd: new Date().getTime()}}
+                {
+                    label: '今日待处理', active: true,
+                    value: {status: 0, createTimeStart: new Date().getTime()}
+                },
+                {
+                    label: '往日待处理', active: false,
+                    value: {status: 0, createTimeEnd: new Date().getTime()}
+                }
             ],
             th: common.bookingTh
         },

@@ -13,7 +13,7 @@ appControllers.controller('coursesCreateCtrl',
         });
         //新建课程需要选择机构（admin需要）
         $scope.choosed = {
-            partner: app.rootScope.global.user.partnerId || null,
+            partner: app.rootScope.global.user.partner || null,
             template: null
         };
         $scope.$watch(function () {
