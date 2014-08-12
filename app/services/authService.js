@@ -50,6 +50,7 @@ appServices.factory('Auth',
 
                 },
                 login: function (user) {//date为登录信息对象
+                    var self = this;
                     user.remember = user.remember ? 1 : 0;
                     //这里使用promise模式 在controller中调用login先进行以下处理流程
                     var defer = $q.defer();
