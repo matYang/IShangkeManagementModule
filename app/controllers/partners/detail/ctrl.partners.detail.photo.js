@@ -40,6 +40,7 @@ appControllers.controller('partnersPhotoCtrl',
             var photo = angular.copy($scope.photos[index]);
             //todo 暂时使用直接删除无用字段的方式
             delete photo.edit;
+            delete photo.loading;
             Photos.update({ID: photo.id}, photo, function (data) {
                 $scope.photos[index].edit = false;
                 delete photos_edit[photo.id];

@@ -40,6 +40,7 @@ appControllers.controller('partnersTeacherCtrl',
         $scope.updateTeacher = function ($index) {
             var teacher = angular.copy($scope.teachers[$index]);
             delete teacher.edit;
+            delete teacher.loading;
             Teachers.update({ID: teacher.id}, teacher, function (data) {
                 $scope.teachers[$index].edit = false;
                 delete teachers_edit[teacher.id];
