@@ -2,18 +2,18 @@
 textAngular
 Author : Austin Anderson
 License : 2013 MIT
-Version 1.2.1
+Version 1.2.2
 
 See README.md or https://github.com/fraywing/textAngular/wiki for requirements and use.
 */
-textAngularSetup = angular.module('textAngularSetup', []);
+angular.module('textAngularSetup', [])
 	
 // Here we set up the global display defaults, to set your own use a angular $provider#decorator.
-textAngularSetup.value('taOptions',  {
+.value('taOptions',  {
 	toolbar: [
 		['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'p', 'pre', 'quote'],
 		['bold', 'italics', 'underline', 'ul', 'ol', 'redo', 'undo', 'clear'],
-		['justifyLeft','justifyCenter','justifyRight'],
+		['justifyLeft','justifyCenter','justifyRight','indent','outdent'],
 		['html', 'insertImage', 'insertLink', 'insertVideo']
 	],
 	classes: {
@@ -46,19 +46,19 @@ textAngularSetup.value('taOptions',  {
 			}
 			return false;
 		}
-});
+})
 
 // This is the element selector string that is used to catch click events within a taBind, prevents the default and $emits a 'ta-element-select' event
 // these are individually used in an angular.element().find() call. What can go here depends on whether you have full jQuery loaded or just jQLite with angularjs.
 // div is only used as div.ta-insert-video caught in filter.
-textAngularSetup.value('taSelectableElements', ['a','img']);
+.value('taSelectableElements', ['a','img'])
 
 // This is an array of objects with the following options:
 //				selector: <string> a jqLite or jQuery selector string
 //				customAttribute: <string> an attribute to search for
 //				renderLogic: <function(element)>
 // Both or one of selector and customAttribute must be defined.
-textAngularSetup.value('taCustomRenderers', [
+.value('taCustomRenderers', [
 	{
 		// Parse back out: '<div class="ta-insert-video" ta-insert-video src="' + urlLink + '" allowfullscreen="true" width="300" frameborder="0" height="250"></div>'
 		// To correct video element. For now only support youtube
@@ -75,18 +75,88 @@ textAngularSetup.value('taCustomRenderers', [
 			element.replaceWith(iframe);
 		}
 	}
-]);
+])
 
-textAngularSetup.constant('taTranslations', {
-	toggleHTML: "Toggle HTML",
-	insertImage: "Please enter a image URL to insert",
-	insertLink: "Please enter a URL to insert",
-	insertVideo: "Please enter a youtube URL to embed"
-});
-
-textAngularSetup.run(['taRegisterTool', '$window', 'taTranslations', 'taSelection', function(taRegisterTool, $window, taTranslations, taSelection){
+.constant('taTranslations', {
+	// moved to sub-elements
+	//toggleHTML: "Toggle HTML",
+	//insertImage: "Please enter a image URL to insert",
+	//insertLink: "Please enter a URL to insert",
+	//insertVideo: "Please enter a youtube URL to embed",
+	html: {
+		buttontext: 'Toggle HTML',
+		tooltip: 'Toggle html / Rich Text'
+	},
+	// tooltip for heading - might be worth splitting
+	heading: {
+		tooltip: 'Heading '
+	},
+	p: {
+		tooltip: 'Paragraph'
+	},
+	pre: {
+		tooltip: 'Preformatted text'
+	},
+	ul: {
+		tooltip: 'Unordered List'
+	},
+	ol: {
+		tooltip: 'Ordered List'
+	},
+	quote: {
+		tooltip: 'Quote/unqoute selection or paragraph'
+	},
+	undo: {
+		tooltip: 'Undo'
+	},
+	redo: {
+		tooltip: 'Redo'
+	},
+	bold: {
+		tooltip: 'Bold'
+	},
+	italic: {
+		tooltip: 'Italic'
+	},
+	underline: {
+		tooltip: 'Underline'
+	},
+	justifyLeft: {
+		tooltip: 'Align text left'
+	},
+	justifyRight: {
+		tooltip: 'Align text right'
+	},
+	justifyCenter: {
+		tooltip: 'Center'
+	},
+	indent: {
+		tooltip: 'Increase indent'
+	},
+	outdent: {
+		tooltip: 'Decrease indent'
+	},
+	clear: {
+		tooltip: 'Clear formatting'
+	},
+	insertImage: {
+		dialogPrompt: 'Please enter an image URL to insert',
+		tooltip: 'Insert image',
+		hotkey: 'the - possibly language dependent hotkey ... for some future implementation'
+	},
+	insertVideo: {
+		tooltip: 'Insert video',
+		dialogPrompt: 'Please enter a youtube URL to embed'
+	},
+	insertLink: {
+		tooltip: 'Insert / edit link',
+		dialogPrompt: "Please enter a URL to insert"
+	}
+})
+.run(['taRegisterTool', '$window', 'taTranslations', 'taSelection', function(taRegisterTool, $window, taTranslations, taSelection){
 	taRegisterTool("html", {
-		buttontext: taTranslations.toggleHTML,
+		buttontext: taTranslations.html.buttontext,
+		tooltiptext: taTranslations.html.tooltip,
 		action: function(){
 			this.$editor().switchView();
 		},
@@ -105,19 +175,23 @@ textAngularSetup.run(['taRegisterTool', '$window', 'taTranslations', 'taSelectio
 	angular.forEach(['h1','h2','h3','h4','h5','h6'], function(h){
 		taRegisterTool(h.toLowerCase(), {
 			buttontext: h.toUpperCase(),
+			tooltiptext: taTranslations.heading.tooltip + h.charAt(1),
 			action: headerAction,
 			activeState: _retActiveStateFunction(h.toLowerCase())
 		});
 	});
 	taRegisterTool('p', {
 		buttontext: 'P',
+		tooltiptext: taTranslations.p.tooltip,
 		action: function(){
 			return this.$editor().wrapSelection("formatBlock", "<P>");
 		},
 		activeState: function(){ return this.$editor().queryFormatBlockState('p'); }
 	});
+	// key: pre -> taTranslations[key].tooltip, taTranslations[key].buttontext
 	taRegisterTool('pre', {
 		buttontext: 'pre',
+		tooltiptext: taTranslations.pre.tooltip,
 		action: function(){
 			return this.$editor().wrapSelection("formatBlock", "<PRE>");
 		},
@@ -125,20 +199,23 @@ textAngularSetup.run(['taRegisterTool', '$window', 'taTranslations', 'taSelectio
 	});
 	taRegisterTool('ul', {
 		iconclass: 'fa fa-list-ul',
+		tooltiptext: taTranslations.ul.tooltip,
 		action: function(){
 			return this.$editor().wrapSelection("insertUnorderedList", null);
 		},
-		activeState: function(){ return document.queryCommandState('insertUnorderedList'); }
+		activeState: function(){ return this.$editor().queryCommandState('insertUnorderedList'); }
 	});
 	taRegisterTool('ol', {
 		iconclass: 'fa fa-list-ol',
+		tooltiptext: taTranslations.ol.tooltip,
 		action: function(){
 			return this.$editor().wrapSelection("insertOrderedList", null);
 		},
-		activeState: function(){ return document.queryCommandState('insertOrderedList'); }
+		activeState: function(){ return this.$editor().queryCommandState('insertOrderedList'); }
 	});
 	taRegisterTool('quote', {
 		iconclass: 'fa fa-quote-right',
+		tooltiptext: taTranslations.quote.tooltip,
 		action: function(){
 			return this.$editor().wrapSelection("formatBlock", "<BLOCKQUOTE>");
 		},
@@ -146,85 +223,114 @@ textAngularSetup.run(['taRegisterTool', '$window', 'taTranslations', 'taSelectio
 	});
 	taRegisterTool('undo', {
 		iconclass: 'fa fa-undo',
+		tooltiptext: taTranslations.undo.tooltip,
 		action: function(){
 			return this.$editor().wrapSelection("undo", null);
 		}
 	});
 	taRegisterTool('redo', {
 		iconclass: 'fa fa-repeat',
+		tooltiptext: taTranslations.redo.tooltip,
 		action: function(){
 			return this.$editor().wrapSelection("redo", null);
 		}
 	});
 	taRegisterTool('bold', {
 		iconclass: 'fa fa-bold',
+		tooltiptext: taTranslations.bold.tooltip,
 		action: function(){
 			return this.$editor().wrapSelection("bold", null);
 		},
 		activeState: function(){
-			return document.queryCommandState('bold');
+			return this.$editor().queryCommandState('bold');
 		},
 		commandKeyCode: 98
 	});
 	taRegisterTool('justifyLeft', {
 		iconclass: 'fa fa-align-left',
+		tooltiptext: taTranslations.justifyLeft.tooltip,
 		action: function(){
 			return this.$editor().wrapSelection("justifyLeft", null);
 		},
 		activeState: function(commonElement){
 			var result = false;
 			if(commonElement) result = commonElement.css('text-align') === 'left' || commonElement.attr('align') === 'left' ||
-				(commonElement.css('text-align') !== 'right' && commonElement.css('text-align') !== 'center' && !document.queryCommandState('justifyRight') && !document.queryCommandState('justifyCenter'));
-			result = result || document.queryCommandState('justifyLeft');
+				(commonElement.css('text-align') !== 'right' && commonElement.css('text-align') !== 'center' && !this.$editor().queryCommandState('justifyRight') && !this.$editor().queryCommandState('justifyCenter'));
+			result = result || this.$editor().queryCommandState('justifyLeft');
 			return result;
 		}
 	});
 	taRegisterTool('justifyRight', {
 		iconclass: 'fa fa-align-right',
+		tooltiptext: taTranslations.justifyRight.tooltip,
 		action: function(){
 			return this.$editor().wrapSelection("justifyRight", null);
 		},
 		activeState: function(commonElement){
 			var result = false;
 			if(commonElement) result = commonElement.css('text-align') === 'right';
-			result = result || document.queryCommandState('justifyRight');
+			result = result || this.$editor().queryCommandState('justifyRight');
 			return result;
 		}
 	});
 	taRegisterTool('justifyCenter', {
 		iconclass: 'fa fa-align-center',
+		tooltiptext: taTranslations.justifyCenter.tooltip,
 		action: function(){
 			return this.$editor().wrapSelection("justifyCenter", null);
 		},
 		activeState: function(commonElement){
 			var result = false;
 			if(commonElement) result = commonElement.css('text-align') === 'center';
-			result = result || document.queryCommandState('justifyCenter');
+			result = result || this.$editor().queryCommandState('justifyCenter');
 			return result;
+		}
+	});
+	taRegisterTool('indent', {
+		iconclass: 'fa fa-indent',
+		tooltiptext: taTranslations.indent.tooltip,
+		action: function(){
+			return this.$editor().wrapSelection("indent", null);
+		},
+		activeState: function(){
+			return this.$editor().queryFormatBlockState('blockquote'); 
+		}
+	});
+	taRegisterTool('outdent', {
+		iconclass: 'fa fa-outdent',
+		tooltiptext: taTranslations.outdent.tooltip,
+		action: function(){
+			return this.$editor().wrapSelection("outdent", null);
+		},
+		activeState: function(){
+			return false;
 		}
 	});
 	taRegisterTool('italics', {
 		iconclass: 'fa fa-italic',
+		tooltiptext: taTranslations.italic.tooltip,
 		action: function(){
 			return this.$editor().wrapSelection("italic", null);
 		},
 		activeState: function(){
-			return document.queryCommandState('italic');
+			return this.$editor().queryCommandState('italic');
 		},
 		commandKeyCode: 105
 	});
 	taRegisterTool('underline', {
 		iconclass: 'fa fa-underline',
+		tooltiptext: taTranslations.underline.tooltip,
 		action: function(){
 			return this.$editor().wrapSelection("underline", null);
 		},
 		activeState: function(){
-			return document.queryCommandState('underline');
+			return this.$editor().queryCommandState('underline');
 		},
 		commandKeyCode: 117
 	});
 	taRegisterTool('clear', {
 		iconclass: 'fa fa-ban',
+		tooltiptext: taTranslations.clear.tooltip,
 		action: function(deferred, restoreSelection){
 			this.$editor().wrapSelection("removeFormat", null);
 			var possibleNodes = angular.element(taSelection.getSelectionElement());
@@ -352,9 +458,10 @@ textAngularSetup.run(['taRegisterTool', '$window', 'taTranslations', 'taSelectio
 	
 	taRegisterTool('insertImage', {
 		iconclass: 'fa fa-picture-o',
+		tooltiptext: taTranslations.insertImage.tooltip,
 		action: function(){
 			var imageLink;
-			imageLink = $window.prompt(taTranslations.insertImage, 'http://');
+			imageLink = $window.prompt(taTranslations.insertImage.dialogPrompt, 'http://');
 			if(imageLink && imageLink !== '' && imageLink !== 'http://'){
 				return this.$editor().wrapSelection('insertImage', imageLink, true);
 			}
@@ -366,9 +473,10 @@ textAngularSetup.run(['taRegisterTool', '$window', 'taTranslations', 'taSelectio
 	});
 	taRegisterTool('insertVideo', {
 		iconclass: 'fa fa-youtube-play',
+		tooltiptext: taTranslations.insertVideo.tooltip,
 		action: function(){
 			var urlPrompt;
-			urlPrompt = $window.prompt(taTranslations.insertVideo, 'http://');
+			urlPrompt = $window.prompt(taTranslations.insertVideo.dialogPrompt, 'http://');
 			if (urlPrompt && urlPrompt !== '' && urlPrompt !== 'http://') {
 				// get the video ID
 				var ids = urlPrompt.match(/(\?|&)v=[^&]*/);
@@ -390,10 +498,11 @@ textAngularSetup.run(['taRegisterTool', '$window', 'taTranslations', 'taSelectio
 		}
 	});	
 	taRegisterTool('insertLink', {
+		tooltiptext: taTranslations.insertLink.tooltip,
 		iconclass: 'fa fa-link',
 		action: function(){
 			var urlLink;
-			urlLink = $window.prompt(taTranslations.insertLink, 'http://');
+			urlLink = $window.prompt(taTranslations.insertLink.dialogPrompt, 'http://');
 			if(urlLink && urlLink !== '' && urlLink !== 'http://'){
 				return this.$editor().wrapSelection('createLink', urlLink, true);
 			}
@@ -408,7 +517,7 @@ textAngularSetup.run(['taRegisterTool', '$window', 'taTranslations', 'taSelectio
 				// setup the editor toolbar
 				// Credit to the work at http://hackerwins.github.io/summernote/ for this editbar logic
 				event.preventDefault();
-				editorScope.displayElements.popover.css('width', '305px');
+				editorScope.displayElements.popover.css('width', '435px');
 				var container = editorScope.displayElements.popoverContainer;
 				container.empty();
 				container.css('line-height', '28px');
@@ -426,7 +535,7 @@ textAngularSetup.run(['taRegisterTool', '$window', 'taTranslations', 'taSelectio
 				var reLinkButton = angular.element('<button type="button" class="btn btn-default btn-sm btn-small" tabindex="-1" unselectable="on"><i class="fa fa-edit icon-edit"></i></button>');
 				reLinkButton.on('click', function(event){
 					event.preventDefault();
-					var urlLink = $window.prompt(taTranslations.insertLink, $element.attr('href'));
+					var urlLink = $window.prompt(taTranslations.insertLink.dialogPrompt, $element.attr('href'));
 					if(urlLink && urlLink !== '' && urlLink !== 'http://'){
 						$element.attr('href', urlLink);
 						editorScope.updateTaBindtaTextElement();
@@ -435,7 +544,7 @@ textAngularSetup.run(['taRegisterTool', '$window', 'taTranslations', 'taSelectio
 				});
 				buttonGroup.append(reLinkButton);
 				var unLinkButton = angular.element('<button type="button" class="btn btn-default btn-sm btn-small" tabindex="-1" unselectable="on"><i class="fa fa-unlink icon-unlink"></i></button>');
-				// directly before ths click event is fired a digest is fired off whereby the reference to $element is orphaned off
+				// directly before this click event is fired a digest is fired off whereby the reference to $element is orphaned off
 				unLinkButton.on('click', function(event){
 					event.preventDefault();
 					$element.replaceWith($element.contents());
@@ -443,6 +552,17 @@ textAngularSetup.run(['taRegisterTool', '$window', 'taTranslations', 'taSelectio
 					editorScope.hidePopover();
 				});
 				buttonGroup.append(unLinkButton);
+				var targetToggle = angular.element('<button type="button" class="btn btn-default btn-sm btn-small" tabindex="-1" unselectable="on">Open in New Window</button>');
+				if($element.attr('target') === '_blank'){
+					targetToggle.addClass('active');
+				}
+				targetToggle.on('click', function(event){
+					event.preventDefault();
+					$element.attr('target', ($element.attr('target') === '_blank') ? '' : '_blank');
+					targetToggle.toggleClass('active');
+					editorScope.updateTaBindtaTextElement();
+				});
+				buttonGroup.append(targetToggle);
 				container.append(buttonGroup);
 				editorScope.showPopover($element);
 			}
