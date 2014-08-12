@@ -22,7 +22,7 @@ appControllers.controller('partnersPhotoCtrl',
         /**
          * 进入和退出编辑模式
          */
-        $scope.editAddress = function ($index) {
+        $scope.editPhoto = function ($index) {
             //在edit更改前进行原始photo的保存
             var photo = angular.copy($scope.photos[$index]);
             photos_edit[photo.id] = photo;
@@ -36,7 +36,7 @@ appControllers.controller('partnersPhotoCtrl',
         /**
          * class photo的更新和删除
          */
-        $scope.updateAddress = function (index) {
+        $scope.updatePhoto = function (index) {
             var photo = angular.copy($scope.photos[index]);
             //todo 暂时使用直接删除无用字段的方式
             delete photo.edit;
@@ -49,7 +49,7 @@ appControllers.controller('partnersPhotoCtrl',
                 app.toaster.pop('error', "照片更新失败", "");
             });
         };
-        $scope.deleteAddress = function (index) {
+        $scope.deletePhoto = function (index) {
             Photos.delete({ID: $scope.photos[index].id}, function () {
                 $scope.photos.splice(index, 1);//进行本地删除 todo seems slowly
                 app.toaster.pop('success', "照片删除成功", "");
