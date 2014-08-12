@@ -85,11 +85,12 @@ appServices
             };
         }
     ])
+    //带有缓存服务的promise服务 仅限GET请求
     .factory('promiseGet', ['$q',
         function ($q) {
             return function (param, restAPI, cacheId, cache) {
                 var result, defer = $q.defer();
-
+                //如果指定了cacheId和cache则会优先获取缓存中值
                 result = cacheId && cache && cache.get(cacheId);
                 if (result) {
                     defer.resolve(result);
@@ -107,9 +108,11 @@ appServices
             };
         }
     ])
+    //缓存服务
     .factory('cache', ['$cacheFactory',
         function ($cacheFactory) {
             return {
+                //课程分类目录的缓存 容量大小为200条记录 todo 暂不清楚多层嵌套的json的容量如何计算
                 category: $cacheFactory('category', {
                     capacity: 200
                 })
