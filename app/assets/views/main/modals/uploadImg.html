@@ -1,6 +1,6 @@
 <div class="modal-header">上传{{title}}</div>
 <div class="modal-body" style="position: relative">
-    <img ng-src="item.imgUrl" alt="" class="img-md center-block"/>
+    <img ng-src="{{item.imgUrl}}" alt="" class="img-md center-block"/>
     <input class="input-file" type="file"
            ng-file-select="onFileSelect($files, $index)"
            ng-model="imgFile">
