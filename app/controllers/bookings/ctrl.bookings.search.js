@@ -24,7 +24,7 @@ appControllers.controller('searchBookingsCtrl',
         var doRefresh = $scope.doRefresh = function () {
             var filter_tmp = angular.copy($scope.filter_tmp);
             if (filter_tmp.createTimeEnd) {
-                filter_tmp.createTimeEnd += 24 * 3600;
+                filter_tmp.createTimeEnd += 24 * 3600 * 1000;
             }
             //使用课程模板资源请求数据 筛选条件为当前选择的值
             restAPI.get(angular.extend({partnerId: $scope.partnerId}, filter_tmp, $scope.page), function (data) {
