@@ -12,7 +12,7 @@ appControllers.controller('chooseCtrl', ['$scope', 'app', '$modalInstance', 'opt
             if (optionName == 'partners') {
                 resource = app.restAPI[optionName].get(angular.extend({}, $scope.page));
             } else if (optionName == 'templates') {
-                resource = app.restAPI[optionName].get(angular.extend({}, $scope.page, {parterId: partner && partner.id}));
+                resource = app.restAPI[optionName].get(angular.extend({}, $scope.page, {partnerId: partner && partner.id}));
             }
             resource.$promise.then(function (data) {
                 $scope.items = data.data;
