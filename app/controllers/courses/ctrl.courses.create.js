@@ -64,19 +64,27 @@ appControllers.controller('coursesCreateCtrl',
                 $scope.choosed.template = selectedItem;
                 $scope.course.courseTemplateId = selectedItem.id;
                 app.getTemplateById(selectedItem.id).then(function (template) {
+                    //获取课程模板并将模板中的值映射到课程中
+                    //过滤tempalte中无用的信息
+                    delete template.id;
+                    delete template.bookingTotalEnd;
+                    delete template.bookingTotalSet;
+                    delete template.bookingTotalStart;
+                    delete template.rating;
+                    delete template.ratingEnd;
+                    delete template.ratingStart;
                     //获取课程模板的详情用来填充所有选项
                     //转换多选框选择的值
                     template.teacherList = app.tools.toImgLabelValue(template.teacherList);
                     template.classPhotoList = app.tools.toImgLabelValue(template.classPhotoList);
-                    angular.forEach(template, function (v, k) {
-                        if (k !== 'id')$scope.course[k] = v;
-                    })
+                    $scope.course = template;
                 }, function () {
                     app.toaster.pop('error', '获取课程模板-' + selectedItem.courseName + '的信息失败', '请重新选择或刷新重试');
                 })
             });
         };
         $scope.clear = function () {
+            //保留不可更改的数据
             $scope.course = {
                 partnerId: $scope.course.partnerId || undefined,
                 courseTemplateId: $scope.course.courseTemplateId || undefined,
@@ -84,20 +92,18 @@ appControllers.controller('coursesCreateCtrl',
                 originalPrice: $scope.course.originalPrice || undefined,
                 price: $scope.course.price || undefined,
                 categoryValue: $scope.course.categoryValue || undefined,
-                teacherList: $scope.course.teacherList || undefined,
-                classPhotoList: $scope.course.classPhotoList || undefined
             };
-            app.window.scrollTo(0,0);
+            app.window.scrollTo(0, 0);
         };
         $scope.submitCourse = function (course) {
             //将多选框选择的值转换成obj的数组
-            //将数组中的id转换成map [1,2] --> [{id:1},{id:2}]
+            //将数组中obj的id转换成map [1,2] --> [{id:1},{id:2}]
             var course_save = angular.copy(course);
-            course_save.teacherList =app.tools.mapToIdObjList(course_save.teacherList);
-            course_save.classPhotoList =app.tools.mapToIdObjList(course_save.classPhotoList);
+            course_save.teacherList = app.tools.mapToIdObjList(course_save.teacherList);
+            course_save.classPhotoList = app.tools.mapToIdObjList(course_save.classPhotoList);
             restAPI.save(course_save, function (data) {
                 app.toaster.pop('success', '课程>' + course_save.courseName + '创建成功',
-                        '<a href="#/admin/courses/' + data.id + '"><strong>查看该信息</strong></a> 或者 <a><strong>继续创建</strong></a>', 0, 'trustedHtml',$scope.clear);
+                        '<a href="#/admin/courses/' + data.id + '"><strong>查看该信息</strong></a> 或者 <a><strong>继续创建</strong></a>', 0, 'trustedHtml', $scope.clear);
             }, function () {
                 app.toaster.pop('error', '创建课程失败', '请稍后再试');
             });
