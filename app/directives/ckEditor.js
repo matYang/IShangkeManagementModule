@@ -10,12 +10,15 @@ appDirectives.directive('ckEditor', function () {
 
             if (!ngModel) return;
 
+
+            //与视图进行绑定
             ck.on('pasteState', function() {
                 scope.$apply(function() {
                     ngModel.$setViewValue(ck.getData());
                 });
             });
 
+            //初始值
             ngModel.$render = function(value) {
                 ck.setData(ngModel.$viewValue);
             };

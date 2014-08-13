@@ -4,15 +4,6 @@
             <small><a ui-sref="main.templates.list" class="btn fa fa-chevron-left pull-left"> 返回列表</a></small>
             创建课程模板
         </h3>
-
-        <textarea ck-editor ng-model="test"></textarea>
-        <textarea tiny-editor ng-model="test2" name="test2"></textarea>
-        <pre>
-            {{test|json}}
-        </pre>
-        <pre>
-            {{test2|json}}
-        </pre>
     </div>
 
 </div>
@@ -291,7 +282,7 @@
             <label class="col-xs-3 control-label">课程提纲</label>
 
             <div class="col-xs-5">
-                <textarea type="text" class="form-control"
+                <textarea ck-editor type="text" class="form-control"
                        name="outline" ng-model="template.outline"></textarea>
             </div>
         </div>
