@@ -24,7 +24,7 @@ appControllers.controller('templatesDetailCtrl',
                 return;
             }
             else {
-                promise = restAPI.operate({ID: id, OP: op});
+                promise = restAPI.operate({ID: id, OP: op},{});
             }
             promise.$promise.then(function (data) {
                 app.toaster.pop('success', "课程模板" + id + "操作成功", "");

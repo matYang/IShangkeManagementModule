@@ -69,7 +69,7 @@ appServices.factory('Auth',
                 logout: function () {
                     var self = this;
                     //发送用户注销请求
-                    auth.update({ID: $rootScope.global.user.id, OP: 'logout'}, function () {
+                    auth.update({ID: $rootScope.global.user.id, OP: 'logout'},{}, function () {
                         //success
                         $log.log('logout success');
                     }, function () {

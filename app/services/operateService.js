@@ -19,7 +19,7 @@ appServices.factory('operateService',
                         return;
                     }
                     else {
-                        promise = restAPI.operate({ID: id, OP: op});
+                        promise = restAPI.operate({ID: id, OP: op},{});
                     }
                     promise.$promise.then(function (data) {
                         toaster.pop('success', "课程" + id + "操作成功", "");

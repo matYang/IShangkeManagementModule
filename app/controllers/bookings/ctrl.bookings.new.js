@@ -54,7 +54,7 @@ appControllers.controller('newBookingsCtrl',
             if (op === 'delete') {
                 promise = restAPI.delete({ID: id});
             } else {
-                promise = restAPI.operate({ID: id, OP: op});
+                promise = restAPI.operate({ID: id, OP: op},{});
             }
             promise.$promise.then(function (data) {
                 app.toaster.pop('success', "订单" + id + "操作成功", "");

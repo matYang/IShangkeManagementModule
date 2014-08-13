@@ -405,11 +405,6 @@ angular.module('ngResource', ['ng']).
         forEach(self.urlParams, function(_, urlParam){
           val = params.hasOwnProperty(urlParam) ? params[urlParam] : self.defaults[urlParam];
           if (angular.isDefined(val) && val !== null) {
-            //Jet Start
-            if(config.data){//if data exists then it may be POST PUT or PATCH method
-                delete config.data[urlParam];//add by Jet:the matched path params should remove from the http request data params
-            }
-            //Jet End
             encodedVal = encodeUriSegment(val);
             url = url.replace(new RegExp(":" + urlParam + "(\\W|$)", "g"), function(match, p1) {
               return encodedVal + p1;
