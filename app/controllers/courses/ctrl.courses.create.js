@@ -92,10 +92,11 @@ appControllers.controller('coursesCreateCtrl',
         $scope.submitCourse = function (course) {
             //将多选框选择的值转换成obj的数组
             //将数组中的id转换成map [1,2] --> [{id:1},{id:2}]
-            course.teacherList =app.tools.mapToIdObjList(course.teacherList);
-            course.classPhotoList =app.tools.mapToIdObjList(course.classPhotoList);
-            restAPI.save(course, function (data) {
-                app.toaster.pop('success', '课程>' + course.courseName + '创建成功',
+            var course_save = angular.copy(course);
+            course_save.teacherList =app.tools.mapToIdObjList(course_save.teacherList);
+            course_save.classPhotoList =app.tools.mapToIdObjList(course_save.classPhotoList);
+            restAPI.save(course_save, function (data) {
+                app.toaster.pop('success', '课程>' + course_save.courseName + '创建成功',
                         '<a href="#/admin/courses/' + data.id + '"><strong>查看该信息</strong></a> 或者 <a><strong>继续创建</strong></a>', 0, 'trustedHtml',$scope.clear);
             }, function () {
                 app.toaster.pop('error', '创建课程失败', '请稍后再试');

@@ -25,18 +25,14 @@ appControllers.controller('coursesEditCtrl',
         $scope.doRefresh();
         //提交修改
         $scope.updateCourse = function (course) {
-            //将数组中的id转换成map [1,2] --> [{id:1},{id:2}]
-            if (course.teacherList !== undefined) {
-                course.teacherList = course.teacherList.map(function (v) {
-                    return {id: v};
-                });
-            }
-            console.log(JSON.stringify(course))
-            Courses.operate({ID: id, OP: 'submitUpdated'}, course, function (data) {
-                app.toaster.pop('success', '课程>' + course.courseName + '修改成功',
+            var course_save = angular.copy(course);
+            course_save.teacherList = app.tools.mapToIdObjList(course_save.teacherList);
+            course_save.classPhotoList = app.tools.mapToIdObjList(course_save.classPhotoList);
+            Courses.operate({ID: id, OP: 'submitUpdated'}, course_save, function (data) {
+                app.toaster.pop('success', '课程>' + course_save.courseName + '修改成功',
                         '<a href="#/admin/courses/'+data.id+'"><strong>查看该信息</strong></a> 或者 <a href="#/admin/courses"><strong>返回列表</strong></a>', 0, 'trustedHtml');
             }, function () {
-                app.toaster.pop('error', "课程>" + course.courseName + "修改失败", "");
+                app.toaster.pop('error', "课程>" + course_save.courseName + "修改失败", "");
             })
         };
     }]

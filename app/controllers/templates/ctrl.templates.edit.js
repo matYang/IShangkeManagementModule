@@ -26,14 +26,15 @@ appControllers.controller('templatesEditCtrl',
 
         //提交更新
         $scope.updateTemplate = function (template) {
+            var template_save = angular.copy(template);
             //将数组中的id转换成map [1,2] --> [{id:1},{id:2}]
-            template.teacherList =app.tools.mapToIdObjList(template.teacherList);
-            template.classPhotoList =app.tools.mapToIdObjList(template.classPhotoList);
-            Templates.operate({ID: id, OP: 'submitUpdated'}, template, function (data) {
-                app.toaster.pop('success', '课程模板>' + template.courseName + '修改成功',
+            template_save.teacherList =app.tools.mapToIdObjList(template_save.teacherList);
+            template_save.classPhotoList =app.tools.mapToIdObjList(template_save.classPhotoList);
+            Templates.operate({ID: id, OP: 'submitUpdated'}, template_save, function (data) {
+                app.toaster.pop('success', '课程模板>' + template_save.courseName + '修改成功',
                         '<a href="#/admin/templates/' + data.id + '"><strong>查看该信息</strong></a> 或者 <a href="#/admin/templates"><strong>返回列表</strong></a>', 0, 'trustedHtml');
             }, function () {
-                app.toaster.pop('error', "课程模板>" + template.courseName + "修改失败", "");
+                app.toaster.pop('error', "课程模板>" + template_save.courseName + "修改失败", "");
             })
         };
     }]

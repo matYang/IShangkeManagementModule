@@ -50,13 +50,14 @@ appControllers.controller('templatesCreateCtrl',
         //提交新建的模板
         $scope.submit_template = function (template) {
             //将数组中的id转换成map [1,2] --> [{id:1},{id:2}]
-            template.teacherList =app.tools.mapToIdObjList(template.teacherList);
-            template.classPhotoList =app.tools.mapToIdObjList(template.classPhotoList);
-            Templates.save(template, function (data) {
-                app.toaster.pop('success', '课程模板>' + template.courseName + '创建成功',
+            var template_save = angular.copy(template);
+            template_save.teacherList =app.tools.mapToIdObjList(template_save.teacherList);
+            template_save.classPhotoList =app.tools.mapToIdObjList(template_save.classPhotoList);
+            Templates.save(template_save, function (data) {
+                app.toaster.pop('success', '课程模板>' + template_save.courseName + '创建成功',
                         '<a href="#/admin/templates/'+data.id+'"><strong>查看该信息</strong></a> 或者 <a><strong>继续创建</strong></a>', 0, 'trustedHtml',$scope.clear);
             }, function () {
-                app.toaster.pop('error', '创建课程模板>' + template.courseName + '失败', '');
+                app.toaster.pop('error', '创建课程模板>' + template_save.courseName + '失败', '');
             })
         };
     }]
