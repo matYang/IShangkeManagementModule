@@ -21,7 +21,7 @@
                 <label class="control-label" for="">机构名</label>
 
                 <div><input type="text" class="form-control input-sm"
-                            ng-model="filter_tmp.name"/></div>
+                            ng-model="filter_tmp.instName"/></div>
             </div>
             <div class="form-group">
                 <label></label>
@@ -56,6 +56,7 @@
             <tr ng-repeat="item in items | filter:filter.id">
                 <td>{{item.id || '无'}}</td>
                 <td>{{item.wholeName|| '无'}}</td>
+                <td>{{item.hqLocation|| '无'}}</td>
                 <td>{{item.reference || '无'}}</td>
                 <td class="operations">
                     <a ui-sref="main.partners.detail({id:item.id})">详细/管理</a>
