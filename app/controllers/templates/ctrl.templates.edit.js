@@ -10,6 +10,7 @@ appControllers.controller('templatesEditCtrl',
 
         $scope.doRefresh = function () {
             app.getTemplateById(id).then(function (template) {
+                //将teacher的obj转换成id的数组
                 var tmp_list = [];
                 angular.forEach(template.teacherList, function (teacher) {
                     this.push(teacher.id);
@@ -31,15 +32,16 @@ appControllers.controller('templatesEditCtrl',
             });
         };
         $scope.doRefresh();
-        //提交新建的模板
+
+        //提交更新
         $scope.updateTemplate = function (template) {
-            //需要对教师的列表进行map
+            //将数组中的id转换成map [1,2] --> [{id:1},{id:2}]
             if (template.teacherList !== undefined) {
                 template.teacherList = template.teacherList.map(function (v) {
                     return {id: v};
                 });
             }
-            Templates.update({ID: id}, template, function (data) {
+            Templates.operate({ID: id, OP: 'submitUpdated'}, template, function (data) {
                 app.toaster.pop('success', '课程模板>' + template.courseName + '修改成功',
                         '<a href="#/admin/templates/' + data.id + '"><strong>查看该信息</strong></a> 或者 <a href="#/admin/templates"><strong>返回列表</strong></a>', 0, 'trustedHtml');
             }, function () {
