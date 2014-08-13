@@ -405,6 +405,7 @@ angular.module('ngResource', ['ng']).
         forEach(self.urlParams, function(_, urlParam){
           val = params.hasOwnProperty(urlParam) ? params[urlParam] : self.defaults[urlParam];
           if (angular.isDefined(val) && val !== null) {
+            delete config.data[urlParam];//add by Jet:the matched path params should remove from the http request data params
             encodedVal = encodeUriSegment(val);
             url = url.replace(new RegExp(":" + urlParam + "(\\W|$)", "g"), function(match, p1) {
               return encodedVal + p1;

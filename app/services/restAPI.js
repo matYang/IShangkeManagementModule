@@ -40,10 +40,8 @@ appServices
             var resource_maker = function (recourseName) {
 
                 var url = app.test_mode ? api_config.resources[recourseName][0] : prefix + api_config.resources[recourseName][1];
-                var params = {};
                 var methods = {};
                 if (app.test_mode) {
-                    params = {};
                     //测试模式使用GET
                     methods = {
                         'query': {method: 'GET', isArray: false},
@@ -52,7 +50,6 @@ appServices
                         'operate': { method: 'GET' }
                     };
                 } else {
-                    params = {ID: '@ID', OP: '@OP'};
                     methods = {
                         'query': {method: 'GET', isArray: false},
                         'post': { method: 'POST' },
@@ -60,7 +57,7 @@ appServices
                         'operate': { method: 'PUT' }
                     };
                 }
-                return $resource(url, params, methods)
+                return $resource(url, {}, methods)
             };
 
             var makeResourceUrl = function (resourceName) {
