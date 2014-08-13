@@ -4,18 +4,9 @@ appControllers.controller('partnersCreateCtrl',
         var Partners = app.restAPI.partners;
         $scope.title = '新建机构';
         $scope.options = angular.copy(app.options); // avoid to change original value
-        $scope.partner = {addressList: [""]};
-        var addressList = $scope.partner.addressList = [""];
-        $scope.addLocation = function () {
-            addressList.push("");
-        };
-        $scope.removeLocation = function (index) {
-            addressList.splice(index, 1);
-        };
+        $scope.partner = {};
         $scope.clear = function () {
-            $scope.partner = {
-                addressList: [""]
-            };
+            $scope.partner = {};
         };
         $scope.create = function (partner) {
             Partners.save(partner, function (data) {
