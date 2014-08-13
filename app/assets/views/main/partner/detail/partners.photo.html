@@ -5,7 +5,7 @@
 </p>
 
 <div ng-repeat="photo in photos track by photo.id" class="img-thumbnail pull-left">
-    <img ng-src="{{photo.imgUrl}}" class="img-md center-block"/>
+    <img ng-src="{{photo.imgUrl||'//:0'}}" class="img-md center-block"/>
     <!--不在编辑状态中-->
     <div ng-hide="photo.edit">
         <label>标题</label>

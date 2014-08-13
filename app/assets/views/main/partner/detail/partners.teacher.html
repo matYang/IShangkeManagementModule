@@ -5,7 +5,7 @@
 </p>
 
 <div ng-repeat="teacher in teachers track by teacher.id" class="img-thumbnail pull-left">
-    <img ng-src="{{teacher.imgUrl}}" class="img-md center-block"/>
+    <img ng-src="{{teacher.imgUrl||'//:0'}}" class="img-md center-block"/>
     <!--不在编辑状态中-->
     <div ng-hide="teacher.edit">
         <label>姓名</label>
