@@ -52,10 +52,10 @@ appControllers.controller('coursesCtrl',
         //课程操作
         $scope.operate = function (id, op) {
             var promise = {};
-            if (op == 'delete') {
-                promise = restAPI.delete({ID: id});
-            }
-            else if(op=='submitUpdated'){
+//            if (op == 'delete') {
+//                promise = restAPI.delete({ID: id});
+//            }
+            if(op=='submitUpdated'){
                 app.state.go('main.courses.edit',{id:id});
                 return;
             }
