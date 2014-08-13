@@ -40,19 +40,6 @@
             <p class="form-control-static">{{course.categoryId | categoryText}}</p>
         </div>
     </div>
-    <div class="form-group form-group-sm">
-        <label class="col-xs-3 control-label">教师列表</label>
-        <div class="col-xs-5">
-            <ul class="list-unstyled">
-                <li ng-repeat="teacher in course.teacherList">
-                    <img ng-src="{{teacher.imgUrl}}" alt="教师照片" class="img-micro"/>
-                    <label>{{teacher.name}}</label>
-                    <span>--{{teacher.intro}}</span>
-                </li>
-            </ul>
-        </div>
-    </div>
-
 
     <legend>基本信息</legend>
     <div class="form-group form-group-sm">
@@ -207,6 +194,28 @@
         <div class="col-xs-5">
             <button name="addressId" ng-model="course.regAddressId" class="btn btn-default btn-sm"
                     bs-select ng-options="item.id as item.detail for item in options.addressList">
+            </button>
+        </div>
+    </div>
+
+    <div class="form-group form-group-sm">
+        <label class="col-xs-3 control-label">选择教师</label>
+
+        <div class="col-xs-5">
+            <button class="btn btn-default btn-sm" ng-model="course.teacherList" max-length="10"
+                    data-html="1" data-multiple="1" ng-options="item.id as item.label for item in options.teacherList" bs-select>
+                选择教师 <span class="caret"></span>
+            </button>
+        </div>
+    </div>
+
+    <div class="form-group form-group-sm">
+        <label class="col-xs-3 control-label">选择展示的机构图片</label>
+
+        <div class="col-xs-5">
+            <button class="btn btn-default btn-sm" ng-model="course.classPhotoList" max-length="10"
+                    data-html="1" data-multiple="1" ng-options="item.id as item.label for item in options.classPhotoList" bs-select>
+                选择机构图片 <span class="caret"></span>
             </button>
         </div>
     </div>

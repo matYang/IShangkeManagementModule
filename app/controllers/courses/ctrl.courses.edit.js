@@ -1,7 +1,7 @@
 'use strict';
 appControllers.controller('coursesEditCtrl',
     ['$scope', 'app', function ($scope, app) {
-        var Courses = app.restAPI.templates;
+        var Courses = app.restAPI.courses;
         var id = app.state.params.id;
         app.getCategory().then(function (data) {
             $scope.category = data.data;
@@ -11,30 +11,20 @@ appControllers.controller('coursesEditCtrl',
         $scope.doRefresh = function () {
             Courses.get({ID: id}).$promise.then(function (course) {
                 //将teacher的obj转换成id的数组
-                var tmp_list = [];
-                angular.forEach(course.teacherList, function (teacher) {
-                    this.push(teacher.id);
-                }, tmp_list);
-                course.teacherList = tmp_list;
+                course.teacherList = app.tools.toImgLabelValue(course.teacherList);
+                course.classPhotoList = app.tools.toImgLabelValue(course.classPhotoList);
                 $scope.course = course;
                 return app.getPartnerById(course.partnerId);
             }).then(function (partner) {
                 //生成选项
                 $scope.options.addressList = partner.addressList;
-                var teacherList = [];
-                angular.forEach(partner.teacherList, function (teacher) {
-                    teacher.label = '<img src="' + teacher.imgUrl + '" alt="' + teacher.name + '" class="img-micro"/>' + teacher.name;
-                    teacherList.push(teacher);
-                });
-                $scope.options.teacherList = teacherList;
-
-                //todo 默认选择机构的所有图片作为模板的图片
-                $scope.course.classPhotoList = partner.classPhotoList;
+                $scope.options.teacherList = app.tools.toImgLabelOptions(partner.teacherList);
+                $scope.options.classPhotoList = app.tools.toImgLabelOptions(partner.classPhotoList);
             });
         };
         $scope.doRefresh();
         //提交修改
-        $scope.submitCourse = function (course) {
+        $scope.updateCourse = function (course) {
             //将数组中的id转换成map [1,2] --> [{id:1},{id:2}]
             if (course.teacherList !== undefined) {
                 course.teacherList = course.teacherList.map(function (v) {

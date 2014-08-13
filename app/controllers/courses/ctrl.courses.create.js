@@ -8,9 +8,6 @@ appControllers.controller('coursesCreateCtrl',
         });
         $scope.options = angular.copy(app.options);
         $scope.Enum = app.Enum;
-        app.getCategory().then(function (data) {
-            $scope.category = data.data;
-        });
         //新建课程需要选择机构（admin需要）
         $scope.choosed = {
             partner: app.rootScope.global.user.partner || null,
@@ -37,6 +34,7 @@ appControllers.controller('coursesCreateCtrl',
             });
             return modal.result;
         };
+        /*选择机构 用于获得partnerId以及生成选项*/
         $scope.choosePartner = function () {
             if (app.rootScope.global.isAdmin) {
                 //登录用户为admin
@@ -45,25 +43,32 @@ appControllers.controller('coursesCreateCtrl',
                     $scope.course = {};
                     $scope.choosed.partner = selectedItem;
                     $scope.course.partnerId = selectedItem.id;
-                    //获取机构的详情用来填充options （教师列表和地址）
-                    app.getPartnerById(selectedItem.id).then(function (data) {
-                        $scope.options.addressList = data.addressList;
-                        $scope.options.teacherList = data.teacherList;
+
+                    //获取机构的详情用来生成选项 （教师列表和地址）
+                    app.getPartnerById(selectedItem.id).then(function (partner) {
+                        //生成选项
+                        $scope.options.addressList = partner.addressList;
+                        $scope.options.teacherList = app.tools.toImgLabelOptions(partner.teacherList);
+                        $scope.options.classPhotoList = app.tools.toImgLabelOptions(partner.classPhotoList);
                     }, function () {
                         app.toaster.pop('error', '获取机构-' + selectedItem.instName + '的信息失败', '请重新选择或刷新重试');
                     })
                 });
             }
         };
+        /*选择模板 用于获得模板id并且填充已选择的值 多选的地方需要将对象的数组转换成int的数组才能与多选框的值进行匹配*/
         $scope.chooseTemplate = function () {
             modalAction('templates').then(function (selectedItem) {
                 //清空之前选择的除了partnerId之外的所有信息
                 $scope.course = {partnerId: $scope.course.partnerId};
                 $scope.choosed.template = selectedItem;
                 $scope.course.templateId = selectedItem.id;
-                app.getTemplateById(selectedItem.id).then(function (data) {
+                app.getTemplateById(selectedItem.id).then(function (template) {
                     //获取课程模板的详情用来填充所有选项
-                    angular.forEach(data, function (v, k) {
+                    //转换多选框选择的值
+                    template.teacherList = app.tools.toImgLabelValue(template.teacherList);
+                    template.classPhotoList = app.tools.toImgLabelValue(template.classPhotoList);
+                    angular.forEach(template, function (v, k) {
                         if (k !== 'id')$scope.course[k] = v;
                     })
                 }, function () {
@@ -85,6 +90,10 @@ appControllers.controller('coursesCreateCtrl',
             app.window.scrollTo(0,0);
         };
         $scope.submitCourse = function (course) {
+            //将多选框选择的值转换成obj的数组
+            //将数组中的id转换成map [1,2] --> [{id:1},{id:2}]
+            course.teacherList =app.tools.mapToIdObjList(course.teacherList);
+            course.classPhotoList =app.tools.mapToIdObjList(course.classPhotoList);
             restAPI.save(course, function (data) {
                 app.toaster.pop('success', '课程>' + course.courseName + '创建成功',
                         '<a href="#/admin/courses/' + data.id + '"><strong>查看该信息</strong></a> 或者 <a><strong>继续创建</strong></a>', 0, 'trustedHtml',$scope.clear);

@@ -1,6 +1,7 @@
 {
     "id": 1,
     "partnerId":1,
+    "courseTemplateId":1,
     "courseName": "课程名test",
     "status": 2,
 
@@ -48,7 +49,15 @@
             "intro":"负责任的帅哥老师"
         }
     ],
-
+    "classPhotoList":[
+        {
+            "id":1,
+            "partnerId":1,
+            "imgUrl":"http://testimgsbucket.oss-cn-hangzhou.aliyuncs.com/t2.png",
+            "title":"机构图片1",
+            "description":"机构图片1"
+        }
+    ],
     "courseIntro":"快速提供学员英语六级考试成绩",
     "goal":"1.对初一英语知识点达到灵活运用层次，夯实初一知识 2.对初二秋季知识点达到识记和理解层次，在新学期中占得先机",
     "prerequest":"基础英语语法",

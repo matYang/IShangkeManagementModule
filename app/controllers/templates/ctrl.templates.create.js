@@ -33,15 +33,10 @@ appControllers.controller('templatesCreateCtrl',
                     $scope.template.partnerId = selectedItem.id;
                     //获取机构的详情用来填充options （教师列表和地址，机构图片）
                     app.getPartnerById(selectedItem.id).then(function (partner) {
+                        //生成选项
                         $scope.options.addressList = partner.addressList;
-                        var teacherList = [];
-                        angular.forEach(partner.teacherList, function (teacher) {
-                            teacher.label = '<img src="' + teacher.imgUrl + '" alt="'+teacher.name+'" class="img-micro"/>'+teacher.name;
-                            teacherList.push(teacher);
-                        });
-                        $scope.options.teacherList = teacherList;
-                        //todo 默认选择机构的所有图片作为模板的图片
-                        $scope.template.classPhotoList = partner.classPhotoList;
+                        $scope.options.teacherList = app.tools.toImgLabelOptions(partner.teacherList);
+                        $scope.options.classPhotoList = app.tools.toImgLabelOptions(partner.classPhotoList);
                     }, function () {
                         app.toaster.pop('error', '获取机构-' + selectedItem.instName + '的信息失败', '请重新选择机构或刷新重试');
                     })
@@ -54,12 +49,9 @@ appControllers.controller('templatesCreateCtrl',
         };
         //提交新建的模板
         $scope.submit_template = function (template) {
-            //需要对教师的列表进行map
-            if(template.teacherList!==undefined){
-                template.teacherList = template.teacherList.map(function(v){
-                    return {id:v};
-                });
-            }
+            //将数组中的id转换成map [1,2] --> [{id:1},{id:2}]
+            template.teacherList =app.tools.mapToIdObjList(template.teacherList);
+            template.classPhotoList =app.tools.mapToIdObjList(template.classPhotoList);
             Templates.save(template, function (data) {
                 app.toaster.pop('success', '课程模板>' + template.courseName + '创建成功',
                         '<a href="#/admin/templates/'+data.id+'"><strong>查看该信息</strong></a> 或者 <a><strong>继续创建</strong></a>', 0, 'trustedHtml',$scope.clear);
