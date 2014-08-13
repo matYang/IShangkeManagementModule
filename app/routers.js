@@ -182,4 +182,19 @@ appRoutes.config(function ($stateProvider, $urlRouterProvider, $httpProvider, $l
             controller: 'partnersAddressCtrl',
             access:'admin'
         })
+
+
+
+
+        /*****************机构用户管理****************/
+        .state('main.users', {
+            url: '/users',
+            templateUrl: 'views/main/users/users.html',
+            controller: '',
+            access:'admin'
+        })
+
+
+
+
 });
