@@ -62,7 +62,7 @@ appControllers.controller('coursesCreateCtrl',
                 //清空之前选择的除了partnerId之外的所有信息
                 $scope.course = {partnerId: $scope.course.partnerId};
                 $scope.choosed.template = selectedItem;
-                $scope.course.templateId = selectedItem.id;
+                $scope.course.courseTemplateId = selectedItem.id;
                 app.getTemplateById(selectedItem.id).then(function (template) {
                     //获取课程模板的详情用来填充所有选项
                     //转换多选框选择的值
@@ -79,7 +79,7 @@ appControllers.controller('coursesCreateCtrl',
         $scope.clear = function () {
             $scope.course = {
                 partnerId: $scope.course.partnerId || undefined,
-                templateId: $scope.course.templateId || undefined,
+                courseTemplateId: $scope.course.courseTemplateId || undefined,
                 courseName: $scope.course.courseName || undefined,
                 originalPrice: $scope.course.originalPrice || undefined,
                 price: $scope.course.price || undefined,

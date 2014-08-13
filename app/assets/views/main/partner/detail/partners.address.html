@@ -11,8 +11,8 @@
         <input type="number" class="form-control input-sm" placeholder="纬度（可选）" ng-model="item.lng"/>
     </td>
     <td width="20%" class="text-right" style="padding-right: 0">
-        <button class="btn btn-primary btn-sm"  ng-disabled="address.$invalid">
-            <span ng-hide="creating" ng-click="addAddress()">新 增</span>
+        <button class="btn btn-primary btn-sm"  ng-disabled="address.$invalid||creating" ng-click="addAddress()">
+            <span ng-hide="creating">新 增</span>
             <span ng-show="creating">创建中</span>
         </button>
         <button class="btn btn-default btn-sm" ng-click="init()">清空输入</button>

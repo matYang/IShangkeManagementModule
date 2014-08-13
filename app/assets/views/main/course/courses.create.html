@@ -413,7 +413,7 @@
             <button class="btn btn-default btn-sm" ng-click="chooseTemplate()">{{choosed.template.courseName || ' --请选择-- '}}</button>
         </div>
         <br/>
-        <button ng-show="course.templateId!==undefined" class="btn btn-default btn-warning btn-sm" ng-click="clear()">清空所填信息</button>
+        <button ng-show="course.courseTemplateId!==undefined" class="btn btn-default btn-warning btn-sm" ng-click="clear()">清空所填信息</button>
         <hr/>
         <pre>
             course:{{course|json}}
