@@ -1,9 +1,14 @@
-<div class="modal-header"><h4>选择{{title}}<small>--双击可进行快速选择</small></h4></div>
+<div class="modal-header">
+    <h4>选择{{title}}
+        <small>--双击可进行快速选择</small>
+    </h4>
+</div>
 <div class="modal-body">
     <ul class="list-group">
-        <li class="list-group-item" ng-repeat="item in items track by item.id" ng-class="{'active':item.id===selected.item.id}"
+        <li class="list-group-item" ng-repeat="item in items track by item.id"
+            ng-class="{'active':item.id===selected.item.id}"
             ng-click="selected.item = item" ng-dblclick="selected.item = item;ok()">
-            <label>{{ item.instName || item.courseName}}</label>
+            <label>{{ item.courseName || item.instName}}</label>
             <i class="pull-right fa fa-check fa-stack hidden"></i>
         </li>
     </ul>
