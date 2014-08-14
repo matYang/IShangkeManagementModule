@@ -47,7 +47,8 @@ appServices
                         'query': {method: 'GET', isArray: false},
                         'post': { method: 'GET' },
                         'update': { method: 'GET' },
-                        'operate': { method: 'GET' }
+                        'operate': { method: 'GET' },
+                        'delete': { method: 'GET' }
                     };
                 } else {
                     methods = {

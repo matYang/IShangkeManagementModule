@@ -52,9 +52,9 @@ appControllers.controller('partnersTeacherCtrl',
         $scope.deleteTeacher = function ($index) {
             Teachers.delete({ID: $scope.teachers[$index].id}, function () {
                 $scope.teachers.splice($index, 1);//进行本地删除 todo seems slowly
-                app.toaster.pop('success', "教师>" + teacher.name + "删除成功", "");
+                app.toaster.pop('success', "教师>" + $scope.teachers[$index].name + "删除成功", "");
             }, function () {
-                app.toaster.pop('error', "教师>" + teacher.name + "删除失败", "");
+                app.toaster.pop('error', "教师>" + $scope.teachers[$index].name + "删除失败", "");
             });
         };
 
@@ -86,7 +86,7 @@ appControllers.controller('partnersTeacherCtrl',
         /**
          * 上传图片
          */
-        $scope.fileReaderSupported = window.FileReader != null && (window.FileAPI == null || FileAPI.html5 != false);
+//        $scope.fileReaderSupported = window.FileReader !== null && (window.FileAPI === null || window.FileAPI.html5 !== false);
         $scope.onFileSelect = function ($files, $index) {
             //上传开始
             $scope.teachers[$index].uploading = true;
@@ -106,7 +106,7 @@ appControllers.controller('partnersTeacherCtrl',
                 $scope.teachers[$index].uploading = false;
             }).progress(function (evt) {
                 //todo  Math.min is to fix IE which reports 200% sometimes
-                $scope.progress[index] = Math.min(100, parseInt(100.0 * evt.loaded / evt.total));
+                $scope.progress = Math.min(100, parseInt(100.0 * evt.loaded / evt.total));
             });
         };
 
