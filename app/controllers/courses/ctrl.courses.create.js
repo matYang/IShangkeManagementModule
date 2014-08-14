@@ -103,7 +103,7 @@ appControllers.controller('coursesCreateCtrl',
             course_save.classPhotoList = app.tools.mapToIdObjList(course_save.classPhotoList);
             restAPI.save(course_save, function (data) {
                 app.toaster.pop('success', '课程>' + course_save.courseName + '创建成功',
-                        '<a href="#/admin/courses/' + data.id + '"><strong>查看该信息</strong></a> 或者 <a><strong>继续创建</strong></a>', 0, 'trustedHtml', $scope.clear);
+                        '<a href="#/main/courses/' + data.id + '"><strong>查看该信息</strong></a> 或者 <a><strong>继续创建</strong></a>', 0, 'trustedHtml', $scope.clear);
             }, function () {
                 app.toaster.pop('error', '创建课程失败', '请稍后再试');
             });
