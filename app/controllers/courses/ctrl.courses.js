@@ -60,7 +60,7 @@ appControllers.controller('coursesCtrl',
                 return;
             }
             else {
-                promise = restAPI.operate({ID: id, OP: op},{});
+                promise = restAPI.operate({ID: id, OP: op},{id:id});
             }
             promise.$promise.then(function (data) {
                 app.toaster.pop('success', "课程" + id + "操作成功", "");
