@@ -5,7 +5,7 @@
     "status": 2,
 
     "price": 1800,
-    "originalPrice": 2000,
+    "originalPrice": "-1",
     "categoryValue":"000102",
     "categoryId":3,
 
