@@ -1,5 +1,5 @@
 /**
- * @license AngularJS v1.3.0-build.2711+sha.facd904
+ * @license AngularJS v1.2.19
  * (c) 2010-2014 Google, Inc. http://angularjs.org
  * License: MIT
  */
@@ -42,7 +42,7 @@ var $sanitizeMinErr = angular.$$minErr('$sanitize');
 /**
  * @ngdoc service
  * @name $sanitize
- * @function
+ * @kind function
  *
  * @description
  *   The input is sanitized by parsing the html into tokens. All safe tokens (from a whitelist) are
@@ -411,90 +411,10 @@ function encodeEntities(value) {
       return '&#' + (((hi - 0xD800) * 0x400) + (low - 0xDC00) + 0x10000) + ';';
     }).
     replace(NON_ALPHANUMERIC_REGEXP, function(value){
-      // unsafe chars are: \u0000-\u001f \u007f-\u009f \u00ad \u0600-\u0604 \u070f \u17b4 \u17b5 \u200c-\u200f \u2028-\u202f \u2060-\u206f \ufeff \ufff0-\uffff from jslint.com/lint.html
-      // decimal values are: 0-31, 127-159, 173, 1536-1540, 1807, 6068, 6069, 8204-8207, 8232-8239, 8288-8303, 65279, 65520-65535
-      var c = value.charCodeAt(0);
-      // if unsafe character encode
-      if(c <= 159 ||
-        c == 173 ||
-        (c >= 1536 && c <= 1540) ||
-        c == 1807 ||
-        c == 6068 ||
-        c == 6069 ||
-        (c >= 8204 && c <= 8207) ||
-        (c >= 8232 && c <= 8239) ||
-        (c >= 8288 && c <= 8303) ||
-        c == 65279 ||
-        (c >= 65520 && c <= 65535)) return '&#' + c + ';';
-      return value; // avoids multilingual issues
+      return '&#' + value.charCodeAt(0) + ';';
     }).
     replace(/</g, '&lt;').
     replace(/>/g, '&gt;');
-}
-
-var trim = (function() {
-  // native trim is way faster: http://jsperf.com/angular-trim-test
-  // but IE doesn't have it... :-(
-  // TODO: we should move this into IE/ES5 polyfill
-  if (!String.prototype.trim) {
-    return function(value) {
-      return angular.isString(value) ? value.replace(/^\s\s*/, '').replace(/\s\s*$/, '') : value;
-    };
-  }
-  return function(value) {
-    return angular.isString(value) ? value.trim() : value;
-  };
-})();
-
-// Custom logic for accepting certain style options only - textAngular
-// Currently allows only the color attribute, all other attributes should be easily done through classes.
-function validStyles(styleAttr){
-	var result = '';
-	var styleArray = styleAttr.split(';');
-	angular.forEach(styleArray, function(value){
-		var v = value.split(':');
-		if(v.length == 2){
-			var key = trim(angular.lowercase(v[0]));
-			var value = trim(angular.lowercase(v[1]));
-			if(
-				key === 'color' && (
-					value.match(/^rgb\([0-9%,\. ]*\)$/i)
-					|| value.match(/^rgba\([0-9%,\. ]*\)$/i)
-					|| value.match(/^hsl\([0-9%,\. ]*\)$/i)
-					|| value.match(/^hsla\([0-9%,\. ]*\)$/i)
-					|| value.match(/^#[0-9a-f]{3,6}$/i)
-					|| value.match(/^[a-z]*$/i)
-				)
-			||
-				key === 'text-align' && (
-					value === 'left'
-					|| value === 'right'
-					|| value === 'center'
-					|| value === 'justify'
-				)
-			||
-				key === 'float' && (
-					value === 'left'
-					|| value === 'right'
-					|| value === 'none'
-				)
-			||
-				(key === 'width' || key === 'height') && (
-					value.match(/[0-9\.]*(px|em|rem|%)/)
-				)
-			) result += key + ': ' + value + ';';
-		}
-	});
-	return result;
-}
-
-// this function is used to manually allow specific attributes on specific tags with certain prerequisites
-function validCustomTag(tag, attrs, lkey, value){
-	// catch the div placeholder for the iframe replacement
-    if (tag === 'img' && attrs['ta-insert-video']){
-        if(lkey === 'ta-insert-video' || lkey === 'allowfullscreen' || lkey === 'frameborder' || (lkey === 'contenteditble' && value === 'false')) return true;
-    }
-    return false;
 }
 
 /**
@@ -521,8 +441,8 @@ function htmlSanitizeWriter(buf, uriValidator){
         out(tag);
         angular.forEach(attrs, function(value, key){
           var lkey=angular.lowercase(key);
-          var isImage=(tag === 'img' && lkey === 'src') || (lkey === 'background');
-          if ((lkey === 'style' && (value = validStyles(value)) !== '') || validCustomTag(tag, attrs, lkey, value) || validAttrs[lkey] === true &&
+          var isImage = (tag === 'img' && lkey === 'src') || (lkey === 'background');
+          if (validAttrs[lkey] === true &&
             (uriAttrs[lkey] !== true || uriValidator(value, isImage))) {
             out(' ');
             out(key);
@@ -562,7 +482,7 @@ angular.module('ngSanitize', []).provider('$sanitize', $SanitizeProvider);
 /**
  * @ngdoc filter
  * @name linky
- * @function
+ * @kind function
  *
  * @description
  * Finds links in text input and turns them into html links. Supports http/https/ftp/mailto and
