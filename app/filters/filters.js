@@ -7,7 +7,7 @@ appFilters
     //将4位以内的数字转换成HH:mm
     .filter('toHHmm', function () {
         return function (value) {
-            if (typeof value !== 'string') return '';
+            value += '';//to string
             value = value.toString().substr(0, 4);
             return value.substr(0, 2) + ':' + value.substr(2, 2);
         };
