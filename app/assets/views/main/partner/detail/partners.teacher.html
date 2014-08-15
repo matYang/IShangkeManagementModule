@@ -1,6 +1,7 @@
 <!--该部分内容位于partner中的detail的col-xs-9的ui-view中-->
 <p class="clearfix">
     &gt;&gt;教师总数：<strong>{{teachers.length}}</strong>
+    &nbsp;&nbsp;&nbsp;&nbsp;[教师简介不可超过69个字]
     <button class="btn btn-primary pull-right" ng-click="addTeacher()">新增教师</button>
 </p>
 
@@ -22,7 +23,7 @@
         <label>姓名</label>
         <input class="form-control input-sm" type="text" ng-model="teacher.name">
         <label>简介</label>
-        <textarea class="form-control input-sm" ng-model="teacher.intro"></textarea>
+        <textarea class="form-control input-sm" ng-model="teacher.intro" maxlength="68"></textarea>
     </div>
 
     <p class="bottom">
