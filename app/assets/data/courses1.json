@@ -16,7 +16,7 @@
     "finishTime1":1100,
     "startTime2":1500,
     "finishTime2":1700,
-    "schooltimeDay":1,
+    "schooltimeDay":3,
     "schooltimeWeek":1,
     "studyDays":[1,3,4,5],
     "courseHourNum":20,
