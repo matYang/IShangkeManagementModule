@@ -24,21 +24,21 @@
         <p class="form-control-static">{{course.courseName}}</p>
     </div>
 </div>
-<div class="form-group form-group-sm" ng-if="course.originalPrice==-1">
+<div class="form-group form-group-sm" ng-if="!course.originalPrice">
     <label class="col-xs-3 control-label">课程价格</label>
 
     <div class="col-xs-3">
         <p class="form-control-static">面议</p>
     </div>
 </div>
-<div class="form-group form-group-sm" ng-if="course.originalPrice!=-1">
+<div class="form-group form-group-sm" ng-if="course.originalPrice">
     <label class="col-xs-3 control-label">原价格(*)</label>
 
     <div class="col-xs-3">
         <p class="form-control-static">{{course.originalPrice|currency}}</p>
     </div>
 </div>
-<div class="form-group form-group-sm" ng-if="course.originalPrice!=-1">
+<div class="form-group form-group-sm" ng-if="course.originalPrice">
     <label class="col-xs-3 control-label">爱上课价格(*)</label>
 
     <div class="col-xs-3">

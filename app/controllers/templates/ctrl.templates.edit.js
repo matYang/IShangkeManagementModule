@@ -10,7 +10,6 @@ appControllers.controller('templatesEditCtrl',
 
         $scope.doRefresh = function () {
             app.getTemplateById(id).then(function (template) {
-                $scope.isFace = (template.originalPrice==-1);
                 //解析schooltimeDay from number value to number list:7-->[1,2,4]
                 template.schooltimeDay = app.tools.toSchoolTimeDayList(template.schooltimeDay);
                 //将teacher的obj转换成id的数组
