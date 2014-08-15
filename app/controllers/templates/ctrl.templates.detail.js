@@ -6,8 +6,10 @@ appControllers.controller('templatesDetailCtrl',
 
         var doRefresh = $scope.doRefresh = function () {
 
-            restAPI.get({ID: id}, function (data) {
-                $scope.template = data;
+            restAPI.get({ID: id}, function (template) {
+                //解析schooltimeDay from number value to number list:7-->[1,2,4]
+                template.schooltimeDay = app.tools.toSchoolTimeDayList(template.schooltimeDay);
+                $scope.template = template;
             }, function () {
                 //todo error
             });

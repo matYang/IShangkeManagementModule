@@ -53,6 +53,11 @@ appControllers.controller('templatesCreateCtrl',
             var template_save = angular.copy(template);
             template_save.teacherList =app.tools.mapToIdObjList(template_save.teacherList);
             template_save.classPhotoList =app.tools.mapToIdObjList(template_save.classPhotoList);
+            //一天中的上课时间 上午 下午 晚上 多选值
+            if(template_save.schooltimeDay){
+                template_save.schooltimeDay = eval(template_save.schooltimeDay.join('+'));
+            }
+            console.log(template_save.schooltimeDay);
             Templates.save(template_save, function (data) {
                 app.toaster.pop('success', '课程模板>' + template_save.courseName + '创建成功',
                         '<a href="#/admin/templates/'+data.id+'"><strong>查看该信息</strong></a> 或者 <a><strong>继续创建</strong></a>', 0, 'trustedHtml',$scope.clear);

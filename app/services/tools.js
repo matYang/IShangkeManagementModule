@@ -1,26 +1,27 @@
-app.factory('tools', function () {
+app.factory('tools', ['Enum', function (Enum) {
 
     return  {
-        toOptions:toOptions,
-        toImgLabelValue:toImgLabelValue,
-        toImgLabelOptions:toImgLabelOptions,
-        mapToIdObjList:mapToIdObjList
+        toOptions: toOptions,
+        toImgLabelValue: toImgLabelValue,
+        toImgLabelOptions: toImgLabelOptions,
+        mapToIdObjList: mapToIdObjList,
+        toSchoolTimeDayList: toSchoolTimeDayList
     };
     /**
      * 将value和name的键值对转换成选项的数组
      * @param obj {<value>:<name>}
      * @returns {Array} [{label:<name>,value:<value>}]
      */
-    function toOptions(obj){
+    function toOptions(obj) {
         var arr = [];
-        angular.forEach(obj, function(v, k) {
-            this.push({label:v,value:parseInt(k,10)});
+        angular.forEach(obj, function (v, k) {
+            this.push({label: v, value: parseInt(k, 10)});
         }, arr);
         return arr;
     }
 
-    function mapToIdObjList(list){
-        if(!list)return [];
+    function mapToIdObjList(list) {
+        if (!list)return [];
         return list.map(function (v) {
             return {id: v};
         });
@@ -33,9 +34,9 @@ app.factory('tools', function () {
      * @param valueKey 作为选择的value的key
      * @returns {Array}
      */
-    function toImgLabelValue(objList,valueKey){
+    function toImgLabelValue(objList, valueKey) {
         var valueList = [];
-        if(!valueKey)valueKey = 'id';
+        if (!valueKey)valueKey = 'id';
         angular.forEach(objList, function (obj) {
             this.push(obj[valueKey]);
         }, valueList);
@@ -50,10 +51,10 @@ app.factory('tools', function () {
      * @param nameKey 显示在选项中的name key 默认为'name'
      * @returns {Array} 返回可以用于生成带有图片label的数组
      */
-    function toImgLabelOptions(objList,imgKey,nameKey){
+    function toImgLabelOptions(objList, imgKey, nameKey) {
         var optionList = [];
-        if(!imgKey)imgKey = 'imgUrl';
-        if(!nameKey)nameKey = 'name';
+        if (!imgKey)imgKey = 'imgUrl';
+        if (!nameKey)nameKey = 'name';
 
         angular.forEach(objList, function (imgObj) {
             var imgUrl = imgObj[imgKey] || '//:0'; //防止src为空
@@ -64,4 +65,15 @@ app.factory('tools', function () {
         });
         return optionList;
     }
-});
+
+
+    function toSchoolTimeDayList(val) {
+        //value = 1 or + 2 or + 4
+        var list = [];
+        angular.forEach(Enum.schooltimeDay, function (v, k) {//k is the number value in schooltimeDay
+            if ((k & val ) !== 0)
+                list.push(parseInt(k));
+        }, list);
+        return list;
+    }
+}]);

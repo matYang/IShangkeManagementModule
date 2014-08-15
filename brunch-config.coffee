@@ -17,6 +17,7 @@ exports.config =
           'app/TEST_MODE.js'
           'app/app.js'
           'app/app_config.js'
+          'app/enum.js'
           'app/app_run.js'
           'vendor/js/angular.js'
         ]

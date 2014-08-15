@@ -4,11 +4,12 @@ appControllers.controller('coursesDetailCtrl',
         var restAPI = restAPI.courses;
         var id = app.state.params.id;
 
-        //刷新列表
         var doRefresh = $scope.doRefresh = function () {
 
-            restAPI.get({ID: id}, function (data) {
-                $scope.course = data;
+            restAPI.get({ID: id}, function (course) {
+                //解析schooltimeDay from number value to number list:7-->[1,2,4]
+                course.schooltimeDay = app.tools.toSchoolTimeDayList(course.schooltimeDay);
+                $scope.course = course;
             }, function () {
                 //error
             });

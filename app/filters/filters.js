@@ -6,10 +6,10 @@ appFilters
     /*通用的独立filter*/
     //将4位以内的数字转换成HH:mm
     .filter('toHHmm', function () {
-        return function(value){
-            if(typeof value !== 'string') return '';
-            value = value.toString().substr(0,4);
-            return value.substr(0,2)+':'+value.substr(2,2);
+        return function (value) {
+            if (typeof value !== 'string') return '';
+            value = value.toString().substr(0, 4);
+            return value.substr(0, 2) + ':' + value.substr(2, 2);
         };
     })
     //以下为需要作为option并且value to text
@@ -32,7 +32,16 @@ appFilters
     .filter('schooltimeDay', ['app',
         function (app) {
             return function (value) {
-                return app.Enum.schooltimeDay[value] || '未知';
+                if (typeof value === 'number')
+                    return app.Enum.schooltimeDay[value] || '未知';
+                else {
+                    //传入的是一个list 需要输出该list对应的值
+                    var rs = [];
+                    for (var i in value) {
+                        rs.push(app.Enum.schooltimeDay[value[i]]);
+                    }
+                    return rs.join(',');
+                }
             };
         }
     ])
@@ -110,7 +119,7 @@ appFilters
                     var getCat = function (value, start, cat) {
                         if (start >= value.length)return '';
                         for (var a in cat.children) {
-                            if (cat.children.hasOwnProperty(a)&&cat.children[a].value == value.substr(0, start + 2))
+                            if (cat.children.hasOwnProperty(a) && cat.children[a].value == value.substr(0, start + 2))
                                 return cat.children[a].name + '--' + getCat(value, start + 2, cat.children[a]);
                         }
                         return '未知--'
