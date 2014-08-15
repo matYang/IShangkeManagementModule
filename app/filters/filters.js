@@ -63,7 +63,6 @@ appFilters
             };
         }
     ])
-    //以下为仅需要value to text
     .filter('payTypeText', ['app',
         function (app) {
             return function (value) {

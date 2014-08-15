@@ -40,7 +40,13 @@
             <p class="form-control-static">{{course.categoryValue | categoryText}}</p>
         </div>
     </div>
+    <div class="form-group form-group-sm">
+        <label class="col-xs-3 control-label">支付方式</label>
 
+        <div class="col-xs-8">
+            <p class="form-control-static">{{course.bookingType | payTypeText}}</p>
+        </div>
+    </div>
     <legend>基本信息</legend>
     <div class="form-group form-group-sm">
         <label class="col-xs-3 control-label">开课日期</label>

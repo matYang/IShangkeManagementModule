@@ -94,6 +94,7 @@ appControllers.controller('coursesCreateCtrl',
                 courseName: $scope.course.courseName || undefined,
                 originalPrice: $scope.course.originalPrice || undefined,
                 price: $scope.course.price || undefined,
+                bookingType: $scope.course.bookingType || undefined,
                 categoryValue: $scope.course.categoryValue || undefined
             };
             app.window.scrollTo(0, 0);

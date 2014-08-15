@@ -9,6 +9,7 @@
     "originalPrice": 2000,
     "categoryValue":"000102",
     "categoryId":3,
+    "bookingType":2,
 
     "startDate": 1441111111111,
     "finishDate": 1442222222222,
