@@ -72,6 +72,18 @@
 
 <legend>基本信息</legend>
 <div class="form-group form-group-sm">
+    <label class="col-xs-3 control-label">是否有具体开课日期</label>
+
+    <div class="col-xs-7">
+        <p class="form-control-static">
+            <span ng-if="course.startUponArrival==1">是</span>
+            <span ng-if="course.startUponArrival==0">否
+                &nbsp;({{course.regPhone}})
+            </span>
+        </p>
+    </div>
+</div>
+<div class="form-group form-group-sm">
     <label class="col-xs-3 control-label">开课日期</label>
 
     <div class="col-xs-3">

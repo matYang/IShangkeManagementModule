@@ -10,6 +10,9 @@
     "categoryValue":"000102",
     "categoryId":3,
 
+    "startUponArrival":0,
+    "regPhone":"即到即学",
+
     "startDate": 1441111111111,
     "finishDate": 1442222222222,
     "startTime1":900,
