@@ -8,8 +8,8 @@ appControllers.controller('templatesCtrl',
         var filter_tab = {};
         $scope.tabs = angular.copy(pageView.tabs);
         $scope.th = pageView.th;
-
-        var init = function(){
+        $scope.partnerId = app.rootScope.global.user && app.rootScope.global.user.partnerId;
+        var init = function () {
             filter_tab = {};
             $scope.items = [];
             $scope.page = angular.copy(app.default_page);
@@ -19,7 +19,6 @@ appControllers.controller('templatesCtrl',
             $scope.filter_tmp = angular.copy($scope.filter);
         };
         init();
-
         //tab选择事件
         $scope.chooseTab = function (tab) {
             init();
@@ -37,7 +36,7 @@ appControllers.controller('templatesCtrl',
         //根据 过滤信息和分页信息 刷新课程模板列表
         var doRefresh = $scope.doRefresh = function () {
             //使用课程模板资源请求数据 筛选条件为当前选择的值
-            restAPI.get(angular.extend({}, filter_tab, $scope.filter_tmp, $scope.page), function (data) {
+            restAPI.get(angular.extend({partnerId: $scope.partnerId}, filter_tab, $scope.filter_tmp, $scope.page), function (data) {
                 //更新当前数据的筛选条件
                 $scope.filter = angular.copy($scope.filter_tmp);
                 $scope.items = data.data;
@@ -52,15 +51,12 @@ appControllers.controller('templatesCtrl',
             //课程模板操作
         $scope.operate = function (id, op) {
             var promise = {};
-//            if (op === 'delete') {
-//                promise = restAPI.delete({ID: id});
-//            }
             if (op == 'submitUpdated') {
-                app.state.go('main.templates.edit',{id:id});
+                app.state.go('main.templates.edit', {id: id});
                 return;
             }
             else {
-                promise = restAPI.operate({ID: id, OP: op},{id:id});
+                promise = restAPI.operate({ID: id, OP: op}, {id: id});
             }
             promise.$promise.then(function (data) {
                 app.toaster.pop('success', "课程" + id + "操作成功", "");
