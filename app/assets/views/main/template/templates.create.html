@@ -113,7 +113,7 @@
 
             <div class="col-xs-3">
                 <button name="schooltimeDay" ng-model="template.schooltimeDay" class="btn btn-default btn-sm"
-                        bs-select  ng-options="item.value as item.label for item in options.schooltimeDay">
+                        bs-select data-multiple="1" ng-options="item.value as item.label for item in options.schooltimeDay">
                 </button>
             </div>
             <span class="help-block">用于搜索</span>
@@ -133,7 +133,7 @@
 
             <div class="col-xs-3">
                 <button class="btn btn-default btn-sm" ng-model="template.studyDays" max-length="7"
-                        data-multiple="1" ng-options="item.value as item.label for item in options.studyDays" bs-select>
+                        bs-select data-multiple="1" ng-options="item.value as item.label for item in options.studyDays">
                     选择 <span class="caret"></span>
                 </button>
             </div>
