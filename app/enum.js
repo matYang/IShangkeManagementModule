@@ -38,7 +38,8 @@ app.value('Enum', {
         //支付方式的test
         payTypeText:{
             0:'线上支付',
-            1:'线下支付'
+            1:'线下支付',
+            2:'支持线上和线下'
         },
         //状态的text
         courseStatusText: {

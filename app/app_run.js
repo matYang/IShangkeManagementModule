@@ -55,6 +55,7 @@ app.run(
                 schooltimeDay: tools.toOptions(app.Enum.schooltimeDay),
                 schooltimeWeek: tools.toOptions(app.Enum.schooltimeWeek),
                 classType: tools.toOptions(app.Enum.classType),
+                payType: tools.toOptions(app.Enum.payTypeText),
                 partnerQualification: tools.toOptions(app.Enum.partnerQualification)
             };
             Auth.checkUser();

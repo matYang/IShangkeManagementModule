@@ -60,6 +60,15 @@
         </button>
     </div>
 </div>
+<div class="form-group form-group-sm">
+    <label class="col-xs-3 control-label">支付方式</label>
+    <div class="col-xs-7">
+        <button name="bookingType" class="btn btn-default btn-sm" ng-model="template.bookingType"
+                ng-options="item.value as item.label for item in options.payType"
+                placeholder="选择支付方式" bs-select>
+        </button>
+    </div>
+</div>
 
 <legend>基本信息</legend>
 <div class="form-group form-group-sm">
