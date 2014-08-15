@@ -66,6 +66,7 @@ appControllers.controller('coursesCreateCtrl',
                 app.getTemplateById(selectedItem.id).then(function (template) {
                     //获取课程模板并将模板中的值映射到课程中
                     //过滤tempalte中无用的信息
+                    template.courseTemplateId = template.id;
                     delete template.id;
                     delete template.bookingTotalEnd;
                     delete template.bookingTotalSet;
@@ -91,7 +92,7 @@ appControllers.controller('coursesCreateCtrl',
                 courseName: $scope.course.courseName || undefined,
                 originalPrice: $scope.course.originalPrice || undefined,
                 price: $scope.course.price || undefined,
-                categoryValue: $scope.course.categoryValue || undefined,
+                categoryValue: $scope.course.categoryValue || undefined
             };
             app.window.scrollTo(0, 0);
         };
