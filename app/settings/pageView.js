@@ -3,8 +3,8 @@
 app.factory('PageView', function () {
     var common = {
         statusTabs: [
-            {label: '已上线', active: false, value: {status: 2}},
-            {label: '待审核', active: true, value: {status: 0}},
+            {label: '已上线', active: true, value: {status: 2}},
+            {label: '待审核', active: false, value: {status: 0}},
             {label: '审核失败', active: false, value: {status: 1} },
             {label: '已下线', active: false, value: {status: 3}}
         ],
