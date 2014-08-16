@@ -5,7 +5,8 @@
     "status": 2,
 
     "price": 1800,
-    "originalPrice": "-1",
+    "originalPrice": 2200,
+    "cashback": 200,
     "bookingType":1,
     "categoryValue":"000102",
     "categoryId":3,
