@@ -133,4 +133,25 @@ appFilters
             };
         }
     ])
+    .filter('locationText', ['app',
+        function (app) {
+            return function (value) {
+                if (typeof value === 'string') {
+                    var location = app.cache.location.get('location').data;
+                    var getCat = function (value, start, cat) {
+                        if (start >= value.length)return '';
+                        for (var a in cat.children) {
+                            if (cat.children.hasOwnProperty(a) && cat.children[a].value == value.substr(0, start + 2))
+                                return cat.children[a].name + '--' + getCat(value, start + 2, cat.children[a]);
+                        }
+                        return '未知--'
+                    };
+                    var result = getCat(value, 0, {children: location});
+                    return result.substr(0, result.length - 2);
+                } else {
+                    return value;
+                }
+            };
+        }
+    ])
 ;
