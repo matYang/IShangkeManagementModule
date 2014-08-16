@@ -41,7 +41,7 @@ appControllers.controller('templatesEditCtrl',
             }
             Templates.operate({ID: id, OP: 'submitUpdated'}, template_save, function (data) {
                 app.toaster.pop('success', '课程模板>' + template_save.courseName + '修改成功',
-                        '<a href="#/admin/templates/' + data.id + '"><strong>查看该信息</strong></a> 或者 <a href="#/admin/templates"><strong>返回列表</strong></a>', 0, 'trustedHtml');
+                        '<a href="#/main/templates/' + data.id + '"><strong>查看该信息</strong></a> 或者 <a href="#/main/templates"><strong>返回列表</strong></a>', 0, 'trustedHtml');
             }, function () {
                 app.toaster.pop('error', "课程模板>" + template_save.courseName + "修改失败", "");
             })

@@ -39,7 +39,7 @@ appControllers.controller('coursesEditCtrl',
             }
             Courses.operate({ID: id, OP: 'submitUpdated'}, course_save, function (data) {
                 app.toaster.pop('success', '课程>' + course_save.courseName + '修改成功',
-                        '<a href="#/admin/courses/'+data.id+'"><strong>查看该信息</strong></a> 或者 <a href="#/admin/courses"><strong>返回列表</strong></a>', 0, 'trustedHtml');
+                        '<a href="#/main/courses/'+data.id+'"><strong>查看该信息</strong></a> 或者 <a href="#/main/courses"><strong>返回列表</strong></a>', 0, 'trustedHtml');
             }, function () {
                 app.toaster.pop('error', "课程>" + course_save.courseName + "修改失败", "");
             })

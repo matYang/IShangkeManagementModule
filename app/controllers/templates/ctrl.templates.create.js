@@ -70,7 +70,7 @@ appControllers.controller('templatesCreateCtrl',
             }
             Templates.save(template_save, function (data) {
                 app.toaster.pop('success', '课程模板>' + template_save.courseName + '创建成功',
-                        '<a href="#/admin/templates/'+data.id+'"><strong>查看该信息</strong></a> 或者 <a><strong>继续创建</strong></a>', 0, 'trustedHtml',$scope.clear);
+                        '<a href="#/main/templates/'+data.id+'"><strong>查看该信息</strong></a> 或者 <a><strong>继续创建</strong></a>', 0, 'trustedHtml',$scope.clear);
             }, function () {
                 app.toaster.pop('error', '创建课程模板>' + template_save.courseName + '失败', '');
             })
