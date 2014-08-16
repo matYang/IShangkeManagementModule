@@ -92,13 +92,14 @@ appControllers.controller('coursesCreateCtrl',
         $scope.clear = function () {
             //保留不可更改的数据
             $scope.course = {
-                partnerId: $scope.course.partnerId || undefined,
-                courseTemplateId: $scope.course.courseTemplateId || undefined,
-                courseName: $scope.course.courseName || undefined,
-                originalPrice: $scope.course.originalPrice || undefined,
-                price: $scope.course.price || undefined,
-                bookingType: $scope.course.bookingType || undefined,
-                categoryValue: $scope.course.categoryValue || undefined,
+                partnerId: $scope.course.partnerId,
+                courseTemplateId: $scope.course.courseTemplateId,
+                courseName: $scope.course.courseName,
+                originalPrice: $scope.course.originalPrice,
+                price: $scope.course.price,
+                cashback: $scope.course.cashback,
+                bookingType: $scope.course.bookingType,
+                categoryValue: $scope.course.categoryValue,
                 //强制清空富文本编辑器中的内容
                 prerequest:'',
                 outline:'',
