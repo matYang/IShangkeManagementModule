@@ -114,6 +114,9 @@ appServices
                 //课程分类目录的缓存 容量大小为200条记录 todo 暂不清楚多层嵌套的json的容量如何计算
                 category: $cacheFactory('category', {
                     capacity: 200
+                }),
+                location: $cacheFactory('location', {
+                    capacity: 200
                 })
             };
         }
@@ -123,6 +126,13 @@ appServices
         function (restAPI, cache, promiseGet) {
             return function () {
                 return promiseGet({}, restAPI.category, 'category', cache.category);
+            };
+        }
+    ])
+    .factory('getLocation', ['restAPI', 'cache', 'promiseGet',
+        function (restAPI, cache, promiseGet) {
+            return function () {
+                return promiseGet({}, restAPI.location, 'location', cache.location);
             };
         }
     ])

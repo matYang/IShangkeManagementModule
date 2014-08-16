@@ -3,10 +3,10 @@
 app.run(
     ['app', '$rootScope', '$cookieStore', '$localStorage', '$location', '$window', '$timeout', '$state', 'Auth', 'restAPI',
         '$log', '$upload', '$modal', '$parse', 'toaster', 'Enum', 'PageView', 'operateService', 'promiseGet', 'cache', 'getCategory', 'tools',
-        'getPartnerById', 'getTemplateById',
-        function (app, $rootScope, $cookieStore, $localStorage, $location, $window, $timeout, $state, Auth, restAPI, $log, $upload, $modal, $parse, toaster, Enum, PageView, operateService, promiseGet, cache, getCategory, tools, getPartnerById, getTemplateById) {
+        'getPartnerById', 'getTemplateById', 'getLocation',
+        function (app, $rootScope, $cookieStore, $localStorage, $location, $window, $timeout, $state, Auth, restAPI, $log, $upload, $modal, $parse, toaster, Enum, PageView, operateService, promiseGet, cache, getCategory, tools, getPartnerById, getTemplateById, getLocation) {
 
-            if(app.test_mode){
+            if (app.test_mode) {
                 $log.info('RUN IN TEST MODE');
             }
             //$rootScope has some global functions and params
@@ -42,9 +42,12 @@ app.run(
             app.restAPI = restAPI;
             app.promiseGet = promiseGet;
             app.tools = tools;
+            /**/
+            app.getLocation = getLocation;
             app.getCategory = getCategory; //获取目录数据的promise 使用了内存缓存
             app.getPartnerById = getPartnerById; //
             app.getTemplateById = getTemplateById; //
+            /**/
             app.exec_operate = operateService.exec_operate;//todo 订单 模板 课程等的操作 待完成
             app.rootScope = $rootScope;
             app.timeout = $timeout;
@@ -62,6 +65,7 @@ app.run(
 
 
             //初始化应用时的请求(使用promiseGet方法会使用内存进行缓存) 请求category目录
+            getLocation();
             getCategory();
             //router的权限控制
             $rootScope.$on('$stateChangeStart', function (event, toState, toParams, fromState, fromParams) {
