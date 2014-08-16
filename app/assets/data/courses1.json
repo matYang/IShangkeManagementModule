@@ -8,6 +8,8 @@
     "price": 1800,
     "categoryValue":"000102",
     "categoryId":3,
+    "locationValue":"000001",
+    "locationId":4,
     "bookingType":2,
 
     "startDate": 1441111111111,

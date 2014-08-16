@@ -243,17 +243,27 @@
 <div class="form-group form-group-sm">
     <label class="col-xs-3 control-label">选择上课地点</label>
 
-    <div class="col-xs-5">
-        <button name="addressId" ng-model="template.addressId" class="btn btn-default btn-sm"
+    <div class="col-xs-3">
+        <button name="addressId" ng-model="template.addressId" class="btn btn-default btn-sm btn-block"
                 bs-select ng-options="item.id as item.detail for item in options.addressList">
+        </button>
+    </div>
+</div>
+<div class="form-group form-group-sm">
+    <label class="col-xs-3 control-label">上课地点归属</label>
+
+    <div class="col-xs-3">
+        <button class="btn btn-default btn-sm btn-block" name="locationId" ng-model="template.locationId"
+                ng-options="item.id as item.name for item in location"
+                placeholder="选择地区" bs-select>
         </button>
     </div>
 </div>
 <div class="form-group form-group-sm">
     <label class="col-xs-3 control-label">选择报名地点</label>
 
-    <div class="col-xs-5">
-        <button name="addressId" ng-model="template.regAddressId" class="btn btn-default btn-sm"
+    <div class="col-xs-3">
+        <button name="addressId" ng-model="template.regAddressId" class="btn btn-default btn-sm btn-block"
                 bs-select ng-options="item.id as item.detail for item in options.addressList">
         </button>
     </div>

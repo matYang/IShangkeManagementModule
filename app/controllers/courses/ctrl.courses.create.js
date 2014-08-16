@@ -7,7 +7,7 @@ appControllers.controller('coursesCreateCtrl',
             $scope.category = data.data;
         });
         app.getLocation().then(function (data) {
-            $scope.location = data.data;
+            $scope.location = data.data[0]&&data.data[0].children[0]&&data.data[0].children[0].children;
         });
         $scope.options = angular.copy(app.options);
         $scope.Enum = app.Enum;

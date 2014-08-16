@@ -9,6 +9,8 @@
     "bookingType":1,
     "categoryValue":"000102",
     "categoryId":3,
+    "locationValue":"000001",
+    "locationId":4,
 
     "startUponArrival":0,
     "regPhone":"即到即学",

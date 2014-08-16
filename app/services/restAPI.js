@@ -78,6 +78,7 @@ appServices
                 'addresses': resource_maker('addresses'),
 
                 'category': resource_maker('category'),
+                'location': resource_maker('location'),
 
                 'makeResourceUrl': makeResourceUrl//资源的地址
 
