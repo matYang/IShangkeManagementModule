@@ -98,7 +98,13 @@ appControllers.controller('coursesCreateCtrl',
                 originalPrice: $scope.course.originalPrice || undefined,
                 price: $scope.course.price || undefined,
                 bookingType: $scope.course.bookingType || undefined,
-                categoryValue: $scope.course.categoryValue || undefined
+                categoryValue: $scope.course.categoryValue || undefined,
+                //强制清空富文本编辑器中的内容
+                prerequest:'',
+                outline:'',
+                suitableStudent:'',
+                courseIntro:'',
+                goal:''
             };
             app.window.scrollTo(0, 0);
         };

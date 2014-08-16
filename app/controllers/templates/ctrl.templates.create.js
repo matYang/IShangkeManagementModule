@@ -47,7 +47,15 @@ appControllers.controller('templatesCreateCtrl',
             }
         };
         $scope.clear = function(){
-            $scope.template = {partnerId:$scope.template.partnerId||undefined};
+            $scope.template = {
+                partnerId:$scope.template.partnerId||undefined,
+                //强制清空富文本编辑器中的内容
+                prerequest:'',
+                outline:'',
+                suitableStudent:'',
+                courseIntro:'',
+                goal:''
+            };
             app.window.scrollTo(0,0);
         };
         //提交新建的模板
