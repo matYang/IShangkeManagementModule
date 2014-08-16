@@ -34,7 +34,8 @@ appServices
                     'photos': ['/data/classPhotos:ID.json?:OP', '/classPhoto/:ID/:OP'],
                     'addresses': ['/data/addresses:ID.json?:OP', '/address/:ID/:OP'],
 
-                    'category': ['/data/category.json', '/general/category']
+                    'category': ['/data/category.json', '/general/category'],
+                    'location': ['/data/location.json', '/general/location']
                 }
             };
             var resource_maker = function (recourseName) {
