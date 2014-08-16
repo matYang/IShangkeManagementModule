@@ -6,6 +6,9 @@ appControllers.controller('coursesCreateCtrl',
         app.getCategory().then(function (data) {
             $scope.category = data.data;
         });
+        app.getLocation().then(function (data) {
+            $scope.location = data.data;
+        });
         $scope.options = angular.copy(app.options);
         $scope.Enum = app.Enum;
         //新建课程需要选择机构（admin需要）

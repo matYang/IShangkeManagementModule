@@ -6,6 +6,9 @@ appControllers.controller('coursesEditCtrl',
         app.getCategory().then(function (data) {
             $scope.category = data.data;
         });
+        app.getLocation().then(function (data) {
+            $scope.location = data.data;
+        });
         $scope.options = angular.copy(app.options);
 
         $scope.doRefresh = function () {
