@@ -2,7 +2,7 @@
  * 数据列表和filter表单 的通用样式 及筛选组件样式
 **/
 
-/*filter部分的表单央视*/
+/*filter部分的表单样式*/
 .filter-form .form-group label,.filter-form .form-group div{
     float: left;
 }

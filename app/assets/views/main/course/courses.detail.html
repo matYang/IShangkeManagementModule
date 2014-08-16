@@ -175,6 +175,7 @@
 </div>
 <div class="form-group form-group-sm">
     <label class="col-xs-3 control-label">上课地点归属</label>
+
     <div class="col-xs-8">
         <p class="form-control-static">{{course.locationValue|locationText}}</p>
     </div>
@@ -349,11 +350,15 @@
 </form>
 <div class="col-xs-3" scroll-fix>
     <label>可执行的操作</label>
-    <ul>
-        <li ng-click="doRefresh()"><i class="fa fa-refresh"></i> 刷新</li>
+    <ul class="list-operations">
+        <li ng-click="doRefresh()">
+            <a><i class="fa fa-refresh"></i> 刷新</a>
+        </li>
         <li ng-repeat="op in course.actionList" ng-click="operate(course.id,op.name)">
-            <span ng-if="op.name=='submitUpdated'">修改</span>
-            <span ng-if="op.name!='submitUpdated'">{{op.name | courseOperationText}}</span>
+            <a>
+                <span ng-if="op.name=='submitUpdated'">修改</span>
+                <span ng-if="op.name!='submitUpdated'">{{op.name | courseOperationText}}</span>
+            </a>
         </li>
     </ul>
 </div>

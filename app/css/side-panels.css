@@ -1,0 +1,23 @@
+/*左侧和右侧的模块*/
+
+/*详情页右侧的可执行的操作*/
+.list-operations {
+    list-style: none;
+    padding-left: 0;
+}
+
+.list-operations li {
+    min-width: 100px;
+    max-width: 150px;
+}
+
+.list-operations li a {
+    display: block;
+    padding: 8px 15px 10px;
+    border-radius: 4px;
+}
+
+.list-operations li a:hover {
+    background-color: #eeeeee;
+    box-shadow: 1px 1px 6px 2px #cccccc inset;
+}

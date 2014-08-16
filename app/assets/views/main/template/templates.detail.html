@@ -2,7 +2,8 @@
     <div class="col-xs-12">
         <h3>
             <small><a ui-sref="main.templates.list" class="btn fa fa-chevron-left pull-left"> 返回列表 </a></small>
-            课程模板详情<small>--{{template.courseName}}</small>
+            课程模板详情
+            <small>--{{template.courseName}}</small>
         </h3>
     </div>
 </div>
@@ -82,6 +83,7 @@
 </div>
 <div class="form-group form-group-sm">
     <label class="col-xs-3 control-label">上课时间</label>
+
     <div class="col-xs-8">
         <p class="form-control-static">
             {{template.startTime1|toHHmm}}-{{template.finishTime1|toHHmm}}
@@ -93,42 +95,50 @@
 </div>
 <div class="form-group form-group-sm">
     <label class="col-xs-3 control-label">上课区间</label>
+
     <div class="col-xs-3">
-        <p class="form-control-static">{{template.schooltimeWeek |schooltimeWeek}}-{{template.schooltimeDay | schooltimeDay}}</p>
+        <p class="form-control-static">{{template.schooltimeWeek |schooltimeWeek}}-{{template.schooltimeDay |
+            schooltimeDay}}</p>
     </div>
 </div>
 <div class="form-group form-group-sm">
     <label class="col-xs-3 control-label">上课日子</label>
+
     <div class="col-xs-3">
         <p class="form-control-static">{{template.studyDays | studyDays}}</p>
     </div>
 </div>
 <div class="form-group form-group-sm">
     <label class="col-xs-3 control-label">课时数量</label>
+
     <div class="col-xs-3">
         <p class="form-control-static">{{template.courseHourNum}}课时</p>
     </div>
 </div>
 <div class="form-group form-group-sm">
     <label class="col-xs-3 control-label">课时长度</label>
+
     <div class="col-xs-3">
         <p class="form-control-static">{{template.courseHourLength}}(分钟)</p>
     </div>
 </div>
 <div class="form-group form-group-sm">
     <label class="col-xs-3 control-label">班级类型</label>
+
     <div class="col-xs-3">
         <p class="form-control-static">{{template.classSize}}</p>
     </div>
 </div>
 <div class="form-group form-group-sm">
     <label class="col-xs-3 control-label">班级分类</label>
+
     <div class="col-xs-3">
         <p class="form-control-static">{{template.classType | classType}}</p>
     </div>
 </div>
 <div class="form-group form-group-sm">
     <label class="col-xs-3 control-label">开班要求</label>
+
     <div class="col-xs-8">
         <p class="form-control-static">{{template.openCourseRequirement}}</p>
     </div>
@@ -142,30 +152,35 @@
 </div>
 <div class="form-group form-group-sm">
     <label class="col-xs-3 control-label">适合学员</label>
+
     <div class="col-xs-8">
         <p class="form-control-static" ng-bind-html="template.suitableStudent"></p>
     </div>
 </div>
 <div class="form-group form-group-sm">
     <label class="col-xs-3 control-label">上课地点</label>
+
     <div class="col-xs-8">
         <p class="form-control-static">{{template.address}}</p>
     </div>
 </div>
 <div class="form-group form-group-sm">
     <label class="col-xs-3 control-label">上课地点归属</label>
+
     <div class="col-xs-8">
         <p class="form-control-static">{{template.locationValue|locationText}}</p>
     </div>
 </div>
 <div class="form-group form-group-sm">
     <label class="col-xs-3 control-label">报名地点</label>
+
     <div class="col-xs-8">
         <p class="form-control-static">{{template.regAddress}}</p>
     </div>
 </div>
 <div class="form-group form-group-sm">
     <label class="col-xs-3 control-label">教师列表</label>
+
     <div class="col-xs-5">
         <ul class="list-unstyled">
             <li ng-repeat="teacher in template.teacherList">
@@ -181,42 +196,49 @@
 <legend>教学信息</legend>
 <div class="form-group form-group-sm">
     <label class="col-xs-3 control-label">课程介绍</label>
+
     <div class="col-xs-8">
         <p class="form-control-static" ng-bind-html="template.courseIntro"></p>
     </div>
 </div>
 <div class="form-group form-group-sm">
     <label class="col-xs-3 control-label">教学目标</label>
+
     <div class="col-xs-8">
         <p class="form-control-static" ng-bind-html="template.goal"></p>
     </div>
 </div>
 <div class="form-group form-group-sm">
     <label class="col-xs-3 control-label">先修知识</label>
+
     <div class="col-xs-8">
         <p class="form-control-static" ng-bind-html="template.prerequest"></p>
     </div>
 </div>
 <div class="form-group form-group-sm">
     <label class="col-xs-3 control-label">上课形式</label>
+
     <div class="col-xs-8">
         <p class="form-control-static">{{template.teachingMethod}}</p>
     </div>
 </div>
 <div class="form-group form-group-sm">
     <label class="col-xs-3 control-label">教材介绍</label>
+
     <div class="col-xs-8">
         <p class="form-control-static">{{template.teachingMaterialIntro}}</p>
     </div>
 </div>
 <div class="form-group form-group-sm">
     <label class="col-xs-3 control-label">教材费用</label>
+
     <div class="col-xs-8">
         <p class="form-control-static">{{template.teachingMaterialFee}}</p>
     </div>
 </div>
 <div class="form-group form-group-sm">
     <label class="col-xs-3 control-label">课程提纲</label>
+
     <div class="col-xs-8">
         <p class="form-control-static" ng-bind-html="template.outline"></p>
     </div>
@@ -224,48 +246,56 @@
 <legend>教学补充</legend>
 <div class="form-group form-group-sm">
     <label class="col-xs-3 control-label">课件下载</label>
+
     <div class="col-xs-8">
         <p class="form-control-static">{{template.downloadMaterials}}</p>
     </div>
 </div>
 <div class="form-group form-group-sm">
     <label class="col-xs-3 control-label">题库支持</label>
+
     <div class="col-xs-8">
         <p class="form-control-static">{{template.questionBank}}</p>
     </div>
 </div>
 <div class="form-group form-group-sm">
     <label class="col-xs-3 control-label">质量保证</label>
+
     <div class="col-xs-8">
         <p class="form-control-static">{{template.classTeacher}}</p>
     </div>
 </div>
 <div class="form-group form-group-sm">
     <label class="col-xs-3 control-label">讲练结合</label>
+
     <div class="col-xs-8">
         <p class="form-control-static">{{template.teachingAndExercise}}</p>
     </div>
 </div>
 <div class="form-group form-group-sm">
     <label class="col-xs-3 control-label">阶段测评</label>
+
     <div class="col-xs-8">
         <p class="form-control-static">{{template.quiz}}</p>
     </div>
 </div>
 <div class="form-group form-group-sm">
     <label class="col-xs-3 control-label">课后答疑</label>
+
     <div class="col-xs-8">
         <p class="form-control-static">{{template.questionSession}}</p>
     </div>
 </div>
 <div class="form-group form-group-sm">
     <label class="col-xs-3 control-label">课后作业</label>
+
     <div class="col-xs-8">
         <p class="form-control-static">{{template.assignments}}</p>
     </div>
 </div>
 <div class="form-group form-group-sm">
     <label class="col-xs-3 control-label">作业批改</label>
+
     <div class="col-xs-8">
         <p class="form-control-static">{{template.marking}}</p>
     </div>
@@ -273,12 +303,14 @@
 <legend>教学保障</legend>
 <div class="form-group form-group-sm">
     <label class="col-xs-3 control-label">签约保过</label>
+
     <div class="col-xs-8">
         <p class="form-control-static">{{template.passAgreement}}</p>
     </div>
 </div>
 <div class="form-group form-group-sm">
     <label class="col-xs-3 control-label">高分奖励</label>
+
     <div class="col-xs-8">
         <p class="form-control-static">{{template.highScoreReward}}</p>
     </div>
@@ -286,18 +318,21 @@
 <legend>特色服务</legend>
 <div class="form-group form-group-sm">
     <label class="col-xs-3 control-label">结业证书</label>
+
     <div class="col-xs-8">
         <p class="form-control-static">{{template.certification}}</p>
     </div>
 </div>
 <div class="form-group form-group-sm">
     <label class="col-xs-3 control-label">课后互动</label>
+
     <div class="col-xs-8">
         <p class="form-control-static">{{template.extracurricular}}</p>
     </div>
 </div>
 <div class="form-group form-group-sm">
     <label class="col-xs-3 control-label">赠送服务</label>
+
     <div class="col-xs-8">
         <p class="form-control-static">{{template.bonusService}}</p>
     </div>
@@ -306,11 +341,15 @@
 </form>
 <div class="col-xs-3" scroll-fix>
     <label>可执行的操作</label>
-    <ul>
-        <li ng-click="doRefresh()"><i class="fa fa-refresh"></i> 刷新</li>
+    <ul class="list-operations">
+        <li ng-click="doRefresh()">
+            <a><i class="fa fa-refresh"></i> 刷新</a>
+        </li>
         <li ng-repeat="op in template.actionList" ng-click="operate(template.id,op.name)">
-            <span ng-if="op.name=='submitUpdated'">修改</span>
-            <span ng-if="op.name!='submitUpdated'">{{op.name | courseOperationText}}</span>
+            <a>
+                <span ng-if="op.name=='submitUpdated'">修改</span>
+                <span ng-if="op.name!='submitUpdated'">{{op.name | courseOperationText}}</span>
+            </a>
         </li>
     </ul>
 </div>
