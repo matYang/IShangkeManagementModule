@@ -35,7 +35,7 @@ appControllers.controller('coursesEditCtrl',
             course_save.classPhotoList = app.tools.mapToIdObjList(course_save.classPhotoList);
             //一天中的上课时间 上午 下午 晚上 多选值
             if(course_save.schooltimeDay){
-                course_save.schooltimeDay = eval(template_save.schooltimeDay.join('+'));
+                course_save.schooltimeDay = eval(course_save.schooltimeDay.join('+'));
             }
             Courses.operate({ID: id, OP: 'submitUpdated'}, course_save, function (data) {
                 app.toaster.pop('success', '课程>' + course_save.courseName + '修改成功',
