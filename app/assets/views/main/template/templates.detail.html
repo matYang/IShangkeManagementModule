@@ -32,17 +32,24 @@
     </div>
 </div>
 <div class="form-group form-group-sm" ng-if="template.originalPrice">
-    <label class="col-xs-3 control-label">原价格(*)</label>
+    <label class="col-xs-3 control-label">原价格</label>
 
     <div class="col-xs-3">
         <p class="form-control-static">{{template.originalPrice|currency}}</p>
     </div>
 </div>
 <div class="form-group form-group-sm" ng-if="template.originalPrice">
-    <label class="col-xs-3 control-label">爱上课价格(*)</label>
+    <label class="col-xs-3 control-label">爱上课价格</label>
 
     <div class="col-xs-3">
         <p class="form-control-static">{{template.price|currency}}</p>
+    </div>
+</div>
+<div class="form-group form-group-sm" ng-if="template.originalPrice">
+    <label class="col-xs-3 control-label">返现</label>
+
+    <div class="col-xs-3">
+        <p class="form-control-static">{{template.cashback|currency}}</p>
     </div>
 </div>
 <div class="form-group form-group-sm">
