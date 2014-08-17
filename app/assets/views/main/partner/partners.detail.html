@@ -19,7 +19,8 @@
                 <div class="form-group form-group-sm">
                     <label class="col-xs-4 control-label">Logo:</label>
 
-                    <div class="col-xs-5 form-control-static"><img ng-show="!!partner.logoUrl" ng-src="{{partner.logoUrl}}">
+                    <div class="col-xs-5 form-control-static">
+                        <img ng-if="!!partner.logoUrl" ng-src="{{partner.logoUrl}}" class="img-logo">
                     </div>
                 </div>
                 <div class="form-group form-group-sm">
