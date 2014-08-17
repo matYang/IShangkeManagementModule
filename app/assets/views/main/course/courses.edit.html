@@ -274,7 +274,10 @@
 </div>
 
 <div class="form-group form-group-sm">
-    <label class="col-xs-3 control-label">选择教师</label>
+    <label class="col-xs-3 control-label">
+        选择教师
+        <p><a ng-click="course.teacherList=[]">清空</a></p>
+    </label>
 
     <div class="col-xs-5">
         <button class="btn btn-default btn-sm" ng-model="course.teacherList" max-length="10"
@@ -284,7 +287,10 @@
     </div>
 </div>
 <div class="form-group form-group-sm">
-    <label class="col-xs-3 control-label">选择展示的机构图片</label>
+    <label class="col-xs-3 control-label">
+        选择展示的机构图片
+        <p><a ng-click="course.classPhotoList=[]">清空</a></p>
+    </label>
 
     <div class="col-xs-5">
         <button class="btn btn-default btn-sm" ng-model="course.classPhotoList" max-length="10"
