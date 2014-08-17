@@ -8,6 +8,7 @@
         <li class="list-group-item" ng-repeat="item in items track by item.id"
             ng-class="{'active':item.id===selected.item.id}"
             ng-click="selected.item = item" ng-dblclick="selected.item = item;ok()">
+            <label>ID {{item.id}}</label> &gt;
             <label>{{ item.courseName || item.instName}}</label>
             <i class="pull-right fa fa-check fa-stack hidden"></i>
         </li>
