@@ -19,7 +19,7 @@ appControllers.controller('coursesCtrl',
         //查询前需要清空当前的分页和filter
         var beforeQuery = function () {
             $scope.items = [];
-            $scope.page = angular.copy(app.default_page);
+//            $scope.page = angular.copy(app.default_page);
             $scope.filter = {};
             $scope.filter_tmp = angular.copy($scope.filter);
         };
