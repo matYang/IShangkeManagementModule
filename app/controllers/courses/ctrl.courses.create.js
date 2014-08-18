@@ -68,6 +68,9 @@ appControllers.controller('coursesCreateCtrl',
                 $scope.course.courseTemplateId = selectedItem.id;
                 app.getTemplateById(selectedItem.id).then(function (template) {
                     //获取课程模板并将模板中的值映射到课程中
+                    //解析schooltimeDay from number value to number list:7-->[1,2,4]
+                    template.schooltimeDay = app.tools.toSchoolTimeList(template.schooltimeDay,app.Enum.schooltimeDay);
+                    template.schooltimeWeek = app.tools.toSchoolTimeList(template.schooltimeWeek,app.Enum.schooltimeWeek);
                     //过滤tempalte中无用的信息
                     template.courseTemplateId = template.id;
                     delete template.id;

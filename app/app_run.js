@@ -48,7 +48,7 @@ app.run(
             app.getPartnerById = getPartnerById; //
             app.getTemplateById = getTemplateById; //
             /**/
-            app.exec_operate = operateService.exec_operate;//todo 订单 模板 课程等的操作 待完成
+//            app.exec_operate = operateService.exec_operate;//todo 订单 模板 课程等的操作 待完成
             app.rootScope = $rootScope;
             app.timeout = $timeout;
             app.timeOffset = 0;

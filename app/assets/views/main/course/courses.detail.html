@@ -282,7 +282,7 @@
     </div>
 </div>
 <div class="form-group form-group-sm">
-    <label class="col-xs-3 control-label">班主任导学</label>
+    <label class="col-xs-3 control-label">推荐就业</label>
 
     <div class="col-xs-8">
         <p class="form-control-static">{{course.classTeacher}}</p>
@@ -367,11 +367,12 @@
         <li ng-click="doRefresh()">
             <a><i class="fa fa-refresh"></i> 刷新</a>
         </li>
-        <li ng-repeat="op in course.actionList" ng-click="operate(course.id,op.name)">
-            <a>
+        <li ng-repeat="op in course.actionList" >
+            <a ng-click="operate(course.id,op.name)">
                 <span ng-if="op.name=='submitUpdated'">修改</span>
-                <span ng-if="op.name!='submitUpdated'">{{op.name | courseOperationText}}</span>
+                <span ng-if="op.name!='submitUpdated'&&op.name!='delete'">{{op.name | courseOperationText}}</span>
             </a>
+            <a ng-if="op.name=='delete'" ng-really-click="operate(course.id,op.name)" ng-really-message="确认删除">删除</a>
         </li>
     </ul>
 </div>
