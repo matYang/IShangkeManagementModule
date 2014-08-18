@@ -8,7 +8,9 @@ appFilters
     .filter('toHHmm', function () {
         return function (value) {
             value += '';//to string
-            value = value.toString().substr(0, 4);
+            while(value.length<4){
+                value = '0'+value;
+            }
             return value.substr(0, 2) + ':' + value.substr(2, 2);
         };
     })
