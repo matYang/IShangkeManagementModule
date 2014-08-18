@@ -3,7 +3,7 @@ appControllers.controller('templatesCtrl',
     ['$scope', 'app', function ($scope, app) {
         //获取课程模板资源
         var restAPI = app.restAPI.templates;
-        var pageView = app.PageView['templates'];
+        var pageView = app.PageView.templates;
         //标签页的tab filter
         var filter_tab = {};
         $scope.tabs = angular.copy(pageView.tabs);

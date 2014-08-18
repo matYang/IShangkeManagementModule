@@ -3,7 +3,7 @@ appControllers.controller('partnersCtrl',
     ['$scope', 'app', function ($scope, app) {
         //获取课程模板资源
         var restAPI = app.restAPI.partners;
-        var pageView = app.PageView['partners'];
+        var pageView = app.PageView.partners;
         //标签页的tab filter
         var filter_tab = {};
         $scope.tabs = angular.copy(pageView.tabs);
