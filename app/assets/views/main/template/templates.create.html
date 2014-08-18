@@ -108,12 +108,12 @@
     <label class="col-xs-3 control-label">开课日期描述</label>
 
     <div class="col-xs-5">
-        <textarea type="text" class="form-control" placeholder="如即到即学"
+        <textarea type="text" class="form-control" placeholder="如随到随学"
                   name="regPhone" ng-model="template.regPhone">
         </textarea>
     </div>
 </div>
-<div class="form-group form-group-sm">
+<div class="form-group form-group-sm" ng-show="template.startUponArrival==1">
     <label class="col-xs-3 control-label">开课日期</label>
 
     <div class="col-xs-7">
