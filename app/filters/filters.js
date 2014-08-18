@@ -31,24 +31,24 @@ appFilters
     ])
     .filter('schooltimeDay', ['app',
         function (app) {
-            return function (value) {
-                if (typeof value === 'number')
-                    return app.Enum.schooltimeDay[value] || '未知';
-                else {
-                    //传入的是一个list 需要输出该list对应的值
-                    var rs = [];
-                    for (var i in value) {
-                        rs.push(app.Enum.schooltimeDay[value[i]]);
-                    }
-                    return rs.join(',');
-                }
+            return function (val) {
+                if(!val) return '无';
+                var text = val.map(function (v) {
+                    return app.Enum.schooltimeDay[v];
+                });
+                return text.join(',');
             };
         }
     ])
     .filter('schooltimeWeek', ['app',
         function (app) {
-            return function (value) {
-                return app.Enum.schooltimeWeek[value] || '未知';
+            return function (val) {
+                if(!val) return '无';
+                var text = val.map(function (v) {
+                    return app.Enum.schooltimeWeek[v];
+                });
+                return text.join(',');
+
             };
         }
     ])

@@ -9,6 +9,7 @@ appControllers.controller('coursesDetailCtrl',
             restAPI.get({ID: id}, function (course) {
                 //解析schooltimeDay from number value to number list:7-->[1,2,4]
                 course.schooltimeDay = app.tools.toSchoolTimeList(course.schooltimeDay);
+                course.schooltimeWeek = app.tools.toSchoolTimeList(course.schooltimeWeek);
                 $scope.course = course;
             }, function () {
                 //error
