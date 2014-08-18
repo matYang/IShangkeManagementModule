@@ -4,22 +4,34 @@ appControllers.controller('partnersCtrl',
         //获取课程模板资源
         var restAPI = app.restAPI.partners;
         var pageView = app.PageView['partners'];
-        $scope.th = pageView.th;
-        $scope.page = angular.copy(app.default_page);
-        //filter选择的值 用户展现当前数据的筛选条件
-        $scope.filter = {
-        };
-        //filter临时存储 用于用户输入
-        $scope.filter_tmp = angular.copy($scope.filter);
         //标签页的tab filter
         var filter_tab = {};
+        $scope.tabs = angular.copy(pageView.tabs);
+        $scope.th = pageView.th;
+        $scope.page = pageView.pagination;
+        //filter选择的值 用户展现当前数据的筛选条件
+        $scope.filter = {};
+        //filter临时存储 用于用户输入
+        $scope.filter_tmp = angular.copy($scope.filter);
+
+        $scope.partnerId = app.rootScope.global.user && app.rootScope.global.user.partnerId;
+
+        //查询前需要清空当前的分页和filter
+        var beforeQuery = function () {
+            $scope.items = [];
+            $scope.page = angular.copy(app.default_page);
+            $scope.filter = {};
+            $scope.filter_tmp = angular.copy($scope.filter);
+        };
         //tab选择事件
         $scope.chooseTab = function (tab) {
+            beforeQuery();
+            //进行选择的时候清空
+            $scope.page = angular.copy(app.default_page);
             filter_tab = {};
             angular.forEach(tab.value, function (v, k) {
                 filter_tab[k] = v;
             });
-            app.log.log('filter_tab:'+angular.toJson(filter_tab));
             doRefresh();
         };
         $scope.clearFilter = function () {
