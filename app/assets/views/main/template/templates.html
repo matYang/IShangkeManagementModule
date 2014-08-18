@@ -61,10 +61,20 @@
                 <td>{{item.status| courseStatusText}}</td>
                 <td class="operations">
                     <a ui-sref="main.templates.detail({id:item.id})">查看</a>
-                    <a ng-repeat="op in item.actionList" ng-click="operate(item.id,op.name)">
-                        <span ng-if="op.name=='submitUpdated'">修改</span>
-                        <span ng-if="op.name!='submitUpdated'">{{op.name | courseOperationText}}</span>
-                    </a>
+                    <span ng-repeat="op in item.actionList" >
+                        <a ng-if="op.name=='submitUpdated'" ng-click="operate(item.id,op.name)">
+                            修改
+                        </a>
+                        <a ng-if="op.name!='submitUpdated'&&op.name!='delete'" ng-click="operate(item.id,op.name)">
+                            {{op.name | courseOperationText}}
+                        </a>
+                        <a ng-if="op.name=='delete'" ng-really-click="operate(item.id,op.name)" ng-really-message="确认删除">删除</a>
+                    </span>
+
+                    <!--<a ng-repeat="op in item.actionList" ng-click="operate(item.id,op.name)">-->
+                        <!--<span ng-if="op.name=='submitUpdated'">修改</span>-->
+                        <!--<span ng-if="op.name!='submitUpdated'">{{op.name | courseOperationText}}</span>-->
+                    <!--</a>-->
                 </td>
             </tr>
             </tbody>

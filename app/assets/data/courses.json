@@ -15,6 +15,9 @@
                 },
                 {
                     "name":"submitUpdated"
+                },
+                {
+                    "name":"delete"
                 }
             ]
         }
