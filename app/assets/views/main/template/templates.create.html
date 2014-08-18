@@ -64,6 +64,7 @@
         <input type="number" class="form-control" min="0" name="originalPrice"
                ng-model="template.originalPrice">
     </div>
+    <span class="help-block">原价与爱上课价相等时无需填写</span>
 
 </div>
 
@@ -72,9 +73,13 @@
     <label class="col-xs-3 control-label">支付方式</label>
 
     <div class="col-xs-7">
-        <!-- TODO 价格为空时默认为线下支付  -->
-        <button name="bookingType" class="btn btn-default btn-sm" ng-model="template.bookingType"
-                ng-options="item.value as item.label for item in options.payType"
+        <!-- 价格为空时默认为线下支付  -->
+        <button ng-if="template.price" name="bookingType" class="btn btn-default btn-sm" ng-model="template.bookingType"
+                ng-options="item.value as item.label for item in options.payType | filter:{value:''}"
+                placeholder="选择支付方式" bs-select>
+        </button>
+        <button ng-if="!template.price" name="bookingType" class="btn btn-default btn-sm" ng-model="template.bookingType"
+                ng-options="item.value as item.label for item in options.payType | filter:{value:1}"
                 placeholder="选择支付方式" bs-select>
         </button>
     </div>
