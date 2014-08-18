@@ -23,7 +23,7 @@
     "startTime2":1500,
     "finishTime2":1700,
     "schooltimeDay":3,
-    "schooltimeWeek":1,
+    "schooltimeWeek":3,
     "studyDays":[1,3,4,5],
     "courseHourNum":20,
     "courseHourLength":60,

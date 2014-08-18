@@ -14,7 +14,8 @@ appControllers.controller('templatesEditCtrl',
         $scope.doRefresh = function () {
             app.getTemplateById(id).then(function (template) {
                 //解析schooltimeDay from number value to number list:7-->[1,2,4]
-                template.schooltimeDay = app.tools.toSchoolTimeDayList(template.schooltimeDay);
+                template.schooltimeDay = app.tools.toSchoolTimeList(template.schooltimeDay,app.Enum.schooltimeDay);
+                template.schooltimeWeek = app.tools.toSchoolTimeList(template.schooltimeWeek,app.Enum.schooltimeWeek);
                 //将teacher的obj转换成id的数组
                 template.teacherList = app.tools.toImgLabelValue(template.teacherList);
                 template.classPhotoList = app.tools.toImgLabelValue(template.classPhotoList);
@@ -38,6 +39,9 @@ appControllers.controller('templatesEditCtrl',
             //一天中的上课时间 上午 下午 晚上 多选值
             if (template_save.schooltimeDay) {
                 template_save.schooltimeDay = eval(template_save.schooltimeDay.join('+'));
+            }
+            if(template_save.schooltimeWeek){
+                template_save.schooltimeWeek = eval(template_save.schooltimeWeek.join('+'));
             }
             Templates.operate({ID: id, OP: 'submitUpdated'}, template_save, function (data) {
                 app.toaster.pop('success', '课程模板>' + template_save.courseName + '修改成功',

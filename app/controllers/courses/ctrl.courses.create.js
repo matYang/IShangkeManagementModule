@@ -79,7 +79,7 @@ appControllers.controller('coursesCreateCtrl',
                     delete template.ratingStart;
                     //获取课程模板的详情用来填充所有选项
                     //解析schooltimeDay from number value to number list:7-->[1,2,4]
-                    template.schooltimeDay = app.tools.toSchoolTimeDayList(template.schooltimeDay);
+                    template.schooltimeDay = app.tools.toSchoolTimeList(template.schooltimeDay);
                     //转换多选框选择的值
                     template.teacherList = app.tools.toImgLabelValue(template.teacherList);
                     template.classPhotoList = app.tools.toImgLabelValue(template.classPhotoList);
@@ -116,8 +116,11 @@ appControllers.controller('coursesCreateCtrl',
             course_save.teacherList = app.tools.mapToIdObjList(course_save.teacherList);
             course_save.classPhotoList = app.tools.mapToIdObjList(course_save.classPhotoList);
             //一天中的上课时间 上午 下午 晚上 多选值
-            if(course_save.schooltimeDay){
+            if(course_save.schooltimeDay){// [] 返回eval('')=undefined
                 course_save.schooltimeDay = eval(course_save.schooltimeDay.join('+'));
+            }
+            if(course_save.schooltimeWeek){
+                course_save.schooltimeWeek = eval(course_save.schooltimeWeek.join('+'));
             }
             restAPI.save(course_save, function (data) {
                 app.toaster.pop('success', '课程>' + course_save.courseName + '创建成功',

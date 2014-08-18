@@ -14,7 +14,8 @@ appControllers.controller('coursesEditCtrl',
         $scope.doRefresh = function () {
             Courses.get({ID: id}).$promise.then(function (course) {
                 //解析schooltimeDay from number value to number list:7-->[1,2,4]
-                course.schooltimeDay = app.tools.toSchoolTimeDayList(course.schooltimeDay);
+                course.schooltimeDay = app.tools.toSchoolTimeList(course.schooltimeDay,app.Enum.schooltimeDay);
+                course.schooltimeWeek = app.tools.toSchoolTimeList(course.schooltimeWeek,app.Enum.schooltimeWeek);
                 //将teacher的obj转换成id的数组
                 course.teacherList = app.tools.toImgLabelValue(course.teacherList);
                 course.classPhotoList = app.tools.toImgLabelValue(course.classPhotoList);
@@ -36,6 +37,9 @@ appControllers.controller('coursesEditCtrl',
             //一天中的上课时间 上午 下午 晚上 多选值
             if(course_save.schooltimeDay){
                 course_save.schooltimeDay = eval(course_save.schooltimeDay.join('+'));
+            }
+            if(course_save.schooltimeWeek){
+                course_save.schooltimeWeek = eval(course_save.schooltimeWeek.join('+'));
             }
             Courses.operate({ID: id, OP: 'submitUpdated'}, course_save, function (data) {
                 app.toaster.pop('success', '课程>' + course_save.courseName + '修改成功',

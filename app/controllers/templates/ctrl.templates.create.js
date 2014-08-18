@@ -68,6 +68,9 @@ appControllers.controller('templatesCreateCtrl',
             if(template_save.schooltimeDay){
                 template_save.schooltimeDay = eval(template_save.schooltimeDay.join('+'));
             }
+            if(template_save.schooltimeWeek){
+                template_save.schooltimeWeek = eval(template_save.schooltimeWeek.join('+'));
+            }
             Templates.save(template_save, function (data) {
                 app.toaster.pop('success', '课程模板>' + template_save.courseName + '创建成功',
                         '<a href="#/main/templates/'+data.id+'"><strong>查看该信息</strong></a> 或者 <a><strong>继续创建</strong></a>', 0, 'trustedHtml',$scope.clear);

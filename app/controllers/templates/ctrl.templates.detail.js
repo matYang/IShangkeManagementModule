@@ -8,7 +8,7 @@ appControllers.controller('templatesDetailCtrl',
 
             restAPI.get({ID: id}, function (template) {
                 //解析schooltimeDay from number value to number list:7-->[1,2,4]
-                template.schooltimeDay = app.tools.toSchoolTimeDayList(template.schooltimeDay);
+                template.schooltimeDay = app.tools.toSchoolTimeList(template.schooltimeDay);
                 $scope.template = template;
             }, function () {
                 //todo error
