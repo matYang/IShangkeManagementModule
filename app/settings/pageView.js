@@ -25,7 +25,7 @@ app.factory('PageView', ['app',
                 {n: '操作', w: '18'}
             ]
         };
-        return {
+        var view =  {
             'common': common,
             'newBookings': {
                 tabs: [
@@ -84,5 +84,6 @@ app.factory('PageView', ['app',
             }
 
         }
+        return view;
     }
 ]);
