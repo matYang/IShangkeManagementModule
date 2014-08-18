@@ -61,6 +61,11 @@ app.run(
                 payType: tools.toOptions(app.Enum.payTypeText),
                 partnerQualification: tools.toOptions(app.Enum.partnerQualification)
             };
+            app.rootScope.pagination = {
+              templates:angular.copy(app.default_page),
+              courses:angular.copy(app.default_page),
+              partners:angular.copy(app.default_page)
+            };
             Auth.checkUser();
 
 

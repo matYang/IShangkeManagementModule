@@ -8,7 +8,7 @@ appControllers.controller('coursesCtrl',
         var filter_tab = {};
         $scope.tabs = angular.copy(pageView.tabs);
         $scope.th = pageView.th;
-        $scope.page = pageView.pagination;
+        $scope.page = app.rootScope.pagination.partners;
         //filter选择的值 用户展现当前数据的筛选条件
         $scope.filter = {};
         //filter临时存储 用于用户输入
