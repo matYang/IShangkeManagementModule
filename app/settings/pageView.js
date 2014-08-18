@@ -25,9 +25,9 @@ app.factory('PageView', ['app',
                 {n: '操作', w: '18'}
             ]
         };
-        var view =  {
-            'common': common,
-            'newBookings': {
+        return {
+            common: common,
+            newBookings: {
                 tabs: [
                     {
                         label: '今日待处理', active: true,
@@ -40,14 +40,14 @@ app.factory('PageView', ['app',
                 ],
                 th: common.bookingTh
             },
-            'oldBookings': {
+            oldBookings: {
                 tabs: [
                     {label: '待审核', active: true, value: {status: 0, createTimeStart: new Date().getTime()}},
                     {label: '往日待处理', active: false, value: {status: 0, createTimeEnd: new Date().getTime()}}
                 ],
                 th: common.bookingTh
             },
-            'templates': {
+            templates: {
                 pagination: angular.copy(app.default_page),
                 tabs: common.statusTabs,
                 th: [
@@ -59,7 +59,7 @@ app.factory('PageView', ['app',
                     {n: '操作', w: '30'}
                 ]
             },
-            'courses': {
+            courses: {
                 pagination: angular.copy(app.default_page),
                 tabs: common.statusTabs,
                 th: [
@@ -72,7 +72,7 @@ app.factory('PageView', ['app',
                     {n: '操作', w: '22'}
                 ]
             },
-            'partners': {
+            partners: {
                 pagination: angular.copy(app.default_page),
                 th: [
                     {n: '机构号', w: '10'},
@@ -84,6 +84,5 @@ app.factory('PageView', ['app',
             }
 
         }
-        return view;
     }
 ]);
