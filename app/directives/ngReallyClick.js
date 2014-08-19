@@ -10,7 +10,6 @@ appDirectives.directive('ngReallyClick', ['$window',function($window) {
             click:'&ngReallyClick' //get the click function from the current scope
         },
         link: function(scope, element, attrs) {
-            console.log(scope);
             element.bind('click', function() {
                 var message = attrs.ngReallyMessage;
                 if (message && $window.confirm(message)) {
