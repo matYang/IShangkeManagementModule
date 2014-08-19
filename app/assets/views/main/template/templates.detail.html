@@ -24,6 +24,13 @@
         <p class="form-control-static">{{template.courseName}}</p>
     </div>
 </div>
+<div class="form-group form-group-sm">
+    <label class="col-xs-3 control-label">课程所属类目</label>
+
+    <div class="col-xs-8">
+        <p class="form-control-static">{{template.categoryValue | categoryText}}</p>
+    </div>
+</div>
 <div class="form-group form-group-sm" ng-if="!template.price">
     <label class="col-xs-3 control-label">课程价格</label>
 
@@ -45,6 +52,13 @@
         <p class="form-control-static">{{template.price|currency}}</p>
     </div>
 </div>
+<div class="form-group form-group-sm">
+    <label class="col-xs-3 control-label">支付方式</label>
+
+    <div class="col-xs-8">
+        <p class="form-control-static">{{template.bookingType | payTypeText}}</p>
+    </div>
+</div>
 <div class="form-group form-group-sm" ng-if="template.originalPrice">
     <label class="col-xs-3 control-label">线下支付返现</label>
 
@@ -59,69 +73,57 @@
         <p class="form-control-static">{{template.commission|currency}}</p>
     </div>
 </div>
-<div class="form-group form-group-sm">
-    <label class="col-xs-3 control-label">课程所属类别</label>
 
-    <div class="col-xs-8">
-        <p class="form-control-static">{{template.categoryValue | categoryText}}</p>
-    </div>
-</div>
-<div class="form-group form-group-sm">
-    <label class="col-xs-3 control-label">支付方式</label>
 
-    <div class="col-xs-8">
-        <p class="form-control-static">{{template.bookingType | payTypeText}}</p>
-    </div>
-</div>
 
 
 <legend>基本信息</legend>
-<div class="form-group form-group-sm">
-    <label class="col-xs-3 control-label">是否有具体开课日期</label>
+<!--<div class="form-group form-group-sm">-->
+    <!--<label class="col-xs-3 control-label">是否有具体开课日期</label>-->
 
-    <div class="col-xs-7">
-        <p class="form-control-static">
-            <span ng-if="template.startUponArrival==1">是</span>
-            <span ng-if="template.startUponArrival==0">否
-                &nbsp;({{template.regPhone}})
-            </span>
-        </p>
-    </div>
-</div>
-<div class="form-group form-group-sm">
-    <label class="col-xs-3 control-label">开课日期</label>
+    <!--<div class="col-xs-7">-->
+        <!--<p class="form-control-static">-->
+            <!--<span ng-if="template.startUponArrival==1">是</span>-->
+            <!--<span ng-if="template.startUponArrival==0">否-->
+                <!--&nbsp;({{template.regPhone}})-->
+            <!--</span>-->
+        <!--</p>-->
+    <!--</div>-->
+<!--</div>-->
+<!--<div class="form-group form-group-sm">-->
+    <!--<label class="col-xs-3 control-label">开课日期</label>-->
 
-    <div class="col-xs-3">
-        <p class="form-control-static">{{template.startDate|date}} 至 {{template.finishDate|date}}</p>
-    </div>
-</div>
-<div class="form-group form-group-sm">
-    <label class="col-xs-3 control-label">上课时间</label>
+    <!--<div class="col-xs-3">-->
+        <!--<p class="form-control-static">{{template.startDate|date}} 至 {{template.finishDate|date}}</p>-->
+    <!--</div>-->
+<!--</div>-->
+<!--<div class="form-group form-group-sm">-->
+    <!--<label class="col-xs-3 control-label">上课时间</label>-->
 
-    <div class="col-xs-8">
-        <p class="form-control-static">
-            {{template.startTime1|toHHmm}}-{{template.finishTime1|toHHmm}}
-            <span ng-show="template.startTime2!=null">
-                {{template.startTime2|toHHmm}}-{{template.finishTime2|toHHmm}}
-            </span>
-        </p>
-    </div>
-</div>
-<div class="form-group form-group-sm">
-    <label class="col-xs-3 control-label">上课区间</label>
+    <!--<div class="col-xs-8">-->
+        <!--<p class="form-control-static">-->
+            <!--{{template.startTime1|toHHmm}}-{{template.finishTime1|toHHmm}}-->
+            <!--<span ng-show="template.startTime2!=null">-->
+                <!--{{template.startTime2|toHHmm}}-{{template.finishTime2|toHHmm}}-->
+            <!--</span>-->
+        <!--</p>-->
+    <!--</div>-->
+<!--</div>-->
+<!--<div class="form-group form-group-sm">-->
+    <!--<label class="col-xs-3 control-label">上课区间</label>-->
 
-    <div class="col-xs-3">
-        <p class="form-control-static">{{template.schooltimeWeek |schooltimeWeek}}-{{template.schooltimeDay |
-            schooltimeDay}}</p>
-    </div>
-</div>
-<div class="form-group form-group-sm">
-    <label class="col-xs-3 control-label">上课日子</label>
+    <!--<div class="col-xs-3">-->
+        <!--<p class="form-control-static">{{template.schooltimeWeek |schooltimeWeek}}-{{template.schooltimeDay |-->
+            <!--schooltimeDay}}</p>-->
+    <!--</div>-->
+<!--</div>-->
+<!--<div class="form-group form-group-sm">-->
+    <!--<label class="col-xs-3 control-label">上课日子</label>-->
 
-    <div class="col-xs-3">
-        <p class="form-control-static">{{template.studyDays | studyDays}}</p>
-    </div>
-</div>
+    <!--<div class="col-xs-3">-->
+        <!--<p class="form-control-static">{{template.studyDays | studyDays}}</p>-->
+    <!--</div>-->
+<!--</div>-->
 <div class="form-group form-group-sm">
     <label class="col-xs-3 control-label">课时数量</label>
 
@@ -150,20 +152,20 @@
         <p class="form-control-static">{{template.classType | classType}}</p>
     </div>
 </div>
-<div class="form-group form-group-sm">
-    <label class="col-xs-3 control-label">开班要求</label>
+<!--<div class="form-group form-group-sm">-->
+    <!--<label class="col-xs-3 control-label">开班要求</label>-->
 
-    <div class="col-xs-8">
-        <p class="form-control-static">{{template.openCourseRequirement}}</p>
-    </div>
-</div>
-<div class="form-group form-group-sm">
-    <label class="col-xs-3 control-label">报名截止日期</label>
+    <!--<div class="col-xs-8">-->
+        <!--<p class="form-control-static">{{template.openCourseRequirement}}</p>-->
+    <!--</div>-->
+<!--</div>-->
+<!--<div class="form-group form-group-sm">-->
+    <!--<label class="col-xs-3 control-label">报名截止日期</label>-->
 
-    <div class="col-xs-3">
-        <p class="form-control-static">{{template.cutoffDate|date}}</p>
-    </div>
-</div>
+    <!--<div class="col-xs-3">-->
+        <!--<p class="form-control-static">{{template.cutoffDate|date}}</p>-->
+    <!--</div>-->
+<!--</div>-->
 <div class="form-group form-group-sm">
     <label class="col-xs-3 control-label">适合学员</label>
 
@@ -171,27 +173,27 @@
         <p class="form-control-static" ng-bind-html="template.suitableStudent"></p>
     </div>
 </div>
-<div class="form-group form-group-sm">
-    <label class="col-xs-3 control-label">上课地点</label>
+<!--<div class="form-group form-group-sm">-->
+    <!--<label class="col-xs-3 control-label">上课地点</label>-->
 
-    <div class="col-xs-8">
-        <p class="form-control-static">{{template.address}}</p>
-    </div>
-</div>
-<div class="form-group form-group-sm">
-    <label class="col-xs-3 control-label">上课地点归属</label>
+    <!--<div class="col-xs-8">-->
+        <!--<p class="form-control-static">{{template.address}}</p>-->
+    <!--</div>-->
+<!--</div>-->
+<!--<div class="form-group form-group-sm">-->
+    <!--<label class="col-xs-3 control-label">上课地点归属</label>-->
 
-    <div class="col-xs-8">
-        <p class="form-control-static">{{template.locationValue|locationText}}</p>
-    </div>
-</div>
-<div class="form-group form-group-sm">
-    <label class="col-xs-3 control-label">报名地点</label>
+    <!--<div class="col-xs-8">-->
+        <!--<p class="form-control-static">{{template.locationValue|locationText}}</p>-->
+    <!--</div>-->
+<!--</div>-->
+<!--<div class="form-group form-group-sm">-->
+    <!--<label class="col-xs-3 control-label">报名地点</label>-->
 
-    <div class="col-xs-8">
-        <p class="form-control-static">{{template.regAddress}}</p>
-    </div>
-</div>
+    <!--<div class="col-xs-8">-->
+        <!--<p class="form-control-static">{{template.regAddress}}</p>-->
+    <!--</div>-->
+<!--</div>-->
 <div class="form-group form-group-sm">
     <label class="col-xs-3 control-label">教师列表</label>
 
@@ -209,34 +211,6 @@
 
 <legend>教学信息</legend>
 <div class="form-group form-group-sm">
-    <label class="col-xs-3 control-label">课程介绍</label>
-
-    <div class="col-xs-8">
-        <p class="form-control-static" ng-bind-html="template.courseIntro"></p>
-    </div>
-</div>
-<div class="form-group form-group-sm">
-    <label class="col-xs-3 control-label">教学目标</label>
-
-    <div class="col-xs-8">
-        <p class="form-control-static" ng-bind-html="template.goal"></p>
-    </div>
-</div>
-<div class="form-group form-group-sm">
-    <label class="col-xs-3 control-label">先修知识</label>
-
-    <div class="col-xs-8">
-        <p class="form-control-static" ng-bind-html="template.prerequest"></p>
-    </div>
-</div>
-<div class="form-group form-group-sm">
-    <label class="col-xs-3 control-label">上课形式</label>
-
-    <div class="col-xs-8">
-        <p class="form-control-static">{{template.teachingMethod}}</p>
-    </div>
-</div>
-<div class="form-group form-group-sm">
     <label class="col-xs-3 control-label">教材介绍</label>
 
     <div class="col-xs-8">
@@ -250,6 +224,35 @@
         <p class="form-control-static">{{template.teachingMaterialFee}}</p>
     </div>
 </div>
+<div class="form-group form-group-sm">
+    <label class="col-xs-3 control-label">课程介绍</label>
+
+    <div class="col-xs-8">
+        <p class="form-control-static" ng-bind-html="template.courseIntro"></p>
+    </div>
+</div>
+<div class="form-group form-group-sm">
+    <label class="col-xs-3 control-label">教学目标</label>
+
+    <div class="col-xs-8">
+        <p class="form-control-static" ng-bind-html="template.goal"></p>
+    </div>
+</div>
+<!--<div class="form-group form-group-sm">-->
+    <!--<label class="col-xs-3 control-label">先修知识</label>-->
+
+    <!--<div class="col-xs-8">-->
+        <!--<p class="form-control-static" ng-bind-html="template.prerequest"></p>-->
+    <!--</div>-->
+<!--</div>-->
+<!--<div class="form-group form-group-sm">-->
+    <!--<label class="col-xs-3 control-label">上课形式</label>-->
+
+    <!--<div class="col-xs-8">-->
+        <!--<p class="form-control-static">{{template.teachingMethod}}</p>-->
+    <!--</div>-->
+<!--</div>-->
+
 <div class="form-group form-group-sm">
     <label class="col-xs-3 control-label">课程提纲</label>
 
@@ -293,27 +296,27 @@
         <p class="form-control-static">{{template.quiz}}</p>
     </div>
 </div>
-<div class="form-group form-group-sm">
-    <label class="col-xs-3 control-label">课后答疑</label>
+<!--<div class="form-group form-group-sm">-->
+    <!--<label class="col-xs-3 control-label">课后答疑</label>-->
 
-    <div class="col-xs-8">
-        <p class="form-control-static">{{template.questionSession}}</p>
-    </div>
-</div>
-<div class="form-group form-group-sm">
-    <label class="col-xs-3 control-label">课后作业</label>
+    <!--<div class="col-xs-8">-->
+        <!--<p class="form-control-static">{{template.questionSession}}</p>-->
+    <!--</div>-->
+<!--</div>-->
+<!--<div class="form-group form-group-sm">-->
+    <!--<label class="col-xs-3 control-label">课后作业</label>-->
 
-    <div class="col-xs-8">
-        <p class="form-control-static">{{template.assignments}}</p>
-    </div>
-</div>
-<div class="form-group form-group-sm">
-    <label class="col-xs-3 control-label">作业批改</label>
+    <!--<div class="col-xs-8">-->
+        <!--<p class="form-control-static">{{template.assignments}}</p>-->
+    <!--</div>-->
+<!--</div>-->
+<!--<div class="form-group form-group-sm">-->
+    <!--<label class="col-xs-3 control-label">作业批改</label>-->
 
-    <div class="col-xs-8">
-        <p class="form-control-static">{{template.marking}}</p>
-    </div>
-</div>
+    <!--<div class="col-xs-8">-->
+        <!--<p class="form-control-static">{{template.marking}}</p>-->
+    <!--</div>-->
+<!--</div>-->
 <div class="form-group form-group-sm">
     <label class="col-xs-3 control-label">教学特色</label>
 
