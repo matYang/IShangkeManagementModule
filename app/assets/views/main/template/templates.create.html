@@ -100,7 +100,8 @@
                ng-model="template.cashback">
     </div>
 </div>
-<div class="form-group form-group-sm" ng-show="template.price">
+
+<div class="form-group form-group-sm" ng-if="template.price">
     <label class="col-xs-3 control-label">在线支付立减</label>
 
     <div class="col-xs-3">
