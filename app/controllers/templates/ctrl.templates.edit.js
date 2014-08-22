@@ -18,14 +18,14 @@ appControllers.controller('templatesEditCtrl',
                 template.schooltimeWeek = app.tools.toSchoolTimeList(template.schooltimeWeek,app.Enum.schooltimeWeek);
                 //将teacher的obj转换成id的数组
                 template.teacherList = app.tools.toImgLabelValue(template.teacherList);
-                template.classPhotoList = app.tools.toImgLabelValue(template.classPhotoList);
+//                template.classPhotoList = app.tools.toImgLabelValue(template.classPhotoList);
                 $scope.template = template;
                 return app.getPartnerById(template.partnerId);
             }).then(function (partner) {
                 //生成选项
                 $scope.options.addressList = partner.addressList;
                 $scope.options.teacherList = app.tools.toImgLabelOptions(partner.teacherList);
-                $scope.options.classPhotoList = app.tools.toImgLabelOptions(partner.classPhotoList);
+//                $scope.options.classPhotoList = app.tools.toImgLabelOptions(partner.classPhotoList);
             });
         };
         $scope.doRefresh();
@@ -35,7 +35,7 @@ appControllers.controller('templatesEditCtrl',
             var template_save = angular.copy(template);
             //将数组中的id转换成map [1,2] --> [{id:1},{id:2}]
             template_save.teacherList = app.tools.mapToIdObjList(template_save.teacherList);
-            template_save.classPhotoList = app.tools.mapToIdObjList(template_save.classPhotoList);
+//            template_save.classPhotoList = app.tools.mapToIdObjList(template_save.classPhotoList);
             //一天中的上课时间 上午 下午 晚上 多选值
             if (template_save.schooltimeDay) {
                 template_save.schooltimeDay = eval(template_save.schooltimeDay.join('+'));
