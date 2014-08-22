@@ -85,7 +85,9 @@ appControllers.controller('coursesCreateCtrl',
                     template.schooltimeDay = app.tools.toSchoolTimeList(template.schooltimeDay);
                     //转换多选框选择的值
                     template.teacherList = app.tools.toImgLabelValue(template.teacherList);
-                    template.classPhotoList = app.tools.toImgLabelValue(template.classPhotoList);
+                    //默认选择所有的值 不进行选项的转换
+//                    template.classPhotoList = app.tools.toImgLabelValue(template.classPhotoList);
+
                     $scope.course = template;
                 }, function () {
                     app.toaster.pop('error', '获取课程模板-' + selectedItem.courseName + '的信息失败', '请重新选择或刷新重试');
@@ -103,6 +105,8 @@ appControllers.controller('coursesCreateCtrl',
                 cashback: $scope.course.cashback,
                 bookingType: $scope.course.bookingType,
                 categoryValue: $scope.course.categoryValue,
+                //默认选择所有的照片
+                classPhotoList: $scope.course.classPhotoList,
                 //强制清空富文本编辑器中的内容
                 prerequest:'',
                 outline:'',

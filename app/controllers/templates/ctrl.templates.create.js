@@ -39,7 +39,9 @@ appControllers.controller('templatesCreateCtrl',
                         //生成选项
                         $scope.options.addressList = partner.addressList;
                         $scope.options.teacherList = app.tools.toImgLabelOptions(partner.teacherList);
-                        $scope.options.classPhotoList = app.tools.toImgLabelOptions(partner.classPhotoList);
+//                        $scope.options.classPhotoList = app.tools.toImgLabelOptions(partner.classPhotoList);
+                        //直接作为模板的照片
+                        $scope.template.classPhotoList = partner.classPhotoList;
                     }, function () {
                         app.toaster.pop('error', '获取机构-' + selectedItem.instName + '的信息失败', '请重新选择机构或刷新重试');
                     })
@@ -48,7 +50,9 @@ appControllers.controller('templatesCreateCtrl',
         };
         $scope.clear = function(){
             $scope.template = {
-                partnerId:$scope.template.partnerId||undefined,
+                //保留所需的字段
+                partnerId:$scope.template.partnerId,
+                classPhotoList:$scope.template.classPhotoList,
                 //强制清空富文本编辑器中的内容
                 prerequest:'',
                 outline:'',
