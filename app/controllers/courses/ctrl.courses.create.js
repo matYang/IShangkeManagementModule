@@ -121,7 +121,7 @@ appControllers.controller('coursesCreateCtrl',
             //将数组中obj的id转换成map [1,2] --> [{id:1},{id:2}]
             var course_save = angular.copy(course);
             course_save.teacherList = app.tools.mapToIdObjList(course_save.teacherList);
-            course_save.classPhotoList = app.tools.mapToIdObjList(course_save.classPhotoList);
+//            course_save.classPhotoList = app.tools.mapToIdObjList(course_save.classPhotoList);
             //一天中的上课时间 上午 下午 晚上 多选值
             if(course_save.schooltimeDay){// [] 返回eval('')=undefined
                 course_save.schooltimeDay = eval(course_save.schooltimeDay.join('+'));

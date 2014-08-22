@@ -67,7 +67,7 @@ appControllers.controller('templatesCreateCtrl',
             //将数组中的id转换成map [1,2] --> [{id:1},{id:2}]
             var template_save = angular.copy(template);
             template_save.teacherList =app.tools.mapToIdObjList(template_save.teacherList);
-            template_save.classPhotoList =app.tools.mapToIdObjList(template_save.classPhotoList);
+//            template_save.classPhotoList =app.tools.mapToIdObjList(template_save.classPhotoList);
             //一天中的上课时间 上午 下午 晚上 多选值
             if(template_save.schooltimeDay){
                 template_save.schooltimeDay = eval(template_save.schooltimeDay.join('+'));
