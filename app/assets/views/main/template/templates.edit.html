@@ -31,18 +31,22 @@
     <label class="col-xs-3 control-label">课程所属类目(*)</label>
 
     <div class="col-xs-7">
-        <button name="level_1" class="btn btn-default btn-sm" ng-model="cat_1"
-                ng-options="item as item.name for item in category"
-                ng-change="cat_2=null;template.categoryId=undefined" placeholder="选择一级目录" bs-select>
-        </button>
-        <button name="level_2" class="btn btn-default btn-sm" ng-model="cat_2"
-                ng-options="item as item.name for item in cat_1.children"
-                ng-change="template.categoryId=undefined" placeholder="选择二级目录" bs-select>
-        </button>
-        <button class="btn btn-default btn-sm" name="categoryId" ng-model="template.categoryId"
-                ng-options="item.id as item.name for item in cat_2.children"
-                placeholder="选择三级目录" bs-select>
-        </button>
+        <div class="form-control-static">{{template.category.value | categoryText}}</div>
+        <div>
+            <button name="level_1" class="btn btn-default btn-sm" ng-model="cat_1"
+                    ng-options="item as item.name for item in category"
+                    ng-change="cat_2=null;template.categoryId=undefined" placeholder="选择一级目录" bs-select>
+            </button>
+            <button name="level_2" class="btn btn-default btn-sm" ng-model="cat_2"
+                    ng-options="item as item.name for item in cat_1.children"
+                    ng-change="template.categoryId=undefined" placeholder="选择二级目录" bs-select>
+            </button>
+            <button class="btn btn-default btn-sm" name="categoryId" ng-model="template.category"
+                    ng-options="item as item.name for item in cat_2.children"
+                    placeholder="选择三级目录" bs-select>
+            </button>
+        </div>
+
     </div>
 </div>
 <!--<div class="form-group form-group-sm">-->

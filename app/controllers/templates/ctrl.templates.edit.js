@@ -19,6 +19,12 @@ appControllers.controller('templatesEditCtrl',
                 //将teacher的obj转换成id的数组
                 template.teacherList = app.tools.toImgLabelValue(template.teacherList);
 //                template.classPhotoList = app.tools.toImgLabelValue(template.classPhotoList);
+
+                //获取category
+                template.category = {
+                    id:template.categoryId,
+                    value:template.categoryValue
+                };
                 $scope.template = template;
                 return app.getPartnerById(template.partnerId);
             }).then(function (partner) {
@@ -32,6 +38,19 @@ appControllers.controller('templatesEditCtrl',
 
         //提交更新
         $scope.updateTemplate = function (template) {
+
+            var template_save = toJSON(template);
+
+            Templates.operate({ID: id, OP: 'submitUpdated'}, template_save, function (data) {
+                app.toaster.pop('success', '课程模板>' + template_save.courseName + '修改成功',
+                        '<a href="#/main/templates/' + data.id + '"><strong>查看该信息</strong></a> 或者 <a href="#/main/templates"><strong>返回列表</strong></a>', 0, 'trustedHtml');
+            }, function () {
+                app.toaster.pop('error', "课程模板>" + template_save.courseName + "修改失败", "");
+            })
+        };
+
+        //数据提交前的过滤
+        var toJSON = function(template){
             var template_save = angular.copy(template);
             //将数组中的id转换成map [1,2] --> [{id:1},{id:2}]
             template_save.teacherList = app.tools.mapToIdObjList(template_save.teacherList);
@@ -43,12 +62,12 @@ appControllers.controller('templatesEditCtrl',
             if(template_save.schooltimeWeek){
                 template_save.schooltimeWeek = eval(template_save.schooltimeWeek.join('+'));
             }
-            Templates.operate({ID: id, OP: 'submitUpdated'}, template_save, function (data) {
-                app.toaster.pop('success', '课程模板>' + template_save.courseName + '修改成功',
-                        '<a href="#/main/templates/' + data.id + '"><strong>查看该信息</strong></a> 或者 <a href="#/main/templates"><strong>返回列表</strong></a>', 0, 'trustedHtml');
-            }, function () {
-                app.toaster.pop('error', "课程模板>" + template_save.courseName + "修改失败", "");
-            })
-        };
+
+            template_save.categoryId = template_save.category.id;
+            template_save.categoryValue = template_save.category.value;
+            delete template_save.category;
+
+            return template_save;
+        }
     }]
 );
