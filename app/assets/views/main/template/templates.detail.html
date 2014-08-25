@@ -132,17 +132,13 @@
     <!--</div>-->
 <!--</div>-->
 <div class="form-group form-group-sm">
-    <label class="col-xs-3 control-label">课时数量</label>
+    <label class="col-xs-3 control-label">课时信息</label>
 
     <div class="col-xs-3">
-        <p class="form-control-static">{{template.courseHourNum}}课时</p>
-    </div>
-</div>
-<div class="form-group form-group-sm">
-    <label class="col-xs-3 control-label">课时长度</label>
-
-    <div class="col-xs-3">
-        <p class="form-control-static">{{template.courseHourLength}}(分钟)</p>
+        <p class="form-control-static" ng-if="template.courseHourNum">
+            共<strong>{{template.courseHourNum}}</strong>课时,每课时<strong>{{template.courseHourLength}}</strong>分钟
+        </p>
+        <p class="form-control-static" ng-if="!template.courseHourNum">{{template.qualityAssurance}}</p>
     </div>
 </div>
 <div class="form-group form-group-sm">
