@@ -55,14 +55,14 @@ exports.config =
         max_line_length:
           level: "ignore"
 
-    jshint:
-      pattern: /^app\/.*\.js$/
-      options:
-        bitwise: true
-        curly: true
-      globals:
-        jQuery: true
-      warnOnly: true
+#    jshint:
+#      pattern: /^app\/.*\.js$/
+#      options:
+#        bitwise: true
+#        curly: true
+#      globals:
+#        jQuery: true
+#      warnOnly: true
 
 #    gzip:
 #      paths:
