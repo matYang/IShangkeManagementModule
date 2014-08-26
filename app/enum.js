@@ -8,7 +8,7 @@ app.value('Enum', {
             3: '大班授课（30人+）'
         },
         schooltimeDay: {
-            3: '白天'
+            3: '白天',
             4: '晚上'
         },
         schooltimeWeek: {
