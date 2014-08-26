@@ -219,7 +219,7 @@
 <!--</div>-->
 <!--</div>-->
 
-<div class="form-group form-group-sm">
+<!-- <div class="form-group form-group-sm">
     <label class="col-xs-3 control-label">课时数量</label>
 
     <div class="col-xs-3">
@@ -235,14 +235,14 @@
                name="courseHourLength" ng-model="template.courseHourLength">
     </div>
     <span class="help-block">分钟</span>
-</div>
+</div> -->
 <div class="form-group form-group-sm">
     <label class="col-xs-3 control-label">课时描述信息</label>
 
     <div class="col-xs-5">
         <input type="text" class="form-control" name="qualityAssurance" ng-model="template.qualityAssurance">
     </div>
-    <span class="help-block">若课时信息无法用"数量"和"长度"描述,在此输入描述信息</span>
+    <!-- <span class="help-block">若课时信息无法用"数量"和"长度"描述,在此输入描述信息</span> -->
 </div>
 <div class="form-group form-group-sm">
     <label class="col-xs-3 control-label">班级类型</label>
@@ -400,7 +400,16 @@
                   name="outline" ng-model="template.outline"></textarea>
     </div>
 </div>
-<legend>教学补充</legend>
+<div class="form-group form-group-sm">
+    <label class="col-xs-3 control-label">教学特色</label>
+
+    <div class="col-xs-9">
+        <input type="text" class="form-control" ck-editor
+               name="highScoreReward" ng-model="template.highScoreReward">
+    </div>
+</div>
+
+<legend>特色服务</legend>
 <div class="form-group form-group-sm">
     <label class="col-xs-3 control-label">课件下载</label>
 
@@ -465,15 +474,7 @@
 <!--name="marking" ng-model="template.marking">-->
 <!--</div>-->
 <!--</div>-->
-<div class="form-group form-group-sm">
-    <label class="col-xs-3 control-label">教学特色</label>
 
-    <div class="col-xs-9">
-        <input type="text" class="form-control" ck-editor
-               name="highScoreReward" ng-model="template.highScoreReward">
-    </div>
-</div>
-<legend>特色服务</legend>
 <div class="form-group form-group-sm">
     <label class="col-xs-3 control-label">签约保过</label>
 

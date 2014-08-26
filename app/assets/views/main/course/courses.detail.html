@@ -157,7 +157,16 @@
         <p class="form-control-static">{{course.cutoffDate|date}}</p>
     </div>
 </div>
+<div class="form-group form-group-sm">
+    <label class="col-xs-3 control-label">课时信息</label>
 
+    <div class="col-xs-3">
+        <!-- <p class="form-control-static" ng-if="course.courseHourNum">
+            共<strong>{{course.courseHourNum}}</strong>课时,每课时<strong>{{course.courseHourLength}}</strong>分钟
+        </p> -->
+        <p class="form-control-static">{{course.qualityAssurance}}</p>
+    </div>
+</div>
 <div class="form-group form-group-sm">
     <label class="col-xs-3 control-label">上课地点</label>
 
@@ -195,16 +204,7 @@
 
 
 <legend>教学信息</legend>
-<div class="form-group form-group-sm">
-    <label class="col-xs-3 control-label">课时信息</label>
 
-    <div class="col-xs-3">
-        <p class="form-control-static" ng-if="course.courseHourNum">
-            共<strong>{{course.courseHourNum}}</strong>课时,每课时<strong>{{course.courseHourLength}}</strong>分钟
-        </p>
-        <p class="form-control-static" ng-if="!course.courseHourNum">{{course.qualityAssurance}}</p>
-    </div>
-</div>
 <div class="form-group form-group-sm">
     <label class="col-xs-3 control-label">班级类型</label>
 
