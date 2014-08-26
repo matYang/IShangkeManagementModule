@@ -4,11 +4,11 @@ appControllers.controller('partnersCtrl',
         //获取课程模板资源
         var restAPI = app.restAPI.partners;
         var pageView = app.PageView.partners;
-        //标签页的tab filter
-        var filter_tab = {};
+
         $scope.tabs = angular.copy(pageView.tabs);
         $scope.th = pageView.th;
-        $scope.page = app.rootScope.pagination.partners;
+        $scope.page = pageView.pagination;
+
         //filter选择的值 用户展现当前数据的筛选条件
         $scope.filter = {};
         //filter临时存储 用于用户输入
@@ -23,17 +23,7 @@ appControllers.controller('partnersCtrl',
             $scope.filter = {};
             $scope.filter_tmp = angular.copy($scope.filter);
         };
-        //tab选择事件
-        $scope.chooseTab = function (tab) {
-            beforeQuery();
-            //进行选择的时候清空
-            $scope.page = angular.copy(app.default_page);
-            filter_tab = {};
-            angular.forEach(tab.value, function (v, k) {
-                filter_tab[k] = v;
-            });
-            doRefresh();
-        };
+
         $scope.clearFilter = function () {
             angular.forEach($scope.filter_tmp, function (v, k) {
                 $scope.filter_tmp[k] = undefined;
@@ -42,7 +32,7 @@ appControllers.controller('partnersCtrl',
         //根据 过滤信息和分页信息 刷新课程模板列表
         var doRefresh = $scope.doRefresh = function () {
             //使用课程模板资源请求数据 筛选条件为当前选择的值
-            restAPI.get(angular.extend({}, filter_tab, $scope.filter_tmp, $scope.page), function (data) {
+            restAPI.get(angular.extend({}, $scope.filter_tmp, $scope.page), function (data) {
                 //更新当前数据的筛选条件
                 $scope.filter = angular.copy($scope.filter_tmp);
                 $scope.items = data.data;
