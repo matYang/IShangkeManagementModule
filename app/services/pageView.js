@@ -49,7 +49,9 @@ app.factory('PageView', ['app',
             },
             templates: {
                 pagination: angular.copy(app.default_page),
-                tabs: common.statusTabs,
+                filter:{},//过滤条件 点击生成的条件
+                search:{},//查询条件 手动输入的条件
+                tabs: angular.copy(common.statusTabs),
                 th: [
                     {n: '模板号', w: '10'},
                     {n: '模板名', w: '20'},
@@ -61,7 +63,9 @@ app.factory('PageView', ['app',
             },
             courses: {
                 pagination: angular.copy(app.default_page),
-                tabs: common.statusTabs,
+                filter:{},//过滤条件 点击生成的条件
+                search:{},//查询条件 手动输入的条件
+                tabs: angular.copy(common.statusTabs),
                 th: [
                     {n: '课程号', w: '10'},
                     {n: '课程名', w: '20'},

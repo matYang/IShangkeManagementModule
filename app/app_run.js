@@ -4,7 +4,9 @@ app.run(
     ['app', '$rootScope', '$cookieStore', '$localStorage', '$location', '$window', '$timeout', '$state', 'Auth', 'restAPI',
         '$log', '$upload', '$modal', '$parse', 'toaster', 'Enum', 'PageView', 'operateService', 'promiseGet', 'cache', 'getCategory', 'tools',
         'getPartnerById', 'getTemplateById', 'getLocation',
-        function (app, $rootScope, $cookieStore, $localStorage, $location, $window, $timeout, $state, Auth, restAPI, $log, $upload, $modal, $parse, toaster, Enum, PageView, operateService, promiseGet, cache, getCategory, tools, getPartnerById, getTemplateById, getLocation) {
+        function (app, $rootScope, $cookieStore, $localStorage, $location, $window, $timeout, $state, Auth, restAPI,
+                  $log, $upload, $modal, $parse, toaster, Enum, PageView, operateService, promiseGet, cache, getCategory,
+                  tools, getPartnerById, getTemplateById, getLocation) {
 
             if (app.test_mode) {
                 $log.info('RUN IN TEST MODE');
@@ -60,11 +62,6 @@ app.run(
                 classType: tools.toOptions(app.Enum.classType),
                 payType: tools.toOptions(app.Enum.payTypeText),
                 partnerQualification: tools.toOptions(app.Enum.partnerQualification)
-            };
-            app.rootScope.pagination = {
-              templates:angular.copy(app.default_page),
-              courses:angular.copy(app.default_page),
-              partners:angular.copy(app.default_page)
             };
             Auth.checkUser();
 

@@ -1,12 +1,20 @@
 app.factory('tools', ['Enum', function (Enum) {
 
     return  {
+        clearReferenceObj:clearReferenceObj,
         toOptions: toOptions,
         toImgLabelValue: toImgLabelValue,
         toImgLabelOptions: toImgLabelOptions,
         mapToIdObjList: mapToIdObjList,
         toSchoolTimeList: toSchoolTimeList
     };
+
+    function clearReferenceObj(obj){
+        angular.forEach(obj, function (v, k) {
+            obj[k] = undefined;
+        });
+    }
+
     /**
      * 将value和name的键值对转换成选项的数组
      * @param obj {<value>:<name>}

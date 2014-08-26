@@ -5,11 +5,15 @@
             <label>审核状态</label>
             <li class="nav-divider"></li>
             <tab ng-repeat="a in tabs" heading="{{a.label}}" active="a.active"
-                 select="chooseTab(a)">
+                 ng-click="chooseTab(a)">
             </tab>
             <li class="nav-divider"></li>
         </tabset>
-        <!--<label ng-hide="1">当前筛选</label>-->
+        <div ng-repeat="(k,v) in search" ng-if="v">
+            <p ng-show="$index==0"><strong>当前筛选</strong>
+            <hr/></p>
+            <span ng-show="k=='id'">模板</span>{{k|searchText}} : {{v}}
+        </div>
     </div>
     <div class="col-xs-10 pull-right">
         <form class="form-horizontal filter-form">
@@ -17,26 +21,26 @@
                 <label ng-if="global.isAdmin" class="control-label">机构ID</label>
                 <div ng-if="global.isAdmin">
                     <input type="text" class="form-control input-sm"
-                           ng-model="filter_tmp.partnerId"/>
+                           ng-model="search_tmp.partnerId"/>
                 </div>
-                <label class="control-label" for="">模板号</label>
+                <label class="control-label" for="">模板ID</label>
                 <div><input type="text" class="form-control input-sm"
-                       ng-model="filter_tmp.id"/></div>
+                       ng-model="search_tmp.id"/></div>
                 <label class="control-label" for="">模板名</label>
                 <div><input type="text" class="form-control input-sm"
-                       ng-model="filter_tmp.courseName"/></div>
+                       ng-model="search_tmp.courseName"/></div>
             </div>
             <div class="form-group">
                 <label></label>
                 <div>
                     <button class="btn btn-primary btn-sm" ng-click="doRefresh()"><i class="fa fa-search"></i> 查 询</button>
-                    <button class="btn btn-default btn-sm" ng-click="clearFilter()">清空输入</button>
+                    <button class="btn btn-default btn-sm" ng-click="clearSearch()">清空输入</button>
                 </div>
             </div>
         </form>
         <div class="row">
-            <pre class="col-xs-6">filter{{filter|json}}</pre>
-            <pre class="col-xs-6">filter_tmp{{filter_tmp|json}}</pre>
+            <pre class="col-xs-6">search{{search|json}}</pre>
+            <pre class="col-xs-6">search_tmp{{search_tmp|json}}</pre>
         </div>
 
 

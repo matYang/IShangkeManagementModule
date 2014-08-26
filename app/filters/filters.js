@@ -156,4 +156,11 @@ appFilters
             };
         }
     ])
+    .filter('searchText', ['app',
+        function (app) {
+            return function (value) {
+                return app.Enum.searchText[value] || '未知查询条件';
+            };
+        }
+    ])
 ;

@@ -29,12 +29,6 @@ app.value('Enum', {
             1: '已认证',
             0: '未认证'
         },
-        //关于页面的text 使用key对应中文
-        PageText: {
-            'partners': '合作机构',
-            'templates': '课程模板',
-            'courses': '课程'
-        },
         //支付方式的test
         payTypeText:{
             0:'线上支付',
@@ -118,6 +112,21 @@ app.value('Enum', {
             'offlineQuit': '用户退学',
             'offlineStartSchool': '已开学',
             'offlineEnroll': '入学成功'
+        },
+        //关于页面的text 使用key对应中文
+        PageText: {
+            'partners': '合作机构',
+            'templates': '课程模板',
+            'courses': '课程'
+        },
+        searchText:{
+            'id':'ID',
+            'courseTemplateId':'模板号',
+            'courseId':'课程号',
+            'courseName':'课程/模板名',
+            'partnerId':'机构ID',
+            'reference':'订单号'
         }
+
     }
 );
