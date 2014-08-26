@@ -37,11 +37,9 @@ appControllers.controller('coursesCtrl',
         $scope.clearSearch = function () {
             app.tools.clearReferenceObj($scope.search_tmp);
         };
-        //根据 过滤信息和分页信息 刷新课程模板列表
+
+        //根据 过滤信息和分页信息 刷新课程列表 保持当前查询条件
         var doRefresh = $scope.doRefresh = function () {
-            //更新当前数据的筛选条件
-            app.tools.clearReferenceObj($scope.search);
-            angular.extend($scope.search, $scope.search_tmp);
             //使用课程模板资源请求数据 筛选条件为当前选择的值
             restAPI.get(angular.extend({partnerId: $scope.partnerId}, $scope.filter, $scope.search, $scope.page), function (data) {
                 $scope.items = data.data;
@@ -51,6 +49,13 @@ appControllers.controller('coursesCtrl',
             }, function () {
                 app.window.alert('数据获取失败!')
             });
+        };
+        //查询操作 更改查询条件后进行刷新
+        $scope.doSearch = function(){
+            //更新当前数据的筛选条件
+            app.tools.clearReferenceObj($scope.search);
+            angular.extend($scope.search, $scope.search_tmp);
+            doRefresh();
         };
         //页面首次加载时refresh
         doRefresh();
