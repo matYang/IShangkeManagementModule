@@ -38,13 +38,6 @@
         <p class="form-control-static">定制</p>
     </div>
 </div>
-<div class="form-group form-group-sm" ng-if="template.originalPrice">
-    <label class="col-xs-3 control-label">原价格</label>
-
-    <div class="col-xs-3">
-        <p class="form-control-static">{{template.originalPrice|currency}}</p>
-    </div>
-</div>
 <div class="form-group form-group-sm" ng-if="template.price">
     <label class="col-xs-3 control-label">爱上课价格</label>
 
@@ -52,6 +45,15 @@
         <p class="form-control-static">{{template.price|currency}}</p>
     </div>
 </div>
+<div class="form-group form-group-sm" ng-if="template.price">
+    <label class="col-xs-3 control-label">原价格</label>
+
+    <div class="col-xs-3">
+        <p class="form-control-static" ng-if="template.originalPrice">{{course.originalPrice|currency}}</p>
+        <p class="form-control-static" ng-if="!template.originalPrice">同爱上课价格</p>
+    </div>
+</div>
+
 <div class="form-group form-group-sm">
     <label class="col-xs-3 control-label">优惠信息</label>
 
@@ -66,18 +68,18 @@
         <p class="form-control-static">{{template.bookingType | payTypeText}}</p>
     </div>
 </div>
-<div class="form-group form-group-sm" ng-if="template.originalPrice">
+<div class="form-group form-group-sm">
     <label class="col-xs-3 control-label">线下支付返现</label>
 
     <div class="col-xs-3">
-        <p class="form-control-static">{{template.cashback|currency}}</p>
+        <p class="form-control-static">{{(template.cashback|currency)||'-- --'}}</p>
     </div>
 </div>
-<div class="form-group form-group-sm" ng-if="template.originalPrice">
+<div class="form-group form-group-sm">
     <label class="col-xs-3 control-label">在线支付立减</label>
 
     <div class="col-xs-3">
-        <p class="form-control-static">{{template.commission|currency}}</p>
+        <p class="form-control-static">{{(template.commission|currency)||'-- --'}}</p>
     </div>
 </div>
 
