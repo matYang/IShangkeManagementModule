@@ -49,20 +49,22 @@
         <p class="form-control-static">定制</p>
     </div>
 </div>
-<div class="form-group form-group-sm" ng-if="course.originalPrice">
-    <label class="col-xs-3 control-label">原价格(*)</label>
-
-    <div class="col-xs-3">
-        <p class="form-control-static">{{course.originalPrice|currency}}</p>
-    </div>
-</div>
-<div class="form-group form-group-sm" ng-if="course.originalPrice">
+<div class="form-group form-group-sm" ng-if="course.price">
     <label class="col-xs-3 control-label">爱上课价格(*)</label>
 
     <div class="col-xs-3">
         <p class="form-control-static">{{course.price|currency}}</p>
     </div>
 </div>
+<div class="form-group form-group-sm" ng-if="course.price">
+    <label class="col-xs-3 control-label">原价格(*)</label>
+
+    <div class="col-xs-3">
+        <p class="form-control-static" ng-if="course.originalPrice">{{course.originalPrice|currency}}</p>
+        <p class="form-control-static" ng-if="!course.originalPrice">同爱上课价格</p>
+    </div>
+</div>
+
 
 <div class="form-group form-group-sm">
     <label class="col-xs-3 control-label">支付方式</label>
@@ -71,18 +73,18 @@
         <p class="form-control-static">{{course.bookingType | payTypeText}}</p>
     </div>
 </div>
-<div class="form-group form-group-sm" ng-if="course.originalPrice">
+<div class="form-group form-group-sm">
     <label class="col-xs-3 control-label">线下支付返现</label>
 
     <div class="col-xs-3">
-        <p class="form-control-static">{{course.cashback|currency}}</p>
+        <p class="form-control-static">{{(course.cashback|currency)||'-- --'}}</p>
     </div>
 </div>
-<div class="form-group form-group-sm" ng-if="course.originalPrice">
+<div class="form-group form-group-sm">
     <label class="col-xs-3 control-label">在线支付立减</label>
 
     <div class="col-xs-3">
-        <p class="form-control-static">{{course.commission|currency}}</p>
+        <p class="form-control-static">{{(course.commission|currency)||'-- --'}}</p>
     </div>
 </div>
 
@@ -91,13 +93,12 @@
 <div class="form-group form-group-sm">
     <label class="col-xs-3 control-label">优惠信息</label>
 
-    <div class="col-xs-3">
+    <div class="col-xs-5">
         <p class="form-control-static">{{course.marking}}</p>
     </div>
 </div>
 <div class="form-group form-group-sm">
     <label class="col-xs-3 control-label">是否有具体开课日期</label>
-
     <div class="col-xs-7">
         <p class="form-control-static">
             <span ng-if="course.startUponArrival==1">是</span>
@@ -107,11 +108,11 @@
         </p>
     </div>
 </div>
-<div class="form-group form-group-sm" ng-if="course.startUponArrival==1">
+<div class="form-group form-group-sm" ng-if="course.startUponArrival==0">
     <label class="col-xs-3 control-label">开课日期</label>
 
     <div class="col-xs-3">
-        <p class="form-control-static">{{course.startDate|date}} 至 {{course.finishDate|date}}</p>
+        <p class="form-control-static">{{(course.startDate|date)||'--'}} 至 {{(course.finishDate|date)||'--'}}</p>
     </div>
 </div>
 <div class="form-group form-group-sm">
@@ -134,13 +135,13 @@
             {{course.schooltimeWeek|schooltimeWeek}}-{{course.schooltimeDay|schooltimeDay}}</p>
     </div>
 </div>
-<div class="form-group form-group-sm">
-    <label class="col-xs-3 control-label">上课日子</label>
+<!--<div class="form-group form-group-sm">-->
+    <!--<label class="col-xs-3 control-label">上课日子</label>-->
 
-    <div class="col-xs-3">
-        <p class="form-control-static">{{course.studyDays|studyDays}}</p>
-    </div>
-</div>
+    <!--<div class="col-xs-3">-->
+        <!--<p class="form-control-static">{{course.studyDays|studyDays}}</p>-->
+    <!--</div>-->
+<!--</div>-->
 
 
 <!--<div class="form-group form-group-sm">-->
