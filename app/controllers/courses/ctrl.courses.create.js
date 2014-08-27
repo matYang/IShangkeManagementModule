@@ -71,6 +71,11 @@ appControllers.controller('coursesCreateCtrl',
                     //解析schooltimeDay from number value to number list:7-->[1,2,4]
                     template.schooltimeDay = app.tools.toSchoolTimeList(template.schooltimeDay,app.Enum.schooltimeDay);
                     template.schooltimeWeek = app.tools.toSchoolTimeList(template.schooltimeWeek,app.Enum.schooltimeWeek);
+
+                    //转换多选框选择的值
+                    template.teacherList = app.tools.toImgLabelValue(template.teacherList);
+                    //默认选择所有的值 不进行选项的转换
+//                    template.classPhotoList = app.tools.toImgLabelValue(template.classPhotoList);
                     //过滤tempalte中无用的信息
                     template.courseTemplateId = template.id;
                     delete template.id;
@@ -80,13 +85,7 @@ appControllers.controller('coursesCreateCtrl',
                     delete template.rating;
                     delete template.ratingEnd;
                     delete template.ratingStart;
-                    //获取课程模板的详情用来填充所有选项
-                    //解析schooltimeDay from number value to number list:7-->[1,2,4]
-                    template.schooltimeDay = app.tools.toSchoolTimeList(template.schooltimeDay);
-                    //转换多选框选择的值
-                    template.teacherList = app.tools.toImgLabelValue(template.teacherList);
-                    //默认选择所有的值 不进行选项的转换
-//                    template.classPhotoList = app.tools.toImgLabelValue(template.classPhotoList);
+                    
 
                     $scope.course = template;
                 }, function () {

@@ -79,7 +79,7 @@ app.factory('tools', ['Enum', function (Enum) {
         //value = 1 or + 2 or + 4
         var list = [];
         if(textEnum === undefined){//the default value
-            textEnum = [3,4];
+            textEnum = [1,2,4];
         }
         angular.forEach(textEnum, function (v, k) {//k is the number value in schooltimeDay
             if ((k & val ) !== 0)
