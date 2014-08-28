@@ -4,6 +4,7 @@
     </h4>
 </div>
 <div class="modal-body">
+    <div class="loading" ng-show="loading"></div>
     <ul class="list-group">
         <li class="list-group-item" ng-repeat="item in items track by item.id"
             ng-class="{'active':item.id===selected.item.id}"

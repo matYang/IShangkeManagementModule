@@ -6,8 +6,10 @@ appControllers.controller('chooseCtrl', ['$scope', 'app', '$modalInstance', 'opt
         $scope.page = angular.copy(app.default_page);
         $scope.items = [];
         $scope.selected = {};
+        $scope.loading = false;
 
         var doRefresh = $scope.doRefresh = function () {
+            $scope.loading = true;
             var resource = {};
             if (optionName == 'partners') {
                 resource = app.restAPI[optionName].get(angular.extend({}, $scope.page));
@@ -20,6 +22,8 @@ appControllers.controller('chooseCtrl', ['$scope', 'app', '$modalInstance', 'opt
                 $scope.page.count = data.count;
                 $scope.page.total = data.total;
             }, function () {
+            })['finally'](function(){
+                $scope.loading = false;
             });
         };
         doRefresh();
