@@ -46,6 +46,7 @@ appServices
                     //测试模式使用GET
                     methods = {
                         'query': {method: 'GET', isArray: false},
+                        'save': { method: 'GET' },
                         'post': { method: 'GET' },
                         'update': { method: 'GET' },
                         'operate': { method: 'GET' },

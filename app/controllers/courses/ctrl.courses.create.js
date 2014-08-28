@@ -94,25 +94,17 @@ appControllers.controller('coursesCreateCtrl',
             });
         };
         $scope.clear = function () {
-            //保留不可更改的数据
-            $scope.course = {
-                partnerId: $scope.course.partnerId,
-                courseTemplateId: $scope.course.courseTemplateId,
-                courseName: $scope.course.courseName,
-                originalPrice: $scope.course.originalPrice,
-                price: $scope.course.price,
-                cashback: $scope.course.cashback,
-                bookingType: $scope.course.bookingType,
-                categoryValue: $scope.course.categoryValue,
-                //默认选择所有的照片
-                classPhotoList: $scope.course.classPhotoList,
-                //强制清空富文本编辑器中的内容
-                prerequest:'',
-                outline:'',
-                suitableStudent:'',
-                courseIntro:'',
-                goal:''
-            };
+            //清空课程创建中输入的信息
+            var shouldClearList = ['startUponArrival','regPhone',
+                'startDate','finishDate',
+                'startTime1','finishTime1',
+                'startTime2','finishTime2',
+                'schooltimeDay','schooltimeWeek','cutoffDate',
+                'qualityAssurance',
+                'addressId','locationId','regAddressId','teacherList'];
+            angular.forEach(shouldClearList,function(attr){
+                $scope.course[attr] = undefined;
+            });
             app.window.scrollTo(0, 0);
         };
         $scope.submitCourse = function (course) {
