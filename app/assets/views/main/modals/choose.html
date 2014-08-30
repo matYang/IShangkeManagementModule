@@ -5,7 +5,7 @@
 </div>
 <div class="modal-body">
     <div class="loading" ng-show="loading"></div>
-    <ul class="list-group">
+    <ul class="list-group no-margin">
         <li class="list-group-item" ng-repeat="item in items track by item.id"
             ng-class="{'active':item.id===selected.item.id}"
             ng-click="selected.item = item" ng-dblclick="selected.item = item;ok()">
@@ -20,10 +20,10 @@
     <div class="pull-left" ng-if="items!==''">
         <pagination class="no-margin" ng-model="page.start" total-items="page.total" items-per-page="page.count"
                     ng-change="doRefresh()"
-                    max-size="5"
+                    max-size="4"
                     class="pagination-sm"
                     boundary-links="true" rotate="false" num-pages="total_pages"
-                    previous-text="上一页" next-text="下一页"></pagination>
+                    previous-text="上页" next-text="下页"></pagination>
     </div>
     <div class="pull-right">
         <button class="btn btn-primary" ng-click="ok()">确定</button>
