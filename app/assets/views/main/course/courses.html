@@ -6,7 +6,7 @@
             <label>审核状态</label>
             <li class="nav-divider"></li>
             <tab ng-repeat="a in tabs" heading="{{a.label}}" active="a.active"
-                 select="chooseTab(a)">
+                 ng-click="chooseTab(a)">
             </tab>
             <li class="nav-divider"></li>
         </tabset>
