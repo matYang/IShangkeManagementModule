@@ -71,10 +71,10 @@ appControllers.controller('templatesCtrl',
                 promise = restAPI.operate({ID: id, OP: op}, {id: id});
             }
             promise.$promise.then(function (data) {
-                app.toaster.pop('success', "课程" + id + "操作成功", "");
+                app.toaster.pop('success', "课程模板" + id + "操作成功", "");
                 doRefresh();
             }, function (data) {
-                app.toaster.pop('error', "课程" + id + "操作失败", "");
+                app.toaster.pop('error', "课程模板" + id + "操作失败", "");
             })
         };
 
