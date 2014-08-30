@@ -15,18 +15,17 @@
         </li>
     </ul>
     <div ng-if="items===''" class="text-center">暂未创建任何{{title}}</div>
-
 </div>
 <div class="modal-footer">
-    <ul class="pager no-margin pull-right" ng-if="items!==''">
-        <li><a ng-click="prePage()" ng-if="page.start >= page.count"
-               class="ion-ios7-arrow-left icon-left button button-clear button-dark">上一页
-        </a></li>
-        <li><a ng-click="nexPage()" ng-if="page.start + page.count < page.total"
-               class="ion-ios7-arrow-right icon-right button button-clear button-dark">下一页
-        </a></li>
-    </ul>
-    <div class="pull-left">
+    <div class="pull-left" ng-if="items!==''">
+        <pagination class="no-margin" ng-model="page.start" total-items="page.total" items-per-page="page.count"
+                    ng-change="doRefresh()"
+                    max-size="5"
+                    class="pagination-sm"
+                    boundary-links="true" rotate="false" num-pages="total_pages"
+                    previous-text="上一页" next-text="下一页"></pagination>
+    </div>
+    <div class="pull-right">
         <button class="btn btn-primary" ng-click="ok()">确定</button>
         <button class="btn btn-default" ng-click="cancel()">取消</button>
     </div>
