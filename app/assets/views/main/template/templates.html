@@ -74,11 +74,6 @@
                         </a>
                         <a ng-if="op.name=='delete'" ng-really-click="operate(item.id,op.name)" ng-really-message="确认删除">删除</a>
                     </span>
-
-                    <!--<a ng-repeat="op in item.actionList" ng-click="operate(item.id,op.name)">-->
-                        <!--<span ng-if="op.name=='submitUpdated'">修改</span>-->
-                        <!--<span ng-if="op.name!='submitUpdated'">{{op.name | courseOperationText}}</span>-->
-                    <!--</a>-->
                 </td>
             </tr>
             </tbody>
