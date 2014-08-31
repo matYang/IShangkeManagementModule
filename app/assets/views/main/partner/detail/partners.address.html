@@ -29,7 +29,7 @@
     <tbody>
     <tr ng-repeat="a in addresses track by a.id">
         <!--不在编辑状态中-->
-        <td ng-hide="a.edit"><a ng-href="http://api.map.baidu.com/staticimage?width=600&height=400&zoom=14&center={{a.detail}}&markers={{a.detail}}" target="_blank">{{a.detail}}</a></td>
+        <td ng-hide="a.edit"><a ng-href="http://api.map.baidu.com/staticimage?width=600&height=400&zoom=14&center={{a.detail|formatAddr}}&markers={{a.detail|formatAddr}}" target="_blank">{{a.detail}}</a></td>
         <td ng-hide="a.edit">{{a.lat}}</td>
         <td ng-hide="a.edit">{{a.lng}}</td>
         <!--进入编辑状态-->

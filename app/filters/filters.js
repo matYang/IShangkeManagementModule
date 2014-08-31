@@ -163,4 +163,11 @@ appFilters
             };
         }
     ])
+    .filter('formatAddr', ['app',
+        function (app) {
+            return function (value) {
+                return value.split('（')[0];
+            };
+        }
+    ])
 ;
