@@ -2,16 +2,13 @@
 //table中的th
 app.factory('PageView', ['app',
     function (app) {
+        var now = new Date();
         var common = {
             statusTabs: [
                 {label: '已上线', active: true, value: {status: 2}},
                 {label: '待审核', active: false, value: {status: 0}},
                 {label: '审核失败', active: false, value: {status: 1} },
                 {label: '已下线', active: false, value: {status: 3}}
-            ],
-            partnerTabs: [
-                {label: '已上线', active: true, value: {status: 0}},
-                {label: '已下线', active: false, value: {status: 1}}
             ],
             bookingTh: [
                 //n--name w-width percent
@@ -31,26 +28,32 @@ app.factory('PageView', ['app',
                 tabs: [
                     {
                         label: '今日待处理', active: true,
-                        value: {status: 0, createTimeStart: new Date().getTime()}
+                        value: {statusSet: [0, 13], createTimeStart: Date.parse([now.getFullYear(), now.getMonth() + 1].join('-'))}
                     },
                     {
                         label: '往日待处理', active: false,
-                        value: {status: 0, createTimeEnd: new Date().getTime()}
+                        value: {statusSet: [0, 13], createTimeEnd: Date.parse([now.getFullYear(), now.getMonth() + 1].join('-'))}
                     }
                 ],
-                th: common.bookingTh
+                th: common.bookingTh,
+                pagination: angular.copy(app.default_page),
+                filter: {statusSet: [0, 13], createTimeStart: Date.parse([now.getFullYear(), now.getMonth() + 1].join('-'))},//过滤条件 点击生成的条件
+                search: {}//查询条件 手动输入的条件
             },
             oldBookings: {
                 tabs: [
                     {label: '待审核', active: true, value: {status: 0, createTimeStart: new Date().getTime()}},
                     {label: '往日待处理', active: false, value: {status: 0, createTimeEnd: new Date().getTime()}}
                 ],
-                th: common.bookingTh
+                th: common.bookingTh,
+                pagination: angular.copy(app.default_page),
+                filter: {status: 0},//过滤条件 tab的过滤条件
+                search: {}//查询条件 手动输入的条件
             },
             templates: {
                 pagination: angular.copy(app.default_page),
-                filter:{},//过滤条件 点击生成的条件
-                search:{},//查询条件 手动输入的条件
+                filter: {status: 2},//过滤条件 点击生成的条件
+                search: {},//查询条件 手动输入的条件
                 tabs: angular.copy(common.statusTabs),
                 th: [
                     {n: '模板号', w: '10'},
@@ -63,8 +66,8 @@ app.factory('PageView', ['app',
             },
             courses: {
                 pagination: angular.copy(app.default_page),
-                filter:{},//过滤条件 点击生成的条件
-                search:{},//查询条件 手动输入的条件
+                filter: {status: 2},//过滤条件 tab的过滤条件
+                search: {},//查询条件 手动输入的条件
                 tabs: angular.copy(common.statusTabs),
                 th: [
                     {n: '课程号', w: '10'},

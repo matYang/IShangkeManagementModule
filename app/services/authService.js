@@ -61,8 +61,8 @@ appServices.factory('Auth',
                         self.initPartner(); //进行partner信息的初始化
                         $log.log('login success');
                         defer.resolve(result_user);
-                    }, function () {
-                        defer.reject('login failed');
+                    }, function (data) {
+                        defer.reject(data&&data.message||'服务器异常');
                     });
                     return defer.promise;
                 },

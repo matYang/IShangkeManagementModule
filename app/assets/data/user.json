@@ -2,6 +2,5 @@
     "id":11,
     "name": "ishangke",
     "reference": "ishangke",
-    "group": "admin_group1",
-    "partnerId":1
+    "group": "admin_group1"
 }

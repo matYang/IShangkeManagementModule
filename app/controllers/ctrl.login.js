@@ -12,11 +12,9 @@ appControllers.controller('loginCtrl',
             Auth.login(data).then(function(user){
                 app.toaster.pop('success','登录成功','欢迎你，'+user.name);
                 app.state.go('main.home');
-            },function(){
-                app.toaster.pop('error','未知错误')
+            },function(message){
+                app.toaster.pop('error',message);
             });
-
-
         }
     }]
 );

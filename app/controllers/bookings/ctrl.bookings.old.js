@@ -3,51 +3,63 @@ appControllers.controller('oldBookingsCtrl',
     ['$scope', 'restAPI', 'app', function ($scope, restAPI, app) {
         var restAPI = restAPI.bookings;
         var pageView = app.PageView['oldBookings'];
-        //标签页的tab filter
-        var filter_tab = {};
-        $scope.tabs = pageView.tabs;
-        $scope.th = pageView.th;
 
-        var init = function(){
-            filter_tab = {};
-            $scope.items = [];
-            $scope.page = angular.copy(app.default_page);
-            //filter选择的值 用户展现当前数据的筛选条件
-            $scope.filter = {};
-            //filter临时存储 用于用户输入
-            $scope.filter_tmp = angular.copy($scope.filter);
+        /*page config*/
+        $scope.tabs = pageView.tabs;//页面的tabs应与filter_tab(from tab.value)的值对应
+        $scope.th = pageView.th;
+        $scope.page = pageView.pagination;
+
+        /*filters*/
+        $scope.filter = pageView.filter;//标签页的tab filter
+        $scope.search = pageView.search;//filter选择的值 当前数据的筛选条件
+        $scope.search_tmp = {};//filter临时存储 用于用户输入
+
+        //todo 这里进行权限管理
+        $scope.partnerId = app.rootScope.global.user && app.rootScope.global.user.partnerId;
+        //条件查询(点击tab)前需要清空当前的分页和用户输入的search
+        var beforeQuery = function () {
+            $scope.items = [];//条件查询时直接置空列表数据
+            $scope.search_tmp = {};
+            //重置分页信息 这里的值
+            angular.extend($scope.page,app.default_page);
+            //在避免更改对象引用的情况下将所有查询值设为undefined
+            app.tools.clearReferenceObj($scope.filter);
         };
-        init();
 
         //tab选择事件
         $scope.chooseTab = function (tab) {
-            filter_tab = {};
-            $scope.clearFilter();
+            beforeQuery();
             angular.forEach(tab.value, function (v, k) {
-                filter_tab[k] = v;
+                $scope.filter[k] = v;//重新设置选中的filter
             });
-            app.log.log('filter_tab:'+angular.toJson(filter_tab));
+            app.log.log('filter_tab:' + angular.toJson($scope.filter));
             doRefresh();
         };
-        $scope.clearFilter = function () {
-            angular.forEach($scope.filter_tmp, function (v, k) {
-                $scope.filter_tmp[k] = undefined;
-            });
+        $scope.clearSearch = function () {
+            app.tools.clearReferenceObj($scope.search_tmp);
         };
 
         var doRefresh = $scope.doRefresh = function () {
             //使用课程模板资源请求数据 筛选条件为当前选择的值
-            restAPI.get(angular.extend({}, filter_tab, $scope.filter_tmp, $scope.page), function (data) {
+            restAPI.get(angular.extend({partnerId: $scope.partnerId}, $scope.filter, $scope.search, $scope.page), function (data) {
                 //更新当前数据的筛选条件
-                $scope.filter = angular.copy($scope.filter_tmp);
                 $scope.items = data.data;
                 $scope.page.start = data.start;
                 $scope.page.count = data.count;
                 $scope.page.total = data.total;
             }, function () {
-                //error
+                app.window.alert('数据获取失败!')
             });
         };
+        //查询操作 更改查询条件后进行刷新
+        $scope.doSearch = function(){
+            //更新当前数据的筛选条件
+            app.tools.clearReferenceObj($scope.search);
+            angular.extend($scope.search, $scope.search_tmp);
+            doRefresh();
+        };
+        //页面首次加载时refresh
+        doRefresh();
         /******************用户操作事件*****************/
             //订单操作
         $scope.operate = function (id, op) {

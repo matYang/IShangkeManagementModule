@@ -23,7 +23,7 @@ appControllers.controller('searchBookingsCtrl',
 
         var doRefresh = $scope.doRefresh = function () {
             var filter_tmp = angular.copy($scope.filter_tmp);
-            if (filter_tmp.createTimeEnd) {
+            if (filter_tmp.createTimeEnd) {//结束日期应包括这天结束
                 filter_tmp.createTimeEnd += 24 * 3600 * 1000;
             }
             //使用课程模板资源请求数据 筛选条件为当前选择的值
@@ -38,6 +38,7 @@ appControllers.controller('searchBookingsCtrl',
                 app.toaster.pop('error', '查询失败,请稍后再试');
             });
         };
+        doRefresh();
         /******************用户操作事件*****************/
             //订单操作
         $scope.operate = function (id, op) {

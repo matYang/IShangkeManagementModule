@@ -15,17 +15,19 @@ appControllers.controller('templatesCtrl',
         $scope.search = pageView.search;//filter选择的值 当前数据的筛选条件
         $scope.search_tmp = {};//filter临时存储 用于用户输入
 
+        //todo 这里进行权限管理
         $scope.partnerId = app.rootScope.global.user && app.rootScope.global.user.partnerId;
         //条件查询(点击tab)前需要清空当前的分页和用户输入的search
         var beforeQuery = function () {
             $scope.items = [];//条件查询时直接置空列表数据
             $scope.search_tmp = {};
             //重置分页信息 这里的值
-            angular.extend($scope.page,app.default_page);
+            angular.extend($scope.page, app.default_page);
             //在避免更改对象引用的情况下将所有查询值设为undefined
             app.tools.clearReferenceObj($scope.filter);
         };
-        //tab选择事件 首次加载active的tab时就会进行调用
+
+        //tab选择事件
         $scope.chooseTab = function (tab) {
             beforeQuery();
             angular.forEach(tab.value, function (v, k) {
@@ -42,6 +44,7 @@ appControllers.controller('templatesCtrl',
         var doRefresh = $scope.doRefresh = function () {
             //使用课程模板资源请求数据 筛选条件为当前选择的值
             restAPI.get(angular.extend({partnerId: $scope.partnerId}, $scope.filter, $scope.search, $scope.page), function (data) {
+                //更新当前数据的筛选条件
                 $scope.items = data.data;
                 $scope.page.start = data.start;
                 $scope.page.count = data.count;
@@ -51,7 +54,7 @@ appControllers.controller('templatesCtrl',
             });
         };
         //查询操作 更改查询条件后进行刷新
-        $scope.doSearch = function(){
+        $scope.doSearch = function () {
             //更新当前数据的筛选条件
             app.tools.clearReferenceObj($scope.search);
             angular.extend($scope.search, $scope.search_tmp);
