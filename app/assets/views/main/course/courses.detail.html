@@ -377,14 +377,12 @@
         <li ng-click="doRefresh()">
             <a><i class="fa fa-refresh"></i> 刷新</a>
         </li>
-        <li ng-repeat="op in course.actionList" >
-            <a ng-if="op.name=='submitUpdated'" ng-click="operate(course.id,op.name)">
-                修改
-            </a>
-            <a ng-if="op.name!='submitUpdated'&&op.name!='delete'" ng-click="operate(course.id,op.name)">
+        <li ng-repeat="op in template.actionList" >
+            <a ng-if="op.name=='submitUpdated'" ng-click="operate(template.id,op.name)">修改</a>
+            <a ng-if="op.name!='submitUpdated'&&op.name!='delete'" ng-click="operate(template.id,op.name)">
                 {{op.name | courseOperationText}}
             </a>
-            <a ng-if="op.name=='delete'" ng-really-click="operate(course.id,op.name)" ng-really-message="确认删除">删除</a>
+            <a ng-if="op.name=='delete'" ng-really-click="operate(template.id,op.name)" ng-really-message="确认删除">删除</a>
         </li>
     </ul>
 </div>

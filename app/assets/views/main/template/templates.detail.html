@@ -320,9 +320,7 @@
             <a><i class="fa fa-refresh"></i> 刷新</a>
         </li>
         <li ng-repeat="op in template.actionList" >
-            <a ng-if="op.name=='submitUpdated'" ng-click="operate(template.id,op.name)">
-                修改
-            </a>
+            <a ng-if="op.name=='submitUpdated'" ng-click="operate(template.id,op.name)">修改</a>
             <a ng-if="op.name!='submitUpdated'&&op.name!='delete'" ng-click="operate(template.id,op.name)">
                 {{op.name | courseOperationText}}
             </a>

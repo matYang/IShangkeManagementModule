@@ -62,9 +62,7 @@
                 <td class="operations">
                     <a ui-sref="main.templates.detail({id:item.id})">查看</a>
                     <span ng-repeat="op in item.actionList" >
-                        <a ng-if="op.name=='submitUpdated'" ng-click="operate(item.id,op.name)">
-                            修改
-                        </a>
+                        <a ng-if="op.name=='submitUpdated'" ng-click="operate(item.id,op.name)">修改</a>
                         <a ng-if="op.name!='submitUpdated'&&op.name!='delete'" ng-click="operate(item.id,op.name)">
                             {{op.name | courseOperationText}}
                         </a>
