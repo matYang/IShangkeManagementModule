@@ -29,7 +29,14 @@ appServices.factory('Auth',
 //                    return defer.promise;
 
                     //sync method to check user
-                    var xhr = new window.XMLHttpRequest();//ie>8
+                    var xhr;
+                    if (window.XMLHttpRequest) {
+                        xhr = new window.XMLHttpRequest();//ie>8
+                    } else if (window.ActiveXObject) {
+                        xhr = new window.ActiveXObject("Microsoft.XMLHTTP");
+                    } else {
+                        return;
+                    }
                     if (app.test_mode) {
                         xhr.open('GET', '/data/user.json', false);
                     } else {
