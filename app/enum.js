@@ -82,6 +82,7 @@ app.value('Enum', {
             'submitNew': '提交审核',
             'reject': '拒绝审核',
             'approve': '接受审核',
+            'submitUpdated': '提交修改',
             'delete': '删除',
             'takeOffline': '下线'
         },
