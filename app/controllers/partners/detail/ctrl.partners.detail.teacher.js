@@ -20,13 +20,33 @@ appControllers.controller('partnersTeacherCtrl',
         $scope.doRefresh();
 
         /**
-         * 进入和退出编辑模式
+         * 进入和退出编辑模式 修改为打开modal
          */
         $scope.editTeacher = function ($index) {
             //在edit更改前进行原始teacher的保存
             var teacher = angular.copy($scope.teachers[$index]);
-            teachers_edit[teacher.id] = teacher;
-            $scope.teachers[$index].edit = true;
+
+            var modalInstance = app.modal.open({
+                templateUrl: '/views/main/modals/editImg.html',
+                controller: 'editImgCtrl',
+                size: 'md',
+                resolve: {
+                    args: function () {
+                        return{
+                            item: teacher,
+                            uploadUrl: uploadUrl,
+                            name: 'teachers'
+                        }
+                    }
+                }
+            });
+
+            modalInstance.result.then(function (new_item) {
+                $scope.teachers[$index] = new_item;
+            }, function () {
+            });
+//            teachers_edit[teacher.id] = teacher;//保存修改前的数据 便于后续恢复
+//            $scope.teachers[$index].edit = true;//进入编辑模式
         };
         $scope.cancelEdit = function($index){
             var id = $scope.teachers[$index].id;
@@ -37,18 +57,18 @@ appControllers.controller('partnersTeacherCtrl',
         /**
          * 教师信息的更新和删除
          */
-        $scope.updateTeacher = function ($index) {
-            var teacher = angular.copy($scope.teachers[$index]);
-            delete teacher.edit;
-            delete teacher.uploading;
-            Teachers.update({ID: teacher.id}, teacher, function (data) {
-                $scope.teachers[$index].edit = false;
-                delete teachers_edit[teacher.id];
-                app.toaster.pop('success', "教师>" + teacher.name + "的资料更新成功", "");
-            }, function () {
-                app.toaster.pop('error', "教师>" + teacher.name + "的资料更新失败", "");
-            });
-        };
+//        $scope.updateTeacher = function ($index) {
+//            var teacher = angular.copy($scope.teachers[$index]);
+//            delete teacher.edit;
+//            delete teacher.uploading;
+//            Teachers.update({ID: teacher.id}, teacher, function (data) {
+//                $scope.teachers[$index].edit = false;
+//                delete teachers_edit[teacher.id];
+//                app.toaster.pop('success', "教师>" + teacher.name + "的资料更新成功", "");
+//            }, function () {
+//                app.toaster.pop('error', "教师>" + teacher.name + "的资料更新失败", "");
+//            });
+//        };
         $scope.deleteTeacher = function ($index) {
             Teachers.delete({ID: $scope.teachers[$index].id}, function () {
                 $scope.teachers.splice($index, 1);//进行本地删除 todo seems slowly

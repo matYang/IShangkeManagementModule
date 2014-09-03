@@ -11,19 +11,21 @@
         <label>姓名</label>
 
         <p>{{teacher.name}}</p>
-        <label>简介<small>({{teacher.intro.length || 0}}字)</small></label>
+        <label>简介
+            <!--<small>({{teacher.intro.length || 0}}字)</small>-->
+        </label>
 
-        <p>{{teacher.intro}}</p>
+        <p ng-bind-html="teacher.intro"></p>
     </div>
     <!--进入编辑状态-->
-    <div ng-show="teacher.edit">
-        <input class="input-file" type="file" ng-file-select="onFileSelect($files, $index)"
-               ng-model="teacher.imgFile">
-        <label>姓名</label>
-        <input class="form-control input-sm" type="text" ng-model="teacher.name">
-        <label>简介<small>({{teacher.intro.length || 0}}字)</small></label>
-        <textarea class="form-control input-sm" ng-model="teacher.intro"></textarea>
-    </div>
+    <!--<div ng-show="teacher.edit">-->
+        <!--<input class="input-file" type="file" ng-file-select="onFileSelect($files, $index)"-->
+               <!--ng-model="teacher.imgFile">-->
+        <!--<label>姓名</label>-->
+        <!--<input class="form-control input-sm" type="text" ng-model="teacher.name">-->
+        <!--<label>简介<small>({{teacher.intro.length || 0}}字)</small></label>-->
+        <!--<textarea class="form-control input-sm" ng-model="teacher.intro"></textarea>-->
+    <!--</div>-->
 
     <p class="bottom">
         <button ng-show="teacher.edit" class="btn btn-primary btn-sm" ng-click="updateTeacher($index)">保存

@@ -1,0 +1,20 @@
+<div class="modal-header">上传{{title}}</div>
+<div class="modal-body" style="position: relative">
+    <img ng-src="{{item.imgUrl}}" alt="" class="img-md center-block"/>
+    <input class="input-file" type="file"
+           ng-file-select="onFileSelect($files, $index)"
+           ng-model="imgFile">
+    <label>姓名/标题</label>
+    <input class="form-control input-sm" type="text"
+           ng-model="item.name">
+    <label>简介/描述</label>
+    <textarea ck-editor class="form-control input-sm" type="text"
+              ng-model="item.intro"></textarea>
+</div>
+<div class="modal-footer">
+    <button class="btn btn-primary" ng-click="ok()" ng-disabled="creating">
+        <span ng-hide="creating">确定</span>
+        <span ng-show="creating">修改中。。</span>
+    </button>
+    <button class="btn btn-default" ng-click="cancel()">取消</button>
+</div>
