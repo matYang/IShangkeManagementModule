@@ -5,6 +5,7 @@
     "status": 2,
 
     "price": 1800,
+    "originalPrice": 1800,
 
     "cashback": 200,
     "bookingType":1,
