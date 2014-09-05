@@ -54,7 +54,7 @@ app.factory('tools', ['Enum', function (Enum) {
 
     /**
      * 将带有图片的列表生成(图片+名字)的选项
-     * @paramobjListt
+     * @param objList
      * @param imgKey obj中的图片url的key 默认为'imgUrl'
      * @param nameKey 显示在选项中的name key 默认为'name'
      * @returns {Array} 返回可以用于生成带有图片label的数组
