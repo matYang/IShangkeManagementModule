@@ -101,6 +101,7 @@ app.value('Enum', {
             'onlineStartSchool': '已开学',
             'onlineEnroll': '入学成功',
 
+            'offlineCancel': '取消订单',
             'offlineConfirm': '确认订单',
             'offlineReject': '拒绝订单',
             'offlinePartnerDelay': '推迟报道',
