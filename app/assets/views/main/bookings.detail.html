@@ -1,16 +1,118 @@
 <div class="row">
-    <a ui-sref="main.templates.list" class="btn fa fa-arrow-left pull-left"> Back</a>
+    <a ui-sref="main.templates.list" class="btn fa fa-chevron-left pull-left"> 返回</a>
 
     <div class="pull-right">{{ title }}</div>
 </div>
 <div class="row">
     <form class="col-xs-12 form-horizontal" role="form" name="newForm">
+        <legend>订单基本信息</legend>
+        <hr/>
+        <legend>订单课程信息</legend>
+        <div class="form-group">
+            <label class="col-xs-3 control-label">课程名</label>
 
+            <div class="col-xs-4">
+                <p class="form-control-static">{{ b.course.courseName }}</p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-xs-3 control-label">价格</label>
+
+            <div class="col-xs-4">
+                <p class="form-control-static">{{ b.course.price }}</p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-xs-3 control-label">线下返现</label>
+
+            <div class="col-xs-4">
+                <p class="form-control-static">{{ b.course.cashback }}</p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-xs-3 control-label">线上立减</label>
+
+            <div class="col-xs-4">
+                <p class="form-control-static">{{ b.course.commission }}</p>
+            </div>
+        </div>
         <div class="form-group">
             <label class="col-xs-3 control-label">订单状态</label>
 
             <div class="col-xs-4">
-                <p class="form-control-static">{{ item.name }}</p>
+                <p class="form-control-static">{{ b.status }}</p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-xs-3 control-label">创建时间</label>
+
+            <div class="col-xs-4">
+                <p class="form-control-static">{{ b.createTime | date:'yyyy-MM-dd HH:mm' }}</p>
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <label class="col-xs-3 control-label">最后修改时间</label>
+
+            <div class="col-xs-4">
+                <p class="form-control-static">{{ b.lastModifyTime | date:'yyyy-MM-dd HH:mm'}}</p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-xs-3 control-label">优惠信息</label>
+
+            <div class="col-xs-4">
+                <p class="form-control-static">{{ b.course.marking }}</p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-xs-3 control-label">开课时间（随到随学的就是没时间就是regPhone）</label>
+
+            <div class="col-xs-4">
+                <p class="form-control-static">{{ b.course.regPhone }}</p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-xs-3 control-label">上课时间（加上白天晚上）</label>
+
+            <div class="col-xs-4">
+                <p class="form-control-static">{{ b.course.startTime1 }}</p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-xs-3 control-label">订单支付方式</label>
+
+            <div class="col-xs-4">
+                <p class="form-control-static">{{ b.type }}</p>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-xs-3 control-label">课时信息</label>
+
+            <div class="col-xs-4">
+                <p class="form-control-static">{{ b.course.courseHourNum }}</p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-xs-3 control-label">机构logo</label>
+
+            <div class="col-xs-4">
+                <p class="form-control-static">{{ b.course.logoUrl }}</p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-xs-3 control-label">机构简称</label>
+            <div class="col-xs-4">
+                <p class="form-control-static">{{ b.course.instName }}</p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-xs-3 control-label">上课地址</label>
+
+            <div class="col-xs-4">
+                <p class="form-control-static">{{ b.course.address }}</p>
             </div>
         </div>
     </form>

@@ -7,7 +7,7 @@ appControllers.controller('bookingsDetailCtrl',
         $scope.doRefresh = function(){
 
             Bookings.get({ID:id},function(data){
-                $scope.item = data;
+                $scope.b = data;
             },function(){
                 //error
                 app.toaster.pop('error','订单详情获取失败，请刷新重试')
