@@ -1,7 +1,8 @@
 app.factory('tools', ['Enum', function (Enum) {
 
     return  {
-        clearReferenceObj:clearReferenceObj,
+        getDayTimestamp: getDayTimestamp,
+        clearReferenceObj: clearReferenceObj,
         toOptions: toOptions,
         toImgLabelValue: toImgLabelValue,
         toImgLabelOptions: toImgLabelOptions,
@@ -9,7 +10,21 @@ app.factory('tools', ['Enum', function (Enum) {
         toSchoolTimeList: toSchoolTimeList
     };
 
-    function clearReferenceObj(obj){
+    /**
+     * 用于获取和当前时间相差delta天的时间戳（颗粒为天）
+     * @param {number} delta 和当前时间相差的天数
+     * @returns {number} timestamp
+     */
+    function getDayTimestamp(delta) {
+        var now = new Date();
+        var timestamp = Date.parse([now.getFullYear(), now.getMonth() + 1, now.getDate()].join('-'));
+
+        if (delta === undefined) delta = 0;
+        delta = delta * 24 * 3600 * 1000;
+        return timestamp - delta;
+    }
+
+    function clearReferenceObj(obj) {
         angular.forEach(obj, function (v, k) {
             obj[k] = undefined;
         });
@@ -17,7 +32,7 @@ app.factory('tools', ['Enum', function (Enum) {
 
     /**
      * 将value和name的键值对转换成选项的数组
-     * @param obj {<value>:<name>}
+     * @param obj <value>:<name>
      * @returns {Array} [{label:<name>,value:<value>}]
      */
     function toOptions(obj) {
@@ -75,17 +90,17 @@ app.factory('tools', ['Enum', function (Enum) {
     }
 
 
-    function toSchoolTimeList(val,textEnum) {
+    function toSchoolTimeList(val, textEnum) {
         //value = 1 or + 2 or + 4
         var list = [];
-        if(textEnum === undefined){//the default value
-            textEnum = [1,2,4];//this should never used because textEnum is a map not an array
+        if (textEnum === undefined) {//the default value
+            textEnum = [1, 2, 4];//this should never used because textEnum is a map not an array
         }
         angular.forEach(textEnum, function (v, k) {//k is the number value in schooltimeDay
             if ((k & val ) !== 0)
                 list.push(parseInt(k));
         }, list);
-        if(list.join()==='')
+        if (list.join() === '')
             return undefined;
         return list;
     }

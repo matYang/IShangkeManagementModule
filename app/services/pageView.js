@@ -1,8 +1,7 @@
 'use strict';
 //table中的th
-app.factory('PageView', ['app',
-    function (app) {
-        var now = new Date();
+app.factory('PageView', ['app','tools',
+    function (app, tools) {
         var common = {
             statusTabs: [
                 {label: '已上线', active: true, value: {status: 2}},
@@ -28,26 +27,36 @@ app.factory('PageView', ['app',
                 tabs: [
                     {
                         label: '今日待处理', active: true,
-                        value: {statusSet: [0, 13], createTimeStart: Date.parse([now.getFullYear(), now.getMonth() + 1].join('-'))}
+                        value: {statusSet: [0, 13], createTimeStart: tools.getDayTimestamp()}
                     },
                     {
                         label: '往日待处理', active: false,
-                        value: {statusSet: [0, 13], createTimeEnd: Date.parse([now.getFullYear(), now.getMonth() + 1].join('-'))}
+                        value: {statusSet: [0, 13], createTimeEnd: tools.getDayTimestamp()}
                     }
                 ],
+                //初始化过滤条件 tab的过滤条件 需要跟tabs处于active的tab的value相对应
+                filter: {
+                    statusSet: [0, 13],
+                    columnKey: 'createTime',
+                    order: 'desc',
+                    createTimeStart: tools.getDayTimestamp()
+                },
                 th: common.bookingTh,
                 pagination: angular.copy(app.default_page),
-                filter: {statusSet: [0, 13], createTimeStart: Date.parse([now.getFullYear(), now.getMonth() + 1].join('-'))},//过滤条件 点击生成的条件
+
                 search: {}//查询条件 手动输入的条件
             },
             oldBookings: {
+                //todo
                 tabs: [
-                    {label: '待审核', active: true, value: {status: 0, createTimeStart: new Date().getTime()}},
-                    {label: '往日待处理', active: false, value: {status: 0, createTimeEnd: new Date().getTime()}}
+                    {label: '待审核', active: true, value: {status: 0, createTimeStart: tools.getDayTimestamp()}},
+                    {label: '往日待处理', active: false, value: {status: 0, createTimeEnd: tools.getDayTimestamp()}}
                 ],
+                //初始化过滤条件 tab的过滤条件 需要跟tabs处于active的tab的value相对应
+                filter: {status: 0, columnKey: 'createTime', order: 'desc'},
                 th: common.bookingTh,
                 pagination: angular.copy(app.default_page),
-                filter: {status: 0},//过滤条件 tab的过滤条件
+
                 search: {}//查询条件 手动输入的条件
             },
             templates: {
