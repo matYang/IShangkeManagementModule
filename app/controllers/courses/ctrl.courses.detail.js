@@ -34,7 +34,6 @@ appControllers.controller('coursesDetailCtrl',
                 //如果是删除操作 那么应该返回列表页面
                 if (op === 'delete') {
                     app.state.go('main.courses.list');
-                    return;
                 } else {
                     doRefresh();
                 }
