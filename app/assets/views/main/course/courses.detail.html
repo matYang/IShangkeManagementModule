@@ -121,7 +121,7 @@
     <div class="col-xs-8">
         <p class="form-control-static">
             {{course.startTime1|toHHmm}}-{{course.finishTime1|toHHmm}}
-            <span ng-show="course.startTime2!=null">
+            <span ng-if="course.startTime2!=null">
                 {{course.startTime2|toHHmm}}-{{course.finishTime2|toHHmm}}
             </span>
         </p>
