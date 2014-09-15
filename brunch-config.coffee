@@ -72,7 +72,7 @@ exports.config =
 #      renameGzipFilesToOriginalFiles: true
 
     uglify:
-      mangle: true #是否压缩变量名
+      mangle: false
       compress:
         global_defs:
           DEBUG: false
