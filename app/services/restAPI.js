@@ -24,6 +24,8 @@ appServices
                     //RO--role ID--id OP--operate
                     // Example request api: /api/v2/login /api/v2/login
                     'auth': ['/data/user.json?:ID:OP', '/user/:ID/:OP'],
+                    //todo should just use 'user' not 'auth' any more
+                    'users': ['/data/user.json?:ID:OP', '/user/:ID/:OP'],
                     // /api/v2/booking/1/
                     'bookings': ['/data/bookings:ID.json?:OP', '/booking/:ID/:OP'],
                     'templates': ['/data/templates:ID.json?:OP', '/courseTemplate/:ID/:OP'],

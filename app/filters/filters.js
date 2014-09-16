@@ -1,4 +1,3 @@
-'use strict';
 
 /* Filters */
 //todo 输入的错误的值的异常处理
