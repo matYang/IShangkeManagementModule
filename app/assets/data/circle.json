@@ -1,0 +1,102 @@
+{"errorCode": 0, "start": 0, "count": 0, "total": 0, "data": [
+    {
+        "errorCode": 0,
+        "name": "江宁大学城",
+        "value": "0000",
+        "children": [],
+        "id": 1,
+        "lastModifyTime": 1411007470000,
+        "createTime": 1411007470000,
+        "enabled": 0
+    },
+    {
+        "errorCode": 0,
+        "name": "江宁城区",
+        "value": "0001",
+        "children": [],
+        "id": 2,
+        "lastModifyTime": 1411007470000,
+        "createTime": 1411007470000,
+        "enabled": 0
+    },
+    {
+        "errorCode": 0,
+        "name": "浦口大学城",
+        "value": "0002",
+        "children": [],
+        "id": 3,
+        "lastModifyTime": 1411007471000,
+        "createTime": 1411007471000,
+        "enabled": 0
+    },
+    {
+        "errorCode": 0,
+        "name": "浦口城区",
+        "value": "0003",
+        "children": [],
+        "id": 4,
+        "lastModifyTime": 1411007471000,
+        "createTime": 1411007471000,
+        "enabled": 0
+    },
+    {
+        "errorCode": 0,
+        "name": "仙林大学城",
+        "value": "0004",
+        "children": [],
+        "id": 5,
+        "lastModifyTime": 1411007471000,
+        "createTime": 1411007471000,
+        "enabled": 0
+    },
+    {
+        "errorCode": 0,
+        "name": "新街口周边",
+        "value": "0005",
+        "children": [],
+        "id": 6,
+        "lastModifyTime": 1411007471000,
+        "createTime": 1411007471000,
+        "enabled": 0
+    },
+    {
+        "errorCode": 0,
+        "name": "珠江路周边",
+        "value": "0006",
+        "children": [],
+        "id": 7,
+        "lastModifyTime": 1411007471000,
+        "createTime": 1411007471000,
+        "enabled": 0
+    },
+    {
+        "errorCode": 0,
+        "name": "地铁2号线周边",
+        "value": "0007",
+        "children": [],
+        "id": 8,
+        "lastModifyTime": 1411007471000,
+        "createTime": 1411007471000,
+        "enabled": 0
+    },
+    {
+        "errorCode": 0,
+        "name": "三牌楼周边",
+        "value": "0008",
+        "children": [],
+        "id": 9,
+        "lastModifyTime": 1411007471000,
+        "createTime": 1411007471000,
+        "enabled": 0
+    },
+    {
+        "errorCode": 0,
+        "name": "城区其他商业区",
+        "value": "0009",
+        "children": [],
+        "id": 10,
+        "lastModifyTime": 1411007471000,
+        "createTime": 1411007471000,
+        "enabled": 0
+    }
+]}

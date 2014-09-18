@@ -3,10 +3,10 @@
 app.run(
     ['app', '$rootScope', '$cookieStore', '$localStorage', '$location', '$window', '$timeout', '$state', 'Auth', 'restAPI',
         '$log', '$upload', '$modal', '$parse', 'toaster', 'Enum', 'PageView', 'operateService', 'promiseGet', 'cache', 'getCategory', 'tools',
-        'getPartnerById', 'getTemplateById', 'getLocation',
+        'getPartnerById', 'getTemplateById', 'getLocation', 'getCircle',
         function (app, $rootScope, $cookieStore, $localStorage, $location, $window, $timeout, $state, Auth, restAPI,
                   $log, $upload, $modal, $parse, toaster, Enum, PageView, operateService, promiseGet, cache, getCategory,
-                  tools, getPartnerById, getTemplateById, getLocation) {
+                  tools, getPartnerById, getTemplateById, getLocation, getCircle) {
 
             if (app.test_mode) {
                 $log.info('RUN IN TEST MODE');
@@ -46,6 +46,7 @@ app.run(
             app.tools = tools;
             /**/
             app.getLocation = getLocation;
+            app.getCircle = getCircle;
             app.getCategory = getCategory; //获取目录数据的promise 使用了内存缓存
             app.getPartnerById = getPartnerById; //
             app.getTemplateById = getTemplateById; //
@@ -69,6 +70,7 @@ app.run(
             //初始化应用时的请求(使用promiseGet方法会使用内存进行缓存) 请求category目录
             getLocation();
             getCategory();
+            getCircle();
             //router的权限控制
             $rootScope.$on('$stateChangeStart', function (event, toState, toParams, fromState, fromParams) {
                 $log.log('route change start');

@@ -1,4 +1,3 @@
-'use strict';
 appControllers.controller('partnersAddressCtrl',
     ['$scope', 'app', function ($scope, app) {
         /**
@@ -6,7 +5,23 @@ appControllers.controller('partnersAddressCtrl',
          */
         var Addresses = app.restAPI.addresses;
         var partnerId = app.state.params.id;
+        var circleKey = {};
         var addresses_edit = {}; //使用map保存进入修改状态前的address list
+        //获取商圈列表 用于生成下拉选项 和显示商圈名字 之后doRefresh()
+        app.getCircle().then(function (data) {
+
+            $scope.circle = data.data;
+
+            //根据id显示circle的name
+            angular.forEach(data.data, function(item){
+                circleKey[item.id] = item.name;
+            });
+            $scope.getCircleName = function(id){
+                return circleKey[id];
+            };
+            $scope.doRefresh();
+        });
+        //页面显示的机构地址列表（页面主体）
         $scope.addresses = [];
         $scope.doRefresh = function () {
             Addresses.query({partnerId: partnerId, start: 0, count: 1000}, function (data) {
@@ -15,7 +30,6 @@ appControllers.controller('partnersAddressCtrl',
                 app.toaster.pop('error', "机构校区地址信息获取失败", "");
             });
         };
-        $scope.doRefresh();
 
         /**
          * 进入和退出编辑模式
@@ -91,8 +105,6 @@ appControllers.controller('partnersAddressCtrl',
                 });
             }
         };
-
-
     }]
 );
 

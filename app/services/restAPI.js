@@ -37,6 +37,7 @@ appServices
                     'addresses': ['/data/addresses:ID.json?:OP', '/address/:ID/:OP'],
 
                     'category': ['/data/category.json', '/general/category'],
+                    'circle': ['/data/circle.json', '/general/circle'],
                     'location': ['/data/location.json', '/general/location']
                 }
             };
@@ -82,6 +83,7 @@ appServices
 
                 'category': resource_maker('category'),
                 'location': resource_maker('location'),
+                'circle': resource_maker('circle'),
 
                 'makeResourceUrl': makeResourceUrl//资源的地址
 
@@ -119,6 +121,9 @@ appServices
                 category: $cacheFactory('category', {
                     capacity: 200
                 }),
+                circle: $cacheFactory('circle', {
+                    capacity: 200
+                }),
                 location: $cacheFactory('location', {
                     capacity: 200
                 })
@@ -137,6 +142,13 @@ appServices
         function (restAPI, cache, promiseGet) {
             return function () {
                 return promiseGet({}, restAPI.location, 'location', cache.location);
+            };
+        }
+    ])
+    .factory('getCircle', ['restAPI', 'cache', 'promiseGet',
+        function (restAPI, cache, promiseGet) {
+            return function () {
+                return promiseGet({}, restAPI.circle, 'circle', cache.circle);
             };
         }
     ])
