@@ -6,17 +6,28 @@ appControllers.controller('partnersAddressCtrl',
         var Addresses = app.restAPI.addresses;
         var partnerId = app.state.params.id;
         var circleKey = {};
+        var locationKey = {};
         var addresses_edit = {}; //使用map保存进入修改状态前的address list
         //获取商圈列表 用于生成下拉选项 和显示商圈名字 之后doRefresh()
-        app.getCircle().then(function (data) {
+        app.getLocation().then(function (data) {
+            $scope.location = data.data[0] && data.data[0].children[0] && data.data[0].children[0].children;
+            //根据id显示location的name
+            angular.forEach($scope.location, function (item) {
+                locationKey[item.id] = item.name;
+            });
+            $scope.getLocationName = function (id) {
+                return locationKey[id];
+            };
+            return app.getCircle();
+        }).then(function (data) {
 
             $scope.circle = data.data;
 
             //根据id显示circle的name
-            angular.forEach(data.data, function(item){
+            angular.forEach($scope.circle, function (item) {
                 circleKey[item.id] = item.name;
             });
-            $scope.getCircleName = function(id){
+            $scope.getCircleName = function (id) {
                 return circleKey[id];
             };
             $scope.doRefresh();
@@ -40,7 +51,7 @@ appControllers.controller('partnersAddressCtrl',
             addresses_edit[address.id] = address;
             $scope.addresses[$index].edit = true;
         };
-        $scope.cancelEdit = function($index){
+        $scope.cancelEdit = function ($index) {
             var id = $scope.addresses[$index].id;
             $scope.addresses[$index] = addresses_edit[id];
             delete addresses_edit[id];
@@ -73,33 +84,33 @@ appControllers.controller('partnersAddressCtrl',
         /**
          * 增加地址
          */
-        $scope.init = function(){
+        $scope.init = function () {
             $scope.item = {
-                partnerId:partnerId,
-                detail:undefined,
-                lat:undefined,
-                lng:undefined
+                partnerId: partnerId,
+                detail: undefined,
+                lat: undefined,
+                lng: undefined
             };
         };
         $scope.init();
-        $scope.addAddress =function () {
+        $scope.addAddress = function () {
             //开始创建
             $scope.creating = true;
             //返回的是创建后的item 带有id
-            if(app.test_mode){
-                app.toaster.pop('success','创建成功');
-                $scope.addresses.push(angular.extend({id:Math.ceil(Math.random()*100000)},$scope.item));
+            if (app.test_mode) {
+                app.toaster.pop('success', '创建成功');
+                $scope.addresses.push(angular.extend({id: Math.ceil(Math.random() * 100000)}, $scope.item));
                 $scope.init();
                 $scope.creating = false;
-            }else{
-                Addresses.save($scope.item).$promise.then(function(data){
-                    app.toaster.pop('success','创建成功');
+            } else {
+                Addresses.save($scope.item).$promise.then(function (data) {
+                    app.toaster.pop('success', '创建成功');
                     $scope.init();
                     $scope.addresses.push(data);
-                },function(){
+                }, function () {
                     //error
-                    app.toaster.pop('error','创建失败');
-                }).finally(function(){
+                    app.toaster.pop('error', '创建失败');
+                }).finally(function () {
                     //创建结束
                     $scope.creating = false;
                 });
