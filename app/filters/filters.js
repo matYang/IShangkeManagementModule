@@ -38,7 +38,7 @@ appFilters
                 var text = val.map(function (v) {
                     return app.Enum.schooltimeDay[v];
                 });
-                return text.join(',');
+                return text.join('/');
             };
         }
     ])
@@ -49,7 +49,7 @@ appFilters
                 var text = val.map(function (v) {
                     return app.Enum.schooltimeWeek[v];
                 });
-                return text.join(',');
+                return text.join('+');
 
             };
         }
