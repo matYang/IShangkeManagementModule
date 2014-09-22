@@ -14,6 +14,13 @@
             </div>
         </div>
         <div class="form-group">
+            <label class="col-xs-3 control-label">订单状态</label>
+
+            <div class="col-xs-4">
+                <p class="form-control-static">{{ b.status | bookingStatusText }}</p>
+            </div>
+        </div>
+        <div class="form-group">
             <label class="col-xs-3 control-label">预约人</label>
 
             <div class="col-xs-7">
@@ -27,6 +34,14 @@
                 <p class="form-control-static">{{ b.phone }}</p>
             </div>
         </div>
+
+        <div class="form-group">
+            <label class="col-xs-3 control-label">预约报名日期</label>
+
+            <div class="col-xs-7">
+                <p class="form-control-static">{{(b.scheduledTime | date:'yyyy-MM-dd')||'-- --'}}</p>
+            </div>
+        </div>
         <div class="form-group">
             <label class="col-xs-3 control-label">支付方式</label>
 
@@ -35,7 +50,7 @@
             </div>
         </div>
         <div class="form-group">
-            <label class="col-xs-3 control-label">订单支付金额</label>
+            <label class="col-xs-3 control-label">订单金额</label>
 
             <div class="col-xs-7">
                 <p class="form-control-static">{{ (b.price | currency) || '价格定制'}}</p>
@@ -80,14 +95,14 @@
             <label class="col-xs-3 control-label">爱上课价格</label>
 
             <div class="col-xs-7">
-                <p class="form-control-static">{{ b.course.price ||'-- --' }}</p>
+                <p class="form-control-static">{{ (b.course.price|currency) ||'-- --' }}</p>
             </div>
         </div>
         <div class="form-group">
             <label class="col-xs-3 control-label" ng-if="b.course.commission">门店折扣</label>
 
             <div class="col-xs-7">
-                <p class="form-control-static">{{ (b.course.commission)||'-- --' }}</p>
+                <p class="form-control-static">{{ (b.course.commission)||'-- --' }}（折）</p>
             </div>
         </div>
         <div class="form-group">
@@ -98,13 +113,7 @@
             </div>
         </div>
 
-        <div class="form-group">
-            <label class="col-xs-3 control-label">订单状态</label>
 
-            <div class="col-xs-4">
-                <p class="form-control-static">{{ b.status | bookingStatusText }}</p>
-            </div>
-        </div>
         <div class="form-group">
             <label class="col-xs-3 control-label">创建时间</label>
 
