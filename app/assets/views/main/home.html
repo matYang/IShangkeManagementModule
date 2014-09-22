@@ -5,7 +5,7 @@
             <div class="panel-heading">
                 <span><i class="fa fa-calendar"></i> 今日数据</span>
                 <span class="pull-right">
-                    <span>{{today.updateTime|date:'MM月dd日 HH:mm:ss'}}已更新</span>
+                    <span ng-if="today.updateTime">{{today.updateTime|date:'MM月dd日 HH:mm:ss'}}已更新</span>
                     &nbsp;&nbsp;&nbsp;<a ng-click="doRefresh()"><i class=" fa fa-refresh" ng-class="{'fa-spin':today.loading}"></i> 刷新</a>
                 </span>
             </div>
