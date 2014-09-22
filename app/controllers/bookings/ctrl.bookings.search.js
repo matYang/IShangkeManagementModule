@@ -27,7 +27,7 @@ appControllers.controller('searchBookingsCtrl',
                 filter_tmp.createTimeEnd += 24 * 3600 * 1000;
             }
             //使用课程模板资源请求数据 筛选条件为当前选择的值
-            restAPI.get(angular.extend({partnerId: $scope.partnerId}, filter_tmp, $scope.page), function (data) {
+            restAPI.get(angular.extend({partnerId: $scope.partnerId, columnKey: 'createTime', order: 'desc'}, filter_tmp, $scope.page), function (data) {
                 //更新当前数据的筛选条件
                 $scope.filter = angular.copy($scope.filter_tmp);
                 $scope.items = data.data;
@@ -46,7 +46,7 @@ appControllers.controller('searchBookingsCtrl',
             if (op === 'delete') {
                 promise = restAPI.delete({ID: id});
             } else {
-                promise = restAPI.operate({ID: id, OP: op},{id:id});
+                promise = restAPI.operate({ID: id, OP: op}, {id: id});
             }
             promise.$promise.then(function (data) {
                 app.toaster.pop('success', "订单" + id + "操作成功", "");
