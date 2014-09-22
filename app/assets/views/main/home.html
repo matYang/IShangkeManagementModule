@@ -2,20 +2,26 @@
 <div class="row">
     <div class="col-xs-8">
         <div class="panel panel-default">
-            <div class="panel-heading"><i class="fa fa-calendar"></i> 今日数据</div>
+            <div class="panel-heading">
+                <span><i class="fa fa-calendar"></i> 今日数据</span>
+                <span class="pull-right">
+                    <span>{{today.updateTime|date:'MM月dd日 HH:mm:ss'}}已更新</span>
+                    &nbsp;&nbsp;&nbsp;<a ng-click="doRefresh()"><i class=" fa fa-refresh" ng-class="{'fa-spin':today.loading}"></i> 刷新</a>
+                </span>
+            </div>
             <div class="panel-body">
                 <div class="nums clearfix">
-                    <a class="num">
-                        <i>0</i>
-                        未处理新订单
+                    <a ui-sref="main.bookings.new" class="num">
+                        <i>{{today.bookingCount}}</i>
+                        新订单
                     </a>
                     <a class="num">
-                        <i>0</i>
-                        未审核旧订单
+                        <i>{{today.applyCount}}</i>
+                        选课申请
                     </a>
                     <a class="num">
-                        <i>0</i>
-                        受处理订单提醒
+                        <i>{{today.registerCount}}</i>
+                        新增用户
                     </a>
                 </div>
                 <hr/>

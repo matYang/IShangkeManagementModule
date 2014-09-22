@@ -1,7 +1,7 @@
 app.factory('tools', ['Enum', function (Enum) {
 
     return  {
-        getDayTimestamp: getDayTimestamp,
+        getDeltaDayTimestamp: getDeltaDayTimestamp,
         clearReferenceObj: clearReferenceObj,
         toOptions: toOptions,
         toImgLabelValue: toImgLabelValue,
@@ -15,7 +15,7 @@ app.factory('tools', ['Enum', function (Enum) {
      * @param {number} delta 和当前时间相差的天数
      * @returns {number} timestamp
      */
-    function getDayTimestamp(delta) {
+    function getDeltaDayTimestamp(delta) {
         var now = new Date();
         var timestamp = Date.parse([now.getFullYear(), now.getMonth() + 1, now.getDate()].join('-'));
 

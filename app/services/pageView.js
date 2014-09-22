@@ -26,11 +26,11 @@ app.factory('PageView', ['app','tools',
                 tabs: [
                     {
                         label: '今日待处理', active: true,
-                        value: {statusSet: [0, 13], createTimeStart: tools.getDayTimestamp()}
+                        value: {statusSet: [0, 13], createTimeStart: tools.getDeltaDayTimestamp()}
                     },
                     {
                         label: '往日待处理', active: false,
-                        value: {statusSet: [0, 13], createTimeEnd: tools.getDayTimestamp()}
+                        value: {statusSet: [0, 13], createTimeEnd: tools.getDeltaDayTimestamp()}
                     }
                 ],
                 //初始化过滤条件 tab的过滤条件 需要跟tabs处于active的tab的value相对应
@@ -38,7 +38,7 @@ app.factory('PageView', ['app','tools',
                     statusSet: [0, 13],
                     columnKey: 'createTime',
                     order: 'desc',
-                    createTimeStart: tools.getDayTimestamp()
+                    createTimeStart: tools.getDeltaDayTimestamp()
                 },
                 th: common.bookingTh,
                 pagination: angular.copy(app.default_page),
@@ -48,8 +48,8 @@ app.factory('PageView', ['app','tools',
             oldBookings: {
                 //todo
                 tabs: [
-                    {label: '待审核', active: true, value: {status: 0, createTimeStart: tools.getDayTimestamp()}},
-                    {label: '往日待处理', active: false, value: {status: 0, createTimeEnd: tools.getDayTimestamp()}}
+                    {label: '待审核', active: true, value: {status: 0, createTimeStart: tools.getDeltaDayTimestamp()}},
+                    {label: '往日待处理', active: false, value: {status: 0, createTimeEnd: tools.getDeltaDayTimestamp()}}
                 ],
                 //初始化过滤条件 tab的过滤条件 需要跟tabs处于active的tab的value相对应
                 filter: {status: 0, columnKey: 'createTime', order: 'desc'},

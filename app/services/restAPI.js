@@ -25,9 +25,11 @@ appServices
                     // Example request api: /api/v2/login /api/v2/login
                     'auth': ['/data/user.json?:ID:OP', '/user/:ID/:OP'],
                     //todo should just use 'user' not 'auth' any more
-                    'users': ['/data/user.json?:ID:OP', '/user/:ID/:OP'],
+                    'users': ['/data/users:ID.json?:OP', '/user/:ID/:OP'],
                     // /api/v2/booking/1/
                     'bookings': ['/data/bookings:ID.json?:OP', '/booking/:ID/:OP'],
+                    'applys': ['/data/applys:ID.json?:OP', '/purpose/:ID/:OP'],
+
                     'templates': ['/data/templates:ID.json?:OP', '/courseTemplate/:ID/:OP'],
                     'courses': ['/data/courses:ID.json?:OP', '/course/:ID/:OP'],
 
@@ -36,9 +38,9 @@ appServices
                     'photos': ['/data/classPhotos:ID.json?:OP', '/classPhoto/:ID/:OP'],
                     'addresses': ['/data/addresses:ID.json?:OP', '/address/:ID/:OP'],
 
-                    'category': ['/data/category.json', '/general/category'],
-                    'circle': ['/data/circle.json', '/general/circle'],
-                    'location': ['/data/location.json', '/general/location']
+                    'category': ['/data/general/category.json', '/general/category'],
+                    'circle': ['/data/general/circle.json', '/general/circle'],
+                    'location': ['/data/general/location.json', '/general/location']
                 }
             };
             var resource_maker = function (recourseName) {
@@ -76,6 +78,7 @@ appServices
                 'templates': resource_maker('templates'),
                 'courses': resource_maker('courses'),
                 'bookings': resource_maker('bookings'),
+                'applys': resource_maker('applys'),
 
                 'partners': resource_maker('partners'),
                 'teachers': resource_maker('teachers'),

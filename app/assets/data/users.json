@@ -1,0 +1,18 @@
+{"errorCode": 0, "start": -1, "count": -1, "total": 1, "data": [
+    {
+        "errorCode": 0,
+        "id": 1938,
+        "phone": "15157548328",
+        "appliedInvitationCode": "327",
+        "lastLoginTime": 1411394087000,
+        "lastModifyTime": 1411394087000,
+        "createTime": 1411394087000,
+        "enabled": 0,
+        "birthday": -1,
+        "careerId": 0,
+        "schoolId": 0,
+        "majorId": 0,
+        "locationId": 0,
+        "couponTotal": 0.0
+    }
+]}
