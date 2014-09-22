@@ -7,6 +7,7 @@
     "price": 1800,
     "originalPrice": 1800,
 
+    "commission": 97,
     "cashback": 200,
     "bookingType":1,
     "categoryValue":"000102",

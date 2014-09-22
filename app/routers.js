@@ -184,8 +184,6 @@ appRoutes.config(function ($stateProvider, $urlRouterProvider, $httpProvider, $l
         })
 
 
-
-
         /*****************机构用户管理****************/
         .state('main.users', {
             url: '/users',

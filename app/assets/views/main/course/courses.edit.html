@@ -56,21 +56,15 @@
         <p class="form-control-static">{{course.originalPrice|currency}}</p>
     </div>
 </div>
-
-<!-- <div class="form-group form-group-sm">
-    <label class="col-xs-3 control-label">线下支付返现</label>
+<div class="form-group form-group-sm">
+    <label class="col-xs-3 control-label">门店折扣（0到100）</label>
 
     <div class="col-xs-3">
-        <p class="form-control-static">{{course.cashback|currency}}</p>
+        <input type="number" class="form-control" min="0" max="100" name="commission"
+               ng-model="course.commission">
     </div>
 </div>
-<div class="form-group form-group-sm" ng-if="course.price">
-    <label class="col-xs-3 control-label">在线支付立减</label>
 
-    <div class="col-xs-3">
-        <p class="form-control-static">{{course.commission|currency}}</p>
-    </div>
-</div> -->
 <div class="form-group form-group-sm">
     <label class="col-xs-3 control-label">线下支付返现</label>
 
@@ -79,27 +73,17 @@
                ng-model="course.cashback">
     </div>
 </div>
-<div class="form-group form-group-sm" ng-if="course.price">
-    <label class="col-xs-3 control-label">在线支付立减</label>
-
-    <div class="col-xs-3">
-        <input type="number" class="form-control" min="0" name="commission"
-               ng-model="course.commission">
-    </div>
-</div>
-
-
 
 
 <legend>基本信息</legend>
-<div class="form-group form-group-sm">
-    <label class="col-xs-3 control-label">优惠信息</label>
+<!--<div class="form-group form-group-sm">-->
+    <!--<label class="col-xs-3 control-label">优惠信息</label>-->
 
-    <div class="col-xs-5">
-        <input type="text" class="form-control" name="marking"
-               ng-model="course.marking">
-    </div>
-</div>
+    <!--<div class="col-xs-5">-->
+        <!--<input type="text" class="form-control" name="marking"-->
+               <!--ng-model="course.marking">-->
+    <!--</div>-->
+<!--</div>-->
 <div class="form-group form-group-sm">
     <label class="col-xs-3 control-label">是否有具体上课日期</label>
 
@@ -318,6 +302,22 @@
     <span class="help-block">用于搜索</span>
 </div>
 <div class="form-group form-group-sm">
+    <label class="col-xs-3 control-label">教材介绍</label>
+
+    <div class="col-xs-5">
+        <input type="text" class="form-control"
+               name="teachingMaterialIntro" ng-model="course.teachingMaterialIntro">
+    </div>
+</div>
+<div class="form-group form-group-sm">
+    <label class="col-xs-3 control-label">教材费用</label>
+
+    <div class="col-xs-5">
+        <input type="text" class="form-control"
+               name="teachingMaterialFee" ng-model="course.teachingMaterialFee">
+    </div>
+</div>
+<div class="form-group form-group-sm">
     <label class="col-xs-3 control-label">适合学员</label>
 
     <div class="col-xs-9">
@@ -359,22 +359,7 @@
 <!--name="teachingMethod" ng-model="course.teachingMethod">-->
 <!--</div>-->
 <!--</div>-->
-<div class="form-group form-group-sm">
-    <label class="col-xs-3 control-label">教材介绍</label>
 
-    <div class="col-xs-5">
-        <input type="text" class="form-control"
-               name="teachingMaterialIntro" ng-model="course.teachingMaterialIntro">
-    </div>
-</div>
-<div class="form-group form-group-sm">
-    <label class="col-xs-3 control-label">教材费用</label>
-
-    <div class="col-xs-5">
-        <input type="text" class="form-control"
-               name="teachingMaterialFee" ng-model="course.teachingMaterialFee">
-    </div>
-</div>
 <div class="form-group form-group-sm">
     <label class="col-xs-3 control-label">课程提纲</label>
 
