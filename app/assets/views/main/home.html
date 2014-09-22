@@ -12,15 +12,15 @@
             <div class="panel-body">
                 <div class="nums clearfix">
                     <a ui-sref="main.bookings.new" class="num">
-                        <i>{{today.bookingCount}}</i>
+                        <i ng-bind="today.bookingCount"></i>
                         新订单
                     </a>
                     <a class="num">
-                        <i>{{today.applyCount}}</i>
+                        <i ng-bind="today.applyCount"></i>
                         选课申请
                     </a>
                     <a class="num">
-                        <i>{{today.registerCount}}</i>
+                        <i ng-bind="today.registerCount"></i>
                         新增用户
                     </a>
                 </div>

@@ -7,6 +7,7 @@ appControllers.controller('homeCtrl', ['$scope', 'app',
         $scope.today = {
             bookingCount: 0,
             applyCount: 0,
+            registerCount: 0,
             updateTime: 0,
             loading: false
         };
@@ -15,11 +16,11 @@ appControllers.controller('homeCtrl', ['$scope', 'app',
         var doRefresh = $scope.doRefresh = function () {
             $scope.today.loading = true;
             //获取booking的数据
-            Bookings.get({createTimeStart: app.tools.getDeltaDayTimestamp()}, function (data) {
-
+            Bookings.get({createTimeStart: app.tools.getDeltaDayTimestamp()})
+                .$promise.then(function (data) {
                 $scope.today.bookingCount = data.total;
-                return Users.get({createTimeStart: app.tools.getDeltaDayTimestamp()})
-            }).$promise.then(function (data) {
+                return Users.get({createTimeStart: app.tools.getDeltaDayTimestamp()}).$promise;
+            }).then(function (data) {
                     $scope.today.loading = false;
                     $scope.today.updateTime = new Date();
                     $scope.today.registerCount = data.total;
