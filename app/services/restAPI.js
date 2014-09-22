@@ -72,6 +72,7 @@ appServices
 
             return {
                 'auth': resource_maker('auth'),
+                'users': resource_maker('users'),
                 'templates': resource_maker('templates'),
                 'courses': resource_maker('courses'),
                 'bookings': resource_maker('bookings'),
