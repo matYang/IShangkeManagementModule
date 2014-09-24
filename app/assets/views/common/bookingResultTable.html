@@ -16,7 +16,7 @@
         <td>{{item.status | bookingStatusText}}</td>
         <td>{{item.createTime | date:'yyyy-MM-dd HH:mm'}}</td>
         <td class="operations">
-            <a ui-sref="main.bookings.detail({id:item.id})">查看</a>
+            <a ui-sref="main.booking.detail({id:item.id})">查看</a>
             <a ng-repeat="op in item.actionList"
                ng-really-click="operate(item.id,op.name)" ng-really-message="操作确认-->{{op.name |  bookingOperationText}}">
                 {{op.name |  bookingOperationText}}</a>

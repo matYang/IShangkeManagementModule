@@ -27,34 +27,28 @@ appRoutes.config(function ($stateProvider, $urlRouterProvider, $httpProvider, $l
 
 
         /**************** 课程订单管理 ****************/
-        .state('main.bookings', {
+        .state('main.booking', {
             abstract: true,
-            url: '/bookings',
+            url: '/booking',
             template: '<div ui-view></div>'
         })
-        //新单处理
-        .state('main.bookings.new', {
-            url: '/new',
-            templateUrl: 'views/main/bookings.html'+version,
-            controller: 'newBookingsCtrl'
-        })
-        //旧单处理
-        .state('main.bookings.old', {
-            url: '/old',
-            templateUrl: 'views/main/bookings.html'+version,
-            controller: 'oldBookingsCtrl'
+        //订单处理
+        .state('main.booking.list', {
+            url: '',
+            templateUrl: 'views/main/booking/booking.list.html'+version,
+            controller: 'bookingListCtrl'
         })
         //订单查询页面
-        .state('main.bookings.search', {
+        .state('main.booking.search', {
             url: '/search',
-            templateUrl: 'views/main/bookings.search.html'+version,
-            controller: 'searchBookingsCtrl'
+            templateUrl: 'views/main/booking/booking.search.html'+version,
+            controller: 'bookingSearchCtrl'
         })
         //订单详情页面
-        .state('main.bookings.detail', {
+        .state('main.booking.detail', {
             url: '/{id}',
-            templateUrl: 'views/main/bookings.detail.html'+version,
-            controller: 'bookingsDetailCtrl'
+            templateUrl: 'views/main/booking/booking.detail.html'+version,
+            controller: 'bookingDetailCtrl'
         })
 
 

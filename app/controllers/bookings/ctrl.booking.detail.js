@@ -1,5 +1,5 @@
 'use strict';
-appControllers.controller('bookingsDetailCtrl',
+appControllers.controller('bookingDetailCtrl',
     ['$scope', 'app', function ($scope, app) {
         var Bookings = app.restAPI.bookings;
         var Users = app.restAPI.users;
