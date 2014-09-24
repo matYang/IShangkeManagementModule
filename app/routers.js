@@ -205,6 +205,4 @@ appRoutes.config(function ($stateProvider, $urlRouterProvider, $httpProvider, $l
             controller: 'userDetailCtrl',
             access:'admin'
         });
-    // use the HTML5 History API
-    $locationProvider.html5Mode(true);
 });
