@@ -1,0 +1,74 @@
+<!--filter-->
+<div class="row margin-bottom">
+    <!--左侧状态栏-->
+    <div class="col-xs-2" scroll-fix>
+        <!--todo show current filters-->
+        <!--<label ng-hide="true">当前筛选</label>-->
+
+    </div>
+    <!--右侧内容面板-->
+    <div class="col-xs-10 pull-right">
+        <!--筛选表单-->
+        <form class="form-horizontal filter-form">
+            <div class="form-group">
+                <label class="control-label" for="">用户ID</label>
+
+                <div><input type="text" class="form-control input-sm"   
+                            ng-model="filter_tmp.id"/></div>
+                <!--<label class="control-label" for="">用户名</label>-->
+
+                <!--<div><input type="text" class="form-control input-sm"-->
+                            <!--ng-model="filter_tmp.instName"/></div>-->
+            </div>
+            <div class="form-group">
+                <label></label>
+
+                <div>
+                    <button class="btn btn-primary btn-sm" ng-click="doRefresh()"><i class="fa fa-search"></i> 查 询
+                    </button>
+                    <button class="btn btn-default btn-sm" ng-click="clearFilter()">清空输入</button>
+                </div>
+            </div>
+        </form>
+        <div class="row">
+            <pre class="col-xs-6">filter{{filter|json}}</pre>
+            <pre class="col-xs-6">filter_tmp{{filter_tmp|json}}</pre>
+        </div>
+
+        <!--操作栏-->
+        <div class="btn-toolbar">
+            <a class="btn btn-primary" ui-sref="main.partners.create"><i class="fa fa-plus"></i> 新建用户 </a>
+        </div>
+        <!--表格列表-->
+        <table class="table table-condensed table-hover table-bordered margin-top">
+            <thead>
+            <tr>
+                <th ng-repeat="t in th" width="{{t.w}}%">
+                    {{ t.n }}
+                </th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="item in items | filter:filter.id">
+                <td>{{item.id || '无'}}</td>
+                <!--<td>{{item.wholeName|| '无'}}</td>-->
+                <!--<td>{{item.hqLocation|| '无'}}</td>-->
+                <!--<td>{{item.reference || '无'}}</td>-->
+                <!--<td class="operations">-->
+                    <!--<a ui-sref="main.partners.detail({id:item.id})">详细/管理</a>-->
+                <!--</td>-->
+            </tr>
+            </tbody>
+        </table>
+        <div class="page clearfix">
+            <p class="pull-left">共{{page.total}}条记录，每页显示{{page.count}}条记录</p>
+            <pagination class="pull-right" ng-model="page.start" total-items="page.total" items-per-page="page.count"
+                        ng-change="doRefresh()"
+                        max-size="9"
+                        class="pagination-sm"
+                        boundary-links="true" rotate="false" num-pages="total_pages"
+                        previous-text="上一页" next-text="下一页"></pagination>
+        </div>
+
+    </div>
+</div>

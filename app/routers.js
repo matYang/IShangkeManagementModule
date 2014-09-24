@@ -18,7 +18,7 @@ appRoutes.config(function ($stateProvider, $urlRouterProvider, $httpProvider, $l
             templateUrl: 'views/main.html'+version
         })
 
-        /**************** 登录主页面 ****************/
+        /**************** 登录后的首页 ****************/
         .state('main.home', {
             url: '',
             templateUrl: 'views/main/home.html'+version,
@@ -26,38 +26,38 @@ appRoutes.config(function ($stateProvider, $urlRouterProvider, $httpProvider, $l
         })
 
 
+        /**************** 课程订单管理 ****************/
         .state('main.bookings', {
             abstract: true,
             url: '/bookings',
             template: '<div ui-view></div>'
         })
-        /**************** 新单处理页面 ****************/
+        //新单处理
         .state('main.bookings.new', {
             url: '/new',
             templateUrl: 'views/main/bookings.html'+version,
             controller: 'newBookingsCtrl'
         })
-
-        /**************** 旧单审核页面 ****************/
+        //旧单处理
         .state('main.bookings.old', {
             url: '/old',
             templateUrl: 'views/main/bookings.html'+version,
             controller: 'oldBookingsCtrl'
         })
-
-        /**************** 订单查询页面 ****************/
+        //订单查询页面
         .state('main.bookings.search', {
             url: '/search',
             templateUrl: 'views/main/bookings.search.html'+version,
             controller: 'searchBookingsCtrl'
         })
-
-        /**************** 订单详情页面 ****************/
+        //订单详情页面
         .state('main.bookings.detail', {
             url: '/{id}',
             templateUrl: 'views/main/bookings.detail.html'+version,
             controller: 'bookingsDetailCtrl'
         })
+
+
 
         /*************** 课程信息管理 ***************/
         .state('main.courses', {
@@ -101,7 +101,7 @@ appRoutes.config(function ($stateProvider, $urlRouterProvider, $httpProvider, $l
         //课程模板列表
         .state('main.templates.list', {
             url: '',
-            templateUrl: 'views/main/template/templates.html'+version,
+            templateUrl: 'views/main/template/templates.list.html'+version,
             controller: 'templatesCtrl'
         })
         //新建课程模板
@@ -145,7 +145,7 @@ appRoutes.config(function ($stateProvider, $urlRouterProvider, $httpProvider, $l
             access:'admin'
         })
         //查看机构详情 父路由的controller负责获取机构的详情（子路由共享父路由的scope中的值）
-        //todo 子路由分为机构基本信息、机构logo、机构照片、机构教师、机构地址
+        //子路由分为机构基本信息、机构logo、机构照片、机构教师、机构地址
         .state('main.partners.detail', {
             url: '/{id}',
             templateUrl: 'views/main/partner/partners.detail.html'+version,
@@ -185,15 +185,24 @@ appRoutes.config(function ($stateProvider, $urlRouterProvider, $httpProvider, $l
         })
 
 
-        /*****************机构用户管理****************/
+        /*****************用户管理****************/
         .state('main.users', {
+            abstract: true,
             url: '/users',
-            templateUrl: 'views/main/users/users.html'+version,
-            controller: '',
-            access:'admin'
+            template: '<div ui-view></div>'
         })
 
+        //课程模板列表
+        .state('main.users.list', {
+            url: '',
+            templateUrl: 'views/main/users/user.list.html'+version,
+            controller: 'userListCtrl'
+        })
 
-
-
+        .state('main.users.detail', {
+            url: '/users',
+            templateUrl: 'views/main/users/user.detail.html'+version,
+            controller: 'userDetailCtrl',
+            access:'admin'
+        })
 });
