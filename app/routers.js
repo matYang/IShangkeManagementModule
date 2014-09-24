@@ -101,7 +101,7 @@ appRoutes.config(function ($stateProvider, $urlRouterProvider, $httpProvider, $l
         //课程模板列表
         .state('main.templates.list', {
             url: '',
-            templateUrl: 'views/main/template/templates.list.html'+version,
+            templateUrl: 'views/main/template/templates.html'+version,
             controller: 'templatesCtrl'
         })
         //新建课程模板
@@ -205,4 +205,7 @@ appRoutes.config(function ($stateProvider, $urlRouterProvider, $httpProvider, $l
             controller: 'userDetailCtrl',
             access:'admin'
         });
+//        $locationProvider.html5Mode(true).hashPrefix('!');//remove '#' but all href should be adjusted
+//        $locationProvider.hashPrefix('!!');
+
 });
