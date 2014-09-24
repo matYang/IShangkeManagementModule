@@ -1,7 +1,37 @@
 {
-    "id":11,
-    "name": "ishangke",
-    "reference": "ishangke",
-    "group": "admin_group1",
-    "schoolName":"南京大学"
+    "errorCode": 0,
+    "id": 33,
+    "name": "zwj",
+    "phone": "15062218350",
+    "email": "120237546@qq.com",
+    "avatarUrl": "",
+    "invitationCode": "jzlingmo",
+    "appliedInvitationCode": "",
+    "lastLoginTime": 1411573802000,
+    "lastModifyTime": 1410929623000,
+    "createTime": 1409678116000,
+    "enabled": 0,
+    "gender": 1,
+    "birthday": -1,
+    "careerId": 0,
+    "schoolId": 43,
+    "majorId": 0,
+    "locationId": 0,
+    "account": {
+        "errorCode": 0,
+        "id": 33,
+        "balance": 0.0,
+        "lastModifyTime": 1409678116000,
+        "createTime": 1409678116000,
+        "enabled": 0
+    },
+    "credit": {
+        "errorCode": 0,
+        "id": 33,
+        "credit": 0.0,
+        "lastModifyTime": 1409678116000,
+        "createTime": 1409678116000,
+        "enabled": 0
+    },
+    "couponTotal": 498.0, "schoolName": "南京理工大学"
 }

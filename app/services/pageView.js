@@ -33,10 +33,12 @@ app.factory('PageView', ['app','tools',
                         value: {statusSet: [0, 13], createTimeEnd: tools.getDeltaDayTimestamp()}
                     },
                     {
-                        label: '待审核', active: false,
-                        value: {status: 0, createTimeStart: tools.getDeltaDayTimestamp()}},
-                    {   label: '往日待处理', active: false,
-                        value: {status: 0, createTimeEnd: tools.getDeltaDayTimestamp()}
+                        label: '今日订单', active: false,
+                        value: {createTimeStart: tools.getDeltaDayTimestamp()}
+                    },
+                    {
+                        label: '往日订单', active: false,
+                        value: {createTimeEnd: tools.getDeltaDayTimestamp()}
                     }
                 ],
                 //初始化过滤条件 tab的过滤条件 需要跟tabs处于active的tab的value相对应
@@ -49,20 +51,7 @@ app.factory('PageView', ['app','tools',
                 th: common.bookingTh,
                 pagination: angular.copy(app.default_page),
 
-                search: {}//查询条件 手动输入的条件
-            },
-            oldBookings: {
-                //todo
-                tabs: [
-                    {label: '待审核', active: true, value: {status: 0, createTimeStart: tools.getDeltaDayTimestamp()}},
-                    {label: '往日待处理', active: false, value: {status: 0, createTimeEnd: tools.getDeltaDayTimestamp()}}
-                ],
-                //初始化过滤条件 tab的过滤条件 需要跟tabs处于active的tab的value相对应
-                filter: {status: 0, columnKey: 'createTime', order: 'desc'},
-                th: common.bookingTh,
-                pagination: angular.copy(app.default_page),
-
-                search: {}//查询条件 手动输入的条件
+                search: {}//查询条件 存储用户手动输入的条件
             },
             templates: {
                 pagination: angular.copy(app.default_page),
