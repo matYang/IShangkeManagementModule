@@ -204,5 +204,7 @@ appRoutes.config(function ($stateProvider, $urlRouterProvider, $httpProvider, $l
             templateUrl: 'views/main/users/user.detail.html'+version,
             controller: 'userDetailCtrl',
             access:'admin'
-        })
+        });
+    // use the HTML5 History API
+    $locationProvider.html5Mode(true);
 });
