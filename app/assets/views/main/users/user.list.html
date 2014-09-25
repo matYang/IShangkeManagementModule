@@ -21,12 +21,11 @@
             <div class="form-group">
                 <label class="control-label" for="">用户ID</label>
 
-                <div><input type="text" class="form-control input-sm"   
-                            ng-model="filter_tmp.id"/></div>
-                <!--<label class="control-label" for="">用户名</label>-->
-
+                <div><input type="text" class="form-control input-sm" ng-model="filter_tmp.id"/></div>
+                <!--<label class="control-label" for="">使用的邀请码</label>-->
+<!---->
                 <!--<div><input type="text" class="form-control input-sm"-->
-                            <!--ng-model="filter_tmp.instName"/></div>-->
+                            <!--ng-model="filter_tmp.appliedInvitationCode"/></div>-->
             </div>
             <div class="form-group">
                 <label></label>
@@ -38,15 +37,11 @@
                 </div>
             </div>
         </form>
-        <!--<div class="row">-->
-            <!--<pre class="col-xs-6">filter{{filter|json}}</pre>-->
-            <!--<pre class="col-xs-6">filter_tmp{{filter_tmp|json}}</pre>-->
-        <!--</div>-->
 
         <!--操作栏-->
-        <div class="btn-toolbar">
-            <a class="btn btn-primary" ui-sref="main.partners.create"><i class="fa fa-plus"></i> 新建用户 </a>
-        </div>
+        <!--<div class="btn-toolbar">-->
+        <!--<a class="btn btn-primary" ui-sref="main.partners.create"><i class="fa fa-plus"></i> 新建用户 </a>-->
+        <!--</div>-->
         <!--表格列表-->
         <table class="table table-condensed table-hover table-bordered margin-top">
             <thead>
@@ -64,11 +59,8 @@
                 <td>{{item.phone || '--'}}</td>
                 <td>{{item.invitationCode || '--'}}</td>
                 <td>{{item.createTime |date:'yyyy-MM-dd HH:ss'}}</td>
-                <!--<td>{{item.wholeName|| '无'}}</td>-->
-                <!--<td>{{item.hqLocation|| '无'}}</td>-->
-                <!--<td>{{item.reference || '无'}}</td>-->
                 <!--<td class="operations">-->
-                    <!--<a ui-sref="main.partners.detail({id:item.id})">详细/管理</a>-->
+                <!--<a ui-sref="main.partners.detail({id:item.id})">详细/管理</a>-->
                 <!--</td>-->
             </tr>
             </tbody>

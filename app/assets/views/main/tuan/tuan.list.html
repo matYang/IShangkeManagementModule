@@ -1,49 +1,49 @@
 <!--filter-->
 <div class="row margin-bottom">
+    <!--左侧状态栏-->
     <div class="col-xs-2" scroll-fix>
         <tabset vertical="true" type="pills">
-            <label>审核状态</label>
+            <label></label>
             <li class="nav-divider"></li>
             <tab ng-repeat="a in tabs" heading="{{a.label}}" active="a.active"
                  ng-click="chooseTab(a)">
             </tab>
             <li class="nav-divider"></li>
         </tabset>
-        <div ng-repeat="(k,v) in search" ng-if="v">
-            <p ng-show="$index==0"><strong>当前筛选</strong>
-            <hr/></p>
-            <span ng-show="k=='id'">模板</span>{{k|searchText}} : {{v}}
-        </div>
+
+        <!--<div ng-repeat="(k,v) in search" ng-if="v">-->
+            <!--<p ng-show="$index==0"><strong>当前筛选</strong>-->
+            <!--<hr/></p>-->
+            <!--<span ng-show="k=='id'">团购</span>{{k|searchText}} : {{v}}-->
+        <!--</div>-->
     </div>
+    <!--右侧内容面板-->
     <div class="col-xs-10 pull-right">
+        <!--筛选表单-->
         <form class="form-horizontal filter-form">
             <div class="form-group">
-                <label ng-if="global.isAdmin" class="control-label">机构ID</label>
-                <div ng-if="global.isAdmin">
-                    <input type="text" class="form-control input-sm"
-                           ng-model="search_tmp.partnerId"/>
-                </div>
-                <label class="control-label" for="">模板ID</label>
+                <label class="control-label">团购ID</label>
                 <div><input type="text" class="form-control input-sm"
-                       ng-model="search_tmp.id"/></div>
-                <label class="control-label" for="">模板名</label>
-                <div><input type="text" class="form-control input-sm"
-                       ng-model="search_tmp.courseName"/></div>
+                            ng-model="search_tmp.id"/></div>
             </div>
             <div class="form-group">
                 <label></label>
+
                 <div>
-                    <button class="btn btn-primary btn-sm" ng-click="doSearch()"><i class="fa fa-search"></i> 查 询</button>
+                    <button class="btn btn-primary btn-sm" ng-click="doSearch()"><i class="fa fa-search"></i> 查 询
+                    </button>
                     <button class="btn btn-default btn-sm" ng-click="clearSearch()">清空输入</button>
                 </div>
             </div>
         </form>
         <hr/>
 
+        <!--操作栏-->
         <div class="btn-toolbar">
-            <a class="btn btn-primary" ui-sref="main.templates.create"><i class="fa fa-plus"></i> 新建模板 </a>
+            <a class="btn btn-primary" ui-sref="main.tuan.create"><i class="fa fa-plus"></i> 创建团购课程 </a>
             <!--<a class="btn btn-default btn-sm text-danger" href="#"><i class="fa fa-trash-o"></i> 删除</a>-->
         </div>
+        <!--表格列表-->
         <table class="table table-condensed table-hover table-bordered margin-top">
             <thead>
             <tr>
@@ -58,9 +58,11 @@
                 <td>{{item.courseName|| '无'}}</td>
                 <td>{{item.price| currency}}</td>
                 <td>{{item.originalPrice| currency}}</td>
-                <td>{{item.status| courseStatusText}}</td>
+                <td>{{item.categoryName || '无'}}</td>
+                <td>{{item.status | courseStatusText}}</td>
                 <td class="operations">
-                    <a ui-sref="main.templates.detail({id:item.id})">查看</a>
+                    <a ui-sref="main.courses.detail({id:item.id})">查看</a>
+                    <!--已上线或者审核失败的可进行修改-->
                     <span ng-repeat="op in item.actionList" >
                         <a ng-if="op.name=='submitUpdated'" ng-click="operate(item.id,op.name)">修改</a>
                         <a ng-if="op.name!='submitUpdated'&&op.name!='delete'" ng-click="operate(item.id,op.name)">

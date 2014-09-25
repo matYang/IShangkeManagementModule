@@ -26,6 +26,7 @@ appRoutes.config(function ($stateProvider, $urlRouterProvider, $httpProvider, $l
         })
 
 
+
         /**************** 课程订单管理 ****************/
         .state('main.booking', {
             abstract: true,
@@ -118,6 +119,7 @@ appRoutes.config(function ($stateProvider, $urlRouterProvider, $httpProvider, $l
         })
 
 
+
         /****************机构信息管理***************/
         //查看机构信息
         .state('main.partners', {
@@ -179,6 +181,30 @@ appRoutes.config(function ($stateProvider, $urlRouterProvider, $httpProvider, $l
         })
 
 
+
+        /*****************团购管理****************/
+        .state('main.tuan', {
+            abstract: true,
+            url: '/tuan',
+            template: '<div ui-view></div>'
+        })
+        .state('main.tuan.list', {
+            url: '',
+            templateUrl: 'views/main/tuan/tuan.list.html'+version,
+            controller: 'tuanListCtrl'
+        })
+        .state('main.tuan.detail', {
+            url: '/{id}',
+            templateUrl: 'views/main/tuan/tuan.detail.html'+version,
+            controller: 'tuanDetailCtrl'
+        })
+        .state('main.tuan.create', {
+            url: '/create',
+            templateUrl: 'views/main/tuan/tuan.create.html'+version,
+            controller: 'tuanCreateCtrl'
+        })
+
+
         /*****************用户管理****************/
         .state('main.users', {
             abstract: true,
@@ -194,10 +220,9 @@ appRoutes.config(function ($stateProvider, $urlRouterProvider, $httpProvider, $l
         })
 
         .state('main.users.detail', {
-            url: '/users',
+            url: '/{id}',
             templateUrl: 'views/main/users/user.detail.html'+version,
-            controller: 'userDetailCtrl',
-            access:'admin'
+            controller: 'userDetailCtrl'
         });
 //        $locationProvider.html5Mode(true).hashPrefix('!');//remove '#' but all href should be adjusted
 //        $locationProvider.hashPrefix('!!');
