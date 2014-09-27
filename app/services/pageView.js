@@ -13,10 +13,10 @@ app.factory('PageView', ['app', 'tools',
             bookingListTh: [
                 //n--name w-width percent
                 {n: '订单号', w: '15'},
-                {n: '入学人姓名', w: '10'},
+                {n: '入学人姓名', w: '15'},
                 {n: '价格', w: '10'},
-                {n: '支付方式', w: '10'},
-                {n: '订单状态', w: '10'},
+                {n: '支付方式', w: '12'},
+                {n: '订单状态', w: '13'},
                 {n: '创建时间', w: '15'},
                 {n: '操作', w: '20'}
             ],
@@ -50,7 +50,16 @@ app.factory('PageView', ['app', 'tools',
                 {n: '团购价格', w: '15'},
                 {n: '下线时间', w: '20'},
                 {n: '状态', w: '15'},
-                {n: '操作', w: '20'},
+                {n: '操作', w: '20'}
+            ],
+            applyListTh: [
+                {n: 'ID', w: '7'},
+                {n: '申请人', w: '10'},
+                {n: '联系方式', w: '15'},
+                {n: '意向课程', w: '15'},
+                {n: '申请时间', w: '15'},
+                {n: '备注', w: '30'},
+                {n: '操作', w: '8'}
             ],
             userListTh: [
                 {n: 'ID', w: '10'},
@@ -85,8 +94,6 @@ app.factory('PageView', ['app', 'tools',
                 //初始化过滤条件 tab的过滤条件 需要跟tabs处于active的tab的value相对应
                 filter: {
                     statusSet: [0, 13],
-                    columnKey: 'createTime',
-                    order: 'desc',
                     createTimeStart: tools.getDeltaDayTimestamp()
                 },
                 th: common.bookingListTh,
@@ -112,6 +119,25 @@ app.factory('PageView', ['app', 'tools',
                 pagination: angular.copy(app.default_page),
                 th: common.partnerListTh
             },
+            apply: {
+                tabs: [
+                    {
+                        label: '今日申请', active: true,
+                        value: {createTimeStart: tools.getDeltaDayTimestamp()}
+                    },
+                    {
+                        label: '往日申请', active: false,
+                        value: { createTimeEnd: tools.getDeltaDayTimestamp()}
+                    }
+                ],
+                filter: {
+                    //与tabs中处于active为true的value一致
+                    createTimeStart: tools.getDeltaDayTimestamp()
+                },//过滤条件 tab的过滤条件
+                search: {},//查询条件 手动输入的条件
+                pagination: angular.copy(app.default_page),
+                th: common.applyListTh
+            },
             tuan: {
                 tabs: [
                     {
@@ -132,10 +158,7 @@ app.factory('PageView', ['app', 'tools',
                     }
                 ],
                 //初始化过滤条件 tab的过滤条件 需要跟tabs处于active的tab的value相对应
-                filter: {
-                    columnKey: 'createTime',
-                    order: 'desc'
-                },
+                filter: {},
                 th: common.tuanListTh,
                 pagination: angular.copy(app.default_page),
 
@@ -153,11 +176,7 @@ app.factory('PageView', ['app', 'tools',
                     }
                 ],
                 //初始化过滤条件 tab的过滤条件 需要跟tabs处于active的tab的value相对应
-                filter: {
-                    columnKey: 'createTime',
-                    order: 'desc',
-                    createTimeStart: tools.getDeltaDayTimestamp()
-                },
+                filter: { createTimeStart: tools.getDeltaDayTimestamp() },
                 th: common.userListTh,
                 pagination: angular.copy(app.default_page),
 

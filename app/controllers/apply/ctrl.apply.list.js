@@ -1,9 +1,9 @@
 'use strict';
-appControllers.controller('tuanListCtrl',
+appControllers.controller('applyListCtrl',
     ['$scope', 'app', function ($scope, app) {
-        //获取课程模板资源
-        var restAPI = app.restAPI.tuan;
-        var pageView = app.PageView.tuan;
+        //获取课程申请资源
+        var restAPI = app.restAPI.apply;
+        var pageView = app.PageView.apply;
 
         /*page config*/
         $scope.tabs = pageView.tabs;//页面的tabs应与filter_tab(from tab.value)的值对应
@@ -20,11 +20,12 @@ appControllers.controller('tuanListCtrl',
             $scope.items = [];//条件查询时直接置空列表数据
             $scope.search_tmp = {};
             //重置分页信息 这里的值
-            angular.extend($scope.page,app.default_page);
+            angular.extend($scope.page, app.default_page);
             //在避免更改对象引用的情况下将所有查询值设为undefined
             app.tools.clearReferenceObj($scope.filter);
         };
-        //tab选择事件 首次加载active的tab时就会进行调用
+
+        //tab选择事件
         $scope.chooseTab = function (tab) {
             beforeQuery();
             angular.forEach(tab.value, function (v, k) {
@@ -33,10 +34,10 @@ appControllers.controller('tuanListCtrl',
             app.log.log('filter_tab:' + angular.toJson($scope.filter));
             doRefresh();
         };
+
         $scope.clearSearch = function () {
             app.tools.clearReferenceObj($scope.search_tmp);
         };
-
         //根据 过滤信息和分页信息 刷新课程列表 保持当前查询条件
         var doRefresh = $scope.doRefresh = function () {
             //使用课程模板资源请求数据 筛选条件为当前选择的值
@@ -56,26 +57,6 @@ appControllers.controller('tuanListCtrl',
             angular.extend($scope.search, $scope.search_tmp);
             doRefresh();
         };
-        //页面首次加载时refresh
         doRefresh();
-        /******************todo 用户操作事件*****************/
-            //团购操作 上线和下线
-        $scope.operate = function (id, op) {
-            var promise = {};
-            if (op == 'submitUpdated') {
-                app.state.go('main.courses.edit', {id: id});
-                return;
-            }
-            else {
-                promise = restAPI.operate({ID: id, OP: op}, {id: id});
-            }
-            promise.$promise.then(function (data) {
-                app.toaster.pop('success', "课程" + id + "操作成功", "");
-                doRefresh();
-            }, function (data) {
-                app.toaster.pop('error', "课程" + id + "操作失败", "");
-            })
-        };
-
     }]
 );

@@ -27,6 +27,7 @@
                 <li><a></a></li>
                 <li ui-sref-active="active"><a ui-sref="main.home">首 页</a></li>
                 <li ng-class="{active: $state.includes('main.booking')}"><a ui-sref="main.booking.list">订单处理</a></li>
+                <li ng-class="{active: $state.includes('main.apply')}"><a ui-sref="main.apply.list">课程申请</a></li>
                 <li ng-class="{active: $state.includes('main.courses')}"><a ui-sref="main.courses.list">课程管理</a></li>
                 <li ng-class="{active: $state.includes('main.templates')}"><a ui-sref="main.templates.list">模板管理</a></li>
                 <li ng-class="{active: $state.includes('main.partners')}" ng-if="global.isAdmin"><a ui-sref="main.partners.list">机构管理</a></li>

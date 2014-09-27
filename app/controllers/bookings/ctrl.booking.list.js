@@ -73,7 +73,7 @@ appControllers.controller('bookingListCtrl',
         //根据 过滤信息和分页信息 刷新课程模板列表 保持当前查询条件
         var doRefresh = $scope.doRefresh = function () {
             //使用课程模板资源请求数据 筛选条件为当前选择的值
-            restAPI.get(angular.extend({partnerId: $scope.partnerId}, $scope.filter, $scope.search, $scope.page), function (data) {
+            restAPI.get(angular.extend({columnKey: 'createTime', order: 'desc'}, $scope.filter, $scope.search, $scope.page), function (data) {
                 //更新当前数据的筛选条件
                 $scope.items = data.data;
                 $scope.page.start = data.start;

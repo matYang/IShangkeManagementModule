@@ -28,7 +28,7 @@ appServices
                     'users': ['/data/users:ID.json?:OP', '/user/:ID/:OP'],
                     // /api/v2/booking/1/
                     'bookings': ['/data/bookings:ID.json?:OP', '/booking/:ID/:OP'],
-                    'applys': ['/data/applys:ID.json?:OP', '/purpose/:ID/:OP'],
+                    'apply': ['/data/applys:ID.json?:OP', '/purpose/:ID/:OP'],
 
                     'templates': ['/data/templates:ID.json?:OP', '/courseTemplate/:ID/:OP'],
                     'courses': ['/data/courses:ID.json?:OP', '/course/:ID/:OP'],
@@ -84,7 +84,7 @@ appServices
                 'templates': resource_maker('templates'),
                 'courses': resource_maker('courses'),
                 'bookings': resource_maker('bookings'),
-                'applys': resource_maker('applys'),
+                'apply': resource_maker('apply'),
 
                 'tuan': resource_maker('tuan'),
                 'tuanBooking': resource_maker('tuanBooking'),

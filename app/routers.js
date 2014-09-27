@@ -52,7 +52,7 @@ appRoutes.config(function ($stateProvider, $urlRouterProvider, $httpProvider, $l
             controller: 'bookingDetailCtrl'
         })
 
-    /**************** 课程申请查看 ****************/
+        /**************** 课程申请查看 ****************/
         .state('main.apply', {
             abstract: true,
             url: '/apply',
