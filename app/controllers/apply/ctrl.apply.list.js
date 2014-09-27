@@ -41,7 +41,7 @@ appControllers.controller('applyListCtrl',
         //根据 过滤信息和分页信息 刷新课程列表 保持当前查询条件
         var doRefresh = $scope.doRefresh = function () {
             //使用课程模板资源请求数据 筛选条件为当前选择的值
-            restAPI.get(angular.extend({columnKey: 'createTime', orderBy: 'desc'}, $scope.filter, $scope.search, $scope.page), function (data) {
+            restAPI.get(angular.extend({columnKey: 'createTime', order: 'desc'}, $scope.filter, $scope.search, $scope.page), function (data) {
                 $scope.items = data.data;
                 $scope.page.start = data.start;
                 $scope.page.count = data.count;
