@@ -51,10 +51,14 @@
 }
 
 /*增加新图片的list banner*/
-.list-banner .banner.banner-add{
+.list-banner .banner.banner-add input[type="file"]{
+    position: absolute;
+    top:-20%;
+    width: 100%;
+    height: 120%;
+    opacity: 0;
+    z-index: 1;
     cursor: pointer;
 }
-.list-banner .banner.banner-add .col {
-    width: 100%;
-    right: 0;
-}
+.list-banner .banner.banner-add > div { right: 0; }
+.list-banner .banner.banner-add > div .col { width: 100%; }

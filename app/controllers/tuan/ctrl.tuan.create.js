@@ -4,9 +4,7 @@ appControllers.controller('tuanCreateCtrl',
         var restAPI = app.restAPI.tuan;
         var uploadUrl = "/a-api/v2/groupBuy/upload";
         $scope.tuan = {};//创建团购的模型
-        $scope.photos = [
-            {url:'/img/loading.gif'}
-        ];//照片列表
+        $scope.photos = [];//照片列表
         $scope.progress = [];//照片上传进度
 
         $scope.options = angular.copy(app.options);
@@ -17,11 +15,17 @@ appControllers.controller('tuanCreateCtrl',
             $scope.tuan = {};
             app.window.scrollTo(0, 0);
         };
-        $scope.submitTuan = function (tuan) {
+        $scope.submitTuan = function () {
             //将数组中obj的id转换成map [1,2] --> [{id:1},{id:2}]
-            var tuan_save = angular.copy(tuan);
-            //todo 这里需要将团购的图片转化为array[obj]
-//            tuan_save.teacherList = app.tools.mapToIdObjList(tuan_save.teacherList);
+            var tuan_save = angular.copy($scope.tuan);
+            var photos = angular.copy($scope.photos);
+            //将团购的图片转化为array[obj]
+            tuan_save.photoList = [];
+            photos.map(function (obj) {
+                if (obj.url) {
+                    tuan_save.photoList.push({url: obj.url});
+                }
+            });
             restAPI.save(tuan_save, function (data) {
                 app.toaster.pop('success', '团购>' + tuan_save.title + '创建成功',
                         '<a href="#/main/tuan/'
@@ -32,14 +36,25 @@ appControllers.controller('tuanCreateCtrl',
             });
         };
 
+
         /**
-         * 上传图片 指定对象
+         * 团购图片
          */
-        $scope.onFileSelect = function ($files, $index) {
-            //上传开始
+            //删除团购图片
+        $scope.deletePhoto = function ($index) {
+            var deletedItem = $scope.photos.splice($index, 1);
+            deletedItem = null;//清除引用 在回调前（返回url前）调用判断是否删除
+        };
+        //上传团购图片
+        $scope.onFileSelect = function ($files) {
+            //未选择文件
+            if (!$files[0])return;
+            //上传开始 新建对象 并设置索引（当前图片数）
+            var index = $scope.photos.length;
             var newPhoto = {
-                uploading:true
+                uploading: true
             };
+//            $scope.imgFile = undefined;
             $scope.photos.push(newPhoto);
             app.$upload.upload({
                 url: uploadUrl,
@@ -49,15 +64,14 @@ appControllers.controller('tuanCreateCtrl',
             }).success(function (data, status) {
                 if (status !== 200) {
                     //错误信息提示
-                    app.toaster.pop('error', data.status +':' + data, '');
+                    app.toaster.pop('error', data.status + ':' + data, '');
                 } else {
-                    $scope.photos[$index].imgUrl = data.imgUrl;
+                    newPhoto.url = data.url;
                 }
-                //todo 上传结束 error时也需要修改为false
-                $scope.photos[$index].uploading = false;
-            }).progress(function (evt) {
-                //todo  Math.min is to fix IE which reports 200% sometimes
-                $scope.progress[$index] = Math.min(100, parseInt(100.0 * evt.loaded / evt.total));
+            }).error(function () {
+                //todo 上传失败
+            }).finally(function () {
+                newPhoto.uploading = false;
             });
         };
     }]
