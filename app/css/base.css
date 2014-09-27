@@ -33,7 +33,7 @@ a, a:hover {
 .loading {
     width: 100%;
     text-align: center;
-    background: url('/img/loading.gif') center no-repeat;
+    background: url('/images/loading.gif') center no-repeat;
     height: 20px;
     margin: 20px 0;
 

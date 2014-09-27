@@ -153,7 +153,7 @@ app.factory('PageView', ['app', 'tools',
                         value: {status:2}
                     },
                     {
-                        label: '团购置顶', active: false,
+                        label: '置顶团购', active: false,
                         value: {hot:1}
                     }
                 ],
