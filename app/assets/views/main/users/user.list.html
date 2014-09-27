@@ -59,9 +59,9 @@
                 <td>{{item.phone || '--'}}</td>
                 <td>{{item.invitationCode || '--'}}</td>
                 <td>{{item.createTime |date:'yyyy-MM-dd HH:ss'}}</td>
-                <!--<td class="operations">-->
-                <!--<a ui-sref="main.partners.detail({id:item.id})">详细/管理</a>-->
-                <!--</td>-->
+                <td class="operations">
+                <a ui-sref="main.users.detail({id:item.id})">查看</a>
+                </td>
             </tr>
             </tbody>
         </table>
