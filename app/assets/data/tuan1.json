@@ -1,0 +1,9 @@
+{
+    "id": 1,
+    "title": "团购标题1",
+    "groupBuyPrice": 180,
+    "endTime": 1441111111111,
+    "status": 0,
+    "hot": 1,
+    "courseId": 1
+}

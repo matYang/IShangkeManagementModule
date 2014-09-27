@@ -46,11 +46,11 @@ app.factory('PageView', ['app', 'tools',
             ],
             tuanListTh: [
                 {n: 'ID', w: '10'},
-                {n: '团购名', w: '15'},
-                {n: '课程名', w: '15'},
-                {n: '团购价格', w: '20'},
-                {n: '剩余时间', w: '15'},
-                {n: '创建时间', w: '25'}
+                {n: '团购名', w: '20'},
+                {n: '团购价格', w: '15'},
+                {n: '下线时间', w: '20'},
+                {n: '状态', w: '15'},
+                {n: '操作', w: '20'},
             ],
             userListTh: [
                 {n: 'ID', w: '10'},
@@ -115,12 +115,20 @@ app.factory('PageView', ['app', 'tools',
             tuan: {
                 tabs: [
                     {
-                        label: '已上线', active: true,
-                        value: {createTimeStart: tools.getDeltaDayTimestamp()}
+                        label: '待上线', active: true,
+                        value: {status:0}
+                    },
+                    {
+                        label: '热卖中', active: false,
+                        value: {status:1}
                     },
                     {
                         label: '已下线', active: false,
-                        value: {}
+                        value: {status:2}
+                    },
+                    {
+                        label: '团购置顶', active: false,
+                        value: {hot:1}
                     }
                 ],
                 //初始化过滤条件 tab的过滤条件 需要跟tabs处于active的tab的value相对应

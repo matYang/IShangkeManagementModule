@@ -102,6 +102,13 @@ appFilters
             };
         }
     ])
+    .filter('tuanStatusText', ['app',
+        function (app) {
+            return function (value) {
+                return app.Enum.tuanStatusText[value] || '未知状态';
+            };
+        }
+    ])
     /*课程或者课程模板属于的类目*/
     .filter('categoryText', ['app',
         function (app) {

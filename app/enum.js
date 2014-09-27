@@ -76,6 +76,11 @@ app.value('Enum', {
             24: '已获返利'
 
         },
+        tuanStatusText:{
+          0:'待上线',
+          1:'热卖中',
+          2:'已下线'
+        },
         //记录操作的按钮text
         courseOperationText: {
             //课程和课程模板的操作

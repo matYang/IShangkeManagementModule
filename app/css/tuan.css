@@ -1,0 +1,60 @@
+.list-banner {
+}
+
+.list-banner .banner {
+    position: relative;
+    float: left;
+    width: 150px;
+    height: 90px;
+    margin-right: 8px;
+    margin-bottom: 5px;
+    border: 1px solid #CFCFCF;
+    overflow: hidden;
+}
+
+.list-banner .banner > img,
+.list-banner .banner > div {
+    width: 100%;
+    height: 100%;
+}
+
+.list-banner .banner > div {
+    position: absolute;
+    top: 0;
+    right: -100%;
+    background: rgba(255, 255, 255, 0.75);
+    -webkit-transition: all 0.4s;
+    -moz-transition: all 0.4s;
+    -ms-transition: all 0.4s;
+    -o-transition: all 0.4s;
+    transition: all 0.4s;
+}
+
+.list-banner .banner .col {
+    position: relative;
+    top: 46%;
+    margin-top: -9px;
+    width: 50%;
+    float: left;
+    font-size: 18px;
+    text-align: center;
+}
+
+/*handle the hover*/
+.list-banner .banner:hover {
+    border-color: #428BCA;
+    box-shadow: 0 0 4px 0 #428BCA;
+}
+
+.list-banner .banner:hover > div {
+    right: 0;
+}
+
+/*增加新图片的list banner*/
+.list-banner .banner.banner-add{
+    cursor: pointer;
+}
+.list-banner .banner.banner-add .col {
+    width: 100%;
+    right: 0;
+}

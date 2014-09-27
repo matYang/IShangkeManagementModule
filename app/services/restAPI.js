@@ -33,11 +33,17 @@ appServices
                     'templates': ['/data/templates:ID.json?:OP', '/courseTemplate/:ID/:OP'],
                     'courses': ['/data/courses:ID.json?:OP', '/course/:ID/:OP'],
 
+                    //团购相关
+                    'tuan': ['/data/tuan:ID.json?:OP', '/groupBuy/:ID/:OP'],
+                    'tuanBooking': ['/data/tuan:ID.json?:OP', '/groupBuy/booking:ID/:OP'],
+
+                    //机构相关
                     'partners': ['/data/partners:ID.json?:OP', '/partner/:ID/:OP'],
                     'teachers': ['/data/teachers:ID.json?:OP', '/teacher/:ID/:OP'],
                     'photos': ['/data/classPhotos:ID.json?:OP', '/classPhoto/:ID/:OP'],
                     'addresses': ['/data/addresses:ID.json?:OP', '/address/:ID/:OP'],
 
+                    //general
                     'category': ['/data/general/category.json', '/general/category'],
                     'circle': ['/data/general/circle.json', '/general/circle'],
                     'location': ['/data/general/location.json', '/general/location']
@@ -79,6 +85,9 @@ appServices
                 'courses': resource_maker('courses'),
                 'bookings': resource_maker('bookings'),
                 'applys': resource_maker('applys'),
+
+                'tuan': resource_maker('tuan'),
+                'tuanBooking': resource_maker('tuanBooking'),
 
                 'partners': resource_maker('partners'),
                 'teachers': resource_maker('teachers'),

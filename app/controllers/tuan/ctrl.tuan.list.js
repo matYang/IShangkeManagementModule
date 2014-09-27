@@ -2,8 +2,8 @@
 appControllers.controller('tuanListCtrl',
     ['$scope', 'app', function ($scope, app) {
         //获取课程模板资源
-        var restAPI = app.restAPI.courses;
-        var pageView = app.PageView.courses;
+        var restAPI = app.restAPI.tuan;
+        var pageView = app.PageView.tuan;
 
         /*page config*/
         $scope.tabs = pageView.tabs;//页面的tabs应与filter_tab(from tab.value)的值对应
@@ -59,8 +59,8 @@ appControllers.controller('tuanListCtrl',
         };
         //页面首次加载时refresh
         doRefresh();
-        /******************用户操作事件*****************/
-            //课程操作
+        /******************todo 用户操作事件*****************/
+            //团购操作 上线和下线
         $scope.operate = function (id, op) {
             var promise = {};
             if (op == 'submitUpdated') {

@@ -52,6 +52,25 @@ appRoutes.config(function ($stateProvider, $urlRouterProvider, $httpProvider, $l
             controller: 'bookingDetailCtrl'
         })
 
+    /**************** 课程申请查看 ****************/
+        .state('main.apply', {
+            abstract: true,
+            url: '/apply',
+            template: '<div ui-view></div>'
+        })
+        //申请列表
+        .state('main.apply.list', {
+            url: '',
+            templateUrl: 'views/main/apply/apply.list.html'+version,
+            controller: 'applyListCtrl'
+        })
+        //申请详情
+        .state('main.apply.detail', {
+            url: '/{id}',
+            templateUrl: 'views/main/apply/apply.detail.html'+version,
+            controller: 'applyDetailCtrl'
+        })
+
 
 
         /*************** 课程信息管理 ***************/
@@ -193,16 +212,18 @@ appRoutes.config(function ($stateProvider, $urlRouterProvider, $httpProvider, $l
             templateUrl: 'views/main/tuan/tuan.list.html'+version,
             controller: 'tuanListCtrl'
         })
-        .state('main.tuan.detail', {
-            url: '/{id}',
-            templateUrl: 'views/main/tuan/tuan.detail.html'+version,
-            controller: 'tuanDetailCtrl'
-        })
         .state('main.tuan.create', {
             url: '/create',
             templateUrl: 'views/main/tuan/tuan.create.html'+version,
             controller: 'tuanCreateCtrl'
         })
+
+        .state('main.tuan.detail', {
+            url: '/{id}',
+            templateUrl: 'views/main/tuan/tuan.detail.html'+version,
+            controller: 'tuanDetailCtrl'
+        })
+
 
 
         /*****************用户管理****************/
