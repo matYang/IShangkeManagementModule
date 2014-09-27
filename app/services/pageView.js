@@ -15,9 +15,9 @@ app.factory('PageView', ['app', 'tools',
                 {n: '订单号', w: '15'},
                 {n: '入学人姓名', w: '15'},
                 {n: '价格', w: '10'},
-                {n: '支付方式', w: '12'},
-                {n: '订单状态', w: '13'},
-                {n: '创建时间', w: '15'},
+                {n: '支付方式', w: '10'},
+                {n: '订单状态', w: '10'},
+                {n: '创建时间', w: '20'},
                 {n: '操作', w: '20'}
             ],
             courseListTh: [
@@ -79,12 +79,12 @@ app.factory('PageView', ['app', 'tools',
                         value: {statusSet: [0, 13], createTimeStart: tools.getDeltaDayTimestamp()}
                     },
                     {
-                        label: '往日待处理', active: false,
-                        value: {statusSet: [0, 13], createTimeEnd: tools.getDeltaDayTimestamp()}
-                    },
-                    {
                         label: '今日订单', active: false,
                         value: {createTimeStart: tools.getDeltaDayTimestamp()}
+                    },
+                    {
+                        label: '往日待处理', active: false,
+                        value: {statusSet: [0, 13], createTimeEnd: tools.getDeltaDayTimestamp()}
                     },
                     {
                         label: '往日订单', active: false,
