@@ -3,7 +3,7 @@ appControllers.controller('homeCtrl', ['$scope', 'app',
     function ($scope, app) {
         var Bookings = app.restAPI.bookings;
         var Users = app.restAPI.users;
-        var Applys = app.restAPI.applys;
+        var Apply = app.restAPI.apply;
         //今日数据
         $scope.today = {
             bookingCount: 0,
@@ -21,7 +21,7 @@ appControllers.controller('homeCtrl', ['$scope', 'app',
                 .then(function (data) {
                     //获取课程订单数量
                     $scope.today.bookingCount = data.total;
-                    return Applys.get({createTimeStart: app.tools.getDeltaDayTimestamp()}).$promise;
+                    return Apply.get({createTimeStart: app.tools.getDeltaDayTimestamp()}).$promise;
                 }).then(function (data) {
                     //获取选课申请数量
                     $scope.today.applyCount = data.total;
