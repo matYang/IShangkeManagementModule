@@ -114,7 +114,7 @@ app.factory('PageView', ['app', 'tools',
                 filter: {status: 2},//过滤条件 tab的过滤条件
                 search: {},//查询条件 手动输入的条件
                 tabs: angular.copy(common.statusTabs),
-                th: common.bookingListTh
+                th: common.courseListTh
             },
             partners: {
                 pagination: angular.copy(app.default_page),
