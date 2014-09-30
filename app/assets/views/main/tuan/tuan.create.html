@@ -23,11 +23,14 @@
             <label class="col-xs-4 control-label">课程ID(*)</label>
 
             <div class="col-xs-3">
-                <input type="text" class="form-control" name="courseId"
+                <input ng-blur="getAddressList(tuan.courseId)" type="text" class="form-control" name="courseId"
                        ng-model="tuan.courseId" required="">
             </div>
             <div class="col-xs-3">
-
+                <span class="help-block" ng-show="loadingCourse">
+                    <i class="fa fa-spinner fa-spin"></i> 检测中
+                </span>
+                <span class="help-block" ng-if="noSuchCourse"><span class="text-danger">无效的课程</span></span>
             </div>
         </div>
         <div class="form-group form-group-sm">
@@ -49,8 +52,22 @@
                 </div>
             </div>
         </div>
+
+        <div class="form-group form-group-sm">
+            <label class="col-xs-4 control-label">是否置顶(*)</label>
+
+            <div class="col-xs-6">
+                <div class="btn-group" ng-model="tuan.hot" bs-radio-group>
+                    <label class="btn btn-default"><input type="radio" class="btn btn-default" value="0"> 否</label>
+                    <label class="btn btn-default"><input type="radio" class="btn btn-default" value="1"> 是</label>
+                </div>
+
+            </div>
+        </div>
+
         <div class="form-group form-group-sm">
             <label class="col-xs-4 control-label">团购图片(*)</label>
+
             <div class="col-xs-8 list-banner">
                 <div class="banner" ng-repeat="banner in photos">
                     <img ng-src="{{banner.url}}"/>
@@ -67,13 +84,26 @@
                 <div class="banner banner-add">
                     <input type="file" ng-model="imgFile" accept="image/*"
                            ng-file-select="onFileSelect($files)">
+
                     <div>
                         <div class="col">
-                        <a> <i class="fa fa-plus"></i> Add</a>
+                            <a> <i class="fa fa-plus"></i> Add</a>
                         </div>
                     </div>
                 </div>
 
+            </div>
+        </div>
+
+        <div class="form-group form-group-sm">
+            <label class="col-xs-4 control-label">支持团购的分校地址</label>
+
+            <div class="col-xs-7">
+                <button class="col-xs-5 btn btn-default btn-sm" ng-model="tuan.addressList" max-length="8"
+                        data-html="1" data-multiple="1" ng-options="item.id as item.detail for item in addressList"
+                        bs-select>
+                    选择地址 <span class="caret"></span>
+                </button>
             </div>
         </div>
 
@@ -88,18 +118,29 @@
     <!--右侧面板-->
     <div class="col-xs-4 pull-right" scroll-fix>
         <div>
-            <label>【创建团购】</label>
-            <div class="well-sm">
-                <p>团购图片上传注意：</p>
-                <p>1、第一张图必须为团购置顶时提供的图片（宽度670）</p>
-                <p>2、第二张图必须为团购封面（宽度450）</p>
-                <p>3、其它图片均为团购详情中展示的图片（宽度450）</p>
+            <label>团购图片上传注意：</label>
 
+            <div class="well-sm">
+                <p>1、第一张图为<span class="text-danger"> 团购置顶 </span>时显示的图片（670*340）</p>
+
+                <p>2、第二张图为<span class="text-danger"> 团购封面 </span>（450*250）</p>
+
+                <p>3、其它图片均为<span class="text-danger"> 团购详情 </span>中展示的图片（460*322）</p>
             </div>
-            <pre>
-                {{tuan|json}}
-                {{photos|json}}
-            </pre>
+            <label>支持团购的分校地址：</label>
+
+            <div class="well-sm">
+                <p>1、分校地址从机构信息中获取，输入课程ID即会生成的地址选项</p>
+            </div>
+            <label>置顶团购：</label>
+
+            <div class="well-sm">
+                <p>1、置顶团购必须不少于4个，且在主网只显示前4个</p>
+            </div>
+            <!--<pre>-->
+            <!--{{tuan|json}}-->
+            <!--{{photos|json}}-->
+            <!--</pre>-->
         </div>
     </div>
 </div>

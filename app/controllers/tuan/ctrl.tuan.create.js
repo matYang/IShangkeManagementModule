@@ -2,17 +2,48 @@
 appControllers.controller('tuanCreateCtrl',
     ['$scope', 'app', function ($scope, app) {
         var restAPI = app.restAPI.tuan;
+        var Courses = app.restAPI.courses;
+        var Partners = app.restAPI.partners;
         var uploadUrl = "/a-api/v2/groupBuy/upload";
-        $scope.tuan = {};//创建团购的模型
+        $scope.tuan = {hot:0};//创建团购的模型
         $scope.photos = [];//照片列表
         $scope.progress = [];//照片上传进度
+        $scope.addressList = [];//机构的地址选项列表
 
         $scope.options = angular.copy(app.options);
         $scope.Enum = app.Enum;
 
+
+        //获取课程对应的机构的地址来生成地址选项
+        $scope.getAddressList = function (courseId) {
+            if(!courseId) return;
+            //初始化的状态为 存在该课程 和 处于loading装填
+            $scope.noSuchCourse = false;
+            $scope.loadingCourse = true;
+            Courses.get({ID:courseId}).$promise.then(function(course){
+                //无课程返回
+                if(!course||!course.partnerId){
+                    $scope.noSuchCourse = true;
+                    $scope.loadingCourse = false;
+                    return
+                }
+                $scope.loadingCourse = false;
+                return Partners.get({ID:course.partnerId}).$promise;
+            },function(){
+                $scope.loadingCourse = false;
+                $scope.noSuchCourse = true;
+            }).then(function(partner){
+               //根据partner的地址列表生成地址的选项
+                $scope.addressList = partner.addressList;
+            });
+        };
+
         $scope.clear = function () {
             //清空课程创建中输入的信息
-            $scope.tuan = {};
+            $scope.tuan = {
+                hot:0
+            };
+            $scope.addressList = [];
             app.window.scrollTo(0, 0);
         };
         $scope.submitTuan = function () {
@@ -25,6 +56,10 @@ appControllers.controller('tuanCreateCtrl',
                 if (obj.url) {
                     tuan_save.photoList.push({url: obj.url});
                 }
+            });
+            //将团购地址转化为array[obj]
+            tuan_save.addressList = tuan_save.addressList.map(function(addressId){
+               return {id:addressId}
             });
             restAPI.save(tuan_save, function (data) {
                 app.toaster.pop('success', '团购>' + tuan_save.title + '创建成功',
