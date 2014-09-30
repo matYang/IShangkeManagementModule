@@ -3,21 +3,53 @@
         <h3>
             <small><a ui-sref="main.tuan.list" class="btn fa fa-chevron-left pull-left"> 返回 </a></small>
             团购详情
-            <small>--{{tuan}}</small>
+            <small>--{{tuan.title}}</small>
         </h3>
     </div>
 </div>
 <div class="row">
     <!--左侧内容面板-->
     <form class="col-xs-9 form-horizontal form-detail" role="form" name="validateForm" w5c-form-validate novalidate>
-        <legend>重要信息
-            <small> -- 团购资料</small>
-        </legend>
-        <div ng-if="port=='admin'" class="form-group form-group-sm">
-            <label class="col-xs-3 control-label">所属机构</label>
+        <legend>团购信息</legend>
+        <div class="form-group form-group-sm">
+            <label class="col-xs-3 control-label">团购标题</label>
 
             <div class="col-xs-8">
-                <p class="form-control-static">{{tuan.name}}</p>
+                <p class="form-control-static">{{tuan.title}}</p>
+            </div>
+        </div>
+        <div class="form-group form-group-sm">
+            <label class="col-xs-3 control-label">课程ID</label>
+
+            <div class="col-xs-8">
+                <p class="form-control-static">
+                    {{tuan.courseId}}
+                    &nbsp;&nbsp;<a target="_blank" ui-sref="main.courses.detail({id:tuan.courseId})">点击查看</a>
+                </p>
+
+            </div>
+        </div>
+        <div class="form-group form-group-sm">
+            <label class="col-xs-3 control-label">团购价格</label>
+
+            <div class="col-xs-8">
+                <p class="form-control-static">{{tuan.groupBuyPrice|currency}}</p>
+            </div>
+        </div>
+        <div class="form-group form-group-sm">
+            <label class="col-xs-3 control-label">自动下线时间</label>
+
+            <div class="col-xs-8">
+                <p class="form-control-static">{{tuan.endTime|date:'yyyy-MM-dd HH:ss'}}</p>
+            </div>
+        </div>
+        <div class="form-group form-group-sm">
+            <label class="col-xs-3 control-label">当前状态</label>
+
+            <div class="col-xs-8">
+                <p class="form-control-static">{{tuan.status| tuanStatusText}}
+                    <span ng-show="tuan.hot" class="label label-info">Top</span>
+                </p>
             </div>
         </div>
 

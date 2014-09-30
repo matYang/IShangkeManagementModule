@@ -1,16 +1,13 @@
 'use strict';
 appControllers.controller('tuanDetailCtrl',
     ['$scope', 'restAPI', 'app', function ($scope, restAPI, app) {
-        var restAPI = restAPI.courses;
+        var restAPI = restAPI.tuan;
         var id = app.state.params.id;
 
         var doRefresh = $scope.doRefresh = function () {
 
-            restAPI.get({ID: id}, function (course) {
-                //解析schooltimeDay from number value to number list:7-->[1,2,4]
-                course.schooltimeDay = app.tools.toSchoolTimeList(course.schooltimeDay,app.Enum.schooltimeDay);
-                course.schooltimeWeek = app.tools.toSchoolTimeList(course.schooltimeWeek,app.Enum.schooltimeWeek);
-                $scope.course = course;
+            restAPI.get({ID: id}, function (tuan) {
+                $scope.tuan = tuan;
             }, function () {
                 //error
             });
