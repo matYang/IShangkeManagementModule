@@ -74,7 +74,7 @@
 
                     <div>
                         <div class="col">
-                            <a> <i class="fa fa-search-plus"></i> 查看</a>
+                            <a ng-href="{{banner.url}}" target="_blank"> <i class="fa fa-search-plus"></i> 查看</a>
                         </div>
                         <div class="col">
                             <a ng-click="deletePhoto($index)"> <i class="fa fa-times"></i> 删除</a>
@@ -96,7 +96,7 @@
         </div>
 
         <div class="form-group form-group-sm">
-            <label class="col-xs-4 control-label">支持团购的分校地址</label>
+            <label class="col-xs-4 control-label">支持团购的机构地址</label>
 
             <div class="col-xs-7">
                 <button class="col-xs-5 btn btn-default btn-sm" ng-model="tuan.addressList" max-length="8"

@@ -12,14 +12,14 @@
     <form class="col-xs-9 form-horizontal form-detail" role="form" name="validateForm" w5c-form-validate novalidate>
         <legend>团购信息</legend>
         <div class="form-group form-group-sm">
-            <label class="col-xs-3 control-label">团购标题</label>
+            <label class="col-xs-3 control-label">团购ID </label>
 
             <div class="col-xs-8">
-                <p class="form-control-static">{{tuan.title}}</p>
+                <p class="form-control-static">{{tuan.id}}</p>
             </div>
         </div>
         <div class="form-group form-group-sm">
-            <label class="col-xs-3 control-label">课程ID</label>
+            <label class="col-xs-3 control-label">团购课程ID</label>
 
             <div class="col-xs-8">
                 <p class="form-control-static">
@@ -29,6 +29,14 @@
 
             </div>
         </div>
+        <div class="form-group form-group-sm">
+            <label class="col-xs-3 control-label">团购标题</label>
+
+            <div class="col-xs-8">
+                <p class="form-control-static">{{tuan.title}}</p>
+            </div>
+        </div>
+
         <div class="form-group form-group-sm">
             <label class="col-xs-3 control-label">团购价格</label>
 
@@ -50,6 +58,30 @@
                 <p class="form-control-static">{{tuan.status| tuanStatusText}}
                     <span ng-show="tuan.hot" class="label label-info">Top</span>
                 </p>
+            </div>
+        </div>
+        <div class="form-group form-group-sm">
+            <label class="col-xs-3 control-label">支持团购的机构地址</label>
+
+            <div class="col-xs-8">
+                <p class="form-control-static" ng-repeat="a in tuan.addressList">
+                    {{a.detail}}
+                </p>
+            </div>
+        </div>
+        <div class="form-group form-group-sm">
+            <label class="col-xs-3 control-label">图片列表</label>
+
+            <div class="col-xs-8 list-banner">
+                <div class="banner" ng-repeat="banner in tuan.photoList">
+                    <img ng-src="{{banner.url}}"/>
+
+                    <div>
+                        <div class="col block">
+                            <a ng-href="{{banner.url}}" target="_blank"> <i class="fa fa-search-plus"></i> 查看</a>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
 

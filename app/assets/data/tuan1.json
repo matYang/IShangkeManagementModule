@@ -5,5 +5,27 @@
     "endTime": 1441111111111,
     "status": 0,
     "hot": 1,
-    "courseId": 1
+    "courseId": 1,
+    "photoList":[
+        {
+            "url":"./images/test_tuan_banner.jpg"
+        },
+        {
+            "url":"./images/test_tuan_banner.jpg"
+        },
+        {
+            "url":"./images/test_tuan_banner.jpg"
+        }
+    ],
+    "addressList":[
+        {
+            "detail":"地址111"
+        },
+        {
+            "detail":"地址222"
+        },
+        {
+            "detail":"地址3333"
+        }
+    ]
 }

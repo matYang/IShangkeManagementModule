@@ -60,7 +60,7 @@
                 <td>{{item.id || '无'}}</td>
                 <td>{{item.title}}</td>
                 <td>{{item.groupBuyPrice| currency}}</td>
-                <td>{{item.endTime | date:'yyyy-MM-dd'}}</td>
+                <td>{{item.endTime | date:'yyyy-MM-dd HH:ss'}}</td>
                 <td>
                     {{item.status|tuanStatusText}}
                     <span ng-show="item.hot" class="label label-info">Top</span>

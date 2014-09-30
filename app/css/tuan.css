@@ -39,6 +39,9 @@
     font-size: 18px;
     text-align: center;
 }
+.list-banner .banner .col.block{
+    width: 100%;
+}
 
 /*handle the hover*/
 .list-banner .banner:hover {
