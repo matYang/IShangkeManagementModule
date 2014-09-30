@@ -50,8 +50,7 @@
             </div>
         </div>
         <div class="form-group form-group-sm">
-            <label class="col-xs-4 control-label">团购价格(*)</label>
-
+            <label class="col-xs-4 control-label">团购图片(*)</label>
             <div class="col-xs-8 list-banner">
                 <div class="banner" ng-repeat="banner in photos">
                     <img ng-src="{{banner.url}}"/>
@@ -90,6 +89,13 @@
     <div class="col-xs-4 pull-right" scroll-fix>
         <div>
             <label>【创建团购】</label>
+            <div class="well-sm">
+                <p>团购图片上传注意：</p>
+                <p>1、第一张图必须为团购置顶时提供的图片（宽度670）</p>
+                <p>2、第二张图必须为团购封面（宽度450）</p>
+                <p>3、其它图片均为团购详情中展示的图片（宽度450）</p>
+
+            </div>
             <pre>
                 {{tuan|json}}
                 {{photos|json}}
