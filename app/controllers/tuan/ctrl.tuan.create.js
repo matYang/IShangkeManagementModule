@@ -34,6 +34,7 @@ appControllers.controller('tuanCreateCtrl',
                 $scope.noSuchCourse = true;
             }).then(function(partner){
                //根据partner的地址列表生成地址的选项
+                $scope.tuan.addressList = undefined;//置空原来的选择
                 $scope.addressList = partner.addressList;
             });
         };
