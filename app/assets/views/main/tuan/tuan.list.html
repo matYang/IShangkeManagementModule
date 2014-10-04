@@ -67,7 +67,7 @@
                 </td>
                 <td class="operations">
                     <a ui-sref="main.tuan.detail({id:item.id})">查看</a>
-                    <!--<a ng-if="op.name=='submitUpdated'" ng-click="updateTuan(item.id,op.name)">修改</a>-->
+                    <a ng-if="item.status==0" ng-click="onlineTuan(item.id)">上线</a>
                     <!--<a ng-if="op.name!='submitUpdated'&&op.name!='delete'" ng-click="operate(item.id,op.name)">-->
                     <!--{{op.name | courseOperationText}}-->
                     <!--</a>-->

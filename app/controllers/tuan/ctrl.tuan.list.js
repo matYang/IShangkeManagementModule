@@ -20,7 +20,7 @@ appControllers.controller('tuanListCtrl',
             $scope.items = [];//条件查询时直接置空列表数据
             $scope.search_tmp = {};
             //重置分页信息 这里的值
-            angular.extend($scope.page,app.default_page);
+            angular.extend($scope.page, app.default_page);
             //在避免更改对象引用的情况下将所有查询值设为undefined
             app.tools.clearReferenceObj($scope.filter);
         };
@@ -50,7 +50,7 @@ appControllers.controller('tuanListCtrl',
             });
         };
         //查询操作 更改查询条件后进行刷新
-        $scope.doSearch = function(){
+        $scope.doSearch = function () {
             //更新当前数据的筛选条件
             app.tools.clearReferenceObj($scope.search);
             angular.extend($scope.search, $scope.search_tmp);
@@ -59,21 +59,14 @@ appControllers.controller('tuanListCtrl',
         //页面首次加载时refresh
         doRefresh();
         /******************todo 用户操作事件*****************/
-            //团购操作 上线和下线
-        $scope.operate = function (id, op) {
+            //团购操作 上线
+        $scope.onlineTuan = function (id) {
             var promise = {};
-            if (op == 'submitUpdated') {
-                app.state.go('main.courses.edit', {id: id});
-                return;
-            }
-            else {
-                promise = restAPI.operate({ID: id, OP: op}, {id: id});
-            }
-            promise.$promise.then(function (data) {
-                app.toaster.pop('success', "课程" + id + "操作成功", "");
+            restAPI.operate({ID: id, OP: 'online'}).$promise.then(function (data) {
+                app.toaster.pop('success', "团购" + id + "操作成功", "");
                 doRefresh();
             }, function (data) {
-                app.toaster.pop('error', "课程" + id + "操作失败", "");
+                app.toaster.pop('error', "团购" + id + "操作失败", "");
             })
         };
 
