@@ -61,13 +61,13 @@ appControllers.controller('tuanListCtrl',
         /******************todo 用户操作事件*****************/
             //团购操作 上线
         $scope.onlineTuan = function (id) {
-            var promise = {};
-            restAPI.operate({ID: id, OP: 'online'}).$promise.then(function (data) {
-                app.toaster.pop('success', "团购" + id + "操作成功", "");
-                doRefresh();
-            }, function (data) {
-                app.toaster.pop('error', "团购" + id + "操作失败", "");
-            })
+            restAPI.operate({ID: id, OP: 'online'}, {id:id},
+                function (data) {
+                    app.toaster.pop('success', "团购" + id + "操作成功", "");
+                    doRefresh();
+                }, function (data) {
+                    app.toaster.pop('error', "团购" + id + "操作失败", "");
+                })
         };
 
     }]
