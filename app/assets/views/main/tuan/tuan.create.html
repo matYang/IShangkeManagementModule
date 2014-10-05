@@ -30,7 +30,10 @@
                 <span class="help-block" ng-show="loadingCourse">
                     <i class="fa fa-spinner fa-spin"></i> 检测中
                 </span>
-                <span class="help-block" ng-if="noSuchCourse"><span class="text-danger">无效的课程模板</span></span>
+                <span class="help-block" >
+                    <span ng-if="noSuchCourse" class="text-danger">无效的课程模板</span>
+                    <a ng-if="tuan.courseId&&!noSuchCourse" target="_blank" ui-sref="main.templates.detail({id:tuan.courseId})">点击查看</a>
+                </span>
             </div>
         </div>
         <div class="form-group form-group-sm">
