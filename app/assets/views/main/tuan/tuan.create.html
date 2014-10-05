@@ -20,7 +20,7 @@
             </div>
         </div>
         <div class="form-group form-group-sm">
-            <label class="col-xs-4 control-label">课程ID(*)</label>
+            <label class="col-xs-4 control-label">课程模板ID(*)</label>
 
             <div class="col-xs-3">
                 <input ng-blur="getAddressList(tuan.courseId)" type="text" class="form-control" name="courseId"
@@ -30,7 +30,7 @@
                 <span class="help-block" ng-show="loadingCourse">
                     <i class="fa fa-spinner fa-spin"></i> 检测中
                 </span>
-                <span class="help-block" ng-if="noSuchCourse"><span class="text-danger">无效的课程</span></span>
+                <span class="help-block" ng-if="noSuchCourse"><span class="text-danger">无效的课程模板</span></span>
             </div>
         </div>
         <div class="form-group form-group-sm">
@@ -130,7 +130,7 @@
             <label>支持团购的分校地址：</label>
 
             <div class="well-sm">
-                <p>1、分校地址从机构信息中获取，输入课程ID即会生成的地址选项</p>
+                <p>1、分校地址从机构信息中获取，输入课程模板ID即会生成的地址选项</p>
             </div>
             <label>置顶团购：</label>
 

@@ -2,7 +2,7 @@
 appControllers.controller('tuanCreateCtrl',
     ['$scope', 'app', function ($scope, app) {
         var restAPI = app.restAPI.tuan;
-        var Courses = app.restAPI.courses;
+        var Templates = app.restAPI.templates;
         var Partners = app.restAPI.partners;
         var uploadUrl = "/a-api/v2/groupBuy/upload";
         $scope.tuan = {hot:0};//创建团购的模型
@@ -15,20 +15,20 @@ appControllers.controller('tuanCreateCtrl',
 
 
         //获取课程对应的机构的地址来生成地址选项
-        $scope.getAddressList = function (courseId) {
-            if(!courseId) return;
+        $scope.getAddressList = function (templateId) {
+            if(!templateId) return;
             //初始化的状态为 存在该课程 和 处于loading装填
             $scope.noSuchCourse = false;
             $scope.loadingCourse = true;
-            Courses.get({ID:courseId}).$promise.then(function(course){
+            Templates.get({ID:templateId}).$promise.then(function(template){
                 //无课程返回
-                if(!course||!course.partnerId){
+                if(!template||!template.partnerId){
                     $scope.noSuchCourse = true;
                     $scope.loadingCourse = false;
                     return
                 }
                 $scope.loadingCourse = false;
-                return Partners.get({ID:course.partnerId}).$promise;
+                return Partners.get({ID:template.partnerId}).$promise;
             },function(){
                 $scope.loadingCourse = false;
                 $scope.noSuchCourse = true;
