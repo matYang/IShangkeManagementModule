@@ -2,7 +2,8 @@
     <div class="col-xs-12">
         <h3>
             <small><a ui-sref="main.templates.list" class="btn fa fa-chevron-left pull-left"> 返回列表</a></small>
-            编辑课程模板<small>--{{template.courseName}}</small>
+            编辑课程模板
+            <small>--{{template.courseName}}</small>
         </h3>
     </div>
 
@@ -77,14 +78,7 @@
     <span class="help-block">原价与爱上课价相等时无需填写</span>
 
 </div>
-<!--<div class="form-group form-group-sm">-->
-    <!--<label class="col-xs-3 control-label">优惠信息</label>-->
 
-    <!--<div class="col-xs-5">-->
-        <!--<input type="text" class="form-control" name="marking"-->
-               <!--ng-model="template.marking">-->
-    <!--</div>-->
-<!--</div>-->
 <div class="form-group form-group-sm">
     <label class="col-xs-3 control-label">门店折扣</label>
 
@@ -112,7 +106,8 @@
                 ng-options="item.value as item.label for item in options.payType | filter:{value:''}"
                 placeholder="选择支付方式" bs-select>
         </button>
-        <button ng-if="!template.price" name="bookingType" class="btn btn-default btn-sm" ng-model="template.bookingType"
+        <button ng-if="!template.price" name="bookingType" class="btn btn-default btn-sm"
+                ng-model="template.bookingType"
                 ng-options="item.value as item.label for item in options.payType | filter:{value:1}"
                 placeholder="选择支付方式" bs-select>
         </button>
@@ -120,130 +115,107 @@
 </div>
 
 
-
 <legend>基本信息</legend>
-<!--<div class="form-group form-group-sm">-->
-<!--<label class="col-xs-3 control-label">是否有具体开课日期</label>-->
+<div class="form-group form-group-sm">
+    <label class="col-xs-3 control-label">优惠信息</label>
 
-<!--<div class="col-xs-7">-->
-<!--<div class="btn-group" ng-model="template.startUponArrival" bs-radio-group="">-->
-<!--<label class="btn btn-default"><input type="radio" class="btn btn-default" value="1">是</label>-->
-<!--<label class="btn btn-default"><input type="radio" class="btn btn-default" value="0">否</label>-->
-<!--</div>-->
-<!--</div>-->
-<!--</div>-->
-<!--<div class="form-group form-group-sm" ng-show="template.startUponArrival==0">-->
-<!--<label class="col-xs-3 control-label">开课日期描述</label>-->
-
-<!--<div class="col-xs-5">-->
-<!--<textarea type="text" class="form-control" placeholder="如随到随学"-->
-<!--name="regPhone" ng-model="template.regPhone">-->
-<!--</textarea>-->
-<!--</div>-->
-<!--</div>-->
-<!--<div class="form-group form-group-sm" ng-show="template.startUponArrival==1">-->
-<!--<label class="col-xs-3 control-label">开课日期</label>-->
-
-<!--<div class="col-xs-7">-->
-<!--<div class="input-group input-group-sm col-xs-5 pull-left">-->
-<!--<input name="startDate" type="text" class="form-control input-sm" placeholder="开始"-->
-<!--ng-model="template.startDate" data-max-date="{{template.finishDate}}" bs-datepicker>-->
-<!--<span class="input-group-btn">-->
-<!--<button class="btn btn-default"><i class="fa fa-calendar"></i>&nbsp;</button>-->
-<!--</span>-->
-<!--</div>-->
-<!--<span class="pull-left" style="padding: 5px 2px 0">到</span>-->
-
-<!--<div class="input-group input-group-sm col-xs-5 pull-left">-->
-<!--<input name="finishDate" type="text" class="form-control input-sm" placeholder="结束"-->
-<!--ng-model="template.finishDate" data-min-date="{{template.startDate}}" bs-datepicker>-->
-<!--<span class="input-group-btn">-->
-<!--<button class="btn btn-default"><i class="fa fa-calendar"></i>&nbsp;</button>-->
-<!--</span>-->
-<!--</div>-->
-<!--</div>-->
-<!--</div>-->
-<!--<div class="form-group form-group-sm">-->
-<!--<label class="col-xs-3 control-label">上课时间1</label>-->
-
-<!--<div class="col-xs-2">-->
-<!--<input type="number" class="form-control" name="startTime1" ng-model="template.startTime1" min="0">-->
-<!--</div>-->
-<!--<span class="pull-left" style="padding: 5px 2px 0">-</span>-->
-
-<!--<div class="col-xs-2">-->
-<!--<input type="number" class="form-control" name="finishTime1" ng-model="template.finishTime1" min="0">-->
-<!--</div>-->
-<!--<span class="help-block">如900-1100即为09:00-11:00</span>-->
-<!--</div>-->
-<!--<div class="form-group form-group-sm">-->
-<!--<label class="col-xs-3 control-label">上课时间2</label>-->
-
-<!--<div class="col-xs-2">-->
-<!--<input type="number" class="form-control" name="startTime2" ng-model="template.startTime2" min="0">-->
-<!--</div>-->
-<!--<span class="pull-left" style="padding: 5px 2px 0">-</span>-->
-
-<!--<div class="col-xs-2">-->
-<!--<input type="number" class="form-control" name="finishTime2" ng-model="template.finishTime2" min="0">-->
-<!--</div>-->
-<!--<span class="help-block">可填两个上课时间段</span>-->
-<!--</div>-->
-<!--<div class="form-group form-group-sm">-->
-<!--<label class="col-xs-3 control-label">一天中的上课区间</label>-->
-
-<!--<div class="col-xs-3">-->
-<!--<button name="schooltimeDay" ng-model="template.schooltimeDay" class="btn btn-default btn-sm"-->
-<!--bs-select data-multiple="1" ng-options="item.value as item.label for item in options.schooltimeDay">-->
-<!--</button>-->
-<!--</div>-->
-<!--<span class="help-block">用于搜索</span>-->
-<!--</div>-->
-<!--<div class="form-group form-group-sm">-->
-<!--<label class="col-xs-3 control-label">一周中的上课区间</label>-->
-
-<!--<div class="col-xs-3">-->
-<!--<button name="schooltimeWeek" ng-model="template.schooltimeWeek" class="btn btn-default btn-sm"-->
-<!--bs-select data-multiple="1" ng-options="item.value as item.label for item in options.schooltimeWeek">-->
-<!--</button>-->
-<!--</div>-->
-<!--<span class="help-block">用于搜索</span>-->
-<!--</div>-->
-<!--<div class="form-group form-group-sm">-->
-<!--<label class="col-xs-3 control-label">上课日子</label>-->
-
-<!--<div class="col-xs-3">-->
-<!--<button class="btn btn-default btn-sm" ng-model="template.studyDays" max-length="7"-->
-<!--bs-select data-multiple="1" ng-options="item.value as item.label for item in options.studyDays">-->
-<!--选择 <span class="caret"></span>-->
-<!--</button>-->
-<!--</div>-->
-<!--</div>-->
-
-<!-- <div class="form-group form-group-sm">
-    <label class="col-xs-3 control-label">课时数量</label>
-
-    <div class="col-xs-3">
-        <input type="number" class="form-control" min="0"
-               name="courseHourNum" ng-model="template.courseHourNum">
+    <div class="col-xs-5">
+        <input type="text" class="form-control" name="marking"
+               ng-model="template.marking">
     </div>
 </div>
 <div class="form-group form-group-sm">
-    <label class="col-xs-3 control-label">课时长度</label>
+    <label class="col-xs-3 control-label">是否有具体开课日期</label>
+
+    <div class="col-xs-7">
+        <div class="btn-group" ng-model="template.startUponArrival" bs-radio-group="">
+            <label class="btn btn-default"><input type="radio" class="btn btn-default" value="1">是</label>
+            <label class="btn btn-default"><input type="radio" class="btn btn-default" value="0">否</label>
+        </div>
+    </div>
+</div>
+<div class="form-group form-group-sm" ng-show="template.startUponArrival==0">
+    <label class="col-xs-3 control-label">开课日期描述</label>
+
+    <div class="col-xs-5">
+        <textarea type="text" class="form-control" placeholder="如随到随学"
+                  name="regPhone" ng-model="template.regPhone">
+        </textarea>
+    </div>
+</div>
+<div class="form-group form-group-sm" ng-show="template.startUponArrival==1">
+    <label class="col-xs-3 control-label">开课日期</label>
+
+    <div class="col-xs-7">
+        <div class="input-group input-group-sm col-xs-5 pull-left">
+            <input name="startDate" type="text" class="form-control input-sm" placeholder="开始"
+                   ng-model="template.startDate" data-max-date="{{template.finishDate}}" bs-datepicker>
+<span class="input-group-btn">
+<button class="btn btn-default"><i class="fa fa-calendar"></i>&nbsp;</button>
+</span>
+        </div>
+        <span class="pull-left" style="padding: 5px 2px 0">到</span>
+
+        <div class="input-group input-group-sm col-xs-5 pull-left">
+            <input name="finishDate" type="text" class="form-control input-sm" placeholder="结束"
+                   ng-model="template.finishDate" data-min-date="{{template.startDate}}" bs-datepicker>
+<span class="input-group-btn">
+<button class="btn btn-default"><i class="fa fa-calendar"></i>&nbsp;</button>
+</span>
+        </div>
+    </div>
+</div>
+<div class="form-group form-group-sm">
+    <label class="col-xs-3 control-label">上课时间1</label>
+
+    <div class="col-xs-2">
+        <input type="number" class="form-control" name="startTime1" ng-model="template.startTime1" min="0">
+    </div>
+    <span class="pull-left" style="padding: 5px 2px 0">-</span>
+
+    <div class="col-xs-2">
+        <input type="number" class="form-control" name="finishTime1" ng-model="template.finishTime1" min="0">
+    </div>
+    <span class="help-block">如900-1100即为09:00-11:00</span>
+</div>
+<div class="form-group form-group-sm">
+    <label class="col-xs-3 control-label">上课时间2</label>
+
+    <div class="col-xs-2">
+        <input type="number" class="form-control" name="startTime2" ng-model="template.startTime2" min="0">
+    </div>
+    <span class="pull-left" style="padding: 5px 2px 0">-</span>
+
+    <div class="col-xs-2">
+        <input type="number" class="form-control" name="finishTime2" ng-model="template.finishTime2" min="0">
+    </div>
+    <span class="help-block">可填两个上课时间段</span>
+</div>
+<div class="form-group form-group-sm">
+    <label class="col-xs-3 control-label">一天中的上课区间</label>
 
     <div class="col-xs-3">
-        <input type="number" class="form-control" min="0"
-               name="courseHourLength" ng-model="template.courseHourLength">
+        <button name="schooltimeDay" ng-model="template.schooltimeDay" class="btn btn-default btn-sm"
+                bs-select data-multiple="1" ng-options="item.value as item.label for item in options.schooltimeDay">
+        </button>
     </div>
-    <span class="help-block">分钟</span>
-</div> -->
+</div>
+<div class="form-group form-group-sm">
+    <label class="col-xs-3 control-label">一周中的上课区间</label>
+
+    <div class="col-xs-3">
+        <button name="schooltimeWeek" ng-model="template.schooltimeWeek" class="btn btn-default btn-sm"
+                bs-select data-multiple="1" ng-options="item.value as item.label for item in options.schooltimeWeek">
+        </button>
+    </div>
+</div>
+
 <div class="form-group form-group-sm">
     <label class="col-xs-3 control-label">课时描述信息</label>
 
     <div class="col-xs-5">
         <input type="text" class="form-control" name="qualityAssurance" ng-model="template.qualityAssurance">
     </div>
-    <!-- <span class="help-block">若课时信息无法用"数量"和"长度"描述,在此输入描述信息</span> -->
 </div>
 <div class="form-group form-group-sm">
     <label class="col-xs-3 control-label">班级类型</label>
@@ -274,27 +246,7 @@
         </button>
     </div>
 </div>
-<!--<div class="form-group form-group-sm">-->
-<!--<label class="col-xs-3 control-label">开班要求</label>-->
 
-<!--<div class="col-xs-5">-->
-<!--<input type="text" class="form-control"-->
-<!--name="openCourseRequirement" ng-model="template.openCourseRequirement">-->
-<!--</div>-->
-<!--</div>-->
-<!--<div class="form-group form-group-sm">-->
-<!--<label class="col-xs-3 control-label">报名截止日期</label>-->
-
-<!--<div class="col-xs-3">-->
-<!--<div class="input-group input-group-sm pull-left">-->
-<!--<input name="cutoffDate" type="text" class="form-control input-sm" placeholder="截止日期"-->
-<!--ng-model="template.cutoffDate" bs-datepicker>-->
-<!--<span class="input-group-btn">-->
-<!--<button class="btn btn-default"><i class="fa fa-calendar"></i>&nbsp;</button>-->
-<!--</span>-->
-<!--</div>-->
-<!--</div>-->
-<!--</div>-->
 <div class="form-group form-group-sm">
     <label class="col-xs-3 control-label">适合学员</label>
 
@@ -312,16 +264,7 @@
 <!--</button>-->
 <!--</div>-->
 <!--</div>-->
-<!--<div class="form-group form-group-sm">-->
-<!--<label class="col-xs-3 control-label">上课地点归属</label>-->
 
-<!--<div class="col-xs-3">-->
-<!--<button class="btn btn-default btn-sm btn-block" name="locationId" ng-model="template.locationId"-->
-<!--ng-options="item.id as item.name for item in location"-->
-<!--placeholder="选择地区" bs-select>-->
-<!--</button>-->
-<!--</div>-->
-<!--</div>-->
 <!--<div class="form-group form-group-sm">-->
 <!--<label class="col-xs-3 control-label">选择报名地点</label>-->
 
@@ -332,17 +275,6 @@
 <!--</div>-->
 <!--</div>-->
 
-<!--<div class="form-group form-group-sm">-->
-<!--<label class="col-xs-3 control-label">选择展示的机构图片</label>-->
-
-<!--<div class="col-xs-5">-->
-<!--<button class="btn btn-default btn-sm" ng-model="template.classPhotoList" max-length="10"-->
-<!--data-html="1" data-multiple="1" ng-options="item.id as item.label for item in options.classPhotoList"-->
-<!--bs-select>-->
-<!--选择机构图片 <span class="caret"></span>-->
-<!--</button>-->
-<!--</div>-->
-<!--</div>-->
 <legend>教学信息</legend>
 <div class="form-group form-group-sm">
     <label class="col-xs-3 control-label">教材介绍</label>
@@ -376,22 +308,6 @@
                name="goal" ng-model="template.goal">
     </div>
 </div>
-<!--<div class="form-group form-group-sm">-->
-<!--<label class="col-xs-3 control-label">先修知识</label>-->
-
-<!--<div class="col-xs-9">-->
-<!--<input ck-editor type="text" class="form-control"-->
-<!--name="prerequest" ng-model="template.prerequest">-->
-<!--</div>-->
-<!--</div>-->
-<!--<div class="form-group form-group-sm">-->
-<!--<label class="col-xs-3 control-label">上课形式</label>-->
-
-<!--<div class="col-xs-5">-->
-<!--<input type="text" class="form-control"-->
-<!--name="teachingMethod" ng-model="template.teachingMethod">-->
-<!--</div>-->
-<!--</div>-->
 
 <div class="form-group form-group-sm">
     <label class="col-xs-3 control-label">课程提纲</label>
