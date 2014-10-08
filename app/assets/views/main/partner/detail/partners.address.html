@@ -25,19 +25,22 @@
 </table>
 <table class="table table-bordered table-condensed">
     <thead>
-    <th width="40%">地址</th>
-    <th width="20%">地区</th>
-    <th width="20%">商圈</th>
-    <th width="20%">操作</th>
+    <th width="30%">地址</th>
+    <th width="20%">校区名</th>
+    <th width="16%">地区</th>
+    <th width="16%">商圈</th>
+    <th width="18%">操作</th>
     </thead>
     <tbody>
     <tr ng-repeat="a in addresses track by a.id">
         <!--不在编辑状态中-->
         <td ng-hide="a.edit"><a ng-href="http://api.map.baidu.com/staticimage?width=600&height=400&zoom=14&center={{a.detail|formatAddr}}&markers={{a.detail|formatAddr}}" target="_blank">{{a.detail}}</a></td>
+        <td ng-hide="a.edit">{{a.realAddress}}</td>
         <td ng-hide="a.edit">{{getLocationName(a.locationId)}}</td>
         <td ng-hide="a.edit">{{getCircleName(a.circleId)}}</td>
         <!--进入编辑状态-->
         <td ng-show="a.edit"><input class="form-control input-sm" type="text" ng-model="a.detail"></td>
+        <td ng-show="a.edit"><input class="form-control input-sm" type="text" ng-model="a.realAddress"></td>
         <td ng-show="a.edit">
             <button name="location" class="btn btn-default btn-sm" ng-model="a.locationId"
                     ng-options="item.id as item.name for item in location" placeholder="选择地区" bs-select>

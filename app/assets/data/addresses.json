@@ -4,6 +4,7 @@
         {
             "id": 1,
             "detail": "地点11",
+            "realAddress": "xx校区1",
             "lat":123.212222,
             "lng":34.221112,
             "circleId":1
@@ -11,6 +12,7 @@
         {
             "id": 2,
             "detail": "南京市汇智大厦（八大队附近）",
+            "realAddress": "xx校区2",
             "lat":123.212222,
             "lng":34.221112,
             "circleId":3
