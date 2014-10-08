@@ -159,7 +159,7 @@ app.factory('PageView', ['app', 'tools',
                     }
                 ],
                 //初始化过滤条件 tab的过滤条件 需要跟tabs处于active的tab的value相对应
-                filter: {},
+                filter: {status:0},
                 th: common.tuanListTh,
                 pagination: angular.copy(app.default_page),
 
