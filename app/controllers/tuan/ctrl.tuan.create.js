@@ -5,7 +5,7 @@ appControllers.controller('tuanCreateCtrl',
         var Templates = app.restAPI.templates;
         var Partners = app.restAPI.partners;
         var uploadUrl = "/a-api/v2/groupBuy/upload";
-        $scope.tuan = {hot:0};//创建团购的模型
+        $scope.tuan = {hot: 0};//创建团购的模型
         $scope.photos = [];//照片列表
         $scope.progress = [];//照片上传进度
         $scope.addressList = [];//机构的地址选项列表
@@ -16,24 +16,24 @@ appControllers.controller('tuanCreateCtrl',
 
         //获取课程对应的机构的地址来生成地址选项
         $scope.getAddressList = function (templateId) {
-            if(!templateId) return;
+            if (!templateId) return;
             //初始化的状态为 存在该课程 和 处于loading装填
             $scope.noSuchCourse = false;
             $scope.loadingCourse = true;
-            Templates.get({ID:templateId}).$promise.then(function(template){
+            Templates.get({ID: templateId}).$promise.then(function (template) {
                 //无课程返回
-                if(!template||!template.partnerId){
+                if (!template || !template.partnerId) {
                     $scope.noSuchCourse = true;
                     $scope.loadingCourse = false;
                     return
                 }
                 $scope.loadingCourse = false;
-                return Partners.get({ID:template.partnerId}).$promise;
-            },function(){
+                return Partners.get({ID: template.partnerId}).$promise;
+            }, function () {
                 $scope.loadingCourse = false;
                 $scope.noSuchCourse = true;
-            }).then(function(partner){
-               //根据partner的地址列表生成地址的选项
+            }).then(function (partner) {
+                //根据partner的地址列表生成地址的选项
                 $scope.tuan.addressList = undefined;//置空原来的选择
                 $scope.addressList = partner.addressList;
             });
@@ -42,7 +42,7 @@ appControllers.controller('tuanCreateCtrl',
         $scope.clear = function () {
             //清空课程创建中输入的信息
             $scope.tuan = {
-                hot:0
+                hot: 0
             };
             $scope.addressList = [];
             app.window.scrollTo(0, 0);
@@ -51,16 +51,25 @@ appControllers.controller('tuanCreateCtrl',
             //将数组中obj的id转换成map [1,2] --> [{id:1},{id:2}]
             var tuan_save = angular.copy($scope.tuan);
             var photos = angular.copy($scope.photos);
+            //图片的类型
+            var type = 2;
             //将团购的图片转化为array[obj]
             tuan_save.photoList = [];
-            photos.map(function (obj) {
+            photos.map(function (obj, index) {
                 if (obj.url) {
-                    tuan_save.photoList.push({url: obj.url});
+                    if (index == 0) {
+                        type = 0;
+                    } else if (index == 1) {
+                        type = 1
+                    } else {
+                        type = 2
+                    }
+                    tuan_save.photoList.push({url: obj.url, type: type});
                 }
             });
             //将团购地址转化为array[obj]
-            tuan_save.addressList = tuan_save.addressList.map(function(addressId){
-               return {id:addressId}
+            tuan_save.addressList = tuan_save.addressList.map(function (addressId) {
+                return {id: addressId}
             });
             restAPI.save(tuan_save, function (data) {
                 app.toaster.pop('success', '团购>' + tuan_save.title + '创建成功',
