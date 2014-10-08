@@ -1,7 +1,7 @@
 var appRoutes = angular.module('appRoutes', []);
 
 appRoutes.config(function ($stateProvider, $urlRouterProvider, $httpProvider, $locationProvider) {
-    var version = '?v2build004';
+    var version = '?v2build005';
     $urlRouterProvider.otherwise("/login");
     $stateProvider
         /**************** 登录页面 ****************/
