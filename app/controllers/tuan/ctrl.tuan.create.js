@@ -64,7 +64,7 @@ appControllers.controller('tuanCreateCtrl',
                     } else {
                         type = 2
                     }
-                    tuan_save.photoList.push({url: obj.url, type: type});
+                    tuan_save.photoList.push({url: obj.url, type: type });
                 }
             });
             //将团购地址转化为array[obj]
