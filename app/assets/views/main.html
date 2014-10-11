@@ -34,14 +34,14 @@
                 <li ng-class="{active: $state.includes('main.users')}" ng-if="global.isAdmin"><a ui-sref="main.users.list">用户管理</a></li>
 
                 <li ng-class="{active: $state.includes('main.booking')}"><a ui-sref="main.booking.list">试听订单</a></li>
-                <li ng-class="{active: $state.includes('main.tbooking')}"><a ui-sref="main.tbooking.list">团购订单</a></li>
-                <li ng-class="{active: $state.includes('main.apply')}"><a ui-sref="main.apply.list">综合申请</a>
+                <li ng-class="{active: $state.includes('main.tbooking')}"><a ui-sref="main.tbooking.list">团购订单</a>
                     <img style="position: absolute;top:0;right:0px" width="25" height="25" src="../images/icon-new.png" alt=""/>
+                </li>
+                <li ng-class="{active: $state.includes('main.apply')}"><a ui-sref="main.apply.list">综合申请</a>
 
                 </li>
 
                 <li ng-class="{active: $state.includes('main.tuan')}"><a ui-sref="main.tuan.list">课程团购</a>
-                    <img style="position: absolute;top:0;right:0px" width="25" height="25" src="../images/icon-new.png" alt=""/>
                 </li>
             </ul>
         </div>
