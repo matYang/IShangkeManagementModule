@@ -21,7 +21,7 @@ appControllers.controller('homeCtrl', ['$scope', 'app',
             TBookings.get({createTimeStart: app.tools.getDeltaDayTimestamp()}).$promise
                 .then(function (data) {
                     //获取团购订单数量
-                    $scope.today.bookingCount = data.total;
+                    $scope.today.tbookingCount = data.total;
                     return Bookings.get({createTimeStart: app.tools.getDeltaDayTimestamp()}).$promise;
                 })
                 .then(function (data) {
