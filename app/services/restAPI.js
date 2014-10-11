@@ -35,7 +35,7 @@ appServices
 
                     //团购相关
                     'tuan': ['/data/tuan:ID.json?:OP', '/groupBuy/:ID/:OP'],
-                    'tuanBooking': ['/data/tuan:ID.json?:OP', '/groupBuy/booking:ID/:OP'],
+                    'tuanBooking': ['/data/tuanBookings:ID.json?:OP', '/groupBuy/booking/:ID/:OP'],
 
                     //机构相关
                     'partners': ['/data/partners:ID.json?:OP', '/partner/:ID/:OP'],

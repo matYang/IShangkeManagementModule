@@ -10,6 +10,17 @@ app.factory('PageView', ['app', 'tools',
                 {label: '审核失败', active: false, value: {status: 1} },
                 {label: '已下线', active: false, value: {status: 3}}
             ],
+            tbookingListTh: [
+                //n--name w-width percent
+                {n: '订单ID', w: '10'},
+                {n: '用户名', w: '10'},
+                {n: '手机号', w: '12'},
+                {n: '团购信息', w: '20'},
+                {n: '价格', w: '10'},
+                {n: '支付状态', w: '10'},
+                {n: '创建时间', w: '18'},
+                {n: '操作', w: '10'}
+            ],
             bookingListTh: [
                 //n--name w-width percent
                 {n: '订单号', w: '15'},
@@ -29,7 +40,7 @@ app.factory('PageView', ['app', 'tools',
                 {n: '状态', w: '12'},
                 {n: '操作', w: '22'}
             ],
-            templateListTh:[
+            templateListTh: [
                 {n: '模板号', w: '10'},
                 {n: '模板名', w: '20'},
                 {n: '爱上课价格', w: '13'},
@@ -102,6 +113,34 @@ app.factory('PageView', ['app', 'tools',
 
                 search: {}//查询条件 存储用户手动输入的条件
             },
+            tbookings: {
+                tabs: [
+                    {
+                        label: '今日订单', active: false,
+                        value: {createTimeStart: tools.getDeltaDayTimestamp()}
+                    },
+                    {
+                        label: '往日订单', active: false,
+                        value: {createTimeEnd: tools.getDeltaDayTimestamp()}
+                    },
+                    {
+                        label: '已支付订单', active: false,
+                        value: {status: 1}
+                    },
+                    {
+                        label: '未支付订单', active: false,
+                        value: {status: 0}
+                    }
+                ],
+                //初始化过滤条件 tab的过滤条件 需要跟tabs处于active的tab的value相对应
+                filter: {
+                    createTimeStart: tools.getDeltaDayTimestamp()
+                },
+                th: common.tbookingListTh,
+                pagination: angular.copy(app.default_page),
+
+                search: {}//查询条件 存储用户手动输入的条件
+            },
             templates: {
                 pagination: angular.copy(app.default_page),
                 filter: {status: 2},//过滤条件 点击生成的条件
@@ -143,23 +182,23 @@ app.factory('PageView', ['app', 'tools',
                 tabs: [
                     {
                         label: '待上线', active: true,
-                        value: {status:0}
+                        value: {status: 0}
                     },
                     {
                         label: '热卖中', active: false,
-                        value: {status:1}
+                        value: {status: 1}
                     },
                     {
                         label: '已下线', active: false,
-                        value: {status:2}
+                        value: {status: 2}
                     },
                     {
                         label: '置顶团购', active: false,
-                        value: {hot:1}
+                        value: {hot: 1}
                     }
                 ],
                 //初始化过滤条件 tab的过滤条件 需要跟tabs处于active的tab的value相对应
-                filter: {status:0},
+                filter: {status: 0},
                 th: common.tuanListTh,
                 pagination: angular.copy(app.default_page),
 

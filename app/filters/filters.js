@@ -102,6 +102,13 @@ appFilters
             };
         }
     ])
+    .filter('tbookingStatusText', ['app',
+        function (app) {
+            return function (value) {
+                return app.Enum.tbookingStatusText[value] || '未知状态';
+            };
+        }
+    ])
     .filter('tuanStatusText', ['app',
         function (app) {
             return function (value) {

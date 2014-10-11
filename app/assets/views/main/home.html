@@ -11,16 +11,20 @@
             </div>
             <div class="panel-body">
                 <div class="nums clearfix">
+                    <a ui-sref="main.tbooking.list" class="num">
+                        <i ng-bind="today.tbookingCount||0"></i>
+                        团购订单
+                    </a>
                     <a ui-sref="main.booking.list" class="num">
-                        <i ng-bind="today.bookingCount"></i>
-                        课程订单
+                        <i ng-bind="today.bookingCount||0"></i>
+                        试听订单
                     </a>
                     <a ui-sref="main.apply.list" class="num">
-                        <i ng-bind="today.applyCount"></i>
+                        <i ng-bind="today.applyCount||0"></i>
                         综合申请
                     </a>
                     <a ui-sref="main.users.list" class="num">
-                        <i ng-bind="today.registerCount"></i>
+                        <i ng-bind="today.registerCount||0"></i>
                         新增用户
                     </a>
                 </div>

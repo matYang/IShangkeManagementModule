@@ -1,7 +1,7 @@
 var appRoutes = angular.module('appRoutes', []);
 
 appRoutes.config(function ($stateProvider, $urlRouterProvider, $httpProvider, $locationProvider) {
-    var version = '?v2build005';
+    var version = '?v2build006';
     $urlRouterProvider.otherwise("/login");
     $stateProvider
         /**************** 登录页面 ****************/
@@ -50,6 +50,32 @@ appRoutes.config(function ($stateProvider, $urlRouterProvider, $httpProvider, $l
             url: '/{id}',
             templateUrl: 'views/main/booking/booking.detail.html'+version,
             controller: 'bookingDetailCtrl'
+        })
+
+
+    /**************** 团购订单管理 ****************/
+        .state('main.tbooking', {
+            abstract: true,
+            url: '/tbooking',
+            template: '<div ui-view></div>'
+        })
+        //订单处理
+        .state('main.tbooking.list', {
+            url: '',
+            templateUrl: 'views/main/tbooking/tbooking.list.html'+version,
+            controller: 'tbookingListCtrl'
+        })
+        //订单查询页面
+        .state('main.tbooking.search', {
+            url: '/search',
+            templateUrl: 'views/main/tbooking/tbooking.search.html'+version,
+            controller: 'tbookingSearchCtrl'
+        })
+        //订单详情页面
+        .state('main.tbooking.detail', {
+            url: '/{id}',
+            templateUrl: 'views/main/tbooking/tbooking.detail.html'+version,
+            controller: 'tbookingDetailCtrl'
         })
 
         /**************** 课程申请查看 ****************/

@@ -1,0 +1,91 @@
+<div class="row">
+    <a back-btn class="btn fa fa-chevron-left pull-left"> 返回</a>
+
+    <div class="pull-right">{{ title }}</div>
+</div>
+<div class="row">
+    <form class="col-xs-12 form-horizontal" role="form" name="newForm">
+        <legend>团购订单基本信息<small>-订单ID【{{ b.id }}】</small></legend>
+        <div class="form-group">
+            <label class="col-xs-3 control-label">订单号</label>
+
+            <div class="col-xs-7">
+                <p class="form-control-static">{{ b.reference }}</p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-xs-3 control-label">订单金额</label>
+
+            <div class="col-xs-7">
+                <p class="form-control-static">{{ b.groupBuyPrice | currency }}</p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-xs-3 control-label">支付状态</label>
+
+            <div class="col-xs-4">
+                <p class="form-control-static">{{ b.status | tbookingStatusText }}</p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-xs-3 control-label">用户</label>
+
+            <div class="col-xs-7">
+                <p class="form-control-static">
+                    <span>【真实姓名-{{ b.user.invitationCode||'未设置' }}】</span>
+                    <span>【用户名-{{b.user.name||'未设置' }}】</span>
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-xs-3 control-label">手机号码</label>
+
+            <div class="col-xs-7">
+                <p class="form-control-static"><strong>{{ b.user.phone }}</strong></p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-xs-3 control-label">下单时间</label>
+
+            <div class="col-xs-4">
+                <p class="form-control-static">{{ b.createTime | date:'yyyy-MM-dd HH:mm' }}</p>
+            </div>
+        </div>
+
+        <legend>订单课程信息<small>-【{{b.groupBuyActivity.course.instName}}】</small></legend>
+        <div class="form-group">
+            <label class="col-xs-3 control-label">团购ID</label>
+
+            <div class="col-xs-5">
+                <p class="form-control-static"><strong>{{b.groupBuyActivityId}}</strong>
+                    &nbsp;&nbsp;&nbsp;
+                    <a target="_blank" ui-sref="main.tuan.detail({id:b.groupBuyActivityId})">点击查看</a>
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-xs-3 control-label">团购名</label>
+
+            <div class="col-xs-7">
+                <p class="form-control-static">{{ b.groupBuyActivity.title }}</p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-xs-3 control-label">课程ID</label>
+
+            <div class="col-xs-5">
+                <p class="form-control-static"><strong>{{b.groupBuyActivity.courseId}}</strong>
+                    &nbsp;&nbsp;&nbsp;
+                    <a target="_blank" ui-sref="main.courses.detail({id:b.groupBuyActivity.courseId})">点击查看</a>
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-xs-3 control-label">课程名</label>
+
+            <div class="col-xs-7">
+                <p class="form-control-static">{{ b.groupBuyActivity.course.courseName }}</p>
+            </div>
+        </div>
+    </form>
+</div>

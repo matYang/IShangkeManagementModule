@@ -1,7 +1,7 @@
 'use strict';
-appControllers.controller('bookingSearchCtrl',
+appControllers.controller('tbookingSearchCtrl',
     ['$scope', 'restAPI', 'app', function ($scope, restAPI, app) {
-        var restAPI = restAPI.bookings;
+        var restAPI = restAPI.tuanBooking;
         $scope.th = app.PageView['common'].bookingTh;
         var init = function () {
 

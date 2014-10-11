@@ -29,10 +29,10 @@ app.value('Enum', {
             0: '未认证'
         },
         //支付方式的test
-        payTypeText:{
-            0:'线上支付',
-            1:'线下支付',
-            2:'支持线上和线下'
+        payTypeText: {
+            0: '线上支付',
+            1: '线下支付',
+            2: '支持线上和线下'
         },
         //状态的text
         courseStatusText: {
@@ -42,6 +42,11 @@ app.value('Enum', {
             2: '已上线',
             3: '已下线',
             4: '已删除'
+        },
+        tbookingStatusText: {
+            0: '未支付',
+            1: '已支付',
+            2: '已取消'
         },
         bookingStatusText: {
             //线下订单状态
@@ -76,10 +81,10 @@ app.value('Enum', {
             24: '已获返利'
 
         },
-        tuanStatusText:{
-          0:'待上线',
-          1:'热卖中',
-          2:'已下线'
+        tuanStatusText: {
+            0: '待上线',
+            1: '热卖中',
+            2: '已下线'
         },
         //记录操作的按钮text
         courseOperationText: {
@@ -124,13 +129,13 @@ app.value('Enum', {
             'templates': '课程模板',
             'courses': '课程'
         },
-        searchText:{
-            'id':'ID',
-            'courseTemplateId':'模板号',
-            'courseId':'课程号',
-            'courseName':'课程/模板名',
-            'partnerId':'机构ID',
-            'reference':'订单号'
+        searchText: {
+            'id': 'ID',
+            'courseTemplateId': '模板号',
+            'courseId': '课程号',
+            'courseName': '课程/模板名',
+            'partnerId': '机构ID',
+            'reference': '订单号'
         }
 
     }
