@@ -1,8 +1,13 @@
 /*数据列表的通用样式*/
 .table thead tr th,.table tbody tr td{
-    padding-left: 10px;
+    padding-left: 8px;
+    padding-right: 8px;
     text-align: left;
 }
 .table .operations a{
     margin: 0 2px;
+}
+.table .btn-block,
+.table .btn-block+.btn-block{
+    margin-top: 2px;
 }

@@ -1,35 +1,46 @@
 <!--该部分内容位于partner中的detail的col-xs-9的ui-view中-->
 <table class="table table-condensed" ng-form="address" novalidate>
     <thead>
-    <td width="40%">
+    <td width="25%">
         <input type="text" class="form-control input-sm" placeholder="地址" ng-model="item.detail" required=""/>
     </td>
-    <td width="20%">
+    <td width="15%">
+        <input type="text" class="form-control input-sm" placeholder="校区名" ng-model="item.realAddress"/>
+    </td>
+    <td width="14%">
         <button name="location" class="btn btn-default btn-sm" ng-model="item.locationId"
                 ng-options="item.id as item.name for item in location" placeholder="选择地区" bs-select>
         </button>
     </td>
-    <td width="20%">
+    <td width="14%">
         <button name="circle" class="btn btn-default btn-sm" ng-model="item.circleId"
                 ng-options="item.id as item.name for item in circle" placeholder="选择商圈" bs-select>
         </button>
     </td>
-    <td width="20%" class="text-right" style="padding-right: 0">
-        <button class="btn btn-primary btn-sm"  ng-disabled="address.$invalid||creating" ng-click="addAddress()">
+    <td width="11%">
+        <input type="text" class="form-control input-sm" placeholder="经度" ng-model="item.lng"/>
+    </td>
+    <td width="11%">
+        <input type="text" class="form-control input-sm" placeholder="维度" ng-model="item.lat"/>
+    </td>
+    <td width="10%" class="text-right" style="padding-right: 0">
+        <button class="btn btn-primary btn-sm btn-block"  ng-disabled="address.$invalid||creating" ng-click="addAddress()">
             <span ng-hide="creating">新 增</span>
             <span ng-show="creating">创建中</span>
         </button>
-        <button class="btn btn-default btn-sm" ng-click="init()">清空输入</button>
+        <button class="btn btn-block btn-default btn-sm" ng-click="init()">清空输入</button>
     </td>
     </thead>
 </table>
 <table class="table table-bordered table-condensed">
     <thead>
-    <th width="30%">地址</th>
-    <th width="20%">校区名</th>
-    <th width="16%">地区</th>
-    <th width="16%">商圈</th>
-    <th width="18%">操作</th>
+    <th width="25%">地址</th>
+    <th width="15%">校区名</th>
+    <th width="14%">地区</th>
+    <th width="14%">商圈</th>
+    <th width="11%">经度</th>
+    <th width="11%">纬度</th>
+    <th width="10%">操作</th>
     </thead>
     <tbody>
     <tr ng-repeat="a in addresses track by a.id">
@@ -38,6 +49,8 @@
         <td ng-hide="a.edit">{{a.realAddress}}</td>
         <td ng-hide="a.edit">{{getLocationName(a.locationId)}}</td>
         <td ng-hide="a.edit">{{getCircleName(a.circleId)}}</td>
+        <td ng-hide="a.edit">{{a.lng}}</td>
+        <td ng-hide="a.edit">{{a.lat}}</td>
         <!--进入编辑状态-->
         <td ng-show="a.edit"><input class="form-control input-sm" type="text" ng-model="a.detail"></td>
         <td ng-show="a.edit"><input class="form-control input-sm" type="text" ng-model="a.realAddress"></td>
@@ -51,12 +64,14 @@
                     ng-options="item.id as item.name for item in circle" placeholder="选择商圈" bs-select>
             </button>
         </td>
+        <td ng-show="a.edit"><input class="form-control input-sm" type="text" ng-model="a.lng"></td>
+        <td ng-show="a.edit"><input class="form-control input-sm" type="text" ng-model="a.lat"></td>
 
         <td class="bottom">
-            <button ng-show="a.edit" class="btn btn-primary btn-sm" ng-click="updateAddress($index)">保存</button>
-            <button ng-show="a.edit" class="btn btn-default btn-sm" ng-click="cancelEdit($index)">取消</button>
-            <button ng-hide="a.edit" class="btn btn-default btn-sm" ng-click="editAddress($index)">编辑</button>
-            <button ng-hide="a.edit" class="btn btn-warning btn-sm" ng-click="deleteAddress($index)">删除</button>
+            <button ng-show="a.edit" class="btn-block btn btn-primary btn-sm" ng-click="updateAddress($index)">保存</button>
+            <button ng-show="a.edit" class="btn-block btn btn-default btn-sm" ng-click="cancelEdit($index)">取消</button>
+            <button ng-hide="a.edit" class="btn-block btn btn-default btn-sm" ng-click="editAddress($index)">编辑</button>
+            <button ng-hide="a.edit" class="btn-block btn btn-warning btn-sm" ng-click="deleteAddress($index)">删除</button>
         </td>
     </tr>
     </tbody>
