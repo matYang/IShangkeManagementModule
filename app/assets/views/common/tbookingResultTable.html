@@ -11,7 +11,7 @@
     <tbody>
     <tr ng-repeat="item in items">
         <td>{{item.id || '无'}}</td>
-        <!--<td>{{item.user.invitationCode ||item.user.name || '无'}}</td>-->
+        <td>{{item.user.invitationCode ||item.user.name || '无'}}</td>
         <td>{{item.user.phone || '无'}}</td>
         <td>{{item.groupBuyActivity.title}}</td>
         <td>{{item.groupBuyPrice | currency}}</td>
