@@ -13,11 +13,11 @@ app.factory('PageView', ['app', 'tools',
             tbookingListTh: [
                 //n--name w-width percent
                 {n: '订单ID', w: '10'},
-                {n: '用户名', w: '10'},
                 {n: '手机号', w: '12'},
                 {n: '团购信息', w: '20'},
                 {n: '价格', w: '10'},
                 {n: '支付状态', w: '10'},
+                {n: '来源', w: '10'},
                 {n: '创建时间', w: '18'},
                 {n: '操作', w: '10'}
             ],

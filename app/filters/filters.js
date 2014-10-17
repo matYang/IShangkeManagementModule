@@ -109,6 +109,13 @@ appFilters
             };
         }
     ])
+    .filter('tbookingTypeText', ['app',
+        function (app) {
+            return function (value) {
+                return app.Enum.tbookingTypeText[value] || '未知';
+            };
+        }
+    ])
     .filter('tuanStatusText', ['app',
         function (app) {
             return function (value) {

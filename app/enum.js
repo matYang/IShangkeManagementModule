@@ -43,6 +43,10 @@ app.value('Enum', {
             3: '已下线',
             4: '已删除'
         },
+        tbookingTypeText: {
+            0: 'PC',
+            1: '手机'
+        },
         tbookingStatusText: {
             0: '未支付',
             1: '已支付',

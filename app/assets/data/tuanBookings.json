@@ -2,6 +2,7 @@
     {
         "errorCode": 0,
         "id": 1,
+        "type": 1,
         "createTime": 1412992332000,
         "status": 0,
         "groupBuyPrice": 1500.0,

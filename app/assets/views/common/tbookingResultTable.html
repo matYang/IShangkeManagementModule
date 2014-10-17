@@ -11,11 +11,12 @@
     <tbody>
     <tr ng-repeat="item in items">
         <td>{{item.id || '无'}}</td>
-        <td>{{item.user.invitationCode ||item.user.name || '无'}}</td>
+        <!--<td>{{item.user.invitationCode ||item.user.name || '无'}}</td>-->
         <td>{{item.user.phone || '无'}}</td>
         <td>{{item.groupBuyActivity.title}}</td>
         <td>{{item.groupBuyPrice | currency}}</td>
         <td>{{item.status | tbookingStatusText}}</td>
+        <td>【{{item.type | tbookingTypeText}}】</td>
         <td>{{item.createTime | date:'yyyy-MM-dd HH:mm'}}</td>
         <td class="operations">
             <a ui-sref="main.tbooking.detail({id:item.id})">查看</a>
